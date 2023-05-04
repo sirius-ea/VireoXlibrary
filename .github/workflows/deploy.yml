@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: build-publish
-      uses: sirius-ea/VireoXlibrary@latest
+      uses: sirius-ea/VireoXlibrary@1.2.0
       with:
         path: /storybook-static
         build_command: npm run build-storybook
