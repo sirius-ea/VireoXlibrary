@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-6eef64cc.js";import{M as l}from"./index-a9189f53.js";import{u as i}from"./index-dc1d5b46.js";import"./index-c013ead5.js";import"./_commonjsHelpers-725317a4.js";import"./iframe-d5c559ae.js";import"../sb-preview/runtime.mjs";import"./index-d475d2ea.js";import"./index-d37d4223.js";import"./index-eac562bd.js";import"./index-356e4a49.js";function b(n={}){const{wrapper:o}=Object.assign({},i(),n.components);return o?e.jsx(o,Object.assign({},n,{children:e.jsx(r,{})})):r();function r(){const t=Object.assign({h1:"h1",p:"p",pre:"pre",code:"code",a:"a"},i(),n.components);return e.jsxs(e.Fragment,{children:[e.jsx(l,{title:"VrxButton/About"}),`
+import{j as e}from"./jsx-runtime-6eef64cc.js";import{M as l}from"./index-8a3446d1.js";import{u as i}from"./index-dc1d5b46.js";import"./index-c013ead5.js";import"./_commonjsHelpers-725317a4.js";import"./iframe-870fe4d6.js";import"../sb-preview/runtime.mjs";import"./index-d475d2ea.js";import"./index-d37d4223.js";import"./index-eac562bd.js";import"./index-356e4a49.js";function b(n={}){const{wrapper:o}=Object.assign({},i(),n.components);return o?e.jsx(o,Object.assign({},n,{children:e.jsx(r,{})})):r();function r(){const t=Object.assign({h1:"h1",p:"p",pre:"pre",code:"code",a:"a"},i(),n.components);return e.jsxs(e.Fragment,{children:[e.jsx(l,{title:"VrxButton/About"}),`
 `,e.jsx(t.h1,{id:"vireoxbutton",children:"VireoxButton"}),`
 `,e.jsx(t.p,{children:"VireoxButton è un semplice bottone altamente personalizzabile"}),`
 `,e.jsx(t.p,{children:"Per utilizzarlo, importare il componente e utilizzarlo come segue:"}),`
@@ -16,4 +16,4 @@ import{j as e}from"./jsx-runtime-6eef64cc.js";import{M as l}from"./index-a9189f5
 </VrxButton>
 `})}),`
 `,e.jsxs(t.p,{children:["Per dettagli sulle API e le configurazioni leggere la ",e.jsx(t.a,{href:"./?path=/docs/vrxbutton--docs",children:"documentazione"})]})]})}}export{b as default};
-//# sourceMappingURL=VrxButton-71dc4dcc.js.map
+//# sourceMappingURL=VrxButton-76f4ef51.js.map
