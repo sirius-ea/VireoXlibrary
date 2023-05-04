@@ -1,16 +1,17 @@
 {
   "name": "@sirius-rd/vireoxlibrary",
+  "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.4",
   "type": "module",
   "files": [
     "dist"
   ],
   "main": "./dist/vireoxlibrary.umd.js",
-  "module": "./dist/vireoxlibrary.esm.js",
+  "module": "./dist/vireoxlibrary.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vireoxlibrary.esm.js",
+      "import": "./dist/vireoxlibrary.es.js",
       "require": "./dist/vireoxlibrary.umd.js"
     },
     "./dist/vireoxlibrary.css": {
@@ -42,12 +43,14 @@
     "@storybook/addon-links": "^7.0.7",
     "@storybook/addon-styling": "^1.0.5",
     "@storybook/blocks": "^7.0.7",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@storybook/vue3": "^7.0.7",
     "@storybook/vue3-vite": "^7.0.7",
     "@vitejs/plugin-vue": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "concurrently": "^8.0.1",
+    "gh-pages": "^5.0.0",
     "path": "^0.12.7",
     "postcss": "^8.4.23",
     "react": "^18.2.0",

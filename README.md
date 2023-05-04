@@ -25,6 +25,22 @@ oppure
 yarn add @sirius-rd/vireoxlibrary
 ```
 
+Installato e configurato Tailwind CSS, andare nel file `tailwind.config.js` e modificarlo come segue:
+
+```js
+module.exports = {
+    ...,
+    content: [
+        ...
+        './node_modules/@sirius-rd/vireoxlibrary/src/**/*.vue'
+    ]
+}
+```
+
 ## Utilizzo
 
 Tutti i componenti iniziano con il prefisso "Vrx" per evitare conflitti con altri componenti.
+
+# Sito Documentazione
+
+https://sirius-ea.github.io/VireoXlibrary/

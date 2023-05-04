@@ -6,10 +6,7 @@
           inline-flex
           items-center
           gap-2.5
-          font-medium
-
-          mr-2
-          mb-2"
+          font-medium"
             :class="[
             classByColor[color],
             `text-${size}`,
