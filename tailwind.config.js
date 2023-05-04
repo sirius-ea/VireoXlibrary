@@ -1,15 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'media', // 'class'
   theme: {
-    extend: {},
+    extend: {
+      darkMode: true
+    }
   },
   variants: {
     extend: {},
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [],
   content: [
-    "./node_modules/flowbite/**/*.js"
-  ]
+    "./src/**/*.{js,jsx,vue,ts,tsx}",
+    "./src/components/**/*.{js,jsx,vue,ts,tsx}",
+    "./src/**/*.stories.{js,ts}",
+    "./node_modules/flowbite/**/*.js",
+  ],
+  // Toggle dark-mode based on data-mode="dark"
+  darkMode: ['class', '[data-mode="dark"]'],
 }
 

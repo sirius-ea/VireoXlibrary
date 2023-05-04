@@ -12,7 +12,6 @@
           mb-2"
             :class="[
             classByColor[color],
-            pills ? 'rounded-full' : '',
             `text-${size}`,
             fullWidth ? 'w-full justify-center' : '',
             fullRounded ? 'rounded-full px-2 py-2' : 'rounded-lg px-5 py-2.5',
@@ -29,11 +28,10 @@
 <script setup lang="ts">
 interface ButtonProps {
     color: 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple';
-    pills: boolean;
-    size: string;
-    fullWidth: boolean;
-    fullRounded: boolean;
-    disabled: boolean;
+    size ?: string;
+    fullWidth ?: boolean;
+    fullRounded ?: boolean;
+    disabled ?: boolean;
 }
 
 const classByColor = {
@@ -47,16 +45,9 @@ const classByColor = {
     'purple': `text-white bg-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900`,
 }
 
-const {color, pills, disabled, fullRounded, fullWidth, size} = withDefaults(
-    defineProps<ButtonProps>(),
-    {
-        color: 'default',
-        pills: false,
-        disabled: false,
-        fullRounded: false,
-        fullWidth: false,
-        size: 'base',
-    })
+const {color, disabled, fullRounded, fullWidth, size} =
+    defineProps<ButtonProps>()
+
 </script>
 
 <style scoped>

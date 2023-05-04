@@ -1,18 +1,30 @@
-# Vue 3 + TypeScript + Vite
+# VireoXlibrary
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+VireoXlibrary è una libreria di componenti Vue3 per la realizzazione di applicazioni web.
+Utilizza Tailwind CSS e Flowbite Design System.
 
-## Recommended IDE Setup
+## Requisiti
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Tailwind CSS
+- Flowbite
 
-## Type Support For `.vue` Imports in TS
+Per installare Tailwind CSS e Flowbite fare riferimento alla seguente guida:
+https://flowbite.com/docs/getting-started/vue/
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Installazione
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Per scaricare e installare la libreria eseguire il comando:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```
+npm i @sirius-rd/vireoxlibrary
+```
+
+oppure
+
+```
+yarn add @sirius-rd/vireoxlibrary
+```
+
+## Utilizzo
+
+Tutti i componenti iniziano con il prefisso "Vrx" per evitare conflitti con altri componenti.

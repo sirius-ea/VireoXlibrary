@@ -1,11 +1,10 @@
 import type { App } from 'vue';
-import { HelloWorld, MyButton } from "@/components";
+import {VrxButton} from "@/components";
 
 export default {
     install: (app: App) => {
-        app.component('HelloWorld', HelloWorld);
-        app.component('MyButton', MyButton);
+        app.component('VrxButton', VrxButton);
     }
 };
 
-export { HelloWorld, MyButton };
+export { VrxButton };

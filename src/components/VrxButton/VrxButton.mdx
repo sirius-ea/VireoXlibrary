@@ -1,0 +1,28 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxButton/About" />
+
+# VireoxButton
+
+VireoxButton è un semplice bottone altamente personalizzabile
+
+Per utilizzarlo, importare il componente e utilizzarlo come segue:
+```js
+import {VrxButton} from 'vireoxlibrary';
+
+<VrxButton color={'default'}>
+    Click me
+</VrxButton>
+```
+
+È possibile utilizzare gli eventi handler di VueJS per gestire gli eventi del bottone:
+
+```js
+import {VrxButton} from 'vireoxlibrary';
+
+<VrxButton color={'default'} @click={() => console.log('clicked')}>
+    Click me
+</VrxButton>
+```
+
+Per dettagli sulle API e le configurazioni leggere la [documentazione](./?path=/docs/vrxbutton--docs)
