@@ -159,11 +159,12 @@ const Template: BtnStory = {
         default: 'Button',
         color: 'default',
         size: 'base',
-    }
+    },
 }
 
 export const Primary: BtnStory = {
-    ...Template,
+    ...Template
+
 };
 
 export const Prefix: BtnStory = {

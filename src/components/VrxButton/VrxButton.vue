@@ -43,7 +43,28 @@ const classByColor = {
 }
 
 const {color, disabled, fullRounded, fullWidth, size} =
-    defineProps<ButtonProps>()
+    defineProps({
+        color: {
+            type: String,
+            default: 'default',
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        fullRounded: {
+            type: Boolean,
+            default: false,
+        },
+        fullWidth: {
+            type: Boolean,
+            default: false,
+        },
+        size: {
+            type: String,
+            default: 'base',
+        }
+    })
 
 </script>
 

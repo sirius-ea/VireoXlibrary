@@ -1,11 +1,20 @@
-import { defineConfig } from 'vite'
+import {defineConfig, UserConfigExport} from 'vite'
+import type { UserConfig as VitestUserConfigInterface } from "vitest/config"
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 import typescript2 from 'rollup-plugin-typescript2';
 import dts from "vite-plugin-dts";
 
 let __dirname = path.resolve();
+
+const vitestConfig : VitestUserConfigInterface = {
+  test: {
+    globals: true,
+    environment: 'happy-dom'
+  }
+}
 export default defineConfig({
+  ...vitestConfig,
   plugins: [
     vue(),
     dts({
@@ -58,4 +67,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-})
+} as UserConfigExport)
