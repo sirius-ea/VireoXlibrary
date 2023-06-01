@@ -15,6 +15,7 @@ describe('VrxButton', () => {
 
     it('renders a button', () => {
         expect(wrapper.find('button').exists()).toBe(true);
+        expect(wrapper.find('button').exists()).toBe(true);
     });
 
     //test change color props
