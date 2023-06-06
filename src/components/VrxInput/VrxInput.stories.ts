@@ -26,7 +26,7 @@ const meta : Meta<typeof VrxInput> = {
             control: {
                 type: 'select',
             },
-            options: ['password', 'mail'],
+            options: ['password', 'mail', 'rocket', 'user-circle'],
             defaultValue: {
                 summary: undefined,
             },
@@ -120,21 +120,14 @@ const Template : InputStories = {
         components: { VrxInput },
         setup() {
             return {
-                args
+                args,
             };
         },
 
         template: `
             <VrxInput 
                 v-bind="args"
-                v-model="args.value"
-                :placeholder="args.placeholder" 
-                :label="args.label" 
-                :disabled="args.disabled"
-                :type="args.type"
-                :invalid="args.invalid"
-                :helperText="args.helperText"
-                :icon="args.icon"
+                v-model="args.modelValue"
             />
         `
     }),
@@ -159,7 +152,7 @@ export const Icon: InputStories = {
     args: {
         ...Template.args,
         icon: 'mail',
-        value: 'example@mail.com',
+        modelValue: 'example@mail.com',
         label: 'Mail'
     }
 };
@@ -181,8 +174,9 @@ export const Disabled: InputStories = {
         ...Template.args,
         disabled: true,
         label: 'Name',
-        value: 'Mario Rossi',
+        modelValue: 'Mario Rossi',
         helperText: 'Insert your complete name',
+        icon: 'user-circle',
     }
 };
 
@@ -192,7 +186,8 @@ export const Invalid: InputStories = {
         ...Template.args,
         invalid: true,
         label: 'Email',
-        value: 'mario.rossi@gmail',
+        modelValue: 'mario.rossi@gmail',
         helperText: 'This is not a valid email address',
+        icon: 'mail',
     }
 };

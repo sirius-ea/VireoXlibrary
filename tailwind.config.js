@@ -8,7 +8,9 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+      require('flowbite/plugin'),
+  ],
   content: [
     "./src/**/*.{js,jsx,vue,ts,tsx}",
     "./src/components/**/*.{js,jsx,vue,ts,tsx}",
