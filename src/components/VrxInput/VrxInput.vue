@@ -1,24 +1,27 @@
 <template>
-  <label id="vrx-input-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
-    {{ label }}
-  </label>
-  <div class="relative mb-2">
-    <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-      <VrxIcon :icon="icon" :color="style.icon" size="5"/>
+  <div id="vrx-input">
+    <label id="vrx-input-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
+      {{ label }}
+    </label>
+    <div class="relative mb-2">
+      <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <VrxIcon :icon="icon" :color="style.icon" size="5"/>
+      </div>
+      <input
+          id="vrx-input-field"
+          :type="type"
+          :placeholder="placeholder"
+          :disabled="disabled"
+          :value="modelValue"
+          @input="updateValue"
+          class="text-sm rounded-lg p-2.5 block w-full"
+          :class="style.input"
+      />
     </div>
-    <input
-        :type="type"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :value="modelValue"
-        @input="updateValue"
-        class="text-sm rounded-lg p-2.5 block w-full"
-        :class="style.input"
-    />
+    <p id="vrx-input-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
+      {{ helperText }}
+    </p>
   </div>
-  <p id="vrx-input-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
-    {{ helperText }}
-  </p>
 </template>
 
 <script setup lang="ts">
