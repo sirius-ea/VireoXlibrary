@@ -18,7 +18,7 @@
     size: string,
   }>(), {
     color: 'currentColor',
-    size: '6',
+    size: '5',
   })
 
   const iconColor = computed(() => {
@@ -26,13 +26,61 @@
   })
 
   const size = computed(() => {
-    return 'w-' + props.size + ' h-' + props.size
+    return 'size-' + props.size
   })
 
 </script>
 
 <style scoped>
-.h-5 {
-  height: 1.25rem;
+
+.size-10 {
+  height: 5rem;
+  width: 5rem;
 }
+
+.size-9 {
+  height: 4rem;
+  width: 4rem;
+}
+
+.size-8 {
+  height: 3rem;
+  width: 3rem;
+}
+
+.size-7 {
+  height: 2rem;
+  width: 2rem;
+}
+
+.size-6 {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.size-5 {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.size-4 {
+  height: 1rem;
+  width: 1rem;
+}
+
+.size-3 {
+  height: 0.75rem;
+  width: 0.75rem;
+}
+
+.size-2 {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.size-1 {
+  height: 0.25rem;
+  width: 0.25rem;
+}
+
 </style>

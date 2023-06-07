@@ -11,17 +11,29 @@
     >
       <div class="button-left-side">
         <VrxIcon v-if="icon" :icon="icon" :color="style.icon" size="5"/>
+
         <div class="selected-container">
           <div v-if="selectedList.length === 0" :class="style.placeholder">
             {{ placeholder }}
           </div>
-          <div v-for="element in selectedList" :class="style.selected" class="p-0.5 item-selected">
-            <div>{{ element.label }}</div>
-            <VrxIcon icon="x" size="4" @click="itemClick(element)"/>
+
+          <div v-else class="selected-container">
+            <div v-if="multiselect" v-for="element in selectedList" :class="style.selected" class="p-0.5 item-selected">
+              <div>{{ element.label }}</div>
+              <VrxIcon icon="x" size="4" @click="itemClick(element)"/>
+            </div>
+
+            <div v-if="!multiselect">
+              {{ selectedList[0].label }}
+            </div>
           </div>
+
         </div>
       </div>
-      <VrxIcon :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="4" :color="style.icon"/>
+      <div class="button-right-side">
+        <VrxIcon :icon="'x'" size="4" :color="style.icon" @click="deselectAll"/>
+        <VrxIcon :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="4" :color="style.icon"/>
+      </div>
     </div>
 
     <div v-if="showDropdown" class="menu text-sm" :class="style.dropdown">
@@ -55,12 +67,14 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
     listData: SelectItemInterface[],
     modelValue: SelectItemInterface[],
     variant: ComponentVariant,
+    multiselect: boolean,
   }>(),{
     disabled: false,
     invalid: false,
+    multiselect: false,
     label: '',
     helperText: '',
-    placeholder: 'Select',
+    placeholder: 'Select option',
     variant: 'default'
   })
 
@@ -73,12 +87,22 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
     return selectStyles(props.disabled, props.invalid, props.variant);
   })
 
+  const deselectAll = () => {
+    selectedList.value = [];
+    emit('update:modelValue', selectedList.value);
+  }
+
   const itemClick = (item : SelectItemInterface) => {
-    if(selectedList.value.includes(item)){
-      selectedList.value = selectedList.value.filter((element) => element !== item);
+    if(!props.multiselect){
+      selectedList.value = [item];
     } else {
-      selectedList.value.push(item);
+      if(selectedList.value.includes(item)){
+        selectedList.value = selectedList.value.filter((element) => element !== item);
+      } else {
+        selectedList.value.push(item);
+      }
     }
+
     emit('update:modelValue', selectedList.value);
   }
 
@@ -116,7 +140,14 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    z-index: 200;
+    overflow: hidden;
+    padding-right: 10px;
+  }
+  .button-right-side{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
   }
   .dropdown-item{
     cursor: pointer;
@@ -129,13 +160,15 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
     align-items: center;
     gap: 5px;
     user-select: none;
-
   }
   .selected-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .dropdown-item-content{
     display: flex;

@@ -33,7 +33,7 @@ const meta : Meta<typeof VrxInput> = {
             table: {
                 category: 'props',
                 type: {
-                    summary: 'VrxIconType',
+                    summary: 'IconLibraryType',
                 },
             }
         },

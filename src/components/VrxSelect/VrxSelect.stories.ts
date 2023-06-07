@@ -36,6 +36,21 @@ const meta : Meta<typeof VrxSelect> = {
                 }
             }
         },
+        multiselect: {
+            description: 'enable multiple selection',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
+        },
         disabled: {
             description: 'disable select',
             control: {
@@ -90,7 +105,7 @@ const meta : Meta<typeof VrxSelect> = {
             table: {
                 category: 'props',
                 type: {
-                    summary: 'VrxIconType',
+                    summary: 'IconLibraryType',
                 },
             }
         },
@@ -119,7 +134,7 @@ const meta : Meta<typeof VrxSelect> = {
             }
         },
         variant: {
-            description: 'color variant',
+            description: 'color variant (only on multi-select)',
             control: {
                 type: 'select',
             },
@@ -159,6 +174,7 @@ const Template : SelectStories = {
           <div style="height: 200px">
               <VrxSelect
                   v-model="args.modelValue"
+                  :list-data="args.listData"
                   v-bind="args"
               />
           </div>
@@ -192,10 +208,20 @@ export const Selected: SelectStories = {
     args: {
         ...Template.args,
         label: 'Select an option',
-        modelValue: [data[0],data[1]],
+        modelValue: [data[0]],
         helperText: 'The given option is the default selected',
     }
 };
+
+export const Multiselect: SelectStories = {
+    ...Template,
+    args: {
+        ...Template.args,
+        multiselect: true,
+        label: 'Select an option',
+        modelValue: [data[0],data[1]],
+    }
+}
 
 export const Icon: SelectStories = {
     ...Template,
@@ -236,7 +262,8 @@ export const Variant: SelectStories = {
     args: {
         ...Template.args,
         label: 'Select an option',
-        modelValue: [data[0],data[1]],
+        modelValue: [data[0], data[1]],
+        multiselect: true,
         variant: 'green',
         helperText: 'This is a green variant',
     },
