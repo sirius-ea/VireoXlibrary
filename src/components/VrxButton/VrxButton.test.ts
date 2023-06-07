@@ -6,9 +6,10 @@ import {mount, VueWrapper} from "@vue/test-utils";
 describe('VrxButton', () => {
     let wrapper : VueWrapper<any>;
     beforeEach(() => {
-        wrapper = mount(VrxButton, {
+        wrapper = mount(VrxButton as any, {
             props: {
                 color: 'default',
+                size: 'base',
             }
         });
     });

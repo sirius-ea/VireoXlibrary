@@ -36,28 +36,13 @@ const classByColor = {
 }
 
 const {color, disabled, fullRounded, fullWidth, size} =
-    defineProps({
-        color: {
-            type: String,
-            default: 'default',
-        },
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
-        fullRounded: {
-            type: Boolean,
-            default: false,
-        },
-        fullWidth: {
-            type: Boolean,
-            default: false,
-        },
-        size: {
-            type: String,
-            default: 'base',
-        }
-    })
+    defineProps<{
+      color: 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple',
+      disabled?: boolean,
+      fullRounded?: boolean,
+      fullWidth?: boolean,
+      size: 'xs' | 'sm' | 'base' | 'lg' | 'xl',
+    }>()
 
 </script>
 

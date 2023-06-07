@@ -6,32 +6,34 @@ const meta : Meta<typeof VrxSelect> = {
     component: VrxSelect,
     tags: ['autodocs'],
     argTypes: {
-        elements: {
-            description: 'list of selectable elements',
+        listData: {
+            description: 'list containing the selectable options',
             control: {
-                type: 'object',
+                type: '{value: string, label: string}[]',
             },
             table: {
                 category: 'props',
                 type: {
-                    summary: '{ value: any, label: string }[]',
+                    summary: '{value: string, label: string}[]',
                 },
                 defaultValue: {
                     summary: '[]',
                 }
             }
         },
-        initialSelected: {
-            description: 'label of the initial selected element',
+        modelValue: {
+            description: 'ref containing the selected options',
             control: {
-                type: 'text',
+                type: '{value: string, label: string}',
             },
             table: {
                 category: 'props',
                 type: {
-                    summary: 'string',
+                    summary: '{value: string, label: string}[]',
                 },
-
+                defaultValue: {
+                    summary: '[]',
+                }
             }
         },
         disabled: {
@@ -44,6 +46,9 @@ const meta : Meta<typeof VrxSelect> = {
                 type: {
                     summary: 'boolean',
                 },
+                defaultValue: {
+                    summary: 'false',
+                }
             }
         },
         invalid: {
@@ -56,6 +61,9 @@ const meta : Meta<typeof VrxSelect> = {
                 type: {
                     summary: 'boolean',
                 },
+                defaultValue: {
+                    summary: false,
+                }
             }
         },
         label: {
@@ -67,7 +75,7 @@ const meta : Meta<typeof VrxSelect> = {
                 category: 'props',
                 type: {
                     summary: 'string',
-                }
+                },
             }
         },
         icon: {
@@ -98,6 +106,34 @@ const meta : Meta<typeof VrxSelect> = {
                 }
             }
         },
+        placeholder: {
+            description: 'placeholder text',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                }
+            }
+        },
+        variant: {
+            description: 'color variant',
+            control: {
+                type: 'select',
+            },
+            options: ['default', 'alternative', 'dark', 'light', 'green', 'red', 'yellow', 'purple'],
+            defaultValue: {
+                summary: 'default'
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+            }
+        },
     }
 }
 
@@ -120,26 +156,33 @@ const Template : SelectStories = {
         },
 
         template: `
-            <VrxSelect
-                v-model="args.modelValue"
-                v-bind="args"
-            />
+          <div style="height: 200px">
+              <VrxSelect
+                  v-model="args.modelValue"
+                  v-bind="args"
+              />
+          </div>
         `
     }),
     args: {
         listData: data,
-        modelValue: [data[0]],
+        modelValue: [],
     },
 }
 
 export const Primary: SelectStories = {
     ...Template,
+    args: {
+        ...Template.args,
+        modelValue: [],
+    }
 };
 
 export const Labeled: SelectStories = {
     ...Template,
     args: {
         ...Template.args,
+        modelValue: [],
         label: 'Select an option',
     }
 };
@@ -149,7 +192,7 @@ export const Selected: SelectStories = {
     args: {
         ...Template.args,
         label: 'Select an option',
-        modelValue: '2',
+        modelValue: [data[0],data[1]],
         helperText: 'The given option is the default selected',
     }
 };
@@ -158,6 +201,7 @@ export const Icon: SelectStories = {
     ...Template,
     args: {
         ...Template.args,
+        modelValue: [],
         icon: 'rocket',
 
     }
@@ -167,6 +211,7 @@ export const Disabled: SelectStories = {
     ...Template,
     args: {
         ...Template.args,
+        modelValue: [],
         disabled: true,
         icon: 'rocket',
         label: 'Select an option',
@@ -178,9 +223,21 @@ export const Invalid: SelectStories = {
     ...Template,
     args: {
         ...Template.args,
+        modelValue: [],
         invalid: true,
         icon: 'rocket',
         label: 'Select an option',
         helperText: 'The given option is not selectable',
     }
+}
+
+export const Variant: SelectStories = {
+    ...Template,
+    args: {
+        ...Template.args,
+        label: 'Select an option',
+        modelValue: [data[0],data[1]],
+        variant: 'green',
+        helperText: 'This is a green variant',
+    },
 }

@@ -1,10 +1,12 @@
 import colors from "tailwindcss/colors";
+import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
-export function inputStyles (invalid : boolean, disabled : boolean, iconType : String){
-    let input : String = "bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    let label : String = "text-gray-900 dark:text-white"
-    let helperText : String = "text-gray-500 dark:text-gray-300"
-    let icon : String = colors.gray[400];
+export type ComponentVariant = 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple';
+export function inputStyles (invalid : boolean, disabled : boolean, iconType? : IconLibraryType){
+    let input : string = "bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    let label : string = "text-gray-900 dark:text-white"
+    let helperText : string = "text-gray-500 dark:text-gray-300"
+    let icon : string = colors.gray[400];
 
     if(invalid){
         input = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500"
@@ -27,7 +29,7 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType : S
     return { input, label, helperText, icon };
 }
 
-export function selectStyles (disabled: boolean, invalid: boolean, variant : String){
+export function selectStyles (disabled: boolean, invalid: boolean, variant : string){
     const selectedItem  = {
         'default': `text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`,
         'alternative': `text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700`,
@@ -51,13 +53,13 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : Str
     }
 
     // @ts-ignore
-    let dropdownItem : String = "hover:bg-gray-100 dark:hover:bg-gray-800"
-    let select : String = "bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    let label: String = "text-gray-900 dark:text-white";
-    let helperText : String = "text-gray-500 dark:text-gray-300";
-    let placeholder : String = "text-gray-500 dark:text-gray-300";
-    let dropdown : String = "bg-white border border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-    let icon: String = colors.gray[400];
+    let dropdownItem : string = "hover:bg-gray-100 dark:hover:bg-gray-800"
+    let select : string = "bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    let label: string = "text-gray-900 dark:text-white";
+    let helperText : string = "text-gray-500 dark:text-gray-300";
+    let placeholder : string = "text-gray-500 dark:text-gray-300";
+    let dropdown : string = "bg-white border border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+    let icon: string = colors.gray[400];
     // @ts-ignore
     const selected = selectedItem[variant];
     // @ts-ignore
