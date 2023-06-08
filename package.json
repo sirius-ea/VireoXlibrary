@@ -23,6 +23,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest",
+    "tsc": "vue-tsc",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "storybook": "concurrently 'yarn:watch:*'",
