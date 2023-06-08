@@ -1,0 +1,11 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+import VrxInput from '../../components/VrxInput/VrxInput.vue';
+declare const meta: Meta<typeof VrxInput>;
+export default meta;
+type InputStories = StoryObj<typeof VrxInput>;
+export declare const Primary: InputStories;
+export declare const Labeled: InputStories;
+export declare const Icon: InputStories;
+export declare const Password: InputStories;
+export declare const Disabled: InputStories;
+export declare const Invalid: InputStories;
