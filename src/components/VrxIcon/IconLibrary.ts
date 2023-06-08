@@ -5,8 +5,11 @@ export const iconLibrary = {
     'user-circle' : 'M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z',
     'chevron-up' : 'M4.5 15.75l7.5-7.5 7.5 7.5',
     'chevron-down' : 'M19.5 8.25l-7.5 7.5-7.5-7.5',
+    'chevron-left' : 'M15.75 19.5L8.25 12l7.5-7.5',
+    'chevron-right': 'M8.25 19.5l7.5-7.5-7.5-7.5',
     'x' : 'M6 18L18 6M6 6l12 12',
-    'check' : 'M4.5 12.75l6 6 9-13.5'
+    'check' : 'M4.5 12.75l6 6 9-13.5',
+    'empty' : 'M0',
 }
 
 export type IconLibraryType = keyof typeof iconLibrary
