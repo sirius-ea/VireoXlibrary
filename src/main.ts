@@ -1,7 +1,5 @@
 import type { App } from 'vue';
 import {VrxButton, VrxInput, VrxIcon, VrxSelect} from "@/components";
-import 'flowbite';
-
 export default {
     install: (app: App) => {
         app.component('VrxButton', VrxButton);
