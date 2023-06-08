@@ -8,12 +8,13 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+  ],
   content: [
     "./src/**/*.{js,jsx,vue,ts,tsx}",
     "./src/components/**/*.{js,jsx,vue,ts,tsx}",
     "./src/**/*.stories.{js,ts}",
-    "./node_modules/flowbite/**/*.js",
+    "./index.html"
   ],
   // Toggle dark-mode based on data-mode="dark"
   darkMode: ['class', '[data-mode="dark"]'],

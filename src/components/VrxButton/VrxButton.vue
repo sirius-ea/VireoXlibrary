@@ -23,13 +23,6 @@
 </template>
 
 <script setup lang="ts">
-interface ButtonProps {
-    color: 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple';
-    size ?: string;
-    fullWidth ?: boolean;
-    fullRounded ?: boolean;
-    disabled ?: boolean;
-}
 
 const classByColor = {
     'default': `text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`,
@@ -43,28 +36,13 @@ const classByColor = {
 }
 
 const {color, disabled, fullRounded, fullWidth, size} =
-    defineProps({
-        color: {
-            type: String,
-            default: 'default',
-        },
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
-        fullRounded: {
-            type: Boolean,
-            default: false,
-        },
-        fullWidth: {
-            type: Boolean,
-            default: false,
-        },
-        size: {
-            type: String,
-            default: 'base',
-        }
-    })
+    defineProps<{
+      color: 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple',
+      disabled?: boolean,
+      fullRounded?: boolean,
+      fullWidth?: boolean,
+      size: 'xs' | 'sm' | 'base' | 'lg' | 'xl',
+    }>()
 
 </script>
 

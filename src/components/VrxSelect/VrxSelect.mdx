@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxSelect/About" />
+
+# VireoxSelect
+
+VireoxSelect è il componente input di base per la selezione singola e per quella multipla.
+
+Il componente utilizza il 100% della larghezza disponibile.
+Per utilizzarlo, importarlo come segue:
+```js
+import {VrxSelect} from 'vireoxlibrary';
+
+const value = ref([])
+const data : SelectItemInterface[] = [
+    {value: '1', label: 'Opzione 1'},
+    {value: '2', label: 'Opzione 2'},
+    {value: '3', label: 'Opzione 3'},
+]
+<VrxSelect v-model="value" :list-data="data"/>
+```
+
+Per dettagli sulle API e le configurazioni leggere la [documentazione](./?path=/docs/vrxselect--docs)
