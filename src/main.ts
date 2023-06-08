@@ -1,5 +1,6 @@
 import type { App } from 'vue';
 import {VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle} from "@/components";
+import VrxButtonsGroup from "@/components/VrxButtonsGroup/VrxButtonsGroup.vue";
 export default {
     install: (app: App) => {
         app.component('VrxButton', VrxButton);
@@ -7,7 +8,8 @@ export default {
         app.component('VrxIcon', VrxIcon);
         app.component('VrxSelect', VrxSelect)
         app.component('VrxToggle', VrxToggle)
+        app.component('VrxButtonsGroup', VrxButtonsGroup)
     }
 };
 
-export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle };
+export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxButtonsGroup };
