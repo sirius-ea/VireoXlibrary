@@ -6,7 +6,7 @@
         type="button"
         class="inline-flex items-center px-4 py-2 text-sm font-medium"
         :class="styleByIndex(index, buttons.length)"
-        @click="btnActions[index] ? btnActions[index](btn) : null"
+        @click="btnActions[index] ? btnActions[index]() : null"
     >
       <VrxIcon v-if="btnIcons[index]" :icon="btnIcons[index]" size="4"/>
       <span class="ml-1">{{ btn }}</span>
