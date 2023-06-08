@@ -1,6 +1,6 @@
 
 <template>
-  <svg :id="'vrx-icon-' + icon" class="dark:text-white" :class="size" fill="none" :stroke="iconColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg :data-testid="'vrx-icon-' + icon" class="dark:text-white" :class="size" fill="none" :stroke="iconColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="iconLibrary[icon]"></path>
   </svg>
 

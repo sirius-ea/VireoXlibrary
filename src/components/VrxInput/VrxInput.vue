@@ -1,6 +1,6 @@
 <template>
-  <div id="vrx-input">
-    <label id="vrx-input-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
+  <div data-testid="vrx-input">
+    <label data-testid="vrx-input-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
       {{ label }}
     </label>
     <div class="relative mb-2">
@@ -8,7 +8,7 @@
         <VrxIcon :icon="icon" :color="style.icon" size="5"/>
       </div>
       <input
-          id="vrx-input-field"
+          data-testid="vrx-input-field"
           :type="type"
           :placeholder="placeholder"
           :disabled="disabled"
@@ -18,7 +18,7 @@
           :class="style.input"
       />
     </div>
-    <p id="vrx-input-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
+    <p data-testid="vrx-input-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
       {{ helperText }}
     </p>
   </div>

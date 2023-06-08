@@ -85,3 +85,29 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
     return { select, label, helperText, icon, selected, selectedIcon, dropdown, dropdownItem, placeholder };
 }
 
+export function toggleStyle(variant : ComponentVariant, size: 'sm' | 'md' | 'lg'){
+
+    let toggleColor = {
+        'default': "bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-blue-600",
+        'red' : "bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-red-600",
+        'green' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-green-600",
+        'purple' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-purple-600",
+        'yellow' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400"
+    }
+
+    let toggleSizes = {
+        'sm' : 'w-9 h-5 after:top-[2px] after:left-[2px] after:h-4 after:w-4',
+        'md' : 'w-11 h-6 after:top-[2px] after:left-[2px] after:h-5 after:w-5',
+        'lg' : 'w-14 h-7 after:top-0.5 after:left-[4px] after:h-6 after:w-6'
+    }
+    let label : string = "text-gray-900 dark:text-white"
+
+    // @ts-ignore
+    const variantSelected = toggleColor[variant] ?? toggleColor['default'];
+    // @ts-ignore
+    const sizeSelected = toggleSizes[size] ?? toggleSizes['md'];
+
+    const toggle : string = variantSelected + " " + sizeSelected;
+    return { toggle, label };
+}
+

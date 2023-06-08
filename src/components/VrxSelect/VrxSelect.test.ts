@@ -22,14 +22,14 @@ describe('VrxSelect', () => {
     });
 
     it('renders the component', () => {
-        expect(wrapper.find('#vrx-select').exists()).toBe(true);
-        expect(wrapper.find('#vrx-select-label').exists()).toBe(true);
-        expect(wrapper.find('#vrx-select-helper').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-label]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-label]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-helper]').exists()).toBe(true);
     });
 
     it('open the select', async () => {
         await wrapper.trigger('focus');
-        expect(wrapper.find('#vrx-select-dropdown').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-dropdown]').exists()).toBe(true);
     });
 
     it('change listData', async () => {
@@ -46,9 +46,9 @@ describe('VrxSelect', () => {
 
         // testing on DOM
         await wrapper.trigger('focus');
-        expect(wrapper.find('#vrx-select-dropdown-0').exists()).toBe(true);
-        expect(wrapper.find('#vrx-select-dropdown-1').exists()).toBe(true);
-        expect(wrapper.find('#vrx-select-dropdown-2').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-dropdown-0]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-dropdown-1]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-dropdown-2]').exists()).toBe(true);
     });
 
     it('change variant', async () => {
@@ -59,7 +59,7 @@ describe('VrxSelect', () => {
     it('change icon', async () => {
         await wrapper.setProps({ icon: 'mail' });
         expect(wrapper.props('icon')).toBe('mail');
-        expect(wrapper.find('#vrx-icon-mail').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-icon-mail]').exists()).toBe(true);
     });
 
     it('change multiselect', async () => {
@@ -70,12 +70,12 @@ describe('VrxSelect', () => {
     it('change invalid', async () => {
         await wrapper.setProps({ invalid: true });
         expect(wrapper.props('invalid')).toBe(true);
-        expect(wrapper.get('#vrx-select-button').classes()).toContain('bg-red-50');
+        expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-red-50');
     })
 
     it('change disabled', async () => {
         await wrapper.setProps({ disabled: true });
         expect(wrapper.props('disabled')).toBe(true);
-        expect(wrapper.get('#vrx-select-button').classes()).toContain('bg-gray-10');
+        expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-gray-10');
     });
 })

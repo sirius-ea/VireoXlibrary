@@ -21,9 +21,9 @@ describe('VrxInput', () => {
     });
 
     it('renders the component', () => {
-        expect(wrapper.find('#vrx-input').exists()).toBe(true);
-        expect(wrapper.find('#vrx-input-label').exists()).toBe(true);
-        expect(wrapper.find('#vrx-input-helper').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-input]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-input-label]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-input-helper]').exists()).toBe(true);
     });
 
     it('insert new input', async () => {
@@ -41,18 +41,18 @@ describe('VrxInput', () => {
     it('change icon', async () => {
         await wrapper.setProps({ icon: 'mail' });
         expect(wrapper.props('icon')).toBe('mail');
-        expect(wrapper.find('#vrx-icon-mail').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-icon-mail]').exists()).toBe(true);
     });
 
     it('change invalid', async () => {
         await wrapper.setProps({ invalid: true });
         expect(wrapper.props('invalid')).toBe(true);
-        expect(wrapper.get('#vrx-input-field').classes()).toContain('bg-red-50');
+        expect(wrapper.get('[data-testid=vrx-input-field]').classes()).toContain('bg-red-50');
     })
 
     it('change disabled', async () => {
         await wrapper.setProps({ disabled: true });
         expect(wrapper.props('disabled')).toBe(true);
-        expect(wrapper.get('#vrx-input-field').classes()).toContain('bg-gray-10');
+        expect(wrapper.get('[data-testid=vrx-input-field]').classes()).toContain('bg-gray-10');
     });
 })
