@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
+import {SelectItemInterface} from "./SelectItemInterface.ts";
 
 const meta : Meta<typeof VrxSelect> = {
     title: 'VrxSelect',

@@ -61,8 +61,10 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-  import {selectStyles, ComponentVariant} from "@/components/styles.ts";
+import {selectStyles, ComponentVariant} from "@/components/styles.ts";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
+import {SelectItemInterface} from "./SelectItemInterface.ts";
+
   const props = withDefaults(defineProps<{
     label: string,
     placeholder: string,

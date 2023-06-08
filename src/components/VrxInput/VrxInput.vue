@@ -49,7 +49,7 @@ const emit = defineEmits(['update:modelValue'])
 const updateValue = (event : any) => emit('update:modelValue', event.target.value)
 
 const style = computed(() => {
-  return inputStyles(props.invalid, props.disabled, props.icon)
+  return inputStyles(props.invalid || false, props.disabled || false, props.icon)
 })
 
 </script>

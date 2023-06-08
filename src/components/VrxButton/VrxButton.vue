@@ -3,10 +3,11 @@
             type="button"
             :disabled="disabled"
             class="
-          inline-flex
-          items-center
-          gap-2.5
-          font-medium"
+              inline-flex
+              items-center
+              gap-2.5
+              font-medium
+            "
             :class="[
             classByColor[color],
             `text-${size}`,
