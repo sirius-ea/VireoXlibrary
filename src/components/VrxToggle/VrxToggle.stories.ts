@@ -7,7 +7,7 @@ const meta : Meta<typeof VrxToggle> = {
     tags: ['autodocs'],
     argTypes: {
         modelValue: {
-            description: 'binded value',
+            description: 'binded value with v-model',
             control:{
               type: 'string'
             },
@@ -61,6 +61,21 @@ const meta : Meta<typeof VrxToggle> = {
                     summary: 'string',
                 },
             }
+        },
+        disabled: {
+            description: 'disable the toggle',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
         }
     }
 }
@@ -100,9 +115,9 @@ export const Size: ToggleStories = {
         },
         template: `
             <div style="display: flex; flex-direction: column; gap: 10px">
-                <VrxToggle size="sm" label="sm" v-model="args.modelValue"/>
-                <VrxToggle size="md" label="md" v-model="args.modelValue"/>
-                <VrxToggle size="lg" label="lg" v-model="args.modelValue"/>
+                <VrxToggle size="sm" label="sm" />
+                <VrxToggle size="md" label="md" />
+                <VrxToggle size="lg" label="lg" />
             </div>
         `
     }),
@@ -121,10 +136,10 @@ export const Variants: ToggleStories = {
         },
         template: `
             <div style="display: flex; flex-direction: row; gap: 5px">
-                <VrxToggle variant="red" v-model="args.modelValue"/>
-                <VrxToggle variant="green" v-model="args.modelValue" />
-                <VrxToggle variant="yellow" v-model="args.modelValue" />
-                <VrxToggle variant="purple" v-model="args.modelValue" />
+                <VrxToggle variant="red" model-value />
+                <VrxToggle variant="green" modelValue />
+                <VrxToggle variant="yellow" modelValue />
+                <VrxToggle variant="purple" modelValue />
             </div>
         `
     }),
