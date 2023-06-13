@@ -11,7 +11,7 @@ const meta : Meta<typeof VrxIcon> = {
             control: {
                 type: 'select',
             },
-            options: ['password', 'mail', 'rocket', 'user-circle', 'chevron-up', 'chevron-down', 'x', 'check'],
+            options: ['password', 'mail', 'rocket', 'user-circle', 'chevron-up', 'chevron-down', 'x', 'check','home'],
             defaultValue: {
                 summary: undefined,
             },
