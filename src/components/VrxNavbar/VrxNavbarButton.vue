@@ -5,6 +5,7 @@
         :class="style.navbarButton"
         @click="onClickEvent"
         ref="componentRef"
+        v-click-outside="clickOutside"
     >
       <VrxIcon v-if="props.config.icon" :icon="props.config.icon" size="5"/>
       {{ props.config.text }}
@@ -13,25 +14,31 @@
           v-if="showDropdown"
           class="navbar-dropdown z-10 bg-white border border-gray-200 absolute font-normal rounded-lg dark:bg-gray-700 dark:divide-gray-600 dark:border-gray-600"
           tabindex="1"
+          :class="style.dropdownStyle.mainContainer"
       >
-        <div class="w-1/2 py-2 border-r border-gray-200 dark:border-gray-600">
+        <div class="py-2 border-r border-gray-200 dark:border-gray-600" :class="style.dropdownStyle.leftPanel">
           <div
               v-for="child in props.config.children"
               class="dropdown-button block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              :class="JSON.stringify(selectedSub) === JSON.stringify(child) ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-gray-200'"
+              :class="JSON.stringify(selectedSub) === JSON.stringify(child) && hasChildren() ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-gray-200'"
               @click="setSubSelected(child)"
+              @mouseover="setSubSelected(child)"
           >
-            <VrxIcon v-if="child.icon" :icon="child.icon" size="5" class="mt-2"/>
+            <VrxIcon v-if="child.icon" :icon="child.icon" size="5"/>
             <div class="dropdown-button-label">
               <span class="text-md font-medium">{{ child.text }}</span>
-              <span class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
+              <span v-if="child.description" class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
             </div>
           </div>
         </div>
 
-        <div class="w-1/2 py-2">
-          <div v-for="child in selectedSub.children" class="block px-4 py-2 text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-            {{ child.text }}
+        <div class="py-2" :class="style.dropdownStyle.rightPanel">
+          <div v-for="child in selectedSub.children" class="dropdown-button block px-4 py-2 text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+            <VrxIcon v-if="child.icon" :icon="child.icon" size="5"/>
+            <div class="dropdown-button-label">
+              <span class="text-md font-medium">{{ child.text }}</span>
+              <span v-if="child.description" class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -52,7 +59,31 @@
   const showDropdown = ref(false);
   const componentRef = ref();
   const selectedSub = ref(props.config.children ? props.config.children[0] : null);
-  const style = computed(() => {return navbarButtonStyle(props.config.selected);})
+  const style = computed(() => {return navbarButtonStyle(props.config.selected, hasChildren());})
+  function hasChildren() {
+    let hasOne = false;
+    props.config.children?.forEach(child => {
+      if(child.children?.length > 0){
+        hasOne = true;
+      }
+    });
+    return hasOne;
+  }
+
+  // v-click-outside directive
+  const vClickOutside = {
+    mounted(el, binding, vnode) {
+      el.clickOutsideEvent = function(event) {
+        if (!(el === event.target || el.contains(event.target))) {
+          binding.value(event, el);
+        }
+      };
+      document.body.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el) {
+      document.body.removeEventListener('click', el.clickOutsideEvent);
+    }
+  }
 
   const setSubSelected = (child : NavbarSubButtonInterface) => {
     selectedSub.value = child;
@@ -86,13 +117,19 @@
     top: 2.5rem;
     right: -10px;
     display: flex;
-    width: 600px;
     flex-direction: row;
     height: auto;
+  }
+  .dropdown-full-width{
+    width: 550px;
+  }
+  .dropdown-half-width{
+    width: 300px;
   }
   .dropdown-button{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
   }
   .dropdown-button-label{

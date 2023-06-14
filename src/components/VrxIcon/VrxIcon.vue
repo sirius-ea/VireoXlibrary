@@ -2,6 +2,7 @@
 <template>
   <svg :data-testid="'vrx-icon-' + icon" class="dark:text-white" :class="size" fill="none" :stroke="iconColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="iconLibrary[icon]"></path>
+    <path v-if="icon === 'cog'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
   </svg>
 
 </template>
