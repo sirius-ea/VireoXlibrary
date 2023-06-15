@@ -1,6 +1,21 @@
 <template>
   <li>
+
+    <component
+        v-if="config.component"
+        :is="config.component.name"
+        v-bind="config.component.props"
+        class="navbar-button block py-2 pl-3 pr-4"
+        :class="style.navbarButton"
+        @click="onClickEvent"
+    >
+      <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
+      {{ config.text }}
+      <VrxIcon v-if="config.children && config.children.length > 0" :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="3"/>
+    </component>
+
     <div
+        v-else
         class="navbar-button block py-2 pl-3 pr-4"
         :class="style.navbarButton"
         @click="onClickEvent"
@@ -9,7 +24,7 @@
     >
       <VrxIcon v-if="props.config.icon" :icon="props.config.icon" size="5"/>
       {{ props.config.text }}
-      <VrxIcon v-if="props.config.children?.length > 0" :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="3"/>
+      <VrxIcon v-if="props.config.children && props.config.children.length > 0" :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="3"/>
       <div
           v-if="showDropdown"
           class="navbar-dropdown z-10 bg-white border border-gray-200 absolute font-normal rounded-lg dark:bg-gray-700 dark:divide-gray-600 dark:border-gray-600"
@@ -25,7 +40,11 @@
               @mouseover="setSubSelected(child)"
           >
             <VrxIcon v-if="child.icon" :icon="child.icon" size="5"/>
-            <div class="dropdown-button-label">
+            <component v-if="child.component" :is="child.component.name" v-bind="child.component.props" class="dropdown-button-label">
+              <span class="text-md font-medium">{{ child.text }}</span>
+              <span v-if="child.description" class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
+            </component>
+            <div v-else class="dropdown-button-label">
               <span class="text-md font-medium">{{ child.text }}</span>
               <span v-if="child.description" class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
             </div>
@@ -33,9 +52,13 @@
         </div>
 
         <div class="py-2" :class="style.dropdownStyle.rightPanel">
-          <div v-for="child in selectedSub.children" class="dropdown-button block px-4 py-2 text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+          <div v-for="child in selectedSub?.children" class="dropdown-button block px-4 py-2 text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
             <VrxIcon v-if="child.icon" :icon="child.icon" size="5"/>
-            <div class="dropdown-button-label">
+            <component v-if="child.component" :is="child.component.name" v-bind="child.component.props" class="dropdown-button-label">
+              <span class="text-md font-medium">{{ child.text }}</span>
+              <span v-if="child.description" class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
+            </component>
+            <div v-else class="dropdown-button-label">
               <span class="text-md font-medium">{{ child.text }}</span>
               <span v-if="child.description" class="text-sm text-gray-500 dark:text-gray-400">{{ child.description }}</span>
             </div>
@@ -47,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-  import {computed, ref} from "vue";
+import {computed, Ref, ref, UnwrapRef} from "vue";
   import {NavbarButtonInterface, NavbarSubButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
   import {navbarButtonStyle} from "@/components/styles.ts";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
@@ -57,13 +80,13 @@
   }>();
 
   const showDropdown = ref(false);
-  const componentRef = ref();
-  const selectedSub = ref(props.config.children ? props.config.children[0] : null);
+  const selectedSub : Ref<UnwrapRef<NavbarSubButtonInterface | null>> = ref(props.config.children ? props.config.children[0] : null);
   const style = computed(() => {return navbarButtonStyle(props.config.selected, hasChildren());})
   function hasChildren() {
     let hasOne = false;
     props.config.children?.forEach(child => {
-      if(child.children?.length > 0){
+      if(!child.children) return false;
+      if(child.children.length > 0){
         hasOne = true;
       }
     });
@@ -72,15 +95,15 @@
 
   // v-click-outside directive
   const vClickOutside = {
-    mounted(el, binding, vnode) {
-      el.clickOutsideEvent = function(event) {
+    mounted(el : any, binding : any) {
+      el.clickOutsideEvent = function(event : any) {
         if (!(el === event.target || el.contains(event.target))) {
           binding.value(event, el);
         }
       };
       document.body.addEventListener('click', el.clickOutsideEvent);
     },
-    unmounted(el) {
+    unmounted(el : any) {
       document.body.removeEventListener('click', el.clickOutsideEvent);
     }
   }
@@ -92,10 +115,8 @@
   const clickOutside = () => {
     showDropdown.value = false;
   }
-  const onClickEvent = (e: Event) => {
-    if(props.config.children?.length === 0){
-      props.config.action ? props.config.action() : null;
-    } else {
+  const onClickEvent = () => {
+    if(props.config.children?.length > 0){
       showDropdown.value = true;
     }
   }

@@ -1,5 +1,7 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxNavbar from "@/components/VrxNavbar/VrxNavbar.vue";
+import {VrxButton, VrxInput} from "@/main.ts";
+import LinkTemplate from "@/components/VrxNavbar/LinkTemplate.vue";
 
 const meta : Meta<typeof VrxNavbar> = {
     title: 'VrxNavbar',
@@ -17,7 +19,7 @@ type NavbarStories = StoryObj<typeof VrxNavbar>;
 
 const Template: NavbarStories = {
     render: (args) => ({
-        components: { VrxNavbar },
+        components: { VrxNavbar, LinkTemplate },
         setup() {
             return {
                 args
@@ -42,38 +44,54 @@ const Template: NavbarStories = {
         buttons: [
             {
                 text: 'Home',
-                icon: null,
-                action: () => {console.log('Home')},
                 selected: true,
                 children: []
             },
             {
                 text: 'Products',
-                icon: null,
-                action: () => {console.log('Home')},
                 selected: false,
                 children: [
                     {
                         text: 'Normal',
                         description: 'Simple submenu',
-                        action: () => {console.log('sub1 Clicked')},
+                        component: {
+                            name: LinkTemplate,
+                            props: {
+                                href: 'https://www.sirius.to.it/',
+                            }
+                        },
                         selected: false,
                         children: [
                             {
                                 text: 'Item 1',
-                                action: () => {console.log('Shoes Clicked')},
+                                component: {
+                                    name: LinkTemplate,
+                                    props: {
+                                        href: 'https://www.sirius.to.it/',
+                                    }
+                                },
                                 selected: false,
                                 children: [],
                             },
                             {
                                 text: 'Item 2',
-                                action: () => {console.log('Shoes Clicked')},
+                                component: {
+                                    name: LinkTemplate,
+                                    props: {
+                                        href: 'https://www.sirius.to.it/',
+                                    }
+                                },
                                 selected: false,
                                 children: [],
                             },
                             {
                                 text: 'Item 3',
-                                action: () => {console.log('Shoes Clicked')},
+                                component: {
+                                    name: LinkTemplate,
+                                    props: {
+                                        href: 'https://www.sirius.to.it/',
+                                    }
+                                },
                                 selected: false,
                                 children: [],
                             },
@@ -83,26 +101,22 @@ const Template: NavbarStories = {
                     {
                         text: 'Descriptions',
                         description: 'Submenu with description',
-                        action: () => {console.log('sub2 Clicked')},
                         selected: false,
                         children: [
                             {
                                 text: 'Item 1',
-                                action: () => {console.log('Shoes Clicked')},
                                 description: 'Description 1',
                                 selected: false,
                                 children: [],
                             },
                             {
                                 text: 'Item 2',
-                                action: () => {console.log('Shoes Clicked')},
                                 description: 'Description 2',
                                 selected: false,
                                 children: [],
                             },
                             {
                                 text: 'Item 3',
-                                action: () => {console.log('Shoes Clicked')},
                                 description: 'Description 3',
                                 selected: false,
                                 children: [],
@@ -113,12 +127,10 @@ const Template: NavbarStories = {
                     {
                         text: 'Descriptions + Icons',
                         description: 'Icons & descriptions',
-                        action: () => {console.log('sub2 Clicked')},
                         selected: false,
                         children: [
                             {
                                 text: 'Item 1',
-                                action: () => {console.log('Shoes Clicked')},
                                 description: 'Description 1',
                                 icon: 'chevron-up',
                                 selected: false,
@@ -126,7 +138,6 @@ const Template: NavbarStories = {
                             },
                             {
                                 text: 'Item 2',
-                                action: () => {console.log('Shoes Clicked')},
                                 description: 'Description 2',
                                 icon: 'x',
                                 selected: false,
@@ -134,7 +145,6 @@ const Template: NavbarStories = {
                             },
                             {
                                 text: 'Item 3',
-                                action: () => {console.log('Shoes Clicked')},
                                 description: 'Description 3',
                                 icon: 'chevron-down',
                                 selected: false,
@@ -147,34 +157,33 @@ const Template: NavbarStories = {
             },
             {
                 text: 'Contacts',
-                icon: null,
-                action: () => {console.log('Home')},
+                component: {
+                    name: LinkTemplate,
+                    props: {
+                        href: 'https://www.sirius.to.it/',
+                    }
+                },
                 selected: false,
                 children: []
             },
             {
                 text: 'Settings',
-                icon: null,
-                action: () => {console.log('Home')},
                 selected: false,
                 children: [
                     {
                         text: 'Profile',
                         icon: 'user-circle',
                         description: 'Edit Profile',
-                        action: () => {console.log('Home')},
                     },
                     {
                         text: 'Configurations',
                         description: 'Edit configurations and settings',
                         icon: 'cog',
-                        action: () => {console.log('Home')},
                     },
                     {
                         text: 'Logout',
                         description: 'Leave our beautiful app',
                         icon: 'logout',
-                        action: () => {console.log('Home')},
                     }
                 ]
             },

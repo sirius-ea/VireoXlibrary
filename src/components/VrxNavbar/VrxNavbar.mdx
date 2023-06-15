@@ -1,0 +1,51 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxNavbar/About" />
+
+# VireoxNavbar
+
+VireoxNavbar è un componente personalizzabile per l'utilizzo di un menù di navigazione.
+
+Per utilizzarlo, importare il componente e utilizzarlo come segue:
+```js
+import {VrxNavbar} from 'vireoxlibrary';
+
+<VrxNavbar buttons="[ ... ]"  />
+```
+La props ```buttons``` deve essere un array di oggetti di tipo ```NavbarButtonInterface```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
+
+```NavbarButtonInterface```
+Bottone principale della navbar.
+
+```
+interface NavbarButtonInterface {
+    text: string;
+    icon?: IconLibraryType;
+    component?: ComponentInterface;
+    selected: boolean;
+    children?: NavbarSubButtonInterface[];
+}
+```
+
+```NavbarSubButtonInterface```
+Sotto-bottone figlio di un bottone principale. A sua volta può contenere un altro livello di sotto-bottoni.
+
+```
+NavbarSubButtonInterface {
+    text: string;
+    description?: string;
+    icon?: IconLibraryType;
+    component?: ComponentInterface;
+    children?: NavbarButtonInterface[];
+}
+```
+
+```ComponentInterface```
+Componente (pensato principalmente per il routing) da inserire all'interno di un bottone della navbar. Per visualizzare il testo e la descrizione del bottone, il componente passato **necessita** di uno ```slot```.
+Consigliato l'utilizzo di ```<NuxtLink> </NuxtLink>``` o ```<router-link to="/"> </router-link>``` per il routing.
+```
+interface ComponentInterface {
+    component: Component;
+    props?: any;
+}
+```

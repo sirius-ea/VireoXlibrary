@@ -10,4 +10,4 @@ export default {
     }
 };
 
-export { VrxButton, VrxInput, VrxIcon, VrxSelect };
+export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxNavbar };
