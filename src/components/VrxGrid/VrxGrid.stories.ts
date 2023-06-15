@@ -1,5 +1,6 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
+import {GridRowInterface} from "@/components/VrxGrid/GridConfigurationInterface.ts";
 
 const meta : Meta<typeof VrxGrid> = {
     title: 'VrxGrid',
@@ -33,16 +34,15 @@ const Template: GridStories = {
             header: [
                 {
                     text: "Name",
+                    id: "name",
                     align: "left",
                     sortable: true,
-                    sortFunction: () => {},
-                    sortDirection: "asc"
                 },
                 {
-                    text: "Color",
+                    text: "Serial Number",
+                    id: "serialNumber",
                     align: "left",
-                    sortable: false,
-                    sortFunction: () => {},
+                    sortable: true,
                     sortDirection: "asc"
                 }
             ],
@@ -50,14 +50,14 @@ const Template: GridStories = {
                 {
                     textColor: "red",
                     data:{
-                        name: "Pippo",
-                        color: "Red"
+                        name: "Dario",
+                        serialNumber: 1234
                     }
                 },
                 {
                     data:{
-                        name: "Pippo",
-                        color: "Blue"
+                        name: "Ciro",
+                        serialNumber: 0
                     }
                 }
             ]
