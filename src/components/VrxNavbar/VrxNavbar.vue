@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <nav data-testid="vrx-navbar" class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <slot name="leftComponent"/>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 
   import {NavbarButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
-  import VrxNavbarButton from "@/components/VrxNavbar/VrxNavbarButton.vue";
+  import VrxNavbarButton from "@/components/VrxNavbar/SubComponents/VrxNavbarButton.vue";
   import {ref} from "vue";
 
   const props = defineProps<{

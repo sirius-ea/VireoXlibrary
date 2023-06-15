@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxNavbar from "@/components/VrxNavbar/VrxNavbar.vue";
 import {VrxButton, VrxInput} from "@/main.ts";
-import LinkTemplate from "@/components/VrxNavbar/LinkTemplate.vue";
+import LinkTemplate from "@/components/VrxNavbar/SubComponents/LinkTemplate.vue";
 
 const meta : Meta<typeof VrxNavbar> = {
     title: 'VrxNavbar',

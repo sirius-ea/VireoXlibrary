@@ -3,6 +3,7 @@
 
     <component
         v-if="config.component"
+        data-testid="vrx-navbar-button"
         :is="config.component.name"
         v-bind="config.component.props"
         class="navbar-button block py-2 pl-3 pr-4"
@@ -16,6 +17,7 @@
 
     <div
         v-else
+        data-testid="vrx-navbar-button"
         class="navbar-button block py-2 pl-3 pr-4"
         :class="style.navbarButton"
         @click="onClickEvent"
