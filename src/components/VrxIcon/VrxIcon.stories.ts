@@ -67,11 +67,12 @@ const Template: IconStories = {
         },
 
         template: `
-          <VrxIcon icon="mail"/>
+          <VrxIcon v-bind="args"/>
         `
     }),
     args: {
         icon: 'mail',
+        size: '5',
     },
 }
 
