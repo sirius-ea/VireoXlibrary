@@ -21,3 +21,8 @@ export declare function toggleStyle(variant: ComponentVariant, size: 'sm' | 'md'
     toggle: string;
     label: string;
 };
+export declare function buttonsGroupStyle(): {
+    firstButton: string;
+    middleButton: string;
+    lastButton: string;
+};

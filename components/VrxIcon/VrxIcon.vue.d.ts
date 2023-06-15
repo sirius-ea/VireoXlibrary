@@ -3,6 +3,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     icon: {
         type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check">;
         required: true;
+        default: string;
     };
     color: {
         type: __PropType<string>;
@@ -18,6 +19,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     icon: {
         type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check">;
         required: true;
+        default: string;
     };
     color: {
         type: __PropType<string>;
@@ -32,5 +34,6 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
 }>>, {
     color: string;
     size: string;
+    icon: "mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check";
 }>;
 export default _sfc_main;
