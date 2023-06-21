@@ -14,6 +14,7 @@
         data-testid="vrx-select-button"
         class="button text-sm rounded-lg p-2.5 block w-full"
         :class="showDropdown ? style.select + ' ' + 'open-overlay' : style.select"
+        :style="height ? 'height: ' + height + 'px;' : ''"
     >
       <div class="button-left-side">
         <VrxIcon v-if="icon" :icon="icon" :color="style.icon" size="5"/>
@@ -76,6 +77,9 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     modelValue: SelectItemInterface[],
     variant: ComponentVariant,
     multiselect: boolean,
+    height?: number,
+    onSelect?: (item: SelectItemInterface) => void
+    onClear?: () => void
   }>(),{
     disabled: false,
     invalid: false,
@@ -99,11 +103,11 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     if(props.disabled) return;
     selectedList.value = [];
     emit('update:modelValue', selectedList.value);
+    props.onClear ? props.onClear() : null;
   }
 
   const itemClick = (item : SelectItemInterface) => {
     if(props.disabled) return;
-
     if(!props.multiselect){
       selectedList.value = [item];
     } else {
@@ -113,8 +117,10 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
         selectedList.value.push(item);
       }
     }
-
     emit('update:modelValue', selectedList.value);
+
+
+    props.onSelect ? props.onSelect(item) : null;
   }
 
 </script>

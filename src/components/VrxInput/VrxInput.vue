@@ -16,6 +16,7 @@
           @input="updateValue"
           class="text-sm rounded-lg p-2.5 block w-full"
           :class="style.input"
+          :style="'height: ' + height + 'px'"
       />
     </div>
     <p data-testid="vrx-input-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
@@ -40,6 +41,7 @@ const props = withDefaults(defineProps<{
   helperText?: string,
   invalid?: boolean,
   icon?: IconLibraryType,
+  height?: number,
 }>(),{
   type: 'text',
   placeholder: 'Insert Text'
