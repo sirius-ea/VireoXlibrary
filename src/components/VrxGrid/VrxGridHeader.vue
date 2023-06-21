@@ -71,7 +71,9 @@
 
   const getSelectableValues = (config : GridHeaderInterface) => {
     const data = [];
-    props.gridConfig.data.map((d : GridRowInterface) => data.push({value: d.data[config.id], label: d.data[config.id]}));
+    props.gridConfig.data.forEach((d : GridRowInterface) => {
+      if(!data.find((v : any) => v.value === d.data[config.id])) data.push({value: d.data[config.id], label: d.data[config.id]});
+    });
     return data;
   }
 

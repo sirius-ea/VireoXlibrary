@@ -67,7 +67,7 @@ const Template: GridStories = {
                     id: "model",
                     align: "left",
                     sortable: true,
-                    filterType: "text",
+                    filterType: "select",
                     width: 150
                 },
                 {
@@ -75,27 +75,56 @@ const Template: GridStories = {
                     id: "plate",
                     align: "left",
                     sortable: true,
-                    filterType: "select",
+                    filterType: "text",
                     width: 150
                 },
             ],
             data: [
                 {
                     data:{
-                        name: "Dario",
-                        serialNumber: 1234,
-                        color: "red",
+                        name: "Mario Rossi",
+                        serialNumber: 1,
+                        color: "Red",
                         model: "Fiat",
+                        plate: "AA123AA"
+                    }
+                },
+                {
+                    data:{
+                        name: 'Pino Verdi',
+                        serialNumber: 2,
+                        color: "Black",
+                        model: "Audi",
                         plate: "AA123BB"
                     }
                 },
                 {
                     data:{
-                        name: 'Ciao',
-                        serialNumber: 0,
-                        color: "black",
-                        model: "Audi",
-                        plate: "BC123AA"
+                        name: 'Ciro Bianchi',
+                        serialNumber: 3,
+                        color: "Green",
+                        model: "BMW",
+                        plate: "AA123CC"
+                    }
+                },
+                {
+                    textColor: "red",
+                    backgroundColor: "rgba(255,241,0,0.3)",
+                    data:{
+                        name: 'Luisa Neri',
+                        serialNumber: 4,
+                        color: "Gray",
+                        model: "Renault",
+                        plate: "AA123DD"
+                    }
+                },
+                {
+                    data:{
+                        name: 'Giovanni Gialli',
+                        serialNumber: 5,
+                        color: "Gray",
+                        model: "Toyota",
+                        plate: "BC123EE"
                     }
                 }
             ]
