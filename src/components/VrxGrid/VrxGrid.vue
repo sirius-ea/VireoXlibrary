@@ -1,7 +1,7 @@
 <template>
   <div class="relative overflow-x-auto h-full w-full">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <VrxGridHeader v-model:grid-config="configuration"/>
+      <VrxGridHeader v-model:grid-config="props.gridConfiguration"/>
       <VrxGridBody v-model="props.gridConfiguration"/>
     </table>
   </div>
@@ -17,7 +17,6 @@
     gridConfiguration: GridConfigurationInterface;
   }>()
 
-  const configuration : GridConfigurationInterface = ref(JSON.parse(JSON.stringify(props.gridConfiguration)));
   const filters = reactive([]);
   const selectedRows = reactive([]);
 
@@ -33,10 +32,26 @@
   }
 
   const setData = (data : GridRowInterface[]) => {
-    configuration.data = data;
+    deselectAll();
+    resetFilters();
+    props.gridConfiguration.data = data;
   }
 
-  defineExpose({ getSelectedRows, getFilters, setData });
+  const resetFilters = () => {
+    filters.splice(0, filters.length);
+  }
+
+  const deselectAll = () => {
+    selectedRows.splice(0, selectedRows.length);
+  }
+
+  const selectAll = () => {
+    props.gridConfiguration.data.forEach(row => {
+      selectedRows.push(row);
+    });
+  }
+
+  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll });
 
 </script>
 

@@ -1,7 +1,8 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
 import {GridRowInterface} from "@/components/VrxGrid/GridConfigurationInterface.ts";
-import {VrxInput} from "@/components";
+import {VrxButton, VrxInput} from "@/components";
+import {ref} from "vue";
 
 const meta : Meta<typeof VrxGrid> = {
     title: 'VrxGrid',
@@ -18,23 +19,43 @@ type GridStories = StoryObj<typeof VrxGrid>;
 
 const Template: GridStories = {
     render: (args) => ({
-        components: { VrxGrid },
+        components: { VrxGrid, VrxButton },
         setup() {
             return {
                 args
             };
         },
-
+        methods: {
+            logItem(){
+                alert(this.$refs.myRef.getSelectedRows().map((row : GridRowInterface) => row.data.name).join(", "));
+            },
+            setData(data : any[]){
+                this.$refs.myRef.setData(data)
+            },
+            selectAll(){
+                this.$refs.myRef.selectAll()
+            },
+            deselectAll(){
+                this.$refs.myRef.deselectAll()
+            }
+        },
         template: `
-          <div style="height: 500px">
-            <VrxGrid v-bind="args"  :grid-configuration="args.gridConfiguration"/>
-          </div>
-        `
+          <div style="height: 500px; padding-bottom: 30px">
+            <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration"/>
+            <div style="display: flex; gap: 10px">
+              <VrxButton color="default" size="base" @click="logItem" >Log selected items</VrxButton>
+              <VrxButton color="default" size="base" @click="setData([{data:{name: 'Maria Rosa',serialNumber: 6,color: 'Black',model: 'Audi',plate: 'AA123BC'}}])">Set Data</VrxButton>
+              <VrxButton color="default" size="base" @click="selectAll">Select All</VrxButton>
+              <VrxButton color="default" size="base" @click="deselectAll">Deselect All</VrxButton>
+            </div>
+            </div>
+        `,
     }),
     args: {
         gridConfiguration: {
             id: "test",
             selectable: true,
+            multiselect: true,
             header: [
                 {
                     text: "Name",
@@ -45,6 +66,9 @@ const Template: GridStories = {
                     filterType: "text",
                     filterPlaceholder: "Search by name",
                     width: 150,
+                    customFilter:  (row: GridRowInterface, filter : {cellId: string, value: string}) => {
+                        return row && filter
+                    }
                 },
                 {
                     text: "Serial Number",
@@ -52,7 +76,7 @@ const Template: GridStories = {
                     align: "left",
                     sortable: true,
                     filterType: "text",
-                    width: 150
+                    width: 150,
                 },
                 {
                     text: "Color",
@@ -133,5 +157,5 @@ const Template: GridStories = {
 }
 
 export const Primary: GridStories = {
-    ...Template
+    ...Template,
 };
