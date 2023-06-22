@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
-import {GridRowInterface} from "@/components/VrxGrid/GridConfigurationInterface.ts";
+import {GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
 import {VrxButton, VrxInput} from "@/components";
 import {ref} from "vue";
 
@@ -27,7 +27,7 @@ const Template: GridStories = {
         },
         methods: {
             logItem(){
-                alert(this.$refs.myRef.getSelectedRows().map((row : GridRowInterface) => row.data.name).join(", "));
+                alert(this.$refs.myRef.getSelectedRows().map((row : GridRow) => row.data.name).join(", "));
             },
             setData(data : any[]){
                 this.$refs.myRef.setData(data)
@@ -66,7 +66,7 @@ const Template: GridStories = {
                     filterType: "text",
                     filterPlaceholder: "Search by name",
                     width: 150,
-                    customFilter:  (row: GridRowInterface, filter : {cellId: string, value: string}) => {
+                    customFilter:  (row: GridRow, filter : {cellId: string, value: string}) => {
                         return row && filter
                     }
                 },

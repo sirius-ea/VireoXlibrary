@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-  import { GridConfigurationInterface, GridHeaderInterface, GridRowInterface } from "@/components/VrxGrid/GridConfigurationInterface.ts";
+  import { GridConfiguration, GridHeader, GridRow } from "@/components/VrxGrid/GridConfiguration.ts";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {inject, ref, watch} from "vue";
@@ -49,7 +49,7 @@
   import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
 
   const props = defineProps<{
-    gridConfig: GridConfigurationInterface;
+    gridConfig: GridConfiguration;
   }>()
 
   const filters = inject('filters');
@@ -69,9 +69,9 @@
     exist ? exist.value = value : filters.push({ cellId, value });
   }
 
-  const getSelectableValues = (config : GridHeaderInterface) => {
+  const getSelectableValues = (config : GridHeader) => {
     const data = [];
-    props.gridConfig.data.forEach((d : GridRowInterface) => {
+    props.gridConfig.data.forEach((d : GridRow) => {
       if(!data.find((v : any) => v.value === d.data[config.id])) data.push({value: d.data[config.id], label: d.data[config.id]});
     });
     return data;
@@ -81,7 +81,7 @@
    * Handle the sorting clicks
    * @param hConfig
    */
-  const sortClicked = (hConfig : GridHeaderInterface) => {
+  const sortClicked = (hConfig : GridHeader) => {
     if(!hConfig.sortable) return;
     hConfig.sortDirection = hConfig.sortDirection === 'asc' ? 'desc' : 'asc';
 
@@ -95,7 +95,7 @@
    * Sorts the grid by the given sorter function
    * @param sorter
    */
-  const useCustomSorting = (sorter : (a: GridRowInterface, b: GridRowInterface) => number) => {
+  const useCustomSorting = (sorter : (a: GridRow, b: GridRow) => number) => {
     if(sorter && props.gridConfig){
       props.gridConfig.data.sort(sorter);
     }
@@ -107,7 +107,7 @@
    * @param order
    */
   const useDefaultSorting = (id : string, order : 'asc' | 'desc') => {
-    props.gridConfig.data.sort((a : GridRowInterface, b : GridRowInterface) => {
+    props.gridConfig.data.sort((a : GridRow, b : GridRow) => {
       if(a.data[id] < b.data[id]) return order === 'asc' ? 1 :  -1;
       if(a.data[id] > b.data[id]) return order === 'asc' ? -1 :  1;
       return 0;
@@ -118,8 +118,8 @@
    * Resets the sorting of all headers except the ones in the toExclude array
    * @param toExclude
    */
-  const resetSorts = (toExclude : GridHeaderInterface[] = []) => {
-    props.gridConfig.header.forEach((h : GridHeaderInterface) => {
+  const resetSorts = (toExclude : GridHeader[] = []) => {
+    props.gridConfig.header.forEach((h : GridHeader) => {
       if(!toExclude.includes(h)){
         h.sortDirection = null;
       }

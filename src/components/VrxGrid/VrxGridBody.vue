@@ -12,13 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import {GridConfigurationInterface, GridRowInterface} from "@/components/VrxGrid/GridConfigurationInterface.ts";
+import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
 import {inject, watch} from "vue";
 import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
 
   const props = defineProps<{
-    modelValue: GridConfigurationInterface;
+    modelValue: GridConfiguration;
   }>()
 </script>
 

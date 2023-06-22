@@ -1,14 +1,14 @@
 import {Component} from "vue";
 
-export interface GridConfigurationInterface {
+export type GridConfiguration = {
     id: string;
-    header: GridHeaderInterface[];
-    data: GridRowInterface[];
+    header: GridHeader[];
+    data: GridRow[];
     multiselect?: boolean;
     selectable?: boolean;
 }
 
-export interface GridHeaderInterface {
+export type GridHeader = {
     id: string;
     text: string;
     type: "text" | "component";
@@ -22,7 +22,7 @@ export interface GridHeaderInterface {
     customFilter?: Function;
 }
 
-export interface GridRowInterface {
+export type GridRow = {
     id: string;
     textColor?: string;
     backgroundColor?: string;

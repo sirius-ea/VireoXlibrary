@@ -23,11 +23,11 @@
 <script setup lang="ts">
   import colors from "tailwindcss/colors";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
-  import {GridHeaderInterface, GridRowInterface} from "@/components/VrxGrid/GridConfigurationInterface.ts";
+  import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {computed, inject, toRaw} from "vue";
   const props = defineProps<{
-    row: GridRowInterface;
-    headerConfig: GridHeaderInterface [];
+    row: GridRow;
+    headerConfig: GridHeader [];
     selectable?: boolean;
     multiselect?: boolean;
   }>();
@@ -35,7 +35,7 @@
   const filters = inject('filters');
   const selectedRows = inject('selectedRows');
 
-  const rowClicked = (row : GridRowInterface) => {
+  const rowClicked = (row : GridRow) => {
     const included = selectedRows.find(rowIn => JSON.stringify(rowIn) === JSON.stringify(row));
     if(!props.multiselect){
       selectedRows.splice(0, selectedRows.length);

@@ -11,51 +11,51 @@ Per utilizzarlo, importarlo come segue:
 ```js
 import {VrxGrid} from 'vireoxlibrary';
 
-const config : GridConfigurationInterface = { ... }
+const config : GridConfiguration = { ... }
 <VrxGrid :grid-configuration="config"/>
 ```
 ## Configurazione
 La configurazione è un oggetto complesso che permette di configurare la griglia in ogni suo aspetto.
 Seguono le interfacce da implementare:
 
-```GridConfigurationInterface```: configurazione generale della griglia.
+```GridConfiguration```: configurazione generale della griglia.
 
 ```js
-interface GridConfigurationInterface {
+interface GridConfiguration {
     id: string;                                // id della griglia
-    header: GridHeaderInterface[];             // configurazione degli header
-    data: GridRowInterface[];                  // dati della griglia
+    header: GridHeader[];             // configurazione degli header
+    data: GridRow[];                  // dati della griglia
     multiselect: boolean;                      // [opzionale] abilita la multiselezione,
     selectable: boolean;                       // [opzionale] abilita la selezione
 }
 ```
 
-```GridHeaderInterface```: configurazione degli header della griglia.
+```GridHeader```: configurazione degli header della griglia.
 
 ```js
-export interface GridHeaderInterface {
+export interface GridHeader {
     id: string;                                // id dell'header (i dati della colonna devono avere lo stesso id)
     text: string;                              // testo dell'header
     type: "text" | "component";                // tipo di header
     align: "left" | "center" | "right";        // [opzionale] allineamento del testo
     sortable: boolean;                         // [opzionale] abilita la possibilità di ordinare la colonna
     sortFunction:                              // [opzionale] funzione di ordinamento personalizzata
-        (a: GridRowInterface, b: GridRowInterface) => 0 | 1 | -1;
+        (a: GridRow, b: GridRow) => 0 | 1 | -1;
     sortDirection: "asc" | "desc" | null;      // [opzionale] direzione di ordinamento
     width: number;                             // [opzionale] larghezza in px della colonna
     filterType: "text" | "select" | "date";    // [opzionale] tipo di filtro
     filterPlaceholder: string;                 // [opzionale] testo del placeholder del filtro
     customFilter:                              // [opzionale] funzione di filtro personalizzata
-        (row: GridRowInterface, filter: {cellId: string, value: string}) => boolean;
+        (row: GridRow, filter: {cellId: string, value: string}) => boolean;
 }
 ```
 
-```GridRowInterface```: configurazione delle righe della griglia.
+```GridRow```: configurazione delle righe della griglia.
 
 **NB**: le chiavi contenute dentro ```data``` devono avere lo stesso id degli header, altrimenti non verranno visualizzate.
 
 ```js
-export interface GridRowInterface {
+export interface GridRow {
     id: string;                                // id della riga
     textColor: string;                         // [opzionale] colore del testo
     backgroundColor: string;                   // [opzionale] colore di sfondo

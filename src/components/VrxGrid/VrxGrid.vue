@@ -10,11 +10,11 @@
 <script setup lang="ts">
   import VrxGridHeader from "@/components/VrxGrid/VrxGridHeader.vue";
   import VrxGridBody from "@/components/VrxGrid/VrxGridBody.vue";
-  import {GridConfigurationInterface, GridRowInterface} from "@/components/VrxGrid/GridConfigurationInterface.ts";
+  import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {provide, reactive, ref, watch} from "vue";
 
   const props = defineProps<{
-    gridConfiguration: GridConfigurationInterface;
+    gridConfiguration: GridConfiguration;
   }>()
 
   const filters = reactive([]);
@@ -31,7 +31,7 @@
     return filters;
   }
 
-  const setData = (data : GridRowInterface[]) => {
+  const setData = (data : GridRow[]) => {
     deselectAll();
     resetFilters();
     props.gridConfiguration.data = data;
