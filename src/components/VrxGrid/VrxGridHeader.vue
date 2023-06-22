@@ -66,7 +66,7 @@
   const filterByValue = (value, cellId) => {
     const exist = filters.find((f : any) => f.cellId === cellId);
     if(exist && value === '') filters.splice(filters.indexOf(exist), 1);
-    exist ? exist.value = value : filters.push({ cellId, value});
+    exist ? exist.value = value : filters.push({ cellId, value });
   }
 
   const getSelectableValues = (config : GridHeaderInterface) => {

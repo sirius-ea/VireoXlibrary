@@ -6,6 +6,7 @@
         :header-config="modelValue.header"
         :key="row.id"
         :selectable="modelValue.selectable"
+        :multiselect="modelValue.multiselect"
     />
   </tbody>
 </template>
@@ -19,7 +20,6 @@ import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
   const props = defineProps<{
     modelValue: GridConfigurationInterface;
   }>()
-
 </script>
 
 <style scoped>
@@ -37,11 +37,6 @@ import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
   .px-3{
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-  }
-
-  .row-hover:hover{
-    background-color: rgba(142, 180, 218, 0.4);
-    cursor: pointer;
   }
 
 </style>

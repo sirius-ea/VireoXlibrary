@@ -19,6 +19,7 @@ export interface GridHeaderInterface {
     width?: number;
     filterType?: "text" | "select" | "date";
     filterPlaceholder?: string;
+    customFilter?: Function;
 }
 
 export interface GridRowInterface {
