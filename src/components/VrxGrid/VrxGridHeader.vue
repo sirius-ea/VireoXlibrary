@@ -1,5 +1,5 @@
 <template>
-  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 w-full">
     <tr>
       <th
           v-for="config in gridConfig.header"

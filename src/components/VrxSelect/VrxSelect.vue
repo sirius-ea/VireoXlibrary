@@ -67,16 +67,16 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 import {SelectItemInterface} from "./SelectItemInterface.ts";
 
   const props = withDefaults(defineProps<{
-    label: string,
-    placeholder: string,
+    label?: string,
+    placeholder?: string,
     icon?: IconLibraryType,
-    disabled: boolean,
-    invalid: boolean,
-    helperText: string,
+    disabled?: boolean,
+    invalid?: boolean,
+    helperText?: string,
     listData: SelectItemInterface[],
     modelValue: SelectItemInterface[],
-    variant: ComponentVariant,
-    multiselect: boolean,
+    variant?: ComponentVariant,
+    multiselect?: boolean,
     height?: number,
     onSelect?: (item: SelectItemInterface) => void
     onClear?: () => void

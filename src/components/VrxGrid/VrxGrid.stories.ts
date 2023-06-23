@@ -3,6 +3,7 @@ import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
 import {GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
 import {VrxButton, VrxInput} from "@/components";
 import {ref} from "vue";
+import {Row} from "@/components/VrxGrid/Models/Row.ts";
 
 const meta : Meta<typeof VrxGrid> = {
     title: 'VrxGrid',
@@ -27,7 +28,7 @@ const Template: GridStories = {
         },
         methods: {
             logItem(){
-                alert(this.$refs.myRef.getSelectedRows().map((row : GridRow) => row.data.name).join(", "));
+                alert(this.$refs.myRef.getSelectedRows().map((row : Row) => row.data.name).join(", "));
             },
             setData(data : any[]){
                 this.$refs.myRef.setData(data)
@@ -40,15 +41,15 @@ const Template: GridStories = {
             }
         },
         template: `
-          <div style="height: 500px; padding-bottom: 30px">
-            <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration"/>
-            <div style="display: flex; gap: 10px">
-              <VrxButton color="default" size="base" @click="logItem" >Log selected items</VrxButton>
-              <VrxButton color="default" size="base" @click="setData([{data:{name: 'Maria Rosa',serialNumber: 6,color: 'Black',model: 'Audi',plate: 'AA123BC'}}])">Set Data</VrxButton>
-              <VrxButton color="default" size="base" @click="selectAll">Select All</VrxButton>
-              <VrxButton color="default" size="base" @click="deselectAll">Deselect All</VrxButton>
-            </div>
-            </div>
+          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" style="height: 500px"/>
+
+          <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
+              <VrxButton color="default" size="sm" @click="logItem" >Log selected items</VrxButton>
+              <VrxButton color="default" size="sm" @click="setData(
+                  [{ data: {name: 'Maria Rosa',serialNumber: 6,color: 'Black',model: 'Audi',plate: 'AA123BC'},id: '6'}])">Set Data</VrxButton>
+              <VrxButton color="default" size="sm" @click="selectAll">Select All</VrxButton>
+              <VrxButton color="default" size="sm" @click="deselectAll">Deselect All</VrxButton>
+          </div>
         `,
     }),
     args: {
@@ -66,9 +67,6 @@ const Template: GridStories = {
                     filterType: "text",
                     filterPlaceholder: "Search by name",
                     width: 150,
-                    customFilter:  (row: GridRow, filter : {cellId: string, value: string}) => {
-                        return row && filter
-                    }
                 },
                 {
                     text: "Serial Number",
@@ -105,6 +103,7 @@ const Template: GridStories = {
             ],
             data: [
                 {
+                    id: "1",
                     data:{
                         name: "Mario Rossi",
                         serialNumber: 1,
@@ -114,6 +113,7 @@ const Template: GridStories = {
                     }
                 },
                 {
+                    id: "2",
                     data:{
                         name: 'Pino Verdi',
                         serialNumber: 2,
@@ -132,8 +132,7 @@ const Template: GridStories = {
                     }
                 },
                 {
-                    textColor: "red",
-                    backgroundColor: "rgba(255,241,0,0.3)",
+                    id: "3",
                     data:{
                         name: 'Luisa Neri',
                         serialNumber: 4,
@@ -143,6 +142,7 @@ const Template: GridStories = {
                     }
                 },
                 {
+                    id: "4",
                     data:{
                         name: 'Giovanni Gialli',
                         serialNumber: 5,

@@ -14,7 +14,7 @@ export type GridHeader = {
     type: "text" | "component";
     align?: "left" | "center" | "right";
     sortable?: boolean;
-    sortFunction?: Function;
+    sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
     sortDirection?: "asc" | "desc" | null;
     width?: number;
     filterType?: "text" | "select" | "date";
@@ -22,9 +22,14 @@ export type GridHeader = {
     customFilter?: Function;
 }
 
-export type GridRow = {
+export interface GridRow {
     id: string;
     textColor?: string;
     backgroundColor?: string;
     data: any;
+}
+
+export type GridFilter = {
+    cellId: string;
+    value: string;
 }

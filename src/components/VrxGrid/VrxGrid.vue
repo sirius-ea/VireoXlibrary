@@ -1,8 +1,8 @@
 <template>
-  <div class="relative overflow-x-auto h-full w-full">
+  <div class="relative overflow-x-auto h-full shadow-md w-full rounded-lg bg-white dark:bg-gray-800">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <VrxGridHeader v-model:grid-config="props.gridConfiguration"/>
-      <VrxGridBody v-model="props.gridConfiguration"/>
+      <VrxGridHeader v-model:grid-config="gridModel.configuration"/>
+      <VrxGridBody v-model="gridModel.configuration"/>
     </table>
   </div>
 </template>
@@ -11,47 +11,47 @@
   import VrxGridHeader from "@/components/VrxGrid/VrxGridHeader.vue";
   import VrxGridBody from "@/components/VrxGrid/VrxGridBody.vue";
   import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {provide, reactive, ref, watch} from "vue";
+  import {provide} from "vue";
+  import {Grid} from "@/components/VrxGrid/Models/Grid.ts";
 
   const props = defineProps<{
     gridConfiguration: GridConfiguration;
   }>()
 
-  const filters = reactive([]);
-  const selectedRows = reactive([]);
+  const gridModel = new Grid(props.gridConfiguration);
 
-  provide('filters', filters);
-  provide('selectedRows', selectedRows);
+  provide('filters', gridModel.filters);
+  provide('selectedRows', gridModel.selectedRows);
 
   const getSelectedRows = () => {
-    return selectedRows;
+    return gridModel.selectedRows;
   }
 
   const getFilters = () => {
-    return filters;
+    return gridModel.filters;
   }
 
   const setData = (data : GridRow[]) => {
-    deselectAll();
-    resetFilters();
-    props.gridConfiguration.data = data;
+    gridModel.setData(data);
   }
 
   const resetFilters = () => {
-    filters.splice(0, filters.length);
+    gridModel.resetFilters();
+  }
+
+  const clearData = () => {
+    gridModel.clearData();
   }
 
   const deselectAll = () => {
-    selectedRows.splice(0, selectedRows.length);
+    gridModel.deselectAll();
   }
 
   const selectAll = () => {
-    props.gridConfiguration.data.forEach(row => {
-      selectedRows.push(row);
-    });
+    gridModel.selectAll();
   }
 
-  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll });
+  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll, clearData });
 
 </script>
 
