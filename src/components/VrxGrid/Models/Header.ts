@@ -1,4 +1,5 @@
-import {GridConfiguration, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
+import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
+import {SelectItemInterface} from "@/components/VrxSelect/SelectItemInterface.ts";
 
 export class Header {
     private _id: string;
@@ -43,6 +44,14 @@ export class Header {
         return this._filterPlaceholder ?? null;
     }
 
+    public get sortable(): boolean {
+        return this._sortable ?? false;
+    }
+
+    public get sortDirection(): "asc" | "desc" | null {
+        return this._sortDirection ?? null;
+    }
+
     public get textAlignmentClass(): string | null {
         switch (this._align) {
             case "left":
@@ -57,7 +66,7 @@ export class Header {
     }
 
     public get headerWidth(): string | null {
-        return this._width ? `${this._width}px` : null;
+        return this._width ? `width: ${this._width}px` : null;
     }
 
     public sortClicked (gridConfig : GridConfiguration): void {
@@ -88,5 +97,21 @@ export class Header {
                 h.sortDirection = null;
             }
         })
+    }
+
+    public  getSelectableItems(gridConfig : GridConfiguration) : SelectItemInterface[] {
+        const data : SelectItemInterface[] = [];
+        gridConfig.data.forEach((d : GridRow) => {
+            if(!data.find((v : any) => v.value === d.data[this._id])){
+                data.push({value: d.data[this._id], label: d.data[this._id]});
+            }
+        });
+        return data;
+    }
+
+    public filterByValue (filters : GridFilter [], value : string){
+        const exist = filters.find((f : any) => f.cellId === this._id);
+        if(exist && value === '') filters.splice(filters.indexOf(exist), 1);
+        exist ? exist.value = value : filters.push({ cellId: this._id , value });
     }
 }

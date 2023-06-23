@@ -52,6 +52,22 @@ export class Grid {
         this._configuration.data.splice(0, this._configuration.data.length);
     }
 
+    public updateData(data : any[]) : void {
+        data.forEach((row : any) => {
+            const exist = this._configuration.data.find((r : any) => r.id === row.id);
+            if(exist){
+                const index = this._configuration.data.indexOf(exist);
+                this._configuration.data.splice(index, 1);
+                console.log(row);
+                this._configuration.data.splice(index, 0, row);
+                console.log(row);
+                console.log(this._configuration.data);
+            } else {
+                this._configuration.data.push(row);
+            }
+        });
+    }
+
     public setData(data : any[]) : void {
         this.clearData();
         this._configuration.data.splice(0, this._configuration.data.length);

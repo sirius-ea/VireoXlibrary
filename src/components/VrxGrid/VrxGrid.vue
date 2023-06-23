@@ -35,6 +35,10 @@
     gridModel.setData(data);
   }
 
+  const updateData = (data : GridRow[]) => {
+    gridModel.updateData(data);
+  }
+
   const resetFilters = () => {
     gridModel.resetFilters();
   }
@@ -51,7 +55,8 @@
     gridModel.selectAll();
   }
 
-  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll, clearData });
+
+  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll, clearData, updateData });
 
 </script>
 

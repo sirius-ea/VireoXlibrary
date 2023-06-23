@@ -38,6 +38,9 @@ const Template: GridStories = {
             },
             deselectAll(){
                 this.$refs.myRef.deselectAll()
+            },
+            updateData(data : any[]){
+                this.$refs.myRef.updateData(data)
             }
         },
         template: `
@@ -47,6 +50,8 @@ const Template: GridStories = {
               <VrxButton color="default" size="sm" @click="logItem" >Log selected items</VrxButton>
               <VrxButton color="default" size="sm" @click="setData(
                   [{ data: {name: 'Maria Rosa',serialNumber: 6,color: 'Black',model: 'Audi',plate: 'AA123BC'},id: '6'}])">Set Data</VrxButton>
+              <VrxButton color="default" size="sm" @click="updateData(
+                  [{id: '2', data: {name: 'Ilary Blasi',serialNumber: 10,color: 'Blue',model: 'BMW',plate: 'AA123BC'}}])">Update Data</VrxButton>
               <VrxButton color="default" size="sm" @click="selectAll">Select All</VrxButton>
               <VrxButton color="default" size="sm" @click="deselectAll">Deselect All</VrxButton>
           </div>
@@ -123,6 +128,7 @@ const Template: GridStories = {
                     }
                 },
                 {
+                    id: "3",
                     data:{
                         name: 'Ciro Bianchi',
                         serialNumber: 3,
@@ -132,7 +138,7 @@ const Template: GridStories = {
                     }
                 },
                 {
-                    id: "3",
+                    id: "4",
                     data:{
                         name: 'Luisa Neri',
                         serialNumber: 4,
@@ -142,7 +148,7 @@ const Template: GridStories = {
                     }
                 },
                 {
-                    id: "4",
+                    id: "5",
                     data:{
                         name: 'Giovanni Gialli',
                         serialNumber: 5,
