@@ -1,5 +1,5 @@
 <template>
-  <tbody>
+  <tbody style="overflow-y: scroll">
     <VrxGridRow
         v-for="row in modelValue.data"
         :row="row"

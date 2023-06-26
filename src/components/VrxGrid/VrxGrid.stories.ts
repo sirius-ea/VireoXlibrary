@@ -10,7 +10,8 @@ const meta : Meta<typeof VrxGrid> = {
     component: VrxGrid,
     tags: ['autodocs'],
     argTypes: {
-    }
+
+    },
 };
 
 export default meta;
@@ -41,6 +42,9 @@ const Template: GridStories = {
             },
             updateData(data : any[]){
                 this.$refs.myRef.updateData(data)
+            },
+            clearData(){
+                this.$refs.myRef.clearData()
             }
         },
         template: `
@@ -52,6 +56,7 @@ const Template: GridStories = {
                   [{ data: {name: 'Maria Rosa',serialNumber: 6,color: 'Black',model: 'Audi',plate: 'AA123BC'},id: '6'}])">Set Data</VrxButton>
               <VrxButton color="default" size="sm" @click="updateData(
                   [{id: '2', data: {name: 'Ilary Blasi',serialNumber: 10,color: 'Blue',model: 'BMW',plate: 'AA123BC'}}])">Update Data</VrxButton>
+              <VrxButton color="default" size="sm" @click="clearData">Clear Data</VrxButton>
               <VrxButton color="default" size="sm" @click="selectAll">Select All</VrxButton>
               <VrxButton color="default" size="sm" @click="deselectAll">Deselect All</VrxButton>
           </div>

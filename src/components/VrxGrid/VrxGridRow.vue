@@ -1,7 +1,8 @@
 
 <template>
   <tr
-      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+      :data-testid="'vrx-grid-row-'+ rowModel.id"
+      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 vrx-row"
       :class="rowStyle"
       v-if="!isFiltered"
       @click="rowModel.rowClicked()"
@@ -24,7 +25,7 @@
   import colors from "tailwindcss/colors";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {computed, inject, ref, toRaw, watch} from "vue";
+  import {computed, inject} from "vue";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   const props = defineProps<{
     row: GridRow;
@@ -55,6 +56,10 @@
     border-left: 3px solid v-bind(colors.blue[500]);
     box-sizing: border-box;
     background-color: v-bind(colors.gray[100]);
+  }
+
+  .vrx-row {
+    user-select: none;
   }
 
   .row-hover:hover{

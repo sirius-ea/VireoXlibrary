@@ -15,7 +15,7 @@ export type GridHeader = {
     align?: "left" | "center" | "right";
     sortable?: boolean;
     sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
-    sortDirection?: "asc" | "desc" | null;
+    sortDirection?: "asc" | "desc" | undefined;
     width?: number;
     filterType?: "text" | "select" | "date";
     filterPlaceholder?: string;

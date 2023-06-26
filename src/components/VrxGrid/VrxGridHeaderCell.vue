@@ -3,13 +3,13 @@
         scope="col"
         class="px-3 py-3 vrx-th header-th"
         :class="headerModel.textAlignmentClass"
-        :style="headerModel.headerWidth"
+        :style="headerModel.headerWidth ? headerModel.headerWidth : null"
     >
       <div class="vrx-header-cell mb-2" @click="headerModel.sortClicked(props.gridConfig)">
-        <span class="vrx-grid-label" :style="headerModel.headerWidth">{{ headerModel.text }}</span>
+        <span class="vrx-grid-label">{{ headerModel.text }}</span>
         <VrxIcon
             v-if="headerModel.sortable"
-            :icon="headerModel.sortDirection === 'asc' ? 'chevron-up' : headerModel.sortDirection === 'desc' ? 'chevron-down' : 'empty-icon'"
+            :icon="headerConfig.sortDirection === 'asc' ? 'chevron-up' : headerConfig.sortDirection === 'desc' ? 'chevron-down' : 'empty-icon'"
             size="3"
         />
       </div>
@@ -20,7 +20,7 @@
           class="header-input"
           :placeholder="headerModel.filterPlaceholder ?? '...'"
           type="text"
-          @input="(val) => headerModel.filterByValue(filters as GridFilter[], val.target.value)"
+          @input="(val : any) => headerModel.filterByValue(filters as GridFilter[], val.target.value)"
       />
       <VrxSelect
           v-if="headerModel.filterType === 'select'"
@@ -29,7 +29,7 @@
           :placeholder="headerModel.filterPlaceholder ?? '...'"
           class="header-input"
           :height="30"
-          :on-select="(val) => headerModel.filterByValue(filters as GridFilter[], val.value)"
+          :on-select="(val : any) => headerModel.filterByValue(filters as GridFilter[], val.value)"
           :on-clear="() => headerModel.filterByValue(filters as GridFilter[], '')"
       />
     </th>
@@ -42,7 +42,7 @@
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {Header} from "@/components/VrxGrid/Models/Header.ts";
   import {GridConfiguration, GridFilter, GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {inject, ref} from "vue";
+  import {inject, ref, watch} from "vue";
 
   const props = defineProps<{
     gridConfig: GridConfiguration;
@@ -62,12 +62,14 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-direction: row;
     gap: 0.2rem;
     user-select: none;
   }
   .header-input {
     font-weight: normal;
+    width: 100%;
   }
   .px-3{
     padding-left: 0.75rem;
@@ -80,5 +82,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+  .header-th{
+
   }
 </style>

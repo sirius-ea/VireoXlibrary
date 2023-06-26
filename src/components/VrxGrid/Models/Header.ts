@@ -2,17 +2,18 @@ import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/V
 import {SelectItemInterface} from "@/components/VrxSelect/SelectItemInterface.ts";
 
 export class Header {
-    private _id: string;
-    private _text: string;
+    private readonly _id: string;
+    private readonly _text: string;
     private _type: "text" | "component";
-    private _align?: "left" | "center" | "right";
-    private _sortable?: boolean;
-    private _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
-    private _sortDirection?: "asc" | "desc" | null;
-    private _width?: number;
-    private _filterType?: "text" | "select" | "date";
-    private _filterPlaceholder?: string;
+    private readonly _align?: "left" | "center" | "right";
+    private readonly _sortable?: boolean;
+    private readonly _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
+    private _sortDirection?: "asc" | "desc" | undefined;
+    private readonly _width?: number;
+    private readonly _filterType?: "text" | "select" | "date";
+    private readonly _filterPlaceholder?: string;
     private _customFilter?: Function;
+    private _headerConfig?: GridHeader;
 
     constructor (header: GridHeader) {
         this._id = header.id;
@@ -26,6 +27,7 @@ export class Header {
         this._filterType = header.filterType;
         this._filterPlaceholder = header.filterPlaceholder;
         this._customFilter = header.customFilter;
+        this._headerConfig = header;
     }
 
     public get id(): string {
@@ -72,12 +74,13 @@ export class Header {
     public sortClicked (gridConfig : GridConfiguration): void {
         if(!this._sortable) return;
         this._sortDirection = this._sortDirection === "asc" ? "desc" : "asc";
+        this._headerConfig!.sortDirection = this._sortDirection;
 
         this._resetSortDirection(gridConfig, [this._id]);
-        this._sortFunction ? this.useCustomSorting(gridConfig) : this.useDefaultSorting(gridConfig);
+        this._sortFunction ? this._useCustomSorting(gridConfig) : this._useDefaultSorting(gridConfig);
     }
 
-    private useDefaultSorting (gridConfig : GridConfiguration) : void {
+    private _useDefaultSorting (gridConfig : GridConfiguration) : void {
         gridConfig.data.sort((a : GridRow, b : GridRow) => {
             if(a.data[this._id] < b.data[this._id]) return this._sortDirection === 'asc' ? 1 :  -1;
             if(a.data[this._id] > b.data[this._id]) return this._sortDirection === 'asc' ? -1 :  1;
@@ -85,7 +88,7 @@ export class Header {
         });
     }
 
-    private useCustomSorting (gridConfig : GridConfiguration) : void {
+    private _useCustomSorting (gridConfig : GridConfiguration) : void {
         if(this._sortFunction && gridConfig){
             gridConfig.data.sort(this._sortFunction);
         }
@@ -94,7 +97,7 @@ export class Header {
     private _resetSortDirection (gridConfig : GridConfiguration, toExclude : string[] = []) : void {
         gridConfig.header.forEach((h : GridHeader) => {
             if(!toExclude.includes(h.id)){
-                h.sortDirection = null;
+                h.sortDirection = undefined;
             }
         })
     }
@@ -106,7 +109,7 @@ export class Header {
                 data.push({value: d.data[this._id], label: d.data[this._id]});
             }
         });
-        return data;
+        return data.sort((a : SelectItemInterface, b : SelectItemInterface) => a.label.localeCompare(b.label));
     }
 
     public filterByValue (filters : GridFilter [], value : string){

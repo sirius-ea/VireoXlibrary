@@ -20,11 +20,16 @@ export class Grid {
         return this._filters;
     }
 
+    public get data(): GridRow[] {
+        return this._configuration.data;
+    }
+
     public get selectedRows(): GridRow[] {
         return this._selectedRows;
     }
 
     public set filters(value: GridFilter[]) {
+        this.deselectAll();
         this._filters = value;
     }
 
@@ -33,6 +38,11 @@ export class Grid {
     }
 
     public selectAll() : void {
+        if(this._configuration.multiselect === false){
+            console.warn(`Multiselection in grid "${this._configuration.id}" is disabled. No rows will be selected`);
+            return;
+        }
+        this.deselectAll();
         this._configuration.data.forEach((row : GridRow) => {
             this._selectedRows.push(row);
         });
@@ -58,10 +68,7 @@ export class Grid {
             if(exist){
                 const index = this._configuration.data.indexOf(exist);
                 this._configuration.data.splice(index, 1);
-                console.log(row);
                 this._configuration.data.splice(index, 0, row);
-                console.log(row);
-                console.log(this._configuration.data);
             } else {
                 this._configuration.data.push(row);
             }
@@ -74,6 +81,21 @@ export class Grid {
         data.forEach((row : any) => {
             this._configuration.data.push(row);
         });
+    }
+
+    public selectRange(start : number, end : number) : void {
+        let actStart = start;
+        let actEnd = end;
+        if(start > end){
+            actStart = end;
+            actEnd = start;
+        }
+
+        this._filters.splice(0, this._filters.length);
+        this.deselectAll();
+        for(let i = actStart; i <= actEnd; i++){
+            this._selectedRows.push(this._configuration.data[i]);
+        }
     }
 
 }

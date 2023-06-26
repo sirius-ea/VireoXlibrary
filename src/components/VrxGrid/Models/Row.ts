@@ -73,6 +73,11 @@ export class Row {
     public rowClicked () : void {
         const included = this._selectedRows.find(rowIn => rowIn.id === this._id);
         if(!this._multiselect){
+            if(included){
+                const index = this._selectedRows.indexOf(included);
+                this._selectedRows.splice(index, 1);
+                return;
+            }
             this._selectedRows.splice(0, this._selectedRows.length);
             this._selectedRows.push(this);
             return;
