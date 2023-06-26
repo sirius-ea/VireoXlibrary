@@ -9,11 +9,10 @@
   >
     <td
         v-for="cell in headerConfig"
-        class="px-3 py-4 font-medium whitespace-nowrap"
-        :style="rowModel.backgroundColor ? 'background-color: ' + rowModel.backgroundColor : ''"
+        class="px-3 py-4 font-medium whitespace-nowrap vrx-cell"
         :class="cell.align ? textStyle[cell.align] : null"
     >
-      <span class="test" v-if="!cell.type || cell.type === 'text'" :style="rowModel.textColor ? 'color: ' + rowModel.textColor : ''">
+      <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
         {{ rowModel.getCellContent(cell.id) }}
       </span>
       <component v-else :is="row.data[cell.id]"/>
@@ -60,6 +59,14 @@
 
   .vrx-row {
     user-select: none;
+  }
+
+  .vrx-grid-cell-content{
+    color: v-bind(rowModel.textColor);
+  }
+
+  .vrx-cell{
+    background-color: v-bind(rowModel.backgroundColor);
   }
 
   .row-hover:hover{

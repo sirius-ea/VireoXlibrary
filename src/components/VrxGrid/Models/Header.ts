@@ -67,8 +67,8 @@ export class Header {
         }
     }
 
-    public get headerWidth(): string | null {
-        return this._width ? `width: ${this._width}px` : null;
+    public get width(): number | undefined {
+        return this._width;
     }
 
     public sortClicked (gridConfig : GridConfiguration): void {

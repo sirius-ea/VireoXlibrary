@@ -14,7 +14,6 @@
         data-testid="vrx-select-button"
         class="button text-sm rounded-lg p-2.5 block w-full"
         :class="showDropdown ? style.select + ' ' + 'open-overlay' : style.select"
-        :style="height ? 'height: ' + height + 'px;' : ''"
     >
       <div class="button-left-side">
         <VrxIcon v-if="icon" :icon="icon" :color="style.icon" size="5"/>
@@ -133,6 +132,7 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     justify-content: space-between;
     cursor: pointer;
     z-index: 10;
+    height: v-bind(height + 'px');
   }
   .menu {
     z-index: 200;

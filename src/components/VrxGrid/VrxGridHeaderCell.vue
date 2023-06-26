@@ -3,7 +3,6 @@
         scope="col"
         class="px-3 py-3 vrx-th header-th"
         :class="headerModel.textAlignmentClass"
-        :style="headerModel.headerWidth ? headerModel.headerWidth : null"
     >
       <div class="vrx-header-cell mb-2" @click="headerModel.sortClicked(props.gridConfig)">
         <span class="vrx-grid-label">{{ headerModel.text }}</span>
@@ -84,6 +83,6 @@
     overflow: hidden;
   }
   .header-th{
-
+    width: v-bind(headerModel.width + 'px') ;
   }
 </style>

@@ -14,9 +14,8 @@
           :disabled="disabled"
           :value="modelValue"
           @input="updateValue"
-          class="text-sm rounded-lg p-2.5 block w-full"
+          class="vrx-input text-sm rounded-lg p-2.5 block w-full"
           :class="style.input"
-          :style="'height: ' + height + 'px'"
       />
     </div>
     <p data-testid="vrx-input-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
@@ -57,5 +56,8 @@ const style = computed(() => {
 </script>
 
 <style scoped>
+  .vrx-input {
+    height: v-bind(props.height + 'px');
+  }
 
 </style>

@@ -19,7 +19,7 @@ export type GridHeader = {
     width?: number;
     filterType?: "text" | "select" | "date";
     filterPlaceholder?: string;
-    customFilter?: Function;
+    customFilter?: (row: GridRow, filter: GridFilter) => boolean;
 }
 
 export interface GridRow {
