@@ -1,5 +1,5 @@
 <template>
-  <nav data-testid="vrx-navbar" class="bg-white border-gray-200 dark:bg-gray-900">
+  <nav data-testid="vrx-navbar" class="bg-white border-gray-200 dark:bg-gray-900" :class="props.stickToTop ? 'sticky' : null">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <slot name="leftComponent"/>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -22,6 +22,7 @@
 
   const props = defineProps<{
     buttons: NavbarButtonInterface[];
+    stickToTop?: boolean;
   }>()
 
   const componentButtons = ref(props.buttons);
@@ -41,5 +42,9 @@
 </script>
 
 <style scoped>
-
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 </style>
