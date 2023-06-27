@@ -27,9 +27,9 @@ const Template: NavbarStories = {
         },
 
         template: `
-          <div style="height: 500px">
+          <div style="height: 500px; width: 100%">
             <VrxNavbar :buttons="args.buttons" :stick-to-top="args.stickToTop">
-              <template v-slot:rightComponent>
+              <template v-slot:leftComponent>
                 <a href="https://www.sirius.to.it/" class="flex items-center">
                   <img src="https://avatars.githubusercontent.com/u/108472933?s=200&v=4" class="h-8 mr-3" alt="Flowbite Logo" />
                   <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">VireoXlibrary</span>
@@ -45,7 +45,7 @@ const Template: NavbarStories = {
             {
                 text: 'Home',
                 selected: true,
-                children: []
+                children: [],
             },
             {
                 text: 'Products',
