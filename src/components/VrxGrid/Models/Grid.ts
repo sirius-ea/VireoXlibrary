@@ -63,8 +63,8 @@ export class Grid {
     }
 
     public updateData(data :  (any & {id:number|string})[]) : void {
-        data.forEach((row : any) => {
-            const exist = this._configuration.data.find((r : any) => r.id === row.id);
+        data.forEach((row : (any & {id:number|string})) => {
+            const exist = this._configuration.data.find((r : (any & {id:number|string})) => r.id === row.id);
             if(exist){
                 const index = this._configuration.data.indexOf(exist);
                 this._configuration.data.splice(index, 1);
@@ -78,7 +78,7 @@ export class Grid {
     public setData(data :  (any & {id:number|string})[]) : void {
         this.clearData();
         this._configuration.data.splice(0, this._configuration.data.length);
-        data.forEach((row : any) => {
+        data.forEach((row : (any & {id:number|string})) => {
             this._configuration.data.push(row);
         });
     }
