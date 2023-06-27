@@ -1,12 +1,12 @@
 <template>
   <li>
-    <div @click="toggleShowChildren" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+    <div @click="toggleShowChildren" class="father-button flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
       <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
       <span class="flex-1 whitespace-nowrap">{{ config.text }}</span>
-      <VrxIcon v-if="config.children?.length > 0" :icon="showChildren ? 'chevron-up' : 'chevron-down'" size="4"/>
+      <VrxIcon v-if="config.children?.length > 0" icon="chevron-down" :class="showChildren ? 'icon-active' : 'icon-off'" size="4"/>
     </div>
-    <div>
-      
+    <div v-if="showChildren && config.children?.length > 0" class="side-dropdown border-t" :key="config.text">
+      <VrxNavbarSideSubButton v-for="(child, index) in config.children" :config="child" :key="child.text + index"/>
     </div>
   </li>
 </template>
@@ -15,6 +15,7 @@
   import {NavbarButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
   import {ref} from "vue";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
+  import VrxNavbarSideSubButton from "@/components/VrxNavbar/SubComponents/VrxNavbarSideSubButton.vue";
 
   const props = defineProps<{
     config: NavbarButtonInterface;
@@ -29,23 +30,22 @@
 </script>
 
 <style scoped>
-  .vrx-navbar-side-button{
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
   .side-dropdown{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-left: 1rem;
+    padding-top: 0.5rem;
   }
-  .label-icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  .father-button{
+    font-weight: 600;
+    user-select: none;
+    gap: 0.75rem;
+  }
+  .icon-active{
+    transform: rotate(180deg);
+    transition: .5s ease all;
+  }
+  .icon-off{
+    transform: rotate(0deg);
+    transition: .5s ease all;
   }
 </style>

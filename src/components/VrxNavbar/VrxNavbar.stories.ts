@@ -27,7 +27,7 @@ const Template: NavbarStories = {
         },
 
         template: `
-          <div style="height: 500px; width: 100%">
+          <div style="height: 300px; width: 100%">
             <VrxNavbar :buttons="args.buttons" :stick-to-top="args.stickToTop">
               <template v-slot:leftComponent>
                 <a href="https://www.sirius.to.it/" class="flex items-center">
@@ -46,10 +46,12 @@ const Template: NavbarStories = {
                 text: 'Home',
                 selected: true,
                 children: [],
+                icon: 'home'
             },
             {
                 text: 'Products',
                 selected: false,
+                icon: 'rocket',
                 children: [
                     {
                         text: 'Normal',
@@ -157,6 +159,7 @@ const Template: NavbarStories = {
             },
             {
                 text: 'Contacts',
+                icon: 'mail',
                 component: {
                     name: LinkTemplate,
                     props: {
@@ -169,6 +172,7 @@ const Template: NavbarStories = {
             {
                 text: 'Settings',
                 selected: false,
+                icon: 'user-circle',
                 children: [
                     {
                         text: 'Profile',

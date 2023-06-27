@@ -12,7 +12,7 @@
     >
       <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
       {{ config.text }}
-      <VrxIcon v-if="config.children && config.children.length > 0" :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="3"/>
+      <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="showDropdown ? 'icon-active' : 'icon-off'" size="3"/>
     </component>
 
     <div
@@ -26,7 +26,7 @@
     >
       <VrxIcon v-if="props.config.icon" :icon="props.config.icon" size="5"/>
       {{ props.config.text }}
-      <VrxIcon v-if="props.config.children && props.config.children.length > 0" :icon="showDropdown ? 'chevron-up' : 'chevron-down'" size="3"/>
+      <VrxIcon v-if="props.config.children && props.config.children.length > 0" :icon="'chevron-down'" :class="showDropdown ? 'icon-active' : 'icon-off'" size="3"/>
       <div
           v-if="showDropdown"
           class="navbar-dropdown z-10 bg-white border border-gray-200 absolute font-normal rounded-lg dark:bg-gray-700 dark:divide-gray-600 dark:border-gray-600"
@@ -159,6 +159,15 @@ import {computed, Ref, ref, UnwrapRef} from "vue";
     display: flex;
     flex-direction: column;
     width: 90%;
+  }
+  .icon-active{
+    transform: rotate(180deg);
+    transition: .2s ease all;
+  }
+
+  .icon-off{
+    transform: rotate(0deg);
+    transition: .5s ease all;
   }
 
 </style>

@@ -5,7 +5,7 @@
       <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <VrxNavbarButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button) "/>
       </ul>
-      <div class="icon" :class="{'icon-active' : mobileNav}"  @click="toggleMobileNav">
+      <div class="icon" :class="mobileNav ? 'icon-active' : 'icon-off'"  @click="toggleMobileNav">
         <VrxIcon v-show="mobile" icon="hamburger" size="6"/>
       </div>
       <transition name="mobile-nav">
@@ -16,7 +16,6 @@
             </ul>
           </div>
         </aside>
-
       </transition>
     </nav>
   </div>
@@ -90,6 +89,7 @@
    z-index: 99;
    width: 100%;
    position: sticky;
+    top: 0;
    transition: .5s ease all;
    box-sizing: border-box;
 
@@ -103,6 +103,7 @@
    transition: .5s ease all;
    width: 90%;
    margin: 0 auto;
+   align-items: center;
  }
 
  .branding{
@@ -129,6 +130,12 @@
 
  .icon-active{
    transform: rotate(180deg);
+   transition: .5s ease all;
+ }
+
+ .icon-off{
+   transform: rotate(0deg);
+   transition: .5s ease all;
  }
 
  .dropdown-nav{
