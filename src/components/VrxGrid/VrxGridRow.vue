@@ -36,7 +36,7 @@
   const filters = inject('filters');
   const selectedRows = inject('selectedRows');
 
-  const rowModel = new Row(props.row, filters, selectedRows, props.selectable, props.multiselect, props.headerConfig);
+  const rowModel = new Row(props.row, filters, selectedRows, props.selectable ?? false, props.multiselect ?? false, props.headerConfig);
 
   const isFiltered = computed(() => {
     return rowModel.isFiltered();
