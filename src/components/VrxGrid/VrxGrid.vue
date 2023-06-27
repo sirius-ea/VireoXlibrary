@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="vrx-grid" class="relative overflow-x-auto h-full shadow-md w-full rounded-lg bg-white dark:bg-gray-800">
+  <div data-testid="vrx-grid" id="vrx-grid" class="relative overflow-x-auto h-full shadow-md w-full rounded-lg bg-white dark:bg-gray-800" tabindex="1">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <VrxGridHeader v-model:grid-config="gridModel.configuration"/>
       <VrxGridBody v-model="gridModel.configuration"/>
@@ -15,13 +15,13 @@
   import {Grid} from "@/components/VrxGrid/Models/Grid.ts";
 
   onMounted(() => {
-    document.addEventListener('keydown', (e) => {
+    document.getElementById('vrx-grid').addEventListener('keydown', (e) => {
       if((e.ctrlKey || e.metaKey) && e.key === 'a'){
         e.preventDefault();
         gridModel.selectAll();
       }
     })
-    document.addEventListener('click', (e) => {
+    document.getElementById('vrx-grid').addEventListener('click', (e) => {
       if(e.shiftKey && gridModel.configuration.multiselect){
         e.preventDefault();
 
