@@ -1,5 +1,3 @@
-import {Component} from "vue";
-
 export type GridConfiguration = {
     id: string;
     header: GridHeader[];

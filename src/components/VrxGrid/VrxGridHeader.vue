@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-  import { GridConfiguration, GridHeader, GridRow } from "@/components/VrxGrid/GridConfiguration.ts";
+  import { GridConfiguration } from "@/components/VrxGrid/GridConfiguration.ts";
   import VrxGridHeaderCell from "@/components/VrxGrid/VrxGridHeaderCell.vue";
 
   const props = defineProps<{

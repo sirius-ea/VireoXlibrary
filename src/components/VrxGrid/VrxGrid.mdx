@@ -59,10 +59,88 @@ export interface GridRow {
     id: string;                                // id della riga
     textColor: string;                         // [opzionale] colore del testo
     backgroundColor: string;                   // [opzionale] colore di sfondo
-    data: any;                                 // dati della riga
+    data: {                                    // dati della riga (oggetto con chiave: valore)
+        key: value,
+        key: value,
+        ...
+    };
 }
 ```
 
-
+## API
+<table style={{width: '100%'}}>
+    <thead>
+        <tr>
+            <td>
+                <b>Method</b>
+            </td>
+            <td>
+                <b>Params</b>
+            </td>
+            <td>
+                <b>Return</b>
+            </td>
+            <td>
+                <b>Description</b>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>clearData</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Rimuove i dati dalla griglia</td>
+        </tr>
+        <tr>
+            <td>deselectAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Deseleziona tutte le righe</td>
+        </tr>
+        <tr>
+            <td>getFilters</td>
+            <td>-</td>
+            <td>GridFilter []</td>
+            <td>Ritorna una lista con le i filtri attualmente applicati</td>
+        </tr>
+        <tr>
+            <td>getSelectedItems</td>
+            <td>-</td>
+            <td>GridRow []</td>
+            <td>Ritorna una lista con le righe attualmente selezionate</td>
+        </tr>
+        <tr>
+            <td>resetFilters</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Reimposta i filtri applicati</td>
+        </tr>
+        <tr>
+            <td>selectAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Seleziona tutte le righe</td>
+        </tr>
+        <tr>
+            <td>selectRange</td>
+            <td>index1 : number, index2: number</td>
+            <td>-</td>
+            <td>Seleziona le righe comprese tra i due valori</td>
+        </tr>
+        <tr>
+            <td>setData</td>
+            <td>data : GridRow[]</td>
+            <td>-</td>
+            <td>Imposta i nuovi dati nella griglia</td>
+        </tr>
+        <tr>
+            <td>updateData</td>
+            <td>data : GridRow[]</td>
+            <td>-</td>
+            <td>Aggiorna i dati della griglia</td>
+        </tr>
+    </tbody>
+</table>
 
 Per dettagli sulle API e le configurazioni leggere la [documentazione](./?path=/docs/vrxgrid--docs)

@@ -12,10 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
-import {inject, watch} from "vue";
-import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
+  import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
+  import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
 
   const props = defineProps<{
     modelValue: GridConfiguration;

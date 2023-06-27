@@ -41,7 +41,7 @@
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {Header} from "@/components/VrxGrid/Models/Header.ts";
   import {GridConfiguration, GridFilter, GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {inject, ref, watch} from "vue";
+  import {inject, ref} from "vue";
 
   const props = defineProps<{
     gridConfig: GridConfiguration;
