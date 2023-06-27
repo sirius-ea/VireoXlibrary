@@ -1,5 +1,4 @@
 import {mount, shallowMount, VueWrapper} from "@vue/test-utils";
-import 'jest';
 import {expect, it} from "vitest";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
 
