@@ -16,12 +16,12 @@ const config : GridConfiguration = { ... }
 ```
 ## Configurazione
 La configurazione è un oggetto complesso che permette di configurare la griglia in ogni suo aspetto.
-Seguono le interfacce da implementare:
+Seguono i tipi da implementare:
 
 ```GridConfiguration```: configurazione generale della griglia.
 
 ```js
-interface GridConfiguration {
+type GridConfiguration {
     id: string;                                // id della griglia
     header: GridHeader[];                      // configurazione degli header
     data: GridRow[];                           // dati della griglia
@@ -33,7 +33,7 @@ interface GridConfiguration {
 ```GridHeader```: configurazione degli header della griglia.
 
 ```js
-export interface GridHeader {
+type GridHeader {
     id: string;                                // id dell'header (i dati della colonna devono avere lo stesso id)
     text: string;                              // testo dell'header
     type: "text" | "component";                // tipo di header
@@ -55,7 +55,7 @@ export interface GridHeader {
 **NB**: le chiavi contenute dentro ```data``` devono avere lo stesso id degli header, altrimenti non verranno visualizzate.
 
 ```js
-export interface GridRow {
+type GridRow {
     id: string;                                // id della riga
     textColor: string;                         // [opzionale] colore del testo
     backgroundColor: string;                   // [opzionale] colore di sfondo
@@ -126,7 +126,7 @@ export interface GridRow {
             <td>selectRange</td>
             <td>index1 : number, index2: number</td>
             <td>-</td>
-            <td>Seleziona le righe comprese tra i due valori</td>
+            <td>Seleziona le righe di indice compreso tra i due valori</td>
         </tr>
         <tr>
             <td>setData</td>
@@ -143,4 +143,4 @@ export interface GridRow {
     </tbody>
 </table>
 
-Per dettagli sulle API e le configurazioni leggere la [documentazione](./?path=/docs/vrxgrid--docs)
+Per dettagli sulle configurazioni leggere la [documentazione](./?path=/docs/vrxgrid--docs)

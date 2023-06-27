@@ -62,7 +62,7 @@ export class Grid {
         this._configuration.data.splice(0, this._configuration.data.length);
     }
 
-    public updateData(data : any[]) : void {
+    public updateData(data :  (any & {id:number|string})[]) : void {
         data.forEach((row : any) => {
             const exist = this._configuration.data.find((r : any) => r.id === row.id);
             if(exist){
@@ -75,7 +75,7 @@ export class Grid {
         });
     }
 
-    public setData(data : any[]) : void {
+    public setData(data :  (any & {id:number|string})[]) : void {
         this.clearData();
         this._configuration.data.splice(0, this._configuration.data.length);
         data.forEach((row : any) => {

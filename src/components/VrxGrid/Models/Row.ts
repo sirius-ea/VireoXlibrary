@@ -98,7 +98,7 @@ export class Row {
         let isFiltered : boolean = false;
         this._filters.forEach(filter => {
             const customFilter = this._headerConfig.find(cell => cell.id === filter.cellId)?.customFilter;
-            isFiltered = customFilter ? customFilter(this, filter) : this._defaultFilter(filter);
+            !isFiltered ? isFiltered = customFilter ? customFilter(this, filter) : this._defaultFilter(filter) : null;
         });
         return isFiltered;
     }

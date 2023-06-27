@@ -113,7 +113,7 @@ export class Header {
     }
 
     public filterByValue (filters : GridFilter [], value : string){
-        const exist = filters.find((f : any) => f.cellId === this._id);
+        const exist = filters.find((f) => f.cellId === this._id);
         if(exist && value === '') filters.splice(filters.indexOf(exist), 1);
         exist ? exist.value = value : filters.push({ cellId: this._id , value });
     }
