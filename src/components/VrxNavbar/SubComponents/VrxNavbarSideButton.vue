@@ -10,7 +10,7 @@
     >
       <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
       {{ config.text }}
-      <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="toggleShowChildren ? 'icon-active' : 'icon-off'" size="3"/>
+      <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="toggleShowChildren() ? 'icon-active' : 'icon-off'" size="3"/>
     </component>
 
     <div v-else>
