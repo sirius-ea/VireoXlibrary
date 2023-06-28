@@ -46,12 +46,10 @@ const Template: NavbarStories = {
                 text: 'Home',
                 selected: true,
                 children: [],
-                icon: 'home'
             },
             {
                 text: 'Products',
                 selected: false,
-                icon: 'rocket',
                 children: [
                     {
                         text: 'Normal',
@@ -159,7 +157,6 @@ const Template: NavbarStories = {
             },
             {
                 text: 'Contacts',
-                icon: 'mail',
                 component: {
                     name: LinkTemplate,
                     props: {
@@ -172,7 +169,6 @@ const Template: NavbarStories = {
             {
                 text: 'Settings',
                 selected: false,
-                icon: 'user-circle',
                 children: [
                     {
                         text: 'Profile',

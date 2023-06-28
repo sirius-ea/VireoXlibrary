@@ -33,7 +33,7 @@
           tabindex="1"
           :class="style.dropdownStyle.mainContainer"
       >
-        <div class="py-2 border-r border-gray-200 dark:border-gray-600" :class="style.dropdownStyle.leftPanel">
+        <div class="py-2 border-gray-200 dark:border-gray-600" :class="hasChildren() ? 'border-r ' + style.dropdownStyle.leftPanel : style.dropdownStyle.leftPanel">
           <div
               v-for="child in props.config.children"
               class="dropdown-button block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
