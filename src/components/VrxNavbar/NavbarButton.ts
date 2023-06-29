@@ -1,23 +1,27 @@
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 import {Component} from "vue";
 
-export interface NavbarButtonInterface {
+export type NavbarButton = {
     text: string;
     icon?: IconLibraryType;
     component?: ComponentInterface;
-    selected: boolean;
-    children?: NavbarSubButtonInterface[];
+    children?: NavbarFirstLayerButton[];
 }
 
-export interface NavbarSubButtonInterface {
+export type NavbarFirstLayerButton = {
     text: string;
     description?: string;
     icon?: IconLibraryType;
     component?: ComponentInterface;
-    children?: NavbarSubButtonInterface[];
+    children?: NavbarFirstLayerButton[];
 }
 
-export interface ComponentInterface {
+export type NavbarSecondLayerButton = {
+    text: string;
+    component?: ComponentInterface;
+}
+
+export type ComponentInterface = {
     name: Component,
     props: any
 }

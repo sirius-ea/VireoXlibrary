@@ -12,31 +12,31 @@ import {VrxNavbar} from 'vireoxlibrary';
 
 <VrxNavbar buttons="[ ... ]"  />
 ```
-La props ```buttons``` deve essere un array di oggetti di tipo ```NavbarButtonInterface```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
+La props ```buttons``` deve essere un array di oggetti di tipo ```NavbarButton```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
 
-```NavbarButtonInterface```
+```NavbarButton```
 Bottone principale della navbar.
 
 ```
-interface NavbarButtonInterface {
+interface NavbarButton {
     text: string;
     icon?: IconLibraryType;
     component?: ComponentInterface;
     selected: boolean;
-    children?: NavbarSubButtonInterface[];
+    children?: NavbarFirstLayerButton[];
 }
 ```
 
-```NavbarSubButtonInterface```
+```NavbarFirstLayerButton```
 Sotto-bottone figlio di un bottone principale. A sua volta può contenere un altro livello di sotto-bottoni.
 
 ```
-NavbarSubButtonInterface {
+NavbarFirstLayerButton {
     text: string;
     description?: string;
     icon?: IconLibraryType;
     component?: ComponentInterface;
-    children?: NavbarButtonInterface[];
+    children?: NavbarButton[];
 }
 ```
 

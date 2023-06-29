@@ -1,5 +1,23 @@
 <template>
-  <div class="card hover:bg-gray-50 rounded-lg p-4 dark:hover:bg-gray-800 mb-2" @click="toggleChildren">
+  <component
+      v-if="config.component"
+      class="card hover:bg-gray-50 rounded-lg p-4 dark:hover:bg-gray-800 mb-2"
+      @click="toggleChildren"
+      :is="config.component.name"
+      v-bind="config.component.props"
+  >
+    <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 1rem">
+      <div v-if="config.icon" class="icon-container p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mt-1">
+        <VrxIcon :icon="config.icon"/>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <span class="text-black dark:text-white">{{ config.text }}</span>
+        <span class="description text-gray-500">{{ config.description }}</span>
+      </div>
+    </div>
+  </component>
+
+  <div v-else class="card hover:bg-gray-50 rounded-lg p-4 dark:hover:bg-gray-800 mb-2" @click="toggleChildren">
     <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 1rem">
       <div v-if="config.icon" class="icon-container p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mt-1">
         <VrxIcon :icon="config.icon"/>
@@ -16,7 +34,7 @@
         <VrxIcon icon="empty"/>
       </div>
       <div style="display: flex; flex-direction: column">
-        <div class="children dark:text-white hover:dark:text-blue-700 hover:text-blue-700" v-for="child in config.children">{{ child.text }}</div>
+        <SecondLayerButton v-for="child in config.children" :config="child" :key="child.text"/>
       </div>
     </div>
 
@@ -24,13 +42,14 @@
 </template>
 
 <script setup lang="ts">
-import {NavbarSubButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
+import {NavbarFirstLayerButton} from "@/components/VrxNavbar/NavbarButton.ts";
  import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {ref} from "vue";
+import SecondLayerButton from "@/components/VrxNavbar/subcomponents/desktop/SecondLayerButton.vue";
 
  const showChildren = ref(false);
  const props = defineProps<{
-    config: NavbarSubButtonInterface;
+    config: NavbarFirstLayerButton;
  }>()
 
 const toggleChildren = () => {
@@ -78,4 +97,5 @@ const toggleChildren = () => {
 .bottom-enter-to{
   transform: translateY(0px)
 }
+
 </style>

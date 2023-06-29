@@ -5,7 +5,7 @@
       <slot name="leftComponent"/>
 
       <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <VrxNavbarButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button)" :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"/>
+        <NavButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button)" :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"/>
       </ul>
 
       <!-- Mobile -->
@@ -16,7 +16,7 @@
         <aside v-show="mobileNav" class="dropdown-nav">
           <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
-              <VrxNavbarSideButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button) "/>
+              <NavSideButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button) "/>
             </ul>
           </div>
         </aside>
@@ -30,7 +30,7 @@
           v-show="showBottomNav && !mobile"
           class="bottom-nav border-b bg-white dark:bg-gray-900"
       >
-        <VrxNavbarSubButton v-for="config in selectedButton.children" :config="config"/>
+        <FirstLayerButton v-for="config in selectedButton.children" :config="config"/>
       </div>
     </transition>
   </div>
@@ -39,14 +39,14 @@
 <script setup lang="ts">
 
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-  import {onMounted, Ref, ref, UnwrapRef} from "vue";
-  import VrxNavbarButton from "@/components/VrxNavbar/SubComponents/VrxNavbarButton.vue";
-  import {NavbarButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
-  import VrxNavbarSideButton from "@/components/VrxNavbar/SubComponents/VrxNavbarSideButton.vue";
-  import VrxNavbarSubButton from "@/components/VrxNavbar/SubComponents/VrxNavbarSubButton.vue";
+  import {onMounted, ref} from "vue";
+  import {NavbarButton} from "@/components/VrxNavbar/NavbarButton.ts";
+  import NavButton from "@/components/VrxNavbar/subcomponents/desktop/NavButton.vue";
+  import NavSideButton from "@/components/VrxNavbar/subcomponents/mobile/NavSideButton.vue";
+  import FirstLayerButton from "@/components/VrxNavbar/subcomponents/desktop/FirstLayerButton.vue";
 
   const props = defineProps<{
-    buttons: NavbarButtonInterface[];
+    buttons: NavbarButton[];
     stickToTop?: boolean;
   }>()
 
@@ -58,7 +58,7 @@
   const showBottomNav = ref(false);
   const selectedButton = ref(props.buttons[0]);
 
-  const buttonClicked = ( button : NavbarButtonInterface ) => {
+  const buttonClicked = ( button : NavbarButton ) => {
     const btnToDeselect = props.buttons.find( btn => btn.selected );
     const btnToSelect = props.buttons.find( btn => JSON.stringify(btn) === JSON.stringify(button));
 
@@ -223,7 +223,7 @@
  }
 
   .bottom-enter-from, .bottom-leave-to{
-    transform: translateY(-300px)
+    transform: translateY(-400px)
   }
 
   .bottom-enter-to{

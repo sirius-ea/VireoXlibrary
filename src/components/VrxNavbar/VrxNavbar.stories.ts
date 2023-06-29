@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxNavbar from "@/components/VrxNavbar/VrxNavbar.vue";
 import {VrxButton, VrxInput} from "@/main.ts";
-import LinkTemplate from "@/components/VrxNavbar/SubComponents/LinkTemplate.vue";
+import LinkTemplate from "@/components/VrxNavbar/subcomponents/LinkTemplate.vue";
 
 const meta : Meta<typeof VrxNavbar> = {
     title: 'VrxNavbar',
@@ -44,302 +44,140 @@ const Template: NavbarStories = {
         buttons: [
             {
                 text: 'Home',
-                selected: true,
-                children: [],
-            },
-            {
-                text: 'Analysis',
-                selected: false,
-                children: [
-                    {
-                        text: 'Downtimes',
-                        description: 'Manage and edit devices downtimes',
-                        component: {
-                            name: LinkTemplate,
-                            props: {
-                                href: 'https://www.sirius.to.it/',
-                            }
-                        },
-                        selected: false,
-                        children: [
-                            {
-                                text: 'Downtime Manager',
-                                component: {
-                                    name: LinkTemplate,
-                                    props: {
-                                        href: 'https://www.sirius.to.it/',
-                                    }
-                                },
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Contractual Downtime Manager',
-                                component: {
-                                    name: LinkTemplate,
-                                    props: {
-                                        href: 'https://www.sirius.to.it/',
-                                    }
-                                },
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Device Status',
-                                component: {
-                                    name: LinkTemplate,
-                                    props: {
-                                        href: 'https://www.sirius.to.it/',
-                                    }
-                                },
-                                selected: false,
-                                children: [],
-                            },
-                        ],
-                        icon: 'chart-bar'
-                    },
-                    {
-                        text: 'Data Analysis',
-                        icon: 'password',
-                        description: 'Analyze data from devices',
-                        component: {
-                            name: LinkTemplate,
-                            props: {
-                                href: 'https://www.sirius.to.it/',
-                            }
-                        },
-                    },
-                    {
-                        text: 'Trends',
-                        description: 'Inspect measures trends',
-                        selected: false,
-                        children: [
-                            {
-                                text: 'Item 1',
-                                description: 'Description 1',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Item 2',
-                                description: 'Description 2',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Item 3',
-                                description: 'Description 3',
-                                selected: false,
-                                children: [],
-                            },
-                        ],
-                        icon: 'rocket'
-                    },
-                    {
-                        text: 'Data Management',
-                        description: 'Manage data from devices',
-                        selected: false,
-                        children: [
-                            {
-                                text: 'Item 1',
-                                description: 'Description 1',
-                                icon: 'chevron-up',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Item 2',
-                                description: 'Description 2',
-                                icon: 'x',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Item 3',
-                                description: 'Description 3',
-                                icon: 'chevron-down',
-                                selected: false,
-                                children: [],
-                            },
-                        ],
-                        icon: 'mail'
+                component: {
+                    name: LinkTemplate,
+                    props: {
+                        href: '#'
                     }
-                ]
+                }
             },
             {
-                text: 'KPI',
-                selected: false,
+                text: 'Products',
                 children: [
                     {
-                        text: 'Faults and Downtimes',
-                        description: 'Manage and edit devices downtimes',
-                        component: {
-                            name: LinkTemplate,
-                            props: {
-                                href: 'https://www.sirius.to.it/',
+                        text: 'Top',
+                        description: 'Our upper parts products made with incredible materials from Italy',
+                        icon: 'shopping-bag',
+                        children: [
+                            {
+                                text: 'T-shirts',
+                                component: {
+                                    name: LinkTemplate,
+                                    props: {
+                                        href: 'https://www.sirius.to.it'
+                                    }
+                                }
+                            },
+                            {
+                                text: 'Shirts',
+                            },
+                            {
+                                text: 'Jackets',
+                            },
+                            {
+                                text: 'Polo',
                             }
-                        },
-                        selected: false,
-                        children: [
-                            {
-                                text: 'Fault Inspector',
-                                component: {
-                                    name: LinkTemplate,
-                                    props: {
-                                        href: 'https://www.sirius.to.it/',
-                                    }
-                                },
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Downtime List',
-                                component: {
-                                    name: LinkTemplate,
-                                    props: {
-                                        href: 'https://www.sirius.to.it/',
-                                    }
-                                },
-                                selected: false,
-                                children: [],
-                            },
-                        ],
-                        icon: 'chart-bar'
-                    },
-                    {
-                        text: 'Availability',
-                        icon: 'password',
-                        description: 'Analyze data from devices',
-                        children: [
-                            {
-                                text: 'Availability WPP',
-                                description: 'Description 1',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Availability PVP',
-                                description: 'Description 1',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Contractual Availability',
-                                description: 'Description 1',
-                                selected: false,
-                                children: [],
-                            },
                         ]
                     },
                     {
-                        text: 'Energy',
-                        description: 'Inspect measures trends',
-                        selected: false,
+                        text: 'Bottom',
+                        description: 'Our bottom parts products',
+                        icon: 'shopping-bag',
                         children: [
                             {
-                                text: 'Energy Production',
-                                description: 'Description 1',
-                                selected: false,
-                                children: [],
+                                text: 'Jeans',
                             },
                             {
-                                text: 'Actual vs Budget',
-                                description: 'Description 2',
-                                selected: false,
-                                children: [],
+                                text: 'Shorts',
                             },
                             {
-                                text: 'MPE',
-                                description: 'Description 3',
-                                selected: false,
-                                children: [],
+                                text: 'Cargos',
                             },
                             {
-                                text: 'Energy Loss',
-                                description: 'Description 3',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Equivalent Hours',
-                                description: 'Description 3',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Indice Affidabilità',
-                                description: 'Description 3',
-                                selected: false,
-                                children: [],
-                            },
-                            {
-                                text: 'Under-Over Performance',
-                                description: 'Description 3',
-                                selected: false,
-                                children: [],
-                            },
-                        ],
-                        icon: 'rocket'
+                                text: 'Chinos',
+                            }
+                        ]
                     },
                     {
-                        text: 'Performance',
-                        description: 'Manage data from devices',
-                        selected: false,
+                        text: 'Shoes',
+                        description: 'Our beautiful shoes',
+                        icon: 'shopping-bag',
                         children: [
                             {
-                                text: 'Power Curves',
-                                description: 'Description 1',
-                                icon: 'chevron-up',
-                                selected: false,
-                                children: [],
+                                text: 'Sneakers',
                             },
                             {
-                                text: 'Performance Ratio',
-                                description: 'Description 2',
-                                icon: 'x',
-                                selected: false,
-                                children: [],
+                                text: 'Shorts',
                             },
                             {
-                                text: 'Smart Data Mining',
-                                description: 'Description 3',
-                                icon: 'chevron-down',
-                                selected: false,
-                                children: [],
+                                text: 'Trainers',
                             },
                             {
-                                text: 'Power Curve Evaluator',
-                                description: 'Description 3',
-                                icon: 'chevron-down',
-                                selected: false,
-                                children: [],
+                                text: 'Splippers',
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Accessories',
+                        description: 'Shining accessories for shining people',
+                        icon: 'shopping-bag',
+                        children: [
+                            {
+                                text: 'Watches',
                             },
-                        ],
-                        icon: 'mail'
+                            {
+                                text: 'Sun-glasses',
+                            },
+                            {
+                                text: 'Hats',
+                            },
+                            {
+                                text: 'Belts',
+                            }
+                        ]
+                    },
+                    {
+                        text: 'More',
+                        description: 'This will open an external link',
+                        icon: 'shopping-bag',
+                        component: {
+                            name: LinkTemplate,
+                            props: {
+                                href: 'https://www.sirius.to.it'
+                            }
+                        }
                     }
                 ]
             },
             {
+                text: 'About',
+                component: {
+                    name: LinkTemplate,
+                    props: {
+                        href: '#'
+                    }
+                }
+            },
+            {
                 text: 'Settings',
-                selected: false,
                 children: [
                     {
                         text: 'Profile',
                         icon: 'user-circle',
-                        description: 'Edit Profile',
+                        description: 'Your profile settings',
                     },
                     {
-                        text: 'Configurations',
-                        description: 'Edit configurations and settings',
+                        text: 'Configuration',
                         icon: 'cog',
+                        description: 'General settings',
                     },
                     {
                         text: 'Logout',
-                        description: 'Leave our beautiful app',
                         icon: 'logout',
+                        description: 'Leave our beautiful app',
                     }
                 ]
-            },
+            }
         ]
     },
 }

@@ -20,7 +20,7 @@
         <VrxIcon v-if="config.children && config.children?.length > 0" icon="chevron-down" :class="showChildren ? 'icon-active' : 'icon-off'" size="4"/>
       </div>
       <div v-if="showChildren && config.children && config.children?.length > 0" class="side-dropdown border-t" :key="config.text">
-        <VrxNavbarSideSubButton v-for="(child, index) in config.children" :config="child" :key="child.text + index"/>
+        <SideFirstLayerButton v-for="(child, index) in config.children" :config="child" :key="child.text + index"/>
       </div>
     </div>
 
@@ -28,13 +28,13 @@
 </template>
 
 <script setup lang="ts">
-  import {NavbarButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
+  import {NavbarButton} from "@/components/VrxNavbar/NavbarButton.ts";
   import {ref} from "vue";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-  import VrxNavbarSideSubButton from "@/components/VrxNavbar/SubComponents/VrxNavbarSideSubButton.vue";
+  import SideFirstLayerButton from "@/components/VrxNavbar/subcomponents/mobile/SideFirstLayerButton.vue";
 
   const props = defineProps<{
-    config: NavbarButtonInterface;
+    config: NavbarButton;
   }>();
 
   const showChildren = ref(false);

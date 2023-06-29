@@ -32,17 +32,17 @@
 
 <script setup lang="ts">
 import {computed, ref} from "vue";
-  import {NavbarButtonInterface, NavbarSubButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
+  import {NavbarButton, NavbarFirstLayerButton} from "@/components/VrxNavbar/NavbarButton.ts";
   import {navbarButtonStyle} from "@/components/styles.ts";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 
   const props = defineProps<{
-    config: NavbarButtonInterface;
+    config: NavbarButton;
     isSelected: boolean;
   }>();
 
   const showDropdown = ref(false);
-  const style = computed(() => {return navbarButtonStyle(props.config.selected, hasChildren());})
+  const style = computed(() => {return navbarButtonStyle(props.isSelected, hasChildren());})
   function hasChildren() {
     let hasOne = false;
     props.config.children?.forEach(child => {
