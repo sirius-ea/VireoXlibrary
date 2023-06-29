@@ -1,10 +1,14 @@
 <template>
-  <div class="vrx-navbar-header bg-white border-gray-200 dark:bg-gray-900" :class="{'scrolled-nav' : scrolledNav}">
+  <div class="vrx-navbar-header bg-white border-gray-200 dark:bg-gray-900" :class="{'scrolled-nav' : scrolledNav}" v-click-outside="clickOutside">
+
     <nav class="vrx-navbar">
       <slot name="leftComponent"/>
+
       <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <VrxNavbarButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button) "/>
+        <VrxNavbarButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button)" :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"/>
       </ul>
+
+      <!-- Mobile -->
       <div class="icon" :class="mobileNav ? 'icon-active' : 'icon-off'"  @click="toggleMobileNav">
         <VrxIcon v-show="mobile" icon="hamburger" size="6"/>
       </div>
@@ -17,27 +21,42 @@
           </div>
         </aside>
       </transition>
+      <!-- End Mobile -->
+
     </nav>
+
+    <transition name="bottom">
+      <div
+          v-show="showBottomNav && !mobile"
+          class="bottom-nav border-b bg-white dark:bg-gray-900"
+      >
+        <VrxNavbarSubButton v-for="config in selectedButton.children" :config="config"/>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
 
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-  import {onMounted, ref} from "vue";
+  import {onMounted, Ref, ref, UnwrapRef} from "vue";
   import VrxNavbarButton from "@/components/VrxNavbar/SubComponents/VrxNavbarButton.vue";
   import {NavbarButtonInterface} from "@/components/VrxNavbar/NavbarButtonInterface.ts";
   import VrxNavbarSideButton from "@/components/VrxNavbar/SubComponents/VrxNavbarSideButton.vue";
-
-  const scrolledNav = ref(false);
-  const mobileNav = ref(false);
-  const mobile = ref(false);
-  const windowWidth = ref(window.innerWidth);
+  import VrxNavbarSubButton from "@/components/VrxNavbar/SubComponents/VrxNavbarSubButton.vue";
 
   const props = defineProps<{
     buttons: NavbarButtonInterface[];
     stickToTop?: boolean;
   }>()
+
+
+  const scrolledNav = ref(false);
+  const mobileNav = ref(false);
+  const mobile = ref(false);
+  const windowWidth = ref(window.innerWidth);
+  const showBottomNav = ref(false);
+  const selectedButton = ref(props.buttons[0]);
 
   const buttonClicked = ( button : NavbarButtonInterface ) => {
     const btnToDeselect = props.buttons.find( btn => btn.selected );
@@ -49,16 +68,52 @@
     if (btnToSelect) {
       btnToSelect.selected = true;
     }
+
+    if(button.children && button.children?.length <= 0){
+      return;
+    }
+
+    if(selectedButton.value === button){
+      showBottomNav.value = !showBottomNav.value;
+      return;
+    }
+
+    if(showBottomNav.value){
+      selectedButton.value = button;
+      return;
+    }
+
+    showBottomNav.value = !showBottomNav.value;
+    selectedButton.value = button;
   }
 
   const toggleMobileNav = () => {
     mobileNav.value = !mobileNav.value;
   }
 
+  const vClickOutside = {
+    mounted(el : any, binding : any) {
+      el.clickOutsideEvent = function(event : any) {
+        if (!(el === event.target || el.contains(event.target))) {
+          binding.value(event, el);
+        }
+      };
+      document.body.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el : any) {
+      document.body.removeEventListener('click', el.clickOutsideEvent);
+    }
+  }
+
+  const clickOutside = () => {
+      showBottomNav.value = false;
+  }
+
   const checkScreen = () => {
     windowWidth.value = window.innerWidth;
     if(windowWidth.value < 800) {
       mobile.value = true;
+      showBottomNav.value = false;
       return;
     }
     mobile.value = false;
@@ -92,8 +147,20 @@
     top: 0;
    transition: .5s ease all;
    box-sizing: border-box;
-
  }
+
+  .bottom-nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: absolute;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    font-weight: 600;
+    flex-wrap: wrap;
+  }
 
  .vrx-navbar{
    display: flex;
@@ -138,6 +205,7 @@
    transition: .5s ease all;
  }
 
+
  .dropdown-nav{
    display: flex;
    flex-direction: column;
@@ -149,6 +217,18 @@
    left: 0;
    gap: 0.25rem;
  }
+
+ .bottom-enter-active, .bottom-leave-active{
+   transition: all 1s ease;
+ }
+
+  .bottom-enter-from, .bottom-leave-to{
+    transform: translateY(-300px)
+  }
+
+  .bottom-enter-to{
+    transform: translateY(0px)
+  }
 
  .mobile-nav-enter-active, .mobile-nav-leave-active {
    transition: all 1s ease;

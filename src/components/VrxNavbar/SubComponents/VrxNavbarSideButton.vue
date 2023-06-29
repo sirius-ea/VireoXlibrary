@@ -10,16 +10,16 @@
     >
       <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
       {{ config.text }}
-      <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="toggleShowChildren() ? 'icon-active' : 'icon-off'" size="3"/>
+      <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="showChildren ? 'icon-active' : 'icon-off'" size="3"/>
     </component>
 
     <div v-else>
       <div @click="toggleShowChildren" class="father-button flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
         <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
         <span class="flex-1 whitespace-nowrap">{{ config.text }}</span>
-        <VrxIcon v-if="config.children?.length > 0" icon="chevron-down" :class="showChildren ? 'icon-active' : 'icon-off'" size="4"/>
+        <VrxIcon v-if="config.children && config.children?.length > 0" icon="chevron-down" :class="showChildren ? 'icon-active' : 'icon-off'" size="4"/>
       </div>
-      <div v-if="showChildren && config.children?.length > 0" class="side-dropdown border-t" :key="config.text">
+      <div v-if="showChildren && config.children && config.children?.length > 0" class="side-dropdown border-t" :key="config.text">
         <VrxNavbarSideSubButton v-for="(child, index) in config.children" :config="child" :key="child.text + index"/>
       </div>
     </div>

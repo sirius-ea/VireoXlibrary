@@ -48,12 +48,12 @@ const Template: NavbarStories = {
                 children: [],
             },
             {
-                text: 'Products',
+                text: 'Analysis',
                 selected: false,
                 children: [
                     {
-                        text: 'Normal',
-                        description: 'Simple submenu',
+                        text: 'Downtimes',
+                        description: 'Manage and edit devices downtimes',
                         component: {
                             name: LinkTemplate,
                             props: {
@@ -63,7 +63,7 @@ const Template: NavbarStories = {
                         selected: false,
                         children: [
                             {
-                                text: 'Item 1',
+                                text: 'Downtime Manager',
                                 component: {
                                     name: LinkTemplate,
                                     props: {
@@ -74,7 +74,7 @@ const Template: NavbarStories = {
                                 children: [],
                             },
                             {
-                                text: 'Item 2',
+                                text: 'Contractual Downtime Manager',
                                 component: {
                                     name: LinkTemplate,
                                     props: {
@@ -85,7 +85,7 @@ const Template: NavbarStories = {
                                 children: [],
                             },
                             {
-                                text: 'Item 3',
+                                text: 'Device Status',
                                 component: {
                                     name: LinkTemplate,
                                     props: {
@@ -99,8 +99,19 @@ const Template: NavbarStories = {
                         icon: 'chart-bar'
                     },
                     {
-                        text: 'Descriptions',
-                        description: 'Submenu with description',
+                        text: 'Data Analysis',
+                        icon: 'password',
+                        description: 'Analyze data from devices',
+                        component: {
+                            name: LinkTemplate,
+                            props: {
+                                href: 'https://www.sirius.to.it/',
+                            }
+                        },
+                    },
+                    {
+                        text: 'Trends',
+                        description: 'Inspect measures trends',
                         selected: false,
                         children: [
                             {
@@ -125,8 +136,8 @@ const Template: NavbarStories = {
                         icon: 'rocket'
                     },
                     {
-                        text: 'Descriptions + Icons',
-                        description: 'Icons & descriptions',
+                        text: 'Data Management',
+                        description: 'Manage data from devices',
                         selected: false,
                         children: [
                             {
@@ -156,15 +167,157 @@ const Template: NavbarStories = {
                 ]
             },
             {
-                text: 'Contacts',
-                component: {
-                    name: LinkTemplate,
-                    props: {
-                        href: 'https://www.sirius.to.it/',
-                    }
-                },
+                text: 'KPI',
                 selected: false,
-                children: []
+                children: [
+                    {
+                        text: 'Faults and Downtimes',
+                        description: 'Manage and edit devices downtimes',
+                        component: {
+                            name: LinkTemplate,
+                            props: {
+                                href: 'https://www.sirius.to.it/',
+                            }
+                        },
+                        selected: false,
+                        children: [
+                            {
+                                text: 'Fault Inspector',
+                                component: {
+                                    name: LinkTemplate,
+                                    props: {
+                                        href: 'https://www.sirius.to.it/',
+                                    }
+                                },
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Downtime List',
+                                component: {
+                                    name: LinkTemplate,
+                                    props: {
+                                        href: 'https://www.sirius.to.it/',
+                                    }
+                                },
+                                selected: false,
+                                children: [],
+                            },
+                        ],
+                        icon: 'chart-bar'
+                    },
+                    {
+                        text: 'Availability',
+                        icon: 'password',
+                        description: 'Analyze data from devices',
+                        children: [
+                            {
+                                text: 'Availability WPP',
+                                description: 'Description 1',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Availability PVP',
+                                description: 'Description 1',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Contractual Availability',
+                                description: 'Description 1',
+                                selected: false,
+                                children: [],
+                            },
+                        ]
+                    },
+                    {
+                        text: 'Energy',
+                        description: 'Inspect measures trends',
+                        selected: false,
+                        children: [
+                            {
+                                text: 'Energy Production',
+                                description: 'Description 1',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Actual vs Budget',
+                                description: 'Description 2',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'MPE',
+                                description: 'Description 3',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Energy Loss',
+                                description: 'Description 3',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Equivalent Hours',
+                                description: 'Description 3',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Indice Affidabilità',
+                                description: 'Description 3',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Under-Over Performance',
+                                description: 'Description 3',
+                                selected: false,
+                                children: [],
+                            },
+                        ],
+                        icon: 'rocket'
+                    },
+                    {
+                        text: 'Performance',
+                        description: 'Manage data from devices',
+                        selected: false,
+                        children: [
+                            {
+                                text: 'Power Curves',
+                                description: 'Description 1',
+                                icon: 'chevron-up',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Performance Ratio',
+                                description: 'Description 2',
+                                icon: 'x',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Smart Data Mining',
+                                description: 'Description 3',
+                                icon: 'chevron-down',
+                                selected: false,
+                                children: [],
+                            },
+                            {
+                                text: 'Power Curve Evaluator',
+                                description: 'Description 3',
+                                icon: 'chevron-down',
+                                selected: false,
+                                children: [],
+                            },
+                        ],
+                        icon: 'mail'
+                    }
+                ]
             },
             {
                 text: 'Settings',
