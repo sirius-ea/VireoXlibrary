@@ -1,79 +1,53 @@
-import VrxTree from "@/components/VrxTree/VrxTree.vue";
-import {setup, StoryObj} from "@storybook/vue3";
-import VrxTreeItem from "@/components/VrxTree/VrxTreeItem.vue";
-import VrxButton from "@/components/VrxButton/VrxButton.vue";
+import VrxTree from "./VrxTree.vue";
+import {StoryObj} from "@storybook/vue3";
 
 const meta = {
-    components: {VrxButton},
-    title: 'Components/VrxTree',
+    title: 'VrxTree',
     component: VrxTree,
-    tags: ['autodocs'],
     argTypes: {
         tree: {
-            description: 'Tree structure',
+            description: 'tree data',
             control: {
                 type: 'object',
+            },
+            table: {
+                category: 'props',
             }
         }
-    },
+    }
 }
+
 
 export default meta;
 
-type TreeStories = StoryObj<typeof VrxTree>
 
-const Template : TreeStories = {
+type TreeStories = StoryObj<typeof VrxTree>;
+
+const Template: TreeStories = {
     render: (args) => ({
-        components: { VrxTree, VrxButton },
-        setup() {
+        components: {VrxTree},
+        setup() : {args: {tree:any}} {
             return {
                 args
-            };
+            } as any;
         },
-        methods: {
-            logItem() {
-                console.log(this.$refs.tree.getCheckedItems());
-            }
-        },
-        template: `
-              <VrxTree
-                  v-bind="args"
-                  ref="tree"
-              />
-              <br>
-              <VrxButton color="green" size="base" @click="logItem">Log checked items</VrxButton>
-        `
+        template: '<vrx-tree v-bind="args" ref="test"/>',
     }),
     args: {
-        tree: [{
-            id: '1',
-            label: 'Label 1',
-            children: [{
-                id: '1.1',
-                label: 'Label 1.1',
-                children: [{
-                    id: '1.1.1',
-                    label: 'Label 1.1.1',
-                    selectable: true,
-                }, {
-                    id: '1.1.2',
-                    label: 'Label 1.1.2',
-                    selectable: true,
-                    data: {
-                        test: 'test',
-                        customData: 'customData'
+        tree: [
+            {
+                id: '1',
+                label: 'ciao',
+                children: [
+                    {
+                        id: '1.1',
+                        label: 'ciao',
                     }
-                }]
-            }, {
-                id: '1.2',
-                label: 'Label 1.2',
-                icon: 'mail'
-            }]
-
-        }]
-    },
+                    ]
+            }
+        ]
+    }
 }
-
 
 export const Primary: TreeStories = {
     ...Template,

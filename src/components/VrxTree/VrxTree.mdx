@@ -1,0 +1,47 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxTree/About" />
+
+# VireoxTree
+
+VireoxTree è un componente che permette di visualizzare una struttura ad albero.
+
+Accetta in input un array di oggetti di tipo `IVrxTreeItem<T>` che rappresentano i nodi dell'albero.
+
+`IVrxTreeItem<T>` è così definito:
+
+```ts
+interface IVrxTreeItem<T> {
+    id: string,
+    label: string,
+    children?: IVrxTreeItem<T>[],
+    data?: T,
+    icon?: IconLibraryType,
+    checked?: boolean,
+    expanded?: boolean,
+    selectable?: boolean,
+}
+```
+
+Di seguito un esempio di codice:
+
+```js
+import {VrxTree} from 'vireoxlibrary';
+```
+
+Il componente VrxTree espone le seguenti API:
+- `getSelectedItems()` che ritorna un array di `IVrxTreeSelectedItem<T>[]` selezionati
+
+`IVrxTreeSelectedItem<T>` è così definito:
+
+```ts
+interface IVrxTreeSelectedItem<T> {
+    id: string,
+    data?: T | IVrxTreeItem<T>,
+}
+```
+
+Il metodo ritornerà N oggetti che avranno al loro interno l'id del nodo selezionato e l'eventuale campo data associato. Nel caso non fosse
+definito, verrà ritornato l'intero oggetto `IVrxTreeItem<T>`.
+
+Per dettagli sulle API e le configurazioni leggere la [documentazione](./?path=/docs/vrxtree--docs)

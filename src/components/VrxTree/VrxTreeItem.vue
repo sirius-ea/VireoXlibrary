@@ -1,60 +1,57 @@
-<script setup lang="ts" generic="T">
-  import {VrxTreeItemInterface} from "@/components/VrxTree/VrxTree.type.ts";
+<script setup lang="ts">
+  import {IVrxTreeItem, IVrxTreeSelectedItem} from "@/components/VrxTree/VrxTree.type.ts";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-  import {computed, inject, onMounted} from "vue";
+  import {computed, inject} from "vue";
 
-  const props = defineProps<{
-    item: VrxTreeItemInterface<T>
-  }>()
-  const BASE_SIZE = "5"
-
-  const selectedItem = inject<({id:string} & T)[]>('selectedItems')
-
-  onMounted(() => {
-    if (props.item.visible === undefined) {
-      props.item.visible = true
+  const props = withDefaults(defineProps<IVrxTreeItem>(), {
+    state: {
+      checked: false,
+      indeterminate: false,
+      expanded: true,
     }
   })
+
+  const BASE_SIZE = (props.config?.baseSize || '5') as string
+  const selectedItem = inject<(IVrxTreeSelectedItem)[]>('selectedItems')
+
   function toggleVisibility() {
-    props.item.visible = !props.item.visible
+    props.state.expanded = !props.state.expanded
   }
 
   function toggleSelect() {
-    props.item.checked = !props.item.checked
-
+    props.state.checked = !props.state.checked
     if(!selectedItem) {
       return
     }
-    if(props.item.checked) {
-      selectedItem.push({id:props.item.id, data: props.item.data ? {...props.item.data} : {...props.item}} as {id:string} & T)
+    if(props.state.checked) {
+      selectedItem.push({id:props.id, data: props.userdata ? {...props.userdata} : {...props.userdata}})
     } else {
-      selectedItem.splice(selectedItem.findIndex(item => item.id === props.item.id), 1)
+      selectedItem.splice(selectedItem.findIndex(item => item.id === props.id), 1)
     }
   }
 
-  const chevronIcon = computed(() => {
-    return props.item.visible ? "chevron-down" : "chevron-right"
-  })
-
   const selectedIcon = computed(() => {
-    return props.item.checked ? "check" : "empty"
+      return props.state.checked ? "check" : "empty"
   })
 
+  const chevronIcon = computed(() => {
+    return props.state.expanded ? "chevron-down" : "chevron-right"
+  })
 
 </script>
 
 <template>
     <div class="">
       <div class="flex flex-row items-center gap-2 ">
-        <VrxIcon :icon="chevronIcon" v-if="props.item.children" :size="BASE_SIZE" @click="toggleVisibility" class="cursor-pointer"/>
+        <VrxIcon :icon="chevronIcon" v-if="props.children" :size="BASE_SIZE" @click="toggleVisibility" class="cursor-pointer"/>
         <!-- TODO: sostituire con VrxCheck una volta disponibile -->
-        <div class="border border-black dark:border-white cursor-pointer " v-if="props.item.selectable" @click="toggleSelect">
-          <VrxIcon :icon="selectedIcon" :size="(BASE_SIZE - 2).toString()" />
+        <div class="border border-black dark:border-white cursor-pointer " v-if="props.config?.selectable" @click="toggleSelect">
+          <VrxIcon :icon="selectedIcon" :size="(parseInt(BASE_SIZE) - 2).toString()" />
         </div>
-        <VrxIcon :icon="props.item.icon" v-if="props.item.icon" :size="BASE_SIZE"/>
-        {{props.item.label}}
+        <VrxIcon v-if="props.config && props.config.icon" :icon="props.config.icon" :size="BASE_SIZE"/>
+        {{props.label}}
       </div>
-      <div v-if="props.item.visible" v-for="item in props.item.children" :key="item.id" class="ml-2 pl-6 border-l">
+      <div v-if="props.state.expanded" v-for="item in props.children" :key="item.id" class="ml-2 pl-6 border-l">
         <VrxTreeItem :item="item" />
       </div>
     </div>
