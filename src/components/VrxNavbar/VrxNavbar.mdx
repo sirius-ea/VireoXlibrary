@@ -12,7 +12,7 @@ import {VrxNavbar} from 'vireoxlibrary';
 
 <VrxNavbar buttons="[ ... ]"  />
 ```
-La props ```buttons``` deve essere un array ```[]`` di oggetti di tipo ```NavbarButton```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
+La props ```buttons``` deve essere un array ```[]``` di oggetti di tipo ```NavbarButton```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
 
 ```NavbarButton```
 Bottone principale della navbar.
@@ -53,7 +53,7 @@ type NavbarSecondLayerButton = {
 Componente (pensato principalmente per il routing) da inserire all'interno di un bottone della navbar. Per visualizzare il testo e la descrizione del bottone, il componente passato **necessita** di uno ```slot```.
 Consigliato l'utilizzo di ```<NuxtLink> </NuxtLink>``` o ```<router-link to="/"> </router-link>``` per il routing.
 ```js
-interface ComponentInterface {
+type ComponentInterface = {
     component: Component;                       // Oggetto componente da inserire nel bottone
     props: any;                                 // [opzionale] Oggetto con le props da passare al componente
 }
