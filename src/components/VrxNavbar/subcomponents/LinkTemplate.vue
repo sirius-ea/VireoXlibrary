@@ -1,5 +1,5 @@
 <template>
-  <a :href="props.href">
+  <a :href="props.href" data-testid="link-template">
     <slot/>
   </a>
 </template>

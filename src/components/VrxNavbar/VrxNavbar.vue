@@ -1,6 +1,10 @@
 <template>
-  <div class="vrx-navbar-header bg-white border-gray-200 dark:bg-gray-900" :class="{'scrolled-nav' : scrolledNav}" v-click-outside="clickOutside">
-
+  <div
+      class="vrx-navbar-header bg-white border-gray-200 dark:bg-gray-900"
+      :class="{'scrolled-nav' : scrolledNav}"
+      v-click-outside="clickOutside"
+      data-testid="vrx-navbar"
+  >
     <nav class="vrx-navbar">
       <slot name="leftComponent"/>
 
@@ -13,7 +17,7 @@
         <VrxIcon v-show="mobile" icon="hamburger" size="6"/>
       </div>
       <transition name="mobile-nav">
-        <aside v-show="mobileNav" class="dropdown-nav">
+        <aside v-show="mobileNav" class="dropdown-nav" data-testid="vrx-side-nav">
           <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
               <NavSideButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button) "/>
@@ -29,6 +33,7 @@
       <div
           v-show="showBottomNav && !mobile"
           class="bottom-nav border-b bg-white dark:bg-gray-900"
+          data-testid="vrx-navbar-dropdown"
       >
         <FirstLayerButton v-for="config in selectedButton.children" :config="config"/>
       </div>
@@ -59,16 +64,6 @@
   const selectedButton = ref(props.buttons[0]);
 
   const buttonClicked = ( button : NavbarButton ) => {
-    const btnToDeselect = props.buttons.find( btn => btn.selected );
-    const btnToSelect = props.buttons.find( btn => JSON.stringify(btn) === JSON.stringify(button));
-
-    if (btnToDeselect) {
-      btnToDeselect.selected = false;
-    }
-    if (btnToSelect) {
-      btnToSelect.selected = true;
-    }
-
     if(button.children && button.children?.length <= 0){
       return;
     }

@@ -15,8 +15,8 @@
 
   const props = withDefaults(defineProps<{
     icon: IconLibraryType,
-    color: string,
-    size: string,
+    color?: string,
+    size?: string,
   }>(), {
     color: 'currentColor',
     size: '5',

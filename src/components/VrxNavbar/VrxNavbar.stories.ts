@@ -27,7 +27,7 @@ const Template: NavbarStories = {
         },
 
         template: `
-          <div style="height: 300px; width: 100%">
+          <div style="height: 500px; width: 100%">
             <VrxNavbar :buttons="args.buttons" :stick-to-top="args.stickToTop">
               <template v-slot:leftComponent>
                 <a href="https://www.sirius.to.it/" class="flex items-center">

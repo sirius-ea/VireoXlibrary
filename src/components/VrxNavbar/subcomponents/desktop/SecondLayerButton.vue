@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-  import SecondLayerButton from "@/components/VrxNavbar/subcomponents/desktop/SecondLayerButton.vue";
+  import {NavbarSecondLayerButton} from "@/components/VrxNavbar/NavbarButton.ts";
 
   const props = defineProps<{
-    config: SecondLayerButton;
+    config: NavbarSecondLayerButton;
   }
   >();
 </script>
