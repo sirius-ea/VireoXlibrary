@@ -20,6 +20,7 @@
   }>(), {
     color: 'currentColor',
     size: '5',
+    icon: 'mail'
   })
 
   const iconColor = computed(() => {

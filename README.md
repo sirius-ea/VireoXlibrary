@@ -6,9 +6,8 @@ Utilizza Tailwind CSS e Flowbite Design System.
 ## Requisiti
 
 - Tailwind CSS
-- Flowbite
 
-Per installare Tailwind CSS e Flowbite fare riferimento alla seguente guida:
+Per installare Tailwind CSS fare riferimento alla seguente guida:
 https://flowbite.com/docs/getting-started/vue/
 
 ## Installazione
