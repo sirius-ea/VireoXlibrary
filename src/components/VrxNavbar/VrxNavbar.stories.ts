@@ -40,7 +40,6 @@ const Template: NavbarStories = {
         `
     }),
     args: {
-        stickToTop: true,
         buttons: [
             {
                 text: 'Home',
