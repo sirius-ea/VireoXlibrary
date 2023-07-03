@@ -4,7 +4,7 @@ import {SelectItemInterface} from "@/components/VrxSelect/SelectItemInterface.ts
 export class Header {
     private readonly _id: string;
     private readonly _text: string;
-    private _type: "text" | "component";
+    private _type: "text" | "component" | undefined;
     private readonly _align?: "left" | "center" | "right";
     private readonly _sortable?: boolean;
     private readonly _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;

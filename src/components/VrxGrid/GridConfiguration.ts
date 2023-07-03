@@ -9,7 +9,7 @@ export type GridConfiguration = {
 export type GridHeader = {
     id: string;
     text: string;
-    type: "text" | "component";
+    type?: "text" | "component" | undefined;
     align?: "left" | "center" | "right";
     sortable?: boolean;
     sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
