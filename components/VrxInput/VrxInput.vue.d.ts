@@ -31,7 +31,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: false;
     };
     icon: {
-        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | undefined>;
+        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag" | undefined>;
         required: false;
     };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
@@ -66,7 +66,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: false;
     };
     icon: {
-        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | undefined>;
+        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag" | undefined>;
         required: false;
     };
 }>> & {

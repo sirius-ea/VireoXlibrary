@@ -17,7 +17,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: false;
     };
     size: {
-        type: __PropType<"sm" | "lg" | "xs" | "base" | "xl">;
+        type: __PropType<"xs" | "sm" | "base" | "lg" | "xl">;
         required: true;
     };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
@@ -38,7 +38,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: false;
     };
     size: {
-        type: __PropType<"sm" | "lg" | "xs" | "base" | "xl">;
+        type: __PropType<"xs" | "sm" | "base" | "lg" | "xl">;
         required: true;
     };
 }>>, {}>;

@@ -13,7 +13,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         default: string;
     };
     icon: {
-        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | undefined>;
+        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag" | undefined>;
         required: false;
     };
     disabled: {
@@ -61,7 +61,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         default: string;
     };
     icon: {
-        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | undefined>;
+        type: __PropType<"mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag" | undefined>;
         required: false;
     };
     disabled: {

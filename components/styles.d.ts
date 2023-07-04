@@ -21,6 +21,14 @@ export declare function toggleStyle(variant: ComponentVariant, size: 'sm' | 'md'
     toggle: string;
     label: string;
 };
+export declare function navbarButtonStyle(selected: boolean, hasChildren: boolean): {
+    navbarButton: string;
+    dropdownStyle: {
+        mainContainer: string;
+        leftPanel: string;
+        rightPanel: string;
+    };
+};
 export declare function buttonsGroupStyle(): {
     firstButton: string;
     middleButton: string;

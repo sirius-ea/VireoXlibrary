@@ -2,7 +2,7 @@ import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
 import { ComponentVariant } from '../../components/styles.ts';
 declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
     size: {
-        type: __PropType<"sm" | "md" | "lg" | undefined>;
+        type: __PropType<"sm" | "lg" | "md" | undefined>;
         required: false;
         default: string;
     };
@@ -28,7 +28,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     size: {
-        type: __PropType<"sm" | "md" | "lg" | undefined>;
+        type: __PropType<"sm" | "lg" | "md" | undefined>;
         required: false;
         default: string;
     };
@@ -56,7 +56,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
     disabled: boolean | undefined;
-    size: "sm" | "md" | "lg" | undefined;
+    size: "sm" | "lg" | "md" | undefined;
     label: string | undefined;
     modelValue: boolean | undefined;
     variant: ComponentVariant | undefined;

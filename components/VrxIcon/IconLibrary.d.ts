@@ -7,5 +7,12 @@ export declare const iconLibrary: {
     'chevron-down': string;
     x: string;
     check: string;
+    home: string;
+    cog: string;
+    logout: string;
+    'chart-bar': string;
+    hamburger: string;
+    empty: string;
+    'shopping-bag': string;
 };
 export type IconLibraryType = keyof typeof iconLibrary;
