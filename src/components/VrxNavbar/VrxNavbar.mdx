@@ -1,0 +1,60 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxNavbar/About" />
+
+# VireoxNavbar
+
+VireoxNavbar è un componente personalizzabile per l'utilizzo di un menù di navigazione.
+
+Per utilizzarlo, importare il componente e utilizzarlo come segue:
+```js
+import {VrxNavbar} from 'vireoxlibrary';
+
+<VrxNavbar buttons="[ ... ]"  />
+```
+La props ```buttons``` deve essere un array ```[]``` di oggetti di tipo ```NavbarButton```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
+
+```NavbarButton```
+Bottone principale della navbar.
+
+```js
+type NavbarButton = {
+    text: string;                               // Testo del bottone
+    icon: IconLibraryType;                      // [opzionale] Icona del bottone
+    component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
+    children: FirstLayerButton[];               // [opzionale] Sotto-bottoni del bottone
+}
+```
+
+```NavbarFirstLayerButton```
+Sotto-bottone figlio di un bottone principale. A sua volta può contenere un altro livello di sotto-bottoni.
+
+```js
+type NavbarSecondLayerButton = {
+    text: string;                               // Testo del bottone
+    description: string;                        // [opzionale] Descrizione del bottone
+    icon: IconLibraryType;                      // [opzionale] Icona del bottone
+    component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
+    children: SecondLayerButton[];              // [opzionale] Sotto-bottoni del bottone
+}
+```
+
+```NavbarSecondLayerButton```
+Sotto-bottone figlio di un FirstLayerButton. Ultimo layer di bottoni.
+
+```js
+type NavbarSecondLayerButton = {
+    text: string;                               // Testo del bottone
+    component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
+}
+```
+
+```ComponentInterface```
+Componente (pensato principalmente per il routing) da inserire all'interno di un bottone della navbar. Per visualizzare il testo e la descrizione del bottone, il componente passato **necessita** di uno ```slot```.
+Consigliato l'utilizzo di ```<NuxtLink> </NuxtLink>``` o ```<router-link to="/"> </router-link>``` per il routing.
+```js
+type ComponentInterface = {
+    component: Component;                       // Oggetto componente da inserire nel bottone
+    props: any;                                 // [opzionale] Oggetto con le props da passare al componente
+}
+```

@@ -2,7 +2,7 @@ import type { Preview } from "@storybook/vue3";
 // .storybook/preview.js
 import { withThemeByDataAttribute } from '@storybook/addon-styling';
 
-import '../dist/output.css'
+import '../src/style.css'
 
 const preview: Preview = {
   parameters: {

@@ -111,6 +111,28 @@ export function toggleStyle(variant : ComponentVariant, size: 'sm' | 'md' | 'lg'
     return { toggle, label };
 }
 
+export function navbarButtonStyle(selected : boolean, hasChildren : boolean){
+
+    let dropdownStyle = {
+        mainContainer: "dropdown-half-width",
+        leftPanel: 'w-full',
+        rightPanel: 'w-0',
+    };
+
+    if(hasChildren){
+        dropdownStyle = {
+            mainContainer: "dropdown-full-width",
+            leftPanel: 'w-1/2',
+            rightPanel: 'w-1/2',
+        };
+    }
+
+    const navbarButton: string =  selected ?
+        "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" :
+        "text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
+    return { navbarButton, dropdownStyle };
+}
+
 export function buttonsGroupStyle (){
     const firstButton : string  = "text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white";
     const middleButton : string = "text-gray-900 bg-white border-t border-b border-r border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white";
@@ -120,4 +142,3 @@ export function buttonsGroupStyle (){
 
     return { firstButton, middleButton, lastButton };
 }
-
