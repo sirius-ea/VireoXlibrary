@@ -31,7 +31,7 @@ module.exports = {
     ...,
     content: [
         ...
-        './node_modules/@sirius-rd/vireoxlibrary/src/**/*.vue'
+        './node_modules/@sirius-rd/vireoxlibrary/src/**/*.{ts,js,vue}'
     ]
 }
 ```
