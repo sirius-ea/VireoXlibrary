@@ -1,7 +1,14 @@
 
 <template>
-  <svg :data-testid="'vrx-icon-' + icon" :class="size" fill="none" :stroke="iconColor" :color="iconColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="iconLibrary[icon]"></path>
+  <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      :data-testid="'vrx-icon-' + icon"
+      :class="props.size ? size : 'size-5'"
+      :stroke="iconColor"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="iconLibrary[icon] ?? icon"></path>
     <path v-if="icon === 'cog'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
   </svg>
 
@@ -13,15 +20,11 @@
   import {computed, onMounted} from "vue";
   import {iconLibrary, IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
-  const props = withDefaults(defineProps<{
-    icon: IconLibraryType,
+  const props = defineProps<{
+    icon: IconLibraryType | string,
     color?: string,
     size?: string,
-  }>(), {
-    color: 'currentColor',
-    size: '5',
-    icon: 'mail'
-  })
+  }>();
 
   const iconColor = computed(() => {
     return props.color ?? 'currentColor'
@@ -29,10 +32,6 @@
 
   const size = computed(() => {
     return 'size-' + props.size
-  })
-
-  onMounted(() => {
-    console.log(iconColor.value);
   })
 
 </script>

@@ -58,7 +58,6 @@
 
   const props = defineProps<{
     buttons: NavbarButton[];
-    stickToTop?: boolean;
   }>()
 
 
