@@ -8,7 +8,7 @@
         <span class="vrx-grid-label">{{ headerModel.text }}</span>
         <VrxIcon
             v-if="headerModel.sortable"
-            :icon="headerConfig.sortDirection === 'asc' ? 'chevron-up' : headerConfig.sortDirection === 'desc' ? 'chevron-down' : 'empty-icon'"
+            :icon="headerConfig.sortDirection === 'asc' ? 'chevron-up' : headerConfig.sortDirection === 'desc' ? 'chevron-down' : 'empty'"
             size="3"
         />
       </div>
