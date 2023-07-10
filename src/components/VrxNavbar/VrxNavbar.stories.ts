@@ -43,12 +43,7 @@ const Template: NavbarStories = {
         buttons: [
             {
                 text: 'Home',
-                component: {
-                    name: LinkTemplate,
-                    props: {
-                        href: '#'
-                    }
-                }
+                icon: 'home',
             },
             {
                 text: 'Products',
@@ -166,14 +161,8 @@ const Template: NavbarStories = {
                         description: 'Your profile settings',
                     },
                     {
-                        text: 'Configuration',
-                        icon: 'cog',
-                        description: 'General settings',
-                    },
-                    {
                         text: 'Logout',
                         icon: 'logout',
-                        description: 'Leave our beautiful app',
                     }
                 ]
             }
