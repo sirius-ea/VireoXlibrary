@@ -1,0 +1,146 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxGrid/About" />
+
+# VireoxGrid
+
+VireoxGrid è un componente altamente versatile per l'utilizzo di griglie.
+
+Il componente utilizza il 100% della larghezza e dell'altezza disponibile.
+Per utilizzarlo, importarlo come segue:
+```js
+import {VrxGrid} from 'vireoxlibrary';
+
+const config : GridConfiguration = { ... }
+<VrxGrid :grid-configuration="config"/>
+```
+## Configurazione
+La configurazione è un oggetto complesso che permette di configurare la griglia in ogni suo aspetto.
+Seguono i tipi da implementare:
+
+```GridConfiguration```: configurazione generale della griglia.
+
+```js
+type GridConfiguration {
+    id: string;                                // id della griglia
+    header: GridHeader[];                      // configurazione degli header
+    data: GridRow[];                           // dati della griglia
+    multiselect: boolean;                      // [opzionale] abilita la multiselezione,
+    selectable: boolean;                       // [opzionale] abilita la selezione
+}
+```
+
+```GridHeader```: configurazione degli header della griglia.
+
+```js
+type GridHeader {
+    id: string;                                // id dell'header (i dati della colonna devono avere lo stesso id)
+    text: string;                              // testo dell'header
+    type: "text" | "component";                // tipo di header
+    align: "left" | "center" | "right";        // [opzionale] allineamento del testo
+    sortable: boolean;                         // [opzionale] abilita la possibilità di ordinare la colonna
+    sortFunction:                              // [opzionale] funzione di ordinamento personalizzata
+        (a: GridRow, b: GridRow) => 0 | 1 | -1;
+    sortDirection: "asc" | "desc" | null;      // [opzionale] direzione di ordinamento
+    width: number;                             // [opzionale] larghezza in px della colonna
+    filterType: "text" | "select" | "date";    // [opzionale] tipo di filtro
+    filterPlaceholder: string;                 // [opzionale] testo del placeholder del filtro
+    customFilter:                              // [opzionale] funzione di filtro personalizzata
+        (row: GridRow, filter: {cellId: string, value: string}) => boolean;
+}
+```
+
+```GridRow```: configurazione delle righe della griglia.
+
+**NB**: le chiavi contenute dentro ```data``` devono avere lo stesso id degli header, altrimenti non verranno visualizzate.
+
+```js
+type GridRow {
+    id: string;                                // id della riga
+    textColor: string;                         // [opzionale] colore del testo
+    backgroundColor: string;                   // [opzionale] colore di sfondo
+    data: {                                    // dati della riga (oggetto con chiave: valore)
+        key: value,
+        key: value,
+        ...
+    };
+}
+```
+
+## API
+<table style={{width: '100%'}}>
+    <thead>
+        <tr>
+            <td>
+                <b>Method</b>
+            </td>
+            <td>
+                <b>Params</b>
+            </td>
+            <td>
+                <b>Return</b>
+            </td>
+            <td>
+                <b>Description</b>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>clearData</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Rimuove i dati dalla griglia</td>
+        </tr>
+        <tr>
+            <td>deselectAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Deseleziona tutte le righe</td>
+        </tr>
+        <tr>
+            <td>getFilters</td>
+            <td>-</td>
+            <td>GridFilter []</td>
+            <td>Ritorna una lista con le i filtri attualmente applicati</td>
+        </tr>
+        <tr>
+            <td>getSelectedItems</td>
+            <td>-</td>
+            <td>GridRow []</td>
+            <td>Ritorna una lista con le righe attualmente selezionate</td>
+        </tr>
+        <tr>
+            <td>resetFilters</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Reimposta i filtri applicati</td>
+        </tr>
+        <tr>
+            <td>selectAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Seleziona tutte le righe</td>
+        </tr>
+        <tr>
+            <td>selectRange</td>
+            <td>index1 : number, index2: number</td>
+            <td>-</td>
+            <td>Seleziona le righe di indice compreso tra i due valori</td>
+        </tr>
+        <tr>
+            <td>setData</td>
+            <td>data : GridRow[]</td>
+            <td>-</td>
+            <td>Imposta i nuovi dati nella griglia</td>
+        </tr>
+        <tr>
+            <td>updateData</td>
+            <td>data : GridRow[]</td>
+            <td>-</td>
+            <td>Aggiorna i dati della griglia</td>
+        </tr>
+    </tbody>
+</table>
+
+Per dettagli sulle configurazioni leggere la [documentazione](./?path=/docs/vrxgrid--docs)
