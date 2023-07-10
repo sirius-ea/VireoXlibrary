@@ -66,16 +66,19 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 import {SelectItemInterface} from "./SelectItemInterface.ts";
 
   const props = withDefaults(defineProps<{
-    label: string,
-    placeholder: string,
+    label?: string,
+    placeholder?: string,
     icon?: IconLibraryType,
-    disabled: boolean,
-    invalid: boolean,
-    helperText: string,
+    disabled?: boolean,
+    invalid?: boolean,
+    helperText?: string,
     listData: SelectItemInterface[],
     modelValue: SelectItemInterface[],
-    variant: ComponentVariant,
-    multiselect: boolean,
+    variant?: ComponentVariant,
+    multiselect?: boolean,
+    height?: number,
+    onSelect?: (item: SelectItemInterface) => void
+    onClear?: () => void
   }>(),{
     disabled: false,
     invalid: false,
@@ -99,11 +102,11 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     if(props.disabled) return;
     selectedList.value = [];
     emit('update:modelValue', selectedList.value);
+    props.onClear ? props.onClear() : null;
   }
 
   const itemClick = (item : SelectItemInterface) => {
     if(props.disabled) return;
-
     if(!props.multiselect){
       selectedList.value = [item];
     } else {
@@ -113,8 +116,10 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
         selectedList.value.push(item);
       }
     }
-
     emit('update:modelValue', selectedList.value);
+
+
+    props.onSelect ? props.onSelect(item) : null;
   }
 
 </script>
@@ -127,6 +132,7 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     justify-content: space-between;
     cursor: pointer;
     z-index: 10;
+    height: v-bind(height + 'px');
   }
   .menu {
     z-index: 200;

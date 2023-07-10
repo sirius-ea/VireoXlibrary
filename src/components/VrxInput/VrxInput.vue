@@ -14,7 +14,7 @@
           :disabled="disabled"
           :value="modelValue"
           @input="updateValue"
-          class="text-sm rounded-lg p-2.5 block w-full"
+          class="vrx-input text-sm rounded-lg p-2.5 block w-full"
           :class="style.input"
       />
     </div>
@@ -40,6 +40,7 @@ const props = withDefaults(defineProps<{
   helperText?: string,
   invalid?: boolean,
   icon?: IconLibraryType,
+  height?: number,
 }>(),{
   type: 'text',
   placeholder: 'Insert Text'
@@ -55,5 +56,8 @@ const style = computed(() => {
 </script>
 
 <style scoped>
+  .vrx-input {
+    height: v-bind(props.height + 'px');
+  }
 
 </style>

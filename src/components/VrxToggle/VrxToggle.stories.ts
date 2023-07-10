@@ -122,7 +122,6 @@ export const Size: ToggleStories = {
         `
     }),
     args: {
-        size: '',
         label: '',
         modelValue: false,
     }
@@ -144,7 +143,6 @@ export const Variants: ToggleStories = {
         `
     }),
     args: {
-        size: '',
         label: '',
         modelValue: true,
     }
