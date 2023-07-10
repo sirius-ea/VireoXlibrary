@@ -10,6 +10,10 @@
   >
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="iconLibrary[icon] ?? icon"></path>
     <path v-if="icon === 'cog'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+    <path v-if="icon === 'chart-pie'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"></path>
+    <path v-if="icon === 'qr-code'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z"></path>
+    <path v-if="icon === 'eye'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+    <path v-if="icon === 'map-pin'" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
   </svg>
 
 </template>
