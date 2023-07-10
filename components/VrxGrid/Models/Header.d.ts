@@ -1,0 +1,31 @@
+import { GridConfiguration, GridFilter, GridHeader } from '../../../components/VrxGrid/GridConfiguration.ts';
+import { SelectItemInterface } from '../../../components/VrxSelect/SelectItemInterface.ts';
+export declare class Header {
+    private readonly _id;
+    private readonly _text;
+    private _type;
+    private readonly _align?;
+    private readonly _sortable?;
+    private readonly _sortFunction?;
+    private _sortDirection?;
+    private readonly _width?;
+    private readonly _filterType?;
+    private readonly _filterPlaceholder?;
+    private _customFilter?;
+    private _headerConfig?;
+    constructor(header: GridHeader);
+    get id(): string;
+    get text(): string;
+    get filterType(): "text" | "select" | "date" | null;
+    get filterPlaceholder(): string | null;
+    get sortable(): boolean;
+    get sortDirection(): "asc" | "desc" | null;
+    get textAlignmentClass(): string | null;
+    get width(): number | undefined;
+    sortClicked(gridConfig: GridConfiguration): void;
+    private _useDefaultSorting;
+    private _useCustomSorting;
+    private _resetSortDirection;
+    getSelectableItems(gridConfig: GridConfiguration): SelectItemInterface[];
+    filterByValue(filters: GridFilter[], value: string): void;
+}

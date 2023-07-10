@@ -10,5 +10,5 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         type: __PropType<NavbarButton>;
         required: true;
     };
-}>>, {}>;
+}>>, {}, {}>;
 export default _sfc_main;

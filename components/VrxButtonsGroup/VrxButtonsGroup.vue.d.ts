@@ -5,7 +5,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: true;
     };
     icons: {
-        type: __PropType<("mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag")[] | undefined>;
+        type: __PropType<("mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "sort-order" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag")[] | undefined>;
         required: false;
     };
     actions: {
@@ -18,12 +18,12 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: true;
     };
     icons: {
-        type: __PropType<("mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag")[] | undefined>;
+        type: __PropType<("mail" | "password" | "rocket" | "user-circle" | "chevron-up" | "chevron-down" | "x" | "check" | "sort-order" | "home" | "cog" | "logout" | "chart-bar" | "hamburger" | "empty" | "shopping-bag")[] | undefined>;
         required: false;
     };
     actions: {
         type: __PropType<(() => void)[] | undefined>;
         required: false;
     };
-}>>, {}>;
+}>>, {}, {}>;
 export default _sfc_main;

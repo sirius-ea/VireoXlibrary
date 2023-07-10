@@ -60,5 +60,5 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     label: string | undefined;
     modelValue: boolean | undefined;
     variant: ComponentVariant | undefined;
-}>;
+}, {}>;
 export default _sfc_main;

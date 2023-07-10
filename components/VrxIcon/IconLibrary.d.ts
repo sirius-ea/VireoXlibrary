@@ -7,6 +7,7 @@ export declare const iconLibrary: {
     'chevron-down': string;
     x: string;
     check: string;
+    'sort-order': string;
     home: string;
     cog: string;
     logout: string;
