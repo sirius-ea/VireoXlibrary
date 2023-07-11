@@ -9,7 +9,7 @@ const meta : Meta<typeof VrxIcon> = {
     tags: ['autodocs'],
     argTypes: {
         icon: {
-            description: 'icon type',
+            description: 'icon type or SVG path',
             control: {
                 type: 'select',
             },
@@ -20,7 +20,7 @@ const meta : Meta<typeof VrxIcon> = {
             table: {
                 category: 'props',
                 type: {
-                    summary: 'IconLibraryType',
+                    summary: 'IconLibraryType | string',
                 },
             }
         },

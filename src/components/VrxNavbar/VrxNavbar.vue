@@ -14,7 +14,7 @@
             v-for="button in props.buttons"
             :config="button"
             :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"
-            @mouseenter="mouseHover($event, button)"
+            @mouseenter="mouseHover(button)"
         />
       </ul>
 
@@ -94,7 +94,7 @@
     mobileNav.value = !mobileNav.value;
   }
 
-  const mouseHover = (event, button : NavbarButton) => {
+  const mouseHover = (button : NavbarButton) => {
     if(!button.children || (button.children && button.children?.length <= 0)){
       return;
     }
