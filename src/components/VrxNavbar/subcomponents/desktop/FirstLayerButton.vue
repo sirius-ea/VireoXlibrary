@@ -63,7 +63,7 @@ const toggleChildren = () => {
 
 <style scoped>
 .card{
-  width: 20%;
+  width: 22.5%;
   min-width: 350px;
   display: flex;
   height: fit-content;

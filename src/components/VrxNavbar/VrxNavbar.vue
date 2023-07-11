@@ -154,7 +154,7 @@
     font-weight: 600;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 6%;
+    column-gap: 3.3%;
     row-gap: 1rem;
   }
 
