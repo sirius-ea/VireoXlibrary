@@ -20,7 +20,7 @@ Bottone principale della navbar.
 ```js
 type NavbarButton = {
     text: string;                               // Testo del bottone
-    icon: IconLibraryType;                      // [opzionale] Icona del bottone
+    icon: IconLibraryType | string;             // [opzionale] Icona del bottone o path dell'SVG
     component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
     children: FirstLayerButton[];               // [opzionale] Sotto-bottoni del bottone
 }
@@ -33,7 +33,7 @@ Sotto-bottone figlio di un bottone principale. A sua volta può contenere un alt
 type NavbarSecondLayerButton = {
     text: string;                               // Testo del bottone
     description: string;                        // [opzionale] Descrizione del bottone
-    icon: IconLibraryType;                      // [opzionale] Icona del bottone
+    icon: IconLibraryType | string;             // [opzionale] Icona del bottone o path dell'SVG
     component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
     children: SecondLayerButton[];              // [opzionale] Sotto-bottoni del bottone
 }

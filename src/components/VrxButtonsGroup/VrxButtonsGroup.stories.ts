@@ -65,7 +65,7 @@ const Template: BtnGroupStories = {
         template: `
             <VrxButtonsGroup
                 v-bind="args" 
-                :buttons="args.button"
+                :buttons="args.buttons"
                 :icons="args.icons"
             />`
     }),
