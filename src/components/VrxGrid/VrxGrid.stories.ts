@@ -2,7 +2,7 @@ import {Meta, StoryObj} from "@storybook/vue3";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
 import {GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
 import {VrxButton, VrxInput} from "@/components";
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 import {Row} from "@/components/VrxGrid/Models/Row.ts";
 
 const meta : Meta<typeof VrxGrid> = {
@@ -24,7 +24,7 @@ const Template: GridStories = {
         components: { VrxGrid, VrxButton },
         setup() {
             return {
-                args
+                args,
             };
         },
         methods: {
@@ -41,14 +41,14 @@ const Template: GridStories = {
                 this.$refs.myRef.deselectAll()
             },
             updateData(data : any[]){
-                this.$refs.myRef.updateData(data)
+                this.$refs.myRef.updateData(data);
             },
             clearData(){
                 this.$refs.myRef.clearData()
             }
         },
         template: `
-          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" style="height: 500px"/>
+          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.data" style="height: 500px"/>
 
           <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
               <VrxButton color="default" size="sm" @click="logItem" >Log selected items</VrxButton>
@@ -66,7 +66,7 @@ const Template: GridStories = {
         gridConfiguration: {
             id: "test",
             selectable: true,
-            multiselect: true,
+            multiselect: false,
             header: [
                 {
                     text: "Name",
@@ -77,6 +77,8 @@ const Template: GridStories = {
                     filterType: "text",
                     filterPlaceholder: "Search by name",
                     width: 150,
+                    editable: true,
+                    editType: "text"
                 },
                 {
                     text: "Serial Number",
@@ -85,6 +87,8 @@ const Template: GridStories = {
                     sortable: true,
                     filterType: "text",
                     width: 150,
+                    editable: true,
+                    editType: "text"
                 },
                 {
                     text: "Color",
@@ -92,7 +96,13 @@ const Template: GridStories = {
                     align: "left",
                     sortable: true,
                     filterType: "select",
-                    width: 150
+                    width: 150,
+                    editable: true,
+                    editType: "select",
+                    editOptions: [
+                        {text: "Red", value: "Red"},
+                        {text: "Blue", value: "Blue"},
+                    ],
                 },
                 {
                     text: "Model",
@@ -100,7 +110,9 @@ const Template: GridStories = {
                     align: "left",
                     sortable: true,
                     filterType: "select",
-                    width: 150
+                    width: 150,
+                    editable: true,
+                    editType: "text"
                 },
                 {
                     text: "Plate",
@@ -108,62 +120,64 @@ const Template: GridStories = {
                     align: "left",
                     sortable: true,
                     filterType: "text",
-                    width: 150
+                    width: 150,
+                    editable: true,
+                    editType: "text"
                 },
             ],
-            data: [
-                {
-                    id: "1",
-                    data:{
-                        name: "Mario Rossi",
-                        serialNumber: 1,
-                        color: "Red",
-                        model: "Fiat",
-                        plate: "AA123AA"
-                    }
-                },
-                {
-                    id: "2",
-                    data:{
-                        name: 'Pino Verdi',
-                        serialNumber: 2,
-                        color: "Black",
-                        model: "Audi",
-                        plate: "AA123BB"
-                    }
-                },
-                {
-                    id: "3",
-                    data:{
-                        name: 'Ciro Bianchi',
-                        serialNumber: 3,
-                        color: "Green",
-                        model: "BMW",
-                        plate: "AA123CC"
-                    }
-                },
-                {
-                    id: "4",
-                    data:{
-                        name: 'Luisa Neri',
-                        serialNumber: 4,
-                        color: "Gray",
-                        model: "Renault",
-                        plate: "AA123DD"
-                    }
-                },
-                {
-                    id: "5",
-                    data:{
-                        name: 'Giovanni Gialli',
-                        serialNumber: 5,
-                        color: "Gray",
-                        model: "Toyota",
-                        plate: "BC123EE"
-                    }
+        },
+        data: [
+            {
+                id: "1",
+                data:{
+                    name: "Mario Rossi",
+                    serialNumber: 1,
+                    color: "Red",
+                    model: "Fiat",
+                    plate: "AA123AA"
                 }
-            ]
-        }
+            },
+            {
+                id: "2",
+                data:{
+                    name: 'Pino Verdi',
+                    serialNumber: 2,
+                    color: "Black",
+                    model: "Audi",
+                    plate: "AA123BB"
+                }
+            },
+            {
+                id: "3",
+                data:{
+                    name: 'Ciro Bianchi',
+                    serialNumber: 3,
+                    color: "Green",
+                    model: "BMW",
+                    plate: "AA123CC"
+                }
+            },
+            {
+                id: "4",
+                data:{
+                    name: 'Luisa Neri',
+                    serialNumber: 4,
+                    color: "Gray",
+                    model: "Renault",
+                    plate: "AA123DD"
+                }
+            },
+            {
+                id: "5",
+                data:{
+                    name: 'Giovanni Gialli',
+                    serialNumber: 5,
+                    color: "Gray",
+                    model: "Toyota",
+                    plate: "BC123EE"
+                }
+            }
+        ]
     },
 }
 

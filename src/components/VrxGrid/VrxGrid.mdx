@@ -12,7 +12,8 @@ Per utilizzarlo, importarlo come segue:
 import {VrxGrid} from 'vireoxlibrary';
 
 const config : GridConfiguration = { ... }
-<VrxGrid :grid-configuration="config"/>
+const data : ReactiveVariable<GridRow[]> = reactive([{ ... }])
+<VrxGrid :grid-configuration="config" :grid-data="data"/>
 ```
 ## Configurazione
 La configurazione è un oggetto complesso che permette di configurare la griglia in ogni suo aspetto.
@@ -24,7 +25,6 @@ Seguono i tipi da implementare:
 type GridConfiguration {
     id: string;                                // id della griglia
     header: GridHeader[];                      // configurazione degli header
-    data: GridRow[];                           // dati della griglia
     multiselect: boolean;                      // [opzionale] abilita la multiselezione,
     selectable: boolean;                       // [opzionale] abilita la selezione
 }
@@ -99,6 +99,12 @@ type GridRow {
             <td>Deseleziona tutte le righe</td>
         </tr>
         <tr>
+            <td>getData</td>
+            <td>-</td>
+            <td>GridRow []</td>
+            <td>Ritorna i dati della griglia</td>
+        </tr>
+        <tr>
             <td>getFilters</td>
             <td>-</td>
             <td>GridFilter []</td>
@@ -109,6 +115,12 @@ type GridRow {
             <td>-</td>
             <td>GridRow []</td>
             <td>Ritorna una lista con le righe attualmente selezionate</td>
+        </tr>
+        <tr>
+            <td>getRowById</td>
+            <td>id : number | string</td>
+            <td>GridRow | undefined</td>
+            <td>Ritorna la riga con l'ID fornito</td>
         </tr>
         <tr>
             <td>resetFilters</td>

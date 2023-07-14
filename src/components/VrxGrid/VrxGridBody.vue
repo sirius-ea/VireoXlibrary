@@ -1,7 +1,7 @@
 <template>
   <tbody style="overflow-y: scroll">
     <VrxGridRow
-        v-for="row in modelValue.data"
+        v-for="row in gridData"
         :row="row"
         :header-config="modelValue.header"
         :key="row.id"
@@ -14,9 +14,11 @@
 <script setup lang="ts">
   import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
+  import {ReactiveVariable} from "vue/macros";
 
   const props = defineProps<{
     modelValue: GridConfiguration;
+    gridData: ReactiveVariable<GridRow[]>
   }>()
 </script>
 

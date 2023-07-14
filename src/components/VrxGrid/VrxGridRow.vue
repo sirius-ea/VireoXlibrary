@@ -7,16 +7,7 @@
       v-if="!isFiltered"
       @click="rowModel.rowClicked()"
   >
-    <td
-        v-for="cell in headerConfig"
-        class="px-3 py-4 font-medium whitespace-nowrap vrx-cell"
-        :class="cell.align ? textStyle[cell.align] : null"
-    >
-      <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
-        {{ rowModel.getCellContent(cell.id) }}
-      </span>
-      <component v-else :is="row.data[cell.id]"/>
-    </td>
+    <VrxGridCell v-for="cell in headerConfig" :row="rowModel" :cell="cell"/>
   </tr>
 </template>
 
@@ -24,8 +15,9 @@
   import colors from "tailwindcss/colors";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {computed, inject} from "vue";
+  import {computed, inject, ref} from "vue";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
+  import VrxGridCell from "@/components/VrxGrid/VrxGridCell.vue";
   const props = defineProps<{
     row: GridRow;
     headerConfig: GridHeader [];
@@ -67,6 +59,9 @@
 
   .vrx-cell{
     background-color: v-bind(rowModel.backgroundColor);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .row-hover:hover{

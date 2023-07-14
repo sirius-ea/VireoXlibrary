@@ -4,7 +4,7 @@
         class="px-3 py-3 vrx-th header-th"
         :class="headerModel.textAlignmentClass"
     >
-      <div class="vrx-header-cell mb-2" @click="headerModel.sortClicked(props.gridConfig)">
+      <div class="vrx-header-cell mb-2" @click="headerModel.sortClicked(props.gridConfig, props.gridData)">
         <span class="vrx-grid-label">{{ headerModel.text }}</span>
         <VrxIcon
             v-if="headerModel.sortable"
@@ -23,7 +23,7 @@
       />
       <VrxSelect
           v-if="headerModel.filterType === 'select'"
-          :list-data="headerModel.getSelectableItems(gridConfig)"
+          :list-data="headerModel.getSelectableItems(gridData)"
           :model-value="selectValue"
           :placeholder="headerModel.filterPlaceholder ?? '...'"
           class="header-input"
@@ -40,12 +40,14 @@
   import VrxInput from "@/components/VrxInput/VrxInput.vue";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {Header} from "@/components/VrxGrid/Models/Header.ts";
-  import {GridConfiguration, GridFilter, GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
+  import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {inject, ref} from "vue";
+  import {ReactiveVariable} from "vue/macros";
 
   const props = defineProps<{
     gridConfig: GridConfiguration;
     headerConfig: GridHeader;
+    gridData: ReactiveVariable<GridRow[]>
   }>();
 
   const filters : any = inject('filters');
@@ -83,6 +85,7 @@
     overflow: hidden;
   }
   .header-th{
-    width: v-bind(headerModel.width + 'px') ;
+    width: v-bind(headerModel.width + 'px');
+    max-width: v-bind(headerModel.width + 'px') ;
   }
 </style>

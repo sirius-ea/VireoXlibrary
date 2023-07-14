@@ -1,7 +1,6 @@
 export type GridConfiguration = {
     id: string;
     header: GridHeader[];
-    data: GridRow[];
     multiselect?: boolean;
     selectable?: boolean;
 }
@@ -18,6 +17,9 @@ export type GridHeader = {
     filterType?: "text" | "select" | "date";
     filterPlaceholder?: string;
     customFilter?: (row: GridRow, filter: GridFilter) => boolean;
+    editable?: boolean;
+    editType?: "text" | "select" | "date" | "component";
+    editOptions?: any[];
 }
 
 export interface GridRow {

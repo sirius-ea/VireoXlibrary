@@ -1,8 +1,8 @@
 <template>
-  <div data-testid="vrx-grid" @keydown="keyboardListener($event)" @click="mouseListener($event)" class="table-outline relative overflow-x-auto h-full shadow-md w-full rounded-lg bg-white dark:bg-gray-800" tabindex="1">
+  <div data-testid="vrx-grid" @keydown="keyboardListener($event)" @click="mouseListener($event)" class="table-outline relative overflow-x-auto h-full shadow-md w-full bg-white dark:bg-gray-800" tabindex="1">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <VrxGridHeader v-model:grid-config="gridModel.configuration"/>
-      <VrxGridBody v-model="gridModel.configuration"/>
+      <VrxGridHeader v-model:grid-config="gridModel.configuration" :grid-data="gridModel.data"/>
+      <VrxGridBody v-model="gridModel.configuration" :grid-data="gridModel.data"/>
     </table>
   </div>
 </template>
@@ -13,6 +13,7 @@
   import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {provide} from "vue";
   import {Grid} from "@/components/VrxGrid/Models/Grid.ts";
+  import {ReactiveVariable} from "vue/macros";
 
   const keyboardListener = (e: KeyboardEvent) => {
     if((e.ctrlKey || e.metaKey) && e.key === 'a'){
@@ -37,9 +38,10 @@
 
   const props = defineProps<{
     gridConfiguration: GridConfiguration;
+    gridData: ReactiveVariable<GridRow[]>;
   }>()
 
-  const gridModel = new Grid(props.gridConfiguration);
+  const gridModel = new Grid(props.gridConfiguration, props.gridData);
 
   provide('filters', gridModel.filters);
   provide('selectedRows', gridModel.selectedRows);
@@ -54,6 +56,10 @@
 
   const setData = (data : GridRow[]) => {
     gridModel.setData(data);
+  }
+
+  const getData = () => {
+    return gridModel.data;
   }
 
   const updateData = (data : GridRow[]) => {
@@ -80,8 +86,12 @@
     gridModel.selectRange(start, end);
   }
 
+  const getRowById = (id : string | number) : GridRow | undefined => {
+    return gridModel.getRowById(id);
+  }
 
-  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll, clearData, updateData, selectRange });
+
+  defineExpose({ getSelectedRows, getFilters, setData, resetFilters, deselectAll, selectAll, clearData, updateData, selectRange, getData, getRowById });
 
 </script>
 
