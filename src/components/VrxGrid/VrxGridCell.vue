@@ -8,13 +8,16 @@
   >
     <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
       <input ref="input" v-if="cell.editable && editMode && cell.editType ==='text'" v-model="row.data[cell.id]" class="edit-input"/>
-      <select v-else-if="cell.editable && editMode && cell.editType ==='select'" v-model="row.data[cell.id]" class="edit-input">
-        <option v-if="!optionInList" selected :value="row.data[cell.id]">{{ row.data[cell.id] }}</option>
-        <option v-for="(option, index) in cell.editOptions" :value="option.value" :selected="index === 0 && !optionInList">{{ option.text }}</option>
+      <select v-else-if="cell.editable && cell.editType ==='select'" v-model="row.data[cell.id]" class="edit-input">
+        <option v-for="option in props.cell.editOptions" :value="option.value">{{ option.text }}</option>
       </select>
       <span v-else>{{ row.getCellContent(cell.id) }}</span>
     </span>
-    <component v-else :is="row.data[cell.id]"/>
+    <span v-else-if="cell.type === 'boolean'">
+      <input v-if="cell.editable" type="checkbox" v-model="row.data[cell.id]" class="edit-input" />
+      <input v-else type="checkbox" v-model="row.data[cell.id]" class="edit-input" onclick="return false" />
+    </span>
+    <component v-else :is="row.data[cell.id]" v-bind="row.componentProps"/>
   </td>
 </template>
 
@@ -29,9 +32,12 @@
     cell: any;
   }>();
 
+  const editMode = ref(false);
+  const input = ref();
+
   const getCellStyle = () => {
     let style = props.cell.align ? textStyle[props.cell.align] : '';
-    style += props.cell.editable && editMode.value ? ' text-blue-700 dark:text-blue-500' : '';
+    style += props.cell.editable && editMode.value ? 'editing' : '';
 
     switch (props.cell.editType){
       case 'text':
@@ -46,25 +52,6 @@
     return style;
   }
 
-  const editMode = ref(false);
-  const input = ref();
-
-  const optionInList = (value: string) => {
-    return props.cell.editOptions.find((option: any) => option.value === value).length > 0;
-  }
-
-  const selectOptions = (actual: any) => {
-    let options = [];
-    if(props.cell.editOptions){
-      options = props.cell.editOptions.map((option: any) => {
-        return option.value;
-      });
-
-      if(!options.includes(actual)){
-        options.push(actual);
-      }
-    }
-  }
   const cellClicked = () => {
     editMode.value = true;
     setTimeout(() => {
@@ -111,6 +98,10 @@
     width: v-bind(cell.width + 'px');
     max-width: v-bind(cell.width + 'px') ;
   }
+
+  .editing{
+  }
+
 
 
 </style>

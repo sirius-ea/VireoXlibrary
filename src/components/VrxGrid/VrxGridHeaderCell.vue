@@ -4,8 +4,11 @@
         class="px-3 py-3 vrx-th header-th"
         :class="headerModel.textAlignmentClass"
     >
-      <div class="vrx-header-cell mb-2" @click="headerModel.sortClicked(props.gridConfig, props.gridData)">
-        <span class="vrx-grid-label">{{ headerModel.text }}</span>
+      <div class="vrx-header-cell" :class="headerModel.filterType ? 'mb-2' : null" @click="headerModel.sortClicked(props.gridConfig, props.gridData)">
+        <span class="flex flex-row gap-1.5 items-center">
+          <VrxIcon v-if="headerModel.icon" :icon="headerModel.icon" size="4"/>
+          <span class="vrx-grid-label">{{ headerModel.text }}</span>
+        </span>
         <VrxIcon
             v-if="headerModel.sortable"
             :icon="headerConfig.sortDirection === 'asc' ? 'chevron-up' : headerConfig.sortDirection === 'desc' ? 'chevron-down' : 'empty'"

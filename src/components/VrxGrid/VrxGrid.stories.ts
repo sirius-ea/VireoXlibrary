@@ -69,6 +69,17 @@ const Template: GridStories = {
             multiselect: false,
             header: [
                 {
+                    text: "Active",
+                    id: "active",
+                    align: "center",
+                    type: "boolean",
+                    width: 100,
+                    editable: false,
+                    filterType: "select",
+                    sortable: true,
+                    icon: 'check',
+                },
+                {
                     text: "Name",
                     id: "name",
                     align: "left",
@@ -78,7 +89,8 @@ const Template: GridStories = {
                     filterPlaceholder: "Search by name",
                     width: 150,
                     editable: true,
-                    editType: "text"
+                    editType: "text",
+                    icon: "rocket",
                 },
                 {
                     text: "Serial Number",
@@ -102,6 +114,9 @@ const Template: GridStories = {
                     editOptions: [
                         {text: "Red", value: "Red"},
                         {text: "Blue", value: "Blue"},
+                        {text: "Green", value: "Green"},
+                        {text: "Gray", value: "Gray"},
+                        {text: "Black", value: "Black"},
                     ],
                 },
                 {
@@ -130,6 +145,7 @@ const Template: GridStories = {
             {
                 id: "1",
                 data:{
+                    active: true,
                     name: "Mario Rossi",
                     serialNumber: 1,
                     color: "Red",
@@ -140,6 +156,7 @@ const Template: GridStories = {
             {
                 id: "2",
                 data:{
+                    active: true,
                     name: 'Pino Verdi',
                     serialNumber: 2,
                     color: "Black",
@@ -150,6 +167,7 @@ const Template: GridStories = {
             {
                 id: "3",
                 data:{
+                    active: false,
                     name: 'Ciro Bianchi',
                     serialNumber: 3,
                     color: "Green",
@@ -160,6 +178,7 @@ const Template: GridStories = {
             {
                 id: "4",
                 data:{
+                    active: false,
                     name: 'Luisa Neri',
                     serialNumber: 4,
                     color: "Gray",
@@ -170,6 +189,7 @@ const Template: GridStories = {
             {
                 id: "5",
                 data:{
+                    active: false,
                     name: 'Giovanni Gialli',
                     serialNumber: 5,
                     color: "Gray",

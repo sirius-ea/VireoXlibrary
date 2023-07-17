@@ -1,3 +1,5 @@
+import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
+
 export type GridConfiguration = {
     id: string;
     header: GridHeader[];
@@ -20,12 +22,14 @@ export type GridHeader = {
     editable?: boolean;
     editType?: "text" | "select" | "date" | "component";
     editOptions?: any[];
+    icon?: IconLibraryType;
 }
 
 export interface GridRow {
     id: string;
     textColor?: string;
     backgroundColor?: string;
+    componentProps?: any;
     data: any;
 }
 

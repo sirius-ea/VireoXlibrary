@@ -36,6 +36,7 @@ type GridConfiguration {
 type GridHeader {
     id: string;                                // id dell'header (i dati della colonna devono avere lo stesso id)
     text: string;                              // testo dell'header
+    icon: IconLIbraryType;                     // [opzionale] icona dell'header
     type: "text" | "component";                // tipo di header
     align: "left" | "center" | "right";        // [opzionale] allineamento del testo
     sortable: boolean;                         // [opzionale] abilita la possibilità di ordinare la colonna
@@ -59,6 +60,7 @@ type GridRow {
     id: string;                                // id della riga
     textColor: string;                         // [opzionale] colore del testo
     backgroundColor: string;                   // [opzionale] colore di sfondo
+    componentProps: any;                       // [opzionale] oggetto cone le props del componente
     data: {                                    // dati della riga (oggetto con chiave: valore)
         key: value,
         key: value,

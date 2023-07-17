@@ -116,7 +116,12 @@ export class Row {
      * @param filter
      * @private
      */
-    private _defaultFilter(filter : {cellId: string, value: string}) : boolean {
+    private _defaultFilter(filter : {cellId: string, value: any}) : boolean {
+        if(typeof filter.value === "boolean"){
+            const value = this._data[filter.cellId];
+            return value !== filter.value;
+        }
+
         const value = this._data[filter.cellId].toString().toLowerCase();
         return (!value.includes(filter.value.toLowerCase()));
     }

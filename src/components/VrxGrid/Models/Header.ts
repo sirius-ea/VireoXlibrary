@@ -1,10 +1,11 @@
 import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
 import {SelectItemInterface} from "@/components/VrxSelect/SelectItemInterface.ts";
+import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
 export class Header {
     private readonly _id: string;
     private readonly _text: string;
-    private _type: "text" | "component" | undefined;
+    private _type: "text" | "component" | "boolean" | undefined;
     private readonly _align?: "left" | "center" | "right";
     private readonly _sortable?: boolean;
     private readonly _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
@@ -14,6 +15,7 @@ export class Header {
     private readonly _filterPlaceholder?: string;
     private _customFilter?: Function;
     private _headerConfig?: GridHeader;
+    private _icon?: IconLibraryType;
 
     constructor (header: GridHeader) {
         this._id = header.id;
@@ -28,6 +30,7 @@ export class Header {
         this._filterPlaceholder = header.filterPlaceholder;
         this._customFilter = header.customFilter;
         this._headerConfig = header;
+        this._icon = header.icon;
     }
 
     public get id(): string {
@@ -52,6 +55,10 @@ export class Header {
 
     public get sortDirection(): "asc" | "desc" | null {
         return this._sortDirection ?? null;
+    }
+
+    public get icon(): IconLibraryType | null {
+        return this._icon ?? null;
     }
 
     public get textAlignmentClass(): string | null {
@@ -106,8 +113,12 @@ export class Header {
         const data : SelectItemInterface[] = [];
         if(!gridData) return data;
         gridData.forEach((d : GridRow) => {
-            if(!data.find((v : any) => v.value === d.data[this._id]) && d.data[this._id]){
-                data.push({value: d.data[this._id], label: d.data[this._id]});
+            if(!data.find((v : any) => v.value === d.data[this._id]) && d.data[this._id] !== null && d.data[this._id] !== undefined){
+                if(typeof d.data[this._id] === 'boolean'){
+                    data.push({value: d.data[this._id], label: d.data[this._id] ? 'true' : 'false'})
+                } else {
+                    data.push({value: d.data[this._id], label: d.data[this._id]});
+                }
             }
         });
         return data.sort((a : SelectItemInterface, b : SelectItemInterface) => a.label.localeCompare(b.label));

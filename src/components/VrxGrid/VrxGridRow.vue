@@ -44,9 +44,8 @@
 </script>
 <style scoped>
   .selected{
-    border-left: 3px solid v-bind(colors.blue[500]);
-    box-sizing: border-box;
     background-color: v-bind(colors.gray[100]);
+    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
   }
 
   .vrx-row {
@@ -70,7 +69,6 @@
   }
 
   .not-selected{
-    border-left: 3px solid transparent;
     box-sizing: border-box;
   }
 
@@ -81,7 +79,7 @@
   :is([data-mode="dark"] .dark\:selected) {
     background-color:  v-bind(colors.gray[600]);
     color: white;
-    border-left: 3px solid v-bind(colors.blue[500]);
+    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
     box-sizing: border-box;
   }
 </style>
