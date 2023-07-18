@@ -1,8 +1,14 @@
 <template>
   <div data-testid="vrx-grid" @keydown="keyboardListener($event)" @click="mouseListener($event)" class="table-outline relative overflow-x-auto h-full shadow-md w-full bg-white dark:bg-gray-800" tabindex="1">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
       <VrxGridHeader v-model:grid-config="gridModel.configuration" :grid-data="gridModel.data"/>
-      <VrxGridBody v-model="gridModel.configuration" :grid-data="gridModel.data"/>
+      <VrxGridBody
+          v-model="gridModel.configuration"
+          :grid-data="gridModel.data"
+          @row-clicked="rowClicked"
+          @cell-clicked="cellClicked"
+          @cell-double-clicked="cellDoubleClicked"
+      />
     </table>
   </div>
 </template>
@@ -46,6 +52,18 @@
   provide('filters', gridModel.filters);
   provide('selectedRows', gridModel.selectedRows);
 
+  const emit = defineEmits(['rowClicked', 'cellClicked', 'cellDoubleClicked']);
+  const rowClicked = (row: GridRow) => {
+    emit('rowClicked', row);
+  }
+
+  const cellClicked = (cell: any) => {
+    emit('cellClicked', cell);
+  }
+
+  const cellDoubleClicked = (cell: any) => {
+    emit('cellDoubleClicked', cell);
+  }
   const getSelectedRows = () => {
     return gridModel.selectedRows;
   }

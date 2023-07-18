@@ -4,10 +4,9 @@ import {Meta} from "@storybook/blocks";
 
 # VireoxGrid
 
-VireoxGrid è un componente altamente versatile per l'utilizzo di griglie.
+VireoxGrid is a highly versatile component for working with grids.
 
-Il componente utilizza il 100% della larghezza e dell'altezza disponibile.
-Per utilizzarlo, importarlo come segue:
+The component utilizes 100% of the available width and height. To use it, import it as follows:
 ```js
 import {VrxGrid} from 'vireoxlibrary';
 
@@ -15,53 +14,53 @@ const config : GridConfiguration = { ... }
 const data : ReactiveVariable<GridRow[]> = reactive([{ ... }])
 <VrxGrid :grid-configuration="config" :grid-data="data"/>
 ```
-## Configurazione
-La configurazione è un oggetto complesso che permette di configurare la griglia in ogni suo aspetto.
-Seguono i tipi da implementare:
+## Configuration
+The configuration is a complex object that allows you to configure the grid in every aspect.
+Here are the types that need to be implemented:
 
-```GridConfiguration```: configurazione generale della griglia.
+```GridConfiguration```: overall grid configuration.
 
 ```js
 type GridConfiguration {
-    id: string;                                // id della griglia
-    header: GridHeader[];                      // configurazione degli header
-    multiselect: boolean;                      // [opzionale] abilita la multiselezione,
-    selectable: boolean;                       // [opzionale] abilita la selezione
+    id: string;                                // grid id
+    header: GridHeader[];                      // headers configuration
+    multiselect: boolean;                      // [optional] enables multiselection
+    selectable: boolean;                       // [optional] enable selection
 }
 ```
 
-```GridHeader```: configurazione degli header della griglia.
+```GridHeader```: grid header configuration.
 
 ```js
 type GridHeader {
-    id: string;                                // id dell'header (i dati della colonna devono avere lo stesso id)
-    text: string;                              // testo dell'header
-    icon: IconLIbraryType;                     // [opzionale] icona dell'header
-    type: "text" | "component";                // tipo di header
-    align: "left" | "center" | "right";        // [opzionale] allineamento del testo
-    sortable: boolean;                         // [opzionale] abilita la possibilità di ordinare la colonna
-    sortFunction:                              // [opzionale] funzione di ordinamento personalizzata
+    id: string;                                // header id (data in the column should have the same id)
+    text: string;                              // header text
+    icon: IconLibraryType;                     // [optional] header icon
+    type: "text" | "component";                // header type
+    align: "left" | "center" | "right";        // [optional] text alignment
+    sortable: boolean;                         // [optional] enables column sorting
+    sortFunction:                              // [optional] custom sorting function
         (a: GridRow, b: GridRow) => 0 | 1 | -1;
-    sortDirection: "asc" | "desc" | null;      // [opzionale] direzione di ordinamento
-    width: number;                             // [opzionale] larghezza in px della colonna
-    filterType: "text" | "select" | "date";    // [opzionale] tipo di filtro
-    filterPlaceholder: string;                 // [opzionale] testo del placeholder del filtro
-    customFilter:                              // [opzionale] funzione di filtro personalizzata
+    sortDirection: "asc" | "desc" | null;      // [optional] sorting direction
+    width: number;                             // [optional] column width in pixels
+    filterType: "text" | "select" | "date";    // [optional] filter type
+    filterPlaceholder: string;                 // [optional] filter placeholder text
+    customFilter:                              // [optional] custom filtering function
         (row: GridRow, filter: {cellId: string, value: string}) => boolean;
 }
 ```
 
-```GridRow```: configurazione delle righe della griglia.
+```GridRow```: grid row configuration.
 
-**NB**: le chiavi contenute dentro ```data``` devono avere lo stesso id degli header, altrimenti non verranno visualizzate.
+**Note**: The keys inside ```data``` must have the same ids as the headers, otherwise they will not be displayed.
 
 ```js
 type GridRow {
-    id: string;                                // id della riga
-    textColor: string;                         // [opzionale] colore del testo
-    backgroundColor: string;                   // [opzionale] colore di sfondo
-    componentProps: any;                       // [opzionale] oggetto cone le props del componente
-    data: {                                    // dati della riga (oggetto con chiave: valore)
+    id: string;                                // row id
+    textColor: string;                         // [optional] text color
+    backgroundColor: string;                   // [optional] background color
+    componentProps: any;                       // [optional] object with component props
+    data: {                                    // row data (object with key-value pairs)
         key: value,
         key: value,
         ...
@@ -92,69 +91,110 @@ type GridRow {
             <td>clearData</td>
             <td>-</td>
             <td>-</td>
-            <td>Rimuove i dati dalla griglia</td>
+            <td>Clears the data from the grid</td>
         </tr>
         <tr>
             <td>deselectAll</td>
             <td>-</td>
             <td>-</td>
-            <td>Deseleziona tutte le righe</td>
+            <td>Deselect all rows</td>
         </tr>
         <tr>
             <td>getData</td>
             <td>-</td>
             <td>GridRow []</td>
-            <td>Ritorna i dati della griglia</td>
+            <td>Returns the data of the grid</td>
         </tr>
         <tr>
             <td>getFilters</td>
             <td>-</td>
             <td>GridFilter []</td>
-            <td>Ritorna una lista con le i filtri attualmente applicati</td>
+            <td>Returns a list of currently applied filters</td>
         </tr>
         <tr>
             <td>getSelectedItems</td>
             <td>-</td>
             <td>GridRow []</td>
-            <td>Ritorna una lista con le righe attualmente selezionate</td>
+            <td>Returns a list of currently selected rows</td>
         </tr>
         <tr>
             <td>getRowById</td>
             <td>id : number | string</td>
             <td>GridRow | undefined</td>
-            <td>Ritorna la riga con l'ID fornito</td>
+            <td>Returns the row with the provided ID</td>
         </tr>
         <tr>
             <td>resetFilters</td>
             <td>-</td>
             <td>-</td>
-            <td>Reimposta i filtri applicati</td>
+            <td>Resets the applied filters</td>
         </tr>
         <tr>
             <td>selectAll</td>
             <td>-</td>
             <td>-</td>
-            <td>Seleziona tutte le righe</td>
+            <td>Selects all rows</td>
         </tr>
         <tr>
             <td>selectRange</td>
             <td>index1 : number, index2: number</td>
             <td>-</td>
-            <td>Seleziona le righe di indice compreso tra i due valori</td>
+            <td>Selects rows within the specified index range</td>
         </tr>
         <tr>
             <td>setData</td>
             <td>data : GridRow[]</td>
             <td>-</td>
-            <td>Imposta i nuovi dati nella griglia</td>
+            <td>Sets new data in the grid</td>
         </tr>
         <tr>
             <td>updateData</td>
             <td>data : GridRow[]</td>
             <td>-</td>
-            <td>Aggiorna i dati della griglia</td>
+            <td>Updates the grid data</td>
         </tr>
     </tbody>
 </table>
 
-Per dettagli sulle configurazioni leggere la [documentazione](./?path=/docs/vrxgrid--docs)
+## Custom Events
+The following custom events are emitted by the component and can be used with ```@event-name="..."```:
+<table style={{width: '100%'}}>
+    <thead>
+    <tr>
+        <td>
+            <b>Event</b>
+        </td>
+        <td>
+            <b>Params</b>
+        </td>
+        <td>
+            <b>Return</b>
+        </td>
+        <td>
+            <b>Description</b>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@cell-double-clicked</td>
+        <td>-</td>
+        <td>any</td>
+        <td>Returns the content of the double-clicked cell</td>
+    </tr>
+    <tr>
+        <td>@cell-clicked</td>
+        <td>-</td>
+        <td>any</td>
+        <td>Returns the content of the clicked cell</td>
+    </tr>
+    <tr>
+        <td>@row-clicked</td>
+        <td>-</td>
+        <td>GridRow</td>
+        <td>Returns the clicked row</td>
+    </tr>
+    </tbody>
+</table>
+
+For API's details and configuration please read the [documentation](./?path=/docs/vrxgrid--docs)

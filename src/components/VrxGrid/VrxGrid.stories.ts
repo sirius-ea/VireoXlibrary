@@ -4,6 +4,7 @@ import {GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
 import {VrxButton, VrxInput} from "@/components";
 import {reactive, ref} from "vue";
 import {Row} from "@/components/VrxGrid/Models/Row.ts";
+import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
 
 const meta : Meta<typeof VrxGrid> = {
     title: 'VrxGrid',
@@ -45,10 +46,10 @@ const Template: GridStories = {
             },
             clearData(){
                 this.$refs.myRef.clearData()
-            }
+            },
         },
         template: `
-          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.data" style="height: 500px"/>
+          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.data" style="height: 500px" @cell-clicked="(row)=>console.log(row)"/>
 
           <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
               <VrxButton color="default" size="sm" @click="logItem" >Log selected items</VrxButton>

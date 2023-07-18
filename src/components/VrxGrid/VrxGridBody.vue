@@ -1,5 +1,5 @@
 <template>
-  <tbody style="overflow-y: scroll">
+  <tbody style="overflow-y: scroll" >
     <VrxGridRow
         v-for="row in gridData"
         :row="row"
@@ -7,6 +7,9 @@
         :key="row.id"
         :selectable="modelValue.selectable"
         :multiselect="modelValue.multiselect"
+        @row-clicked="rowClicked(row)"
+        @cell-clicked="cellClicked"
+        @cell-double-clicked="cellDoubleClicked"
     />
   </tbody>
 </template>
@@ -20,6 +23,20 @@
     modelValue: GridConfiguration;
     gridData: ReactiveVariable<GridRow[]>
   }>()
+
+  const emits = defineEmits(['rowClicked','cellClicked','cellDoubleClicked']);
+
+  const rowClicked = (row: GridRow) => {
+    emits('rowClicked', row);
+  }
+
+  const cellClicked = (cell: any) => {
+    emits('cellClicked', cell);
+  }
+
+  const cellDoubleClicked = (cell: any) => {
+    emits('cellDoubleClicked', cell);
+  }
 </script>
 
 <style scoped>

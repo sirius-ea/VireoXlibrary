@@ -3,7 +3,8 @@
       class="px-3 py-4 font-medium whitespace-nowrap vrx-cell"
       :class="getCellStyle()"
       v-click-outside="clickOutside"
-      @dblclick="cellClicked"
+      @dblclick="cellDbClicked"
+      @click="cellClicked"
       @keydown="keyboardListener($event)"
   >
     <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
@@ -52,7 +53,14 @@
     return style;
   }
 
+  const emits = defineEmits(['cellClicked', 'cellDoubleClicked']);
+
   const cellClicked = () => {
+    emits('cellClicked', props.row.data[props.cell.id])
+  }
+
+  const cellDbClicked = () => {
+    emits('cellDoubleClicked', props.row.data[props.cell.id])
     editMode.value = true;
     setTimeout(() => {
       props.cell.editable  && props.cell.editType === 'text' ? input.value.focus() : null;

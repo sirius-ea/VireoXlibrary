@@ -5,9 +5,15 @@
       class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 vrx-row"
       :class="rowStyle"
       v-if="!isFiltered"
-      @click="rowModel.rowClicked()"
+      @click="rowClicked"
   >
-    <VrxGridCell v-for="cell in headerConfig" :row="rowModel" :cell="cell"/>
+    <VrxGridCell
+        v-for="cell in headerConfig"
+        :row="rowModel"
+        :cell="cell"
+        @cell-clicked="cellClicked"
+        @cell-double-clicked="cellDoubleClicked"
+    />
   </tr>
 </template>
 
@@ -25,8 +31,24 @@
     multiselect?: boolean;
   }>();
 
+  const emit = defineEmits(['rowClicked', 'cellClicked', 'cellDoubleClicked']);
+
   const filters = inject('filters');
   const selectedRows = inject('selectedRows');
+
+  const rowClicked = () => {
+    rowModel.rowClicked()
+    emit('rowClicked', rowModel);
+  }
+
+  const cellClicked = (cell: any) => {
+    emit('cellClicked', cell);
+  }
+
+  const cellDoubleClicked = (cell: any) => {
+    emit('cellDoubleClicked', cell);
+  }
+
 
   const rowModel = new Row(props.row, filters, selectedRows, props.selectable ?? false, props.multiselect ?? false, props.headerConfig);
 
