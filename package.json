@@ -69,5 +69,12 @@
   },
   "description": "Vue3 Component Library based on Tailwind CSS",
   "author": "Sirius SRL",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sirius-ea/VireoXlibrary.git"
+  },
+  "publishConfig": {
+    "@sirius-rd:registry": "https://npm.pkg.github.com/"
+  }
 }
