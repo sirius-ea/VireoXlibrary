@@ -18,10 +18,10 @@ jobs:
           node-version: 18.x
       - name: Install and Build 🔧
         run: | # Install npm packages and build the Storybook files
-          yarn install --immutable --immutable-cache --check-cache
-          yarn run build
-          yarn run watch:tailwind
-          yarn run storybook-build-docs
+          npm install --legacy-peer-deps
+          npm run build
+          npm run watch:tailwind
+          npm run storybook-build-docs
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
