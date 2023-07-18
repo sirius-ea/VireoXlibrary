@@ -1,14 +1,14 @@
 # VireoXlibrary
 
 VireoXlibrary è una libreria di componenti Vue3 per la realizzazione di applicazioni web.
-Utilizza Tailwind CSS e Flowbite Design System.
+Utilizza Tailwind CSS.
 
 ## Requisiti
 
 - Tailwind CSS
 
 Per installare Tailwind CSS fare riferimento alla seguente guida:
-https://flowbite.com/docs/getting-started/vue/
+https://tailwindcss.com/docs/guides/vite
 
 ## Installazione
 
