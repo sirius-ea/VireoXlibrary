@@ -4,57 +4,58 @@ import {Meta} from "@storybook/blocks";
 
 # VireoxNavbar
 
-VireoxNavbar è un componente personalizzabile per l'utilizzo di un menù di navigazione.
+VireoxNavbar is a customizable component for using a navigation menu.
 
-Per utilizzarlo, importare il componente e utilizzarlo come segue:
+To use it, import the component and use it as follows:
 ```js
 import {VrxNavbar} from 'vireoxlibrary';
 
 <VrxNavbar buttons="[ ... ]"  />
 ```
-La props ```buttons``` deve essere un array ```[]``` di oggetti di tipo ```NavbarButton```. Di seguito le interfacce da utilizzare durante lo sviluppo della configurazione della navbar.
+The ```buttons``` prop must be an array ```[]``` of objects of type ```NavbarButton```. Below are the interfaces to use when configuring the navbar.
 
 ```NavbarButton```
-Bottone principale della navbar.
+The main button of the navbar.
 
 ```js
 type NavbarButton = {
-    text: string;                               // Testo del bottone
-    icon: IconLibraryType | string;             // [opzionale] Icona del bottone o path dell'SVG
-    component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
-    children: FirstLayerButton[];               // [opzionale] Sotto-bottoni del bottone
+    text: string;                               // Button text
+    icon: IconLibraryType | string;             // [optional] Button icon or SVG path
+    component: ComponentInterface;              // [optional] Component to be inserted into the button
+    children: FirstLayerButton[];               // [optional] Sub-buttons of the button
 }
+
 ```
 
 ```NavbarFirstLayerButton```
-Sotto-bottone figlio di un bottone principale. A sua volta può contenere un altro livello di sotto-bottoni.
+A child sub-button of a main button. It can contain another level of sub-buttons.
 
 ```js
 type NavbarSecondLayerButton = {
-    text: string;                               // Testo del bottone
-    description: string;                        // [opzionale] Descrizione del bottone
-    icon: IconLibraryType | string;             // [opzionale] Icona del bottone o path dell'SVG
-    component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
-    children: SecondLayerButton[];              // [opzionale] Sotto-bottoni del bottone
+    text: string;                               // Button text
+    description: string;                        // [optional] Button description
+    icon: IconLibraryType | string;             // [optional] Button icon or SVG path
+    component: ComponentInterface;              // [optional] Component to be inserted into the button
+    children: SecondLayerButton[];              // [optional] Sub-buttons of the button
 }
 ```
 
 ```NavbarSecondLayerButton```
-Sotto-bottone figlio di un FirstLayerButton. Ultimo layer di bottoni.
+A child sub-button of a FirstLayerButton. The last layer of buttons.
 
 ```js
 type NavbarSecondLayerButton = {
-    text: string;                               // Testo del bottone
-    component: ComponentInterface;              // [opzionale] Componente da inserire nel bottone
+    text: string;                               // Button text
+    component: ComponentInterface;              // [optional] Component to be inserted into the button
 }
 ```
 
 ```ComponentInterface```
-Componente (pensato principalmente per il routing) da inserire all'interno di un bottone della navbar. Per visualizzare il testo e la descrizione del bottone, il componente passato **necessita** di uno ```slot```.
-Consigliato l'utilizzo di ```<NuxtLink> </NuxtLink>``` o ```<router-link to="/"> </router-link>``` per il routing.
+A component (primarily intended for routing) to be inserted into a navbar button. To display the button text and description, the passed component must have a slot.
+It is recommended to use ```<NuxtLink> </NuxtLink>``` or ```<router-link to="/"> </router-link>``` for routing.
 ```js
 type ComponentInterface = {
-    component: Component;                       // Oggetto componente da inserire nel bottone
-    props: any;                                 // [opzionale] Oggetto con le props da passare al componente
+    component: Component;                       // Component object to be inserted into the button
+    props: any;                                 // [optional] Object with props to be passed to the component
 }
 ```
