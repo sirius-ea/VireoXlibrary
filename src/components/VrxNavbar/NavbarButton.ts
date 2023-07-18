@@ -3,7 +3,7 @@ import {Component} from "vue";
 
 export type NavbarButton = {
     text: string;
-    icon?: IconLibraryType;
+    icon?: IconLibraryType | string;
     component?: ComponentInterface;
     children?: NavbarFirstLayerButton[];
 }
@@ -11,7 +11,7 @@ export type NavbarButton = {
 export type NavbarFirstLayerButton = {
     text: string;
     description?: string;
-    icon?: IconLibraryType;
+    icon?: IconLibraryType | string;
     component?: ComponentInterface;
     children?: NavbarFirstLayerButton[];
 }

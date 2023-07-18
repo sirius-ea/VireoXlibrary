@@ -2,14 +2,20 @@
   <div
       class="vrx-navbar-header bg-white border-gray-200 dark:bg-gray-900"
       :class="{'scrolled-nav' : scrolledNav}"
-      v-click-outside="clickOutside"
       data-testid="vrx-navbar"
+      @mouseleave="mouseLeave"
   >
-    <nav class="vrx-navbar">
+    <nav class="vrx-navbar" ref="navbar">
       <slot name="leftComponent"/>
 
       <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <NavButton v-for="button in props.buttons" :config="button" @click="buttonClicked(button)" :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"/>
+        <NavButton
+            ref="buttonRef"
+            v-for="button in props.buttons"
+            :config="button"
+            :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"
+            @mouseenter="mouseHover(button)"
+        />
       </ul>
 
       <!-- Mobile -->
@@ -32,7 +38,7 @@
     <transition name="bottom">
       <div
           v-show="showBottomNav && !mobile"
-          class="bottom-nav border-b bg-white dark:bg-gray-900"
+          class="bottom-nav border-b bg-white dark:bg-gray-900 dark:border-gray-700"
           data-testid="vrx-navbar-dropdown"
       >
         <FirstLayerButton v-for="config in selectedButton.children" :config="config"/>
@@ -52,7 +58,6 @@
 
   const props = defineProps<{
     buttons: NavbarButton[];
-    stickToTop?: boolean;
   }>()
 
 
@@ -61,10 +66,13 @@
   const mobile = ref(false);
   const windowWidth = ref(window.innerWidth);
   const showBottomNav = ref(false);
+  const buttonRef = ref(false);
   const selectedButton = ref(props.buttons[0]);
+  const navbar = ref(null);
 
   const buttonClicked = ( button : NavbarButton ) => {
-    if(button.children && button.children?.length <= 0){
+    if(!button.children || (button.children && button.children?.length <= 0)){
+      showBottomNav.value = false;
       return;
     }
 
@@ -86,22 +94,16 @@
     mobileNav.value = !mobileNav.value;
   }
 
-  const vClickOutside = {
-    mounted(el : any, binding : any) {
-      el.clickOutsideEvent = function(event : any) {
-        if (!(el === event.target || el.contains(event.target))) {
-          binding.value(event, el);
-        }
-      };
-      document.body.addEventListener('click', el.clickOutsideEvent);
-    },
-    unmounted(el : any) {
-      document.body.removeEventListener('click', el.clickOutsideEvent);
+  const mouseHover = (button : NavbarButton) => {
+    if(!button.children || (button.children && button.children?.length <= 0)){
+      return;
     }
+    showBottomNav.value = true;
+    selectedButton.value = button;
   }
 
-  const clickOutside = () => {
-      showBottomNav.value = false;
+  const mouseLeave = () => {
+    showBottomNav.value = false;
   }
 
   const checkScreen = () => {
@@ -146,15 +148,14 @@
 
   .bottom-nav{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
     position: absolute;
     padding-inline: 2rem;
     padding-block: 1rem;
     font-weight: 600;
+    display: flex;
     flex-wrap: wrap;
+    column-gap: 3.3%;
+    row-gap: 1rem;
   }
 
  .vrx-navbar{
@@ -185,21 +186,19 @@
    position: absolute;
    top: 0;
    align-items: center;
-   right: 24px;
+   right: 0.25rem;
    height: 100%;
    cursor: pointer;
  }
 
- .icon-active{
-   transform: rotate(180deg);
-   transition: .5s ease all;
- }
+  .bottom-nav-justify-between{
+    justify-content: space-between;
+  }
 
- .icon-off{
-   transform: rotate(0deg);
-   transition: .5s ease all;
- }
-
+  .bottom-nav-justify-start{
+    justify-content: flex-start;
+    gap: 5rem;
+  }
 
  .dropdown-nav{
    display: flex;
@@ -214,7 +213,7 @@
  }
 
  .bottom-enter-active, .bottom-leave-active{
-   transition: all 1s ease;
+   transition: all .5s ease;
  }
 
   .bottom-enter-from, .bottom-leave-to{

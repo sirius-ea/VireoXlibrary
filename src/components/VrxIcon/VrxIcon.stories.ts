@@ -1,5 +1,7 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
+import {iconLibrary} from "@/components/VrxIcon/IconLibrary.ts";
+const iconLibrarySet = Object.keys(iconLibrary);
 
 const meta : Meta<typeof VrxIcon> = {
     title: 'VrxIcon',
@@ -7,35 +9,18 @@ const meta : Meta<typeof VrxIcon> = {
     tags: ['autodocs'],
     argTypes: {
         icon: {
-            description: 'icon type',
+            description: 'icon type or SVG path',
             control: {
                 type: 'select',
             },
-            options: [
-                'password',
-                'mail',
-                'rocket',
-                'user-circle',
-                'chevron-up',
-                'chevron-down',
-                'x',
-                'check',
-                'home',
-                'sort-order',
-                'cog',
-                'logout',
-                'chart-bar',
-                'hamburger',
-                'empty',
-                'shopping-bag'
-            ],
+            options: iconLibrarySet,
             defaultValue: {
                 summary: undefined,
             },
             table: {
                 category: 'props',
                 type: {
-                    summary: 'IconLibraryType',
+                    summary: 'IconLibraryType | string',
                 },
             }
         },

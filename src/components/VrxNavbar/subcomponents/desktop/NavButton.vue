@@ -6,8 +6,7 @@
         data-testid="vrx-navbar-button"
         :is="config.component.name"
         v-bind="config.component.props"
-        class="navbar-button block py-2 pl-3 pr-4"
-        :class="style.navbarButton"
+        class="navbar-button block py-2 pl-3 pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500"
         @click="onClickEvent"
     >
       <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
@@ -18,8 +17,7 @@
     <div
         v-else
         data-testid="vrx-navbar-button"
-        class="navbar-button block py-2 pl-3 pr-4"
-        :class="style.navbarButton"
+        class="navbar-button block py-2 pl-3 pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500"
         @click="onClickEvent"
         ref="componentRef"
     >
@@ -32,7 +30,7 @@
 
 <script setup lang="ts">
 import {computed, ref} from "vue";
-  import {NavbarButton, NavbarFirstLayerButton} from "@/components/VrxNavbar/NavbarButton.ts";
+  import {NavbarButton} from "@/components/VrxNavbar/NavbarButton.ts";
   import {navbarButtonStyle} from "@/components/styles.ts";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 
@@ -73,38 +71,4 @@ import {computed, ref} from "vue";
     gap: 0.25rem;
     user-select: none;
   }
-  .navbar-dropdown{
-    top: 2.5rem;
-    right: -10px;
-    display: flex;
-    flex-direction: row;
-    height: auto;
-  }
-  .dropdown-full-width{
-    width: 550px;
-  }
-  .dropdown-half-width{
-    width: 300px;
-  }
-  .dropdown-button{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .dropdown-button-label{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-  }
-  .icon-active{
-    transform: rotate(180deg);
-    transition: .2s ease all;
-  }
-
-  .icon-off{
-    transform: rotate(0deg);
-    transition: .5s ease all;
-  }
-
 </style>
