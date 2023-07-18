@@ -27,6 +27,7 @@
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   import {ref} from "vue";
+  import {iconLibrary} from "@/components/VrxIcon/IconLibrary.ts";
 
   const props = defineProps<{
     row: Row;
@@ -37,7 +38,7 @@
   const input = ref();
 
   const getCellStyle = () => {
-    let style = props.cell.align ? textStyle[props.cell.align] : '';
+    let style = props.cell.align ? textStyle[props.cell.align as keyof typeof textStyle] : '';
     style += props.cell.editable && editMode.value ? 'editing' : '';
 
     switch (props.cell.editType){
@@ -56,7 +57,7 @@
   const emits = defineEmits(['cellClicked', 'cellDoubleClicked']);
 
   const cellClicked = () => {
-    emits('cellClicked', props.row.data[props.cell.id])
+    emits('cellClicked', {id: props.cell.id, value: props.row.data[props.cell.id]})
   }
 
   const cellDbClicked = () => {

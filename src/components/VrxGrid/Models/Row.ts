@@ -11,6 +11,7 @@ export class Row {
     private readonly _selectable: boolean;
     private readonly _multiselect: boolean;
     private readonly _headerConfig: GridHeader[];
+    private readonly  _componentProps: any;
 
     constructor(row : GridRow, filters: any, selectedRows: any, selectable: boolean, multiselect: boolean, headerConfig: GridHeader[]) {
         this._id = row.id;
@@ -22,6 +23,7 @@ export class Row {
         this._selectable = selectable;
         this._multiselect = multiselect;
         this._headerConfig = headerConfig;
+        this._componentProps = row.componentProps;
     }
 
     /**
@@ -37,6 +39,13 @@ export class Row {
      */
     public get textColor () : string | undefined {
         return this._textColor;
+    }
+
+    /**
+     * Returns the component props of the row
+     */
+    public get componentProps () : any {
+        return this._componentProps;
     }
 
     /**

@@ -49,7 +49,7 @@ const Template: GridStories = {
             },
         },
         template: `
-          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.data" style="height: 500px" @cell-clicked="(row)=>console.log(row)"/>
+          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.gridData" style="height: 500px"/>
 
           <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
               <VrxButton color="default" size="sm" @click="logItem" >Log selected items</VrxButton>
@@ -67,7 +67,7 @@ const Template: GridStories = {
         gridConfiguration: {
             id: "test",
             selectable: true,
-            multiselect: false,
+            multiselect: true,
             header: [
                 {
                     text: "Active",
@@ -75,7 +75,7 @@ const Template: GridStories = {
                     align: "center",
                     type: "boolean",
                     width: 100,
-                    editable: false,
+                    editable: true,
                     filterType: "select",
                     sortable: true,
                     icon: 'check',
@@ -91,7 +91,7 @@ const Template: GridStories = {
                     width: 150,
                     editable: true,
                     editType: "text",
-                    icon: "rocket",
+                    icon: "user-circle",
                 },
                 {
                     text: "Serial Number",
@@ -101,7 +101,8 @@ const Template: GridStories = {
                     filterType: "text",
                     width: 150,
                     editable: true,
-                    editType: "text"
+                    editType: "text",
+                    icon: "variable",
                 },
                 {
                     text: "Color",
@@ -112,6 +113,7 @@ const Template: GridStories = {
                     width: 150,
                     editable: true,
                     editType: "select",
+                    icon: "palette",
                     editOptions: [
                         {text: "Red", value: "Red"},
                         {text: "Blue", value: "Blue"},
@@ -128,7 +130,8 @@ const Template: GridStories = {
                     filterType: "select",
                     width: 150,
                     editable: true,
-                    editType: "text"
+                    editType: "text",
+                    icon: "truck",
                 },
                 {
                     text: "Plate",
@@ -138,11 +141,12 @@ const Template: GridStories = {
                     filterType: "text",
                     width: 150,
                     editable: true,
-                    editType: "text"
+                    editType: "text",
+                    icon: "calendar",
                 },
             ],
         },
-        data: [
+        gridData: [
             {
                 id: "1",
                 data:{
