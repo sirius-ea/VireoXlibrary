@@ -15,7 +15,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies and build 🔧
         run:
-            yarn install --immutable --immutable-cache --check-cache
+            yarn
             yarn run build
       - name: Publish package on NPM 📦
         run:
