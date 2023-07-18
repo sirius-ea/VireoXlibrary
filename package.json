@@ -73,8 +73,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/sirius-ea/VireoXlibrary.git"
-  },
-  "publishConfig": {
-    "@sirius-rd:registry": "https://npm.pkg.github.com/"
   }
 }
