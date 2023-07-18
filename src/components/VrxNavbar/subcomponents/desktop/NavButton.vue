@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import {computed, ref} from "vue";
-  import {NavbarButton} from "@/components/VrxNavbar/NavbarButton.ts";
+import {NavbarButton, NavbarFirstLayerButton} from "@/components/VrxNavbar/NavbarButton.ts";
   import {navbarButtonStyle} from "@/components/styles.ts";
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 
@@ -43,7 +43,7 @@ import {computed, ref} from "vue";
   const style = computed(() => {return navbarButtonStyle(props.isSelected, hasChildren());})
   function hasChildren() {
     let hasOne = false;
-    props.config.children?.forEach(child => {
+    props.config.children?.forEach((child : NavbarFirstLayerButton) => {
       if(!child.children) return false;
       if(child.children.length > 0){
         hasOne = true;
