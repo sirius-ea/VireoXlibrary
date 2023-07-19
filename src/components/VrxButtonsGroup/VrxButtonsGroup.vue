@@ -6,7 +6,7 @@
         type="button"
         class="inline-flex items-center px-4 py-2 text-sm font-medium"
         :class="styleByIndex(index, buttons.length)"
-        @click="btnActions[index] ? btnActions[index](additionalParam) : null"
+        @click="btnActions[index] ? btnActions[index]() : null"
     >
       <VrxIcon v-if="btnIcons[index]" :icon="btnIcons[index]" size="4" class="mr-1"/>
       <span>{{ btn }}</span>
@@ -25,7 +25,6 @@
     buttons: string[],
     icons?: IconLibraryType[],
     actions?: Array<Function>
-    additionalParam: any
   }>();
 
   const style = computed(() => { return buttonsGroupStyle(); })
