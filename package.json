@@ -2,7 +2,7 @@
   "name": "@sirius-rd/vireoxlibrary",
   "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
   "private": false,
-  "version": "0.2.1",
+  "version": "0.3.0",
   "type": "module",
   "files": [
     "dist"
@@ -69,5 +69,9 @@
   },
   "description": "Vue3 Component Library based on Tailwind CSS",
   "author": "Sirius SRL",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sirius-ea/VireoXlibrary.git"
+  }
 }
