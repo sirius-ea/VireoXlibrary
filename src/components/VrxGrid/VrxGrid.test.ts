@@ -17,8 +17,9 @@ describe('VrxGrid', () => {
             type: "text",
             filterType: "text",
         },
-    ],
-        data: [
+    ]
+    }
+    const data =  [
         {
             id: "1",
             data:{
@@ -27,33 +28,29 @@ describe('VrxGrid', () => {
                 color: "Red",
                 model: "Fiat",
                 plate: "AA123AA"
+            },
+        },
+        {
+            id: "2",
+            data:{
+                name: "Mario Bianchi",
+                serialNumber: 2,
+                color: "Blue",
+                model: "Audi",
+                plate: "AA123AB"
             }
         }
     ]
-    }
 
     it('renders the component', () => {
-        wrapper = mount(VrxGrid as any, {props: {gridConfiguration: config}});
+        wrapper = mount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
         expect(wrapper.find('[data-testid=vrx-grid]').exists()).toBe(true);
         expect(wrapper.find('[data-testid=vrx-grid-header]').exists()).toBe(true);
         expect(wrapper.find('[data-testid=vrx-grid-row-1]').exists()).toBe(true);
     });
 
-    it('select all items', async () => {
-        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config}});
-        wrapper.vm.selectAll();
-        expect(wrapper.vm.getSelectedRows().length).toBe(1);
-    });
-
-    it('deselect all items', async () => {
-        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config}});
-        wrapper.vm.selectAll();
-        wrapper.vm.deselectAll();
-        expect(wrapper.vm.getSelectedRows().length).toBe(0);
-    });
-
     it('set data', async () => {
-        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config}});
+        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
         wrapper.vm.setData([{
             id: "2",
             data: {
@@ -64,13 +61,37 @@ describe('VrxGrid', () => {
                 plate: "AA123AA"
             }
         }]);
-        expect(wrapper.props('gridConfiguration').data.length).toBe(1);
-        expect(wrapper.props('gridConfiguration').data[0].id).toBe('2');
+        expect(wrapper.vm.getData().length).toBe(1);
+        expect(wrapper.vm.getData()[0].id).toBe('2');
     });
 
     it('clear data', async () => {
-        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config}});
+        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
         wrapper.vm.clearData();
-        expect(wrapper.props('gridConfiguration').data.length).toBe(0);
+        expect(wrapper.vm.getData().length).toBe(0);
+    });
+
+    it('select all items', async () => {
+        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
+        wrapper.vm.selectAll();
+        expect(wrapper.vm.getSelectedRows().length).toBe(2);
+    });
+
+    it('deselect all items', async () => {
+        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
+        wrapper.vm.selectAll();
+        wrapper.vm.deselectAll();
+        expect(wrapper.vm.getSelectedRows().length).toBe(0);
+    });
+
+    it('select range', async () => {
+        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
+        wrapper.vm.selectRange(0,1);
+        expect(wrapper.vm.getSelectedRows().length).toBe(2);
+    });
+
+    it('get row by id', async () => {
+        wrapper = shallowMount(VrxGrid as any, {props: {gridConfiguration: config, gridData: data}});
+        expect(wrapper.vm.getRowById('1').toString()).toBe(data[0].toString());
     });
 });
