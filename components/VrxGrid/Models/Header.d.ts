@@ -1,5 +1,6 @@
-import { GridConfiguration, GridFilter, GridHeader } from '../../../components/VrxGrid/GridConfiguration.ts';
+import { GridConfiguration, GridFilter, GridHeader, GridRow } from '../../../components/VrxGrid/GridConfiguration.ts';
 import { SelectItemInterface } from '../../../components/VrxSelect/SelectItemInterface.ts';
+import { IconLibraryType } from '../../../components/VrxIcon/IconLibrary.ts';
 export declare class Header {
     private readonly _id;
     private readonly _text;
@@ -13,6 +14,8 @@ export declare class Header {
     private readonly _filterPlaceholder?;
     private _customFilter?;
     private _headerConfig?;
+    private readonly _icon?;
+    private _colspan?;
     constructor(header: GridHeader);
     get id(): string;
     get text(): string;
@@ -20,12 +23,14 @@ export declare class Header {
     get filterPlaceholder(): string | null;
     get sortable(): boolean;
     get sortDirection(): "asc" | "desc" | null;
+    get icon(): IconLibraryType | null;
+    get colspan(): number | undefined;
     get textAlignmentClass(): string | null;
     get width(): number | undefined;
-    sortClicked(gridConfig: GridConfiguration): void;
+    sortClicked(gridConfig: GridConfiguration, gridData: GridRow[]): void;
     private _useDefaultSorting;
     private _useCustomSorting;
     private _resetSortDirection;
-    getSelectableItems(gridConfig: GridConfiguration): SelectItemInterface[];
+    getSelectableItems(gridData: GridRow[]): SelectItemInterface[];
     filterByValue(filters: GridFilter[], value: string): void;
 }

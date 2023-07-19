@@ -33,4 +33,5 @@ export declare function buttonsGroupStyle(): {
     firstButton: string;
     middleButton: string;
     lastButton: string;
+    singleButton: string;
 };

@@ -9,6 +9,7 @@ export declare class Row {
     private readonly _selectable;
     private readonly _multiselect;
     private readonly _headerConfig;
+    private readonly _componentProps;
     constructor(row: GridRow, filters: any, selectedRows: any, selectable: boolean, multiselect: boolean, headerConfig: GridHeader[]);
     /**
      * Returns the content of a cell given the header ID
@@ -19,6 +20,10 @@ export declare class Row {
      * Returns the text color of the row
      */
     get textColor(): string | undefined;
+    /**
+     * Returns the component props of the row
+     */
+    get componentProps(): any;
     /**
      * Returns the background color of the row
      */

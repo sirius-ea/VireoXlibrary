@@ -3,7 +3,8 @@ export declare class Grid {
     private readonly _configuration;
     private _filters;
     private _selectedRows;
-    constructor(grid: GridConfiguration);
+    private readonly _data;
+    constructor(grid: GridConfiguration, gridData: GridRow[]);
     get configuration(): GridConfiguration;
     get filters(): GridFilter[];
     get data(): GridRow[];
@@ -11,6 +12,7 @@ export declare class Grid {
     set filters(value: GridFilter[]);
     set selectedRows(value: GridRow[]);
     selectAll(): void;
+    getRowById(id: number | string): GridRow | undefined;
     deselectAll(): void;
     resetFilters(): void;
     clearData(): void;
