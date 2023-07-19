@@ -10,7 +10,7 @@ export type GridConfiguration = {
 export type GridHeader = {
     id: string;
     text: string;
-    type?: "text" | "component" | "boolean" | undefined;
+    type?: "text" | "component" | "static" | "boolean" | undefined;
     align?: "left" | "center" | "right";
     sortable?: boolean;
     sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
@@ -23,6 +23,8 @@ export type GridHeader = {
     editType?: "text" | "select" | "date" | "component";
     editOptions?: any[];
     icon?: IconLibraryType;
+    staticHTML?: string;
+    colspan?: number;
 }
 
 export interface GridRow {

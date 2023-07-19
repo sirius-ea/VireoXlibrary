@@ -6,10 +6,10 @@
         type="button"
         class="inline-flex items-center px-4 py-2 text-sm font-medium"
         :class="styleByIndex(index, buttons.length)"
-        @click="btnActions[index] ? btnActions[index]() : null"
+        @click="btnActions[index] ? btnActions[index](additionalParam) : null"
     >
-      <VrxIcon v-if="btnIcons[index]" :icon="btnIcons[index]" size="4"/>
-      <span class="ml-1">{{ btn }}</span>
+      <VrxIcon v-if="btnIcons[index]" :icon="btnIcons[index]" size="4" class="mr-1"/>
+      <span>{{ btn }}</span>
     </button>
   </div>
 </template>
@@ -24,7 +24,8 @@
   const props = defineProps<{
     buttons: string[],
     icons?: IconLibraryType[],
-    actions?: Array<() => void>
+    actions?: Array<Function>
+    additionalParam: any
   }>();
 
   const style = computed(() => { return buttonsGroupStyle(); })
@@ -33,7 +34,7 @@
   const styleByIndex = (index : number, listLength : number) => {
     switch (index) {
       case 0:
-        return style.value.firstButton;
+        return index === listLength-1 ? style.value.singleButton : style.value.firstButton;
       case listLength - 1:
         return style.value.lastButton;
       default:

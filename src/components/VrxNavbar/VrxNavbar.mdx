@@ -10,7 +10,10 @@ To use it, import the component and use it as follows:
 ```js
 import {VrxNavbar} from 'vireoxlibrary';
 
-<VrxNavbar buttons="[ ... ]"  />
+<VrxNavbar buttons="[ ... ]"  >
+    <template v-slot:leftComponent>
+    </template>
+</VrxNavbar>
 ```
 The ```buttons``` prop must be an array ```[]``` of objects of type ```NavbarButton```. Below are the interfaces to use when configuring the navbar.
 

@@ -5,7 +5,7 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 export class Header {
     private readonly _id: string;
     private readonly _text: string;
-    private _type: "text" | "component" | "boolean" | undefined;
+    private _type: "text" | "component" | "static" | "boolean" | undefined;
     private readonly _align?: "left" | "center" | "right";
     private readonly _sortable?: boolean;
     private readonly _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
@@ -15,7 +15,8 @@ export class Header {
     private readonly _filterPlaceholder?: string;
     private _customFilter?: Function;
     private _headerConfig?: GridHeader;
-    private _icon?: IconLibraryType;
+    private readonly _icon?: IconLibraryType;
+    private _colspan?: number;
 
     constructor (header: GridHeader) {
         this._id = header.id;
@@ -31,6 +32,7 @@ export class Header {
         this._customFilter = header.customFilter;
         this._headerConfig = header;
         this._icon = header.icon;
+        this._colspan = header.colspan;
     }
 
     public get id(): string {
@@ -59,6 +61,10 @@ export class Header {
 
     public get icon(): IconLibraryType | null {
         return this._icon ?? null;
+    }
+
+    public get colspan(): number | null {
+        return this._colspan ?? null;
     }
 
     public get textAlignmentClass(): string | null {

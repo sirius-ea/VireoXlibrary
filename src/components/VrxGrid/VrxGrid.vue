@@ -44,10 +44,10 @@
 
   const props = defineProps<{
     gridConfiguration: GridConfiguration;
-    gridData: ReactiveVariable<GridRow[]>;
+    gridData: GridRow[];
   }>()
 
-  const gridModel = new Grid(props.gridConfiguration, props.gridData);
+  const gridModel = new Grid(props.gridConfiguration, JSON.parse(JSON.stringify(props.gridData)));
 
   provide('filters', gridModel.filters);
   provide('selectedRows', gridModel.selectedRows);

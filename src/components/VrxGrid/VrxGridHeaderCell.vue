@@ -3,6 +3,7 @@
         scope="col"
         class="px-3 py-3 vrx-th header-th"
         :class="headerModel.textAlignmentClass"
+        :colspan="headerModel.colspan"
     >
       <div class="vrx-header-cell" :class="headerModel.filterType ? 'mb-2' : null" @click="headerModel.sortClicked(props.gridConfig, props.gridData)">
         <span class="flex flex-row gap-1.5 items-center">
@@ -46,6 +47,7 @@
   import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {inject, ref} from "vue";
   import {ReactiveVariable} from "vue/macros";
+
 
   const props = defineProps<{
     gridConfig: GridConfiguration;

@@ -1,24 +1,32 @@
 <template>
   <td
-      class="px-3 py-4 font-medium whitespace-nowrap vrx-cell"
+      class="px-3 font-medium whitespace-nowrap vrx-cell"
       :class="getCellStyle()"
       v-click-outside="clickOutside"
       @dblclick="cellDbClicked"
       @click="cellClicked"
       @keydown="keyboardListener($event)"
   >
+    <!-- TEXT -->
     <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
       <input ref="input" v-if="cell.editable && editMode && cell.editType ==='text'" v-model="row.data[cell.id]" class="edit-input"/>
-      <select v-else-if="cell.editable && cell.editType ==='select'" v-model="row.data[cell.id]" class="edit-input">
+      <select v-else-if="cell.editable && cell.editType ==='select'" v-model="row.data[cell.id]" class="edit-input" @focus="editMode = true">
         <option v-for="option in props.cell.editOptions" :value="option.value">{{ option.text }}</option>
       </select>
       <span v-else>{{ row.getCellContent(cell.id) }}</span>
     </span>
+
+    <!-- BOOLEAN -->
     <span v-else-if="cell.type === 'boolean'">
       <input v-if="cell.editable" type="checkbox" v-model="row.data[cell.id]" class="edit-input" />
       <input v-else type="checkbox" v-model="row.data[cell.id]" class="edit-input" onclick="return false" />
     </span>
-    <component v-else :is="row.data[cell.id]" v-bind="row.componentProps"/>
+
+    <!-- COMPONENT -->
+    <component v-else-if="cell.type === 'component'" :is="row.data[cell.id]" v-bind="row.componentProps"/>
+
+    <!-- CUSTOM -->
+    <div v-html="cell.staticHTML" v-else-if="cell.type === 'static'"></div>
   </td>
 </template>
 
@@ -27,11 +35,13 @@
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   import {ref} from "vue";
-  import {iconLibrary} from "@/components/VrxIcon/IconLibrary.ts";
+  import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
+  import colors from "tailwindcss/colors";
+
 
   const props = defineProps<{
     row: Row;
-    cell: any;
+    cell: GridHeader;
   }>();
 
   const editMode = ref(false);
@@ -39,30 +49,29 @@
 
   const getCellStyle = () => {
     let style = props.cell.align ? textStyle[props.cell.align as keyof typeof textStyle] : '';
-    style += props.cell.editable && editMode.value ? 'editing' : '';
-
-    switch (props.cell.editType){
-      case 'text':
-        style += ' cursor-text';
-        break;
-      case 'select':
-        style += ' cursor-pointer';
-        break;
-      default:
-        style += ' cursor-default';
-    }
+    style += props.cell.editable && editMode.value ? ' editing' : '';
+    style += props.cell.type === 'static' ? ' py-2' : ' py-4';
     return style;
   }
 
   const emits = defineEmits(['cellClicked', 'cellDoubleClicked']);
 
   const cellClicked = () => {
-    emits('cellClicked', {id: props.cell.id, value: props.row.data[props.cell.id]})
+    emits('cellClicked', {
+      cellId: props.cell.id,
+      rowId: props.row.id,
+      value: props.cell.type === 'static' ? props.cell.staticHTML : props.row.data[props.cell.id]
+    });
   }
 
   const cellDbClicked = () => {
-    emits('cellDoubleClicked', props.row.data[props.cell.id])
-    editMode.value = true;
+    emits('cellDoubleClicked', {
+      cellId: props.cell.id,
+      rowId: props.row.id,
+      value: props.cell.type === 'static' ? props.cell.staticHTML : props.row.data[props.cell.id]
+    });
+
+    props.cell.type !== 'boolean' ? editMode.value = true : null;
     setTimeout(() => {
       props.cell.editable  && props.cell.editType === 'text' ? input.value.focus() : null;
     }, 100);
@@ -103,14 +112,15 @@
     width: 100%;
   }
 
-  .vrx-cell{
-    width: v-bind(cell.width + 'px');
-    max-width: v-bind(cell.width + 'px') ;
+  .vrx-cell {
+    width: v-bind(cell.width+ 'px');
+    max-width: v-bind(cell.width+ 'px');
   }
 
   .editing{
+    -webkit-box-shadow:inset 0px 0px 0px 2px v-bind(colors.blue[500]);
+    -moz-box-shadow:inset 0px 0px 0px 2px v-bind(colors.blue[500]);
+    box-shadow:inset 0px 0px 0px 2px v-bind(colors.blue[500]);
   }
-
-
 
 </style>

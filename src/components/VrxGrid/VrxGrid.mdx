@@ -11,7 +11,7 @@ The component utilizes 100% of the available width and height. To use it, import
 import {VrxGrid} from 'vireoxlibrary';
 
 const config : GridConfiguration = { ... }
-const data : ReactiveVariable<GridRow[]> = reactive([{ ... }])
+const data : GridRow[] = [{ ... }]
 <VrxGrid :grid-configuration="config" :grid-data="data"/>
 ```
 ## Configuration
@@ -102,25 +102,25 @@ type GridRow {
         <tr>
             <td>getData</td>
             <td>-</td>
-            <td>GridRow []</td>
+            <td>`GridRow []`</td>
             <td>Returns the data of the grid</td>
         </tr>
         <tr>
             <td>getFilters</td>
             <td>-</td>
-            <td>GridFilter []</td>
+            <td>`GridFilter []`</td>
             <td>Returns a list of currently applied filters</td>
         </tr>
         <tr>
             <td>getSelectedItems</td>
             <td>-</td>
-            <td>GridRow []</td>
+            <td>`GridRow []`</td>
             <td>Returns a list of currently selected rows</td>
         </tr>
         <tr>
             <td>getRowById</td>
-            <td>id : number | string</td>
-            <td>GridRow | undefined</td>
+            <td>`id : number | string`</td>
+            <td>`GridRow | undefined`</td>
             <td>Returns the row with the provided ID</td>
         </tr>
         <tr>
@@ -137,19 +137,19 @@ type GridRow {
         </tr>
         <tr>
             <td>selectRange</td>
-            <td>index1 : number, index2: number</td>
+            <td>`index1 : number, index2: number`</td>
             <td>-</td>
             <td>Selects rows within the specified index range</td>
         </tr>
         <tr>
             <td>setData</td>
-            <td>data : GridRow[]</td>
+            <td>`data : GridRow[]`</td>
             <td>-</td>
             <td>Sets new data in the grid</td>
         </tr>
         <tr>
             <td>updateData</td>
-            <td>data : GridRow[]</td>
+            <td>`data : GridRow[]`</td>
             <td>-</td>
             <td>Updates the grid data</td>
         </tr>
@@ -179,19 +179,19 @@ The following custom events are emitted by the component and can be used with ``
     <tr>
         <td>@cell-double-clicked</td>
         <td>-</td>
-        <td>`{id: string | number, value: any}`</td>
+        <td>`{cellId: string | number, rowId: string | number, value: any}`</td>
         <td>Returns the content of the double-clicked cell</td>
     </tr>
     <tr>
         <td>@cell-clicked</td>
         <td>-</td>
-        <td>`{id: string | number, value: any}`</td>
+        <td>`{cellId: string | number, rowId: string | number, value: any}`</td>
         <td>Returns the content of the clicked cell</td>
     </tr>
     <tr>
         <td>@row-clicked</td>
         <td>-</td>
-        <td>GridRow</td>
+        <td>`GridRow`</td>
         <td>Returns the clicked row</td>
     </tr>
     </tbody>
