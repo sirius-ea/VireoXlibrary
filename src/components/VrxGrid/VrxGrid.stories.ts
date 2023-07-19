@@ -107,7 +107,7 @@ const Template: GridStories = {
             },
         },
         template: `
-          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.gridData" style="height: 370px" @cell-clicked="(row) => console.log(row)"/>
+          <VrxGrid v-bind="args" ref="myRef" :grid-configuration="args.gridConfiguration" :grid-data="args.gridData" style="height: 370px"/>
 
           <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
               <VrxButton color="default" size="sm" @click="logItem" >Log selected items</VrxButton>
@@ -177,8 +177,8 @@ export const Filtrable: GridStories = {
     args: {
         gridConfiguration: {
             id: "test",
-            selectable: true,
-            multiselect: true,
+            selectable: false,
+            multiselect: false,
             header: [
                 {
                     text: "Active",
@@ -393,7 +393,6 @@ export const Static_Content: GridStories = {
                     id: "active",
                     align: "center",
                     type: "boolean",
-                    editable: true,
                     sortable: true,
                     width: 100,
                 },
@@ -403,8 +402,6 @@ export const Static_Content: GridStories = {
                     align: "left",
                     sortable: true,
                     type: "text",
-                    editable: true,
-                    editType: "text",
                     width: 200,
                 },
                 {
@@ -412,17 +409,12 @@ export const Static_Content: GridStories = {
                     id: "color",
                     align: "left",
                     sortable: true,
-                    editable: true,
-                    editType: "select",
-                    editOptions: [{text: "Red", value: "Red"}, {text: "Black", value: "Black"}, {text: "Green", value: "Green"}, {text: "Gray", value: "Gray"}],
                 },
                 {
                     text: "Model",
                     id: "model",
                     align: "left",
                     sortable: true,
-                    editable: true,
-                    editType: "text",
                     width: 200,
                 },
                 {
@@ -489,6 +481,7 @@ export const Colspan: GridStories = {
                     width: 120,
                 },
                 {
+                    text:'',
                     id: "actions2",
                     align: "center",
                     type: "static",

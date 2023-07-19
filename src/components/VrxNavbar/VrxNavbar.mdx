@@ -15,11 +15,12 @@ import {VrxNavbar} from 'vireoxlibrary';
     </template>
 </VrxNavbar>
 ```
-The ```buttons``` prop must be an array ```[]``` of objects of type ```NavbarButton```. Below are the interfaces to use when configuring the navbar.
+> The ```buttons``` prop must be an array ```[]``` of objects of type ```NavbarButton```. Below are the interfaces to use when configuring the navbar.
+<br/>
 
-```NavbarButton```
-The main button of the navbar.
-
+## ⚙️ Configuration
+<br/>
+### NavbarButton
 ```js
 type NavbarButton = {
     text: string;                               // Button text
@@ -30,8 +31,7 @@ type NavbarButton = {
 
 ```
 
-```NavbarFirstLayerButton```
-A child sub-button of a main button. It can contain another level of sub-buttons.
+### NavbarFirstLayerButton
 
 ```js
 type NavbarSecondLayerButton = {
@@ -43,9 +43,7 @@ type NavbarSecondLayerButton = {
 }
 ```
 
-```NavbarSecondLayerButton```
-A child sub-button of a FirstLayerButton. The last layer of buttons.
-
+### NavbarSecondLayerButton
 ```js
 type NavbarSecondLayerButton = {
     text: string;                               // Button text
@@ -53,12 +51,12 @@ type NavbarSecondLayerButton = {
 }
 ```
 
-```ComponentInterface```
-A component (primarily intended for routing) to be inserted into a navbar button. To display the button text and description, the passed component must have a slot.
-It is recommended to use ```<NuxtLink> </NuxtLink>``` or ```<router-link to="/"> </router-link>``` for routing.
+### ComponentInterface
 ```js
 type ComponentInterface = {
     component: Component;                       // Component object to be inserted into the button
     props: any;                                 // [optional] Object with props to be passed to the component
 }
 ```
+> A component (primarily intended for routing) to be inserted into a navbar button. To display the button text and description, the passed component must have a slot.
+It is recommended to use ```<NuxtLink> </NuxtLink>``` or ```<router-link to="/"> </router-link>``` for routing.

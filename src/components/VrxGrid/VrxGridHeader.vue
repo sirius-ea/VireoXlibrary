@@ -22,13 +22,19 @@ import {computed} from "vue";
   }>()
 
   const spanReformer = computed(() => {
-    const x = [];
-    let i = 0;
-    while(i < props.gridConfig.header.length){
-      x.push(props.gridConfig.header[i]);
-      props.gridConfig.header[i].colspan ? i += props.gridConfig.header[i].colspan : i++;
+    let filteredArray = [];
+    let index = 0;
+
+    while (index < props.gridConfig.header.length) {
+      const currentItem = props.gridConfig.header[index];
+      const colspan = currentItem.colspan || 1;
+
+      filteredArray.push(currentItem);
+
+      index += colspan;
     }
-    return x;
+
+    return filteredArray;
   })
 
 </script>

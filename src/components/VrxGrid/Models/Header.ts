@@ -10,13 +10,13 @@ export class Header {
     private readonly _sortable?: boolean;
     private readonly _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
     private _sortDirection?: "asc" | "desc" | undefined;
-    private readonly _width?: number;
-    private readonly _filterType?: "text" | "select" | "date";
-    private readonly _filterPlaceholder?: string;
-    private _customFilter?: Function;
+    private readonly _width?: number | undefined;
+    private readonly _filterType?: "text" | "select" | "date" | undefined;
+    private readonly _filterPlaceholder?: string | undefined;
+    private _customFilter?: Function | undefined;
     private _headerConfig?: GridHeader;
-    private readonly _icon?: IconLibraryType;
-    private _colspan?: number;
+    private readonly _icon?: IconLibraryType | undefined;
+    private _colspan?: number | undefined;
 
     constructor (header: GridHeader) {
         this._id = header.id;
@@ -63,8 +63,8 @@ export class Header {
         return this._icon ?? null;
     }
 
-    public get colspan(): number | null {
-        return this._colspan ?? null;
+    public get colspan(): number | undefined {
+        return this._colspan ?? undefined;
     }
 
     public get textAlignmentClass(): string | null {

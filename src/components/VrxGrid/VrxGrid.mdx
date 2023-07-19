@@ -14,61 +14,63 @@ const config : GridConfiguration = { ... }
 const data : GridRow[] = [{ ... }]
 <VrxGrid :grid-configuration="config" :grid-data="data"/>
 ```
-## Configuration
+## ⚙️ Configuration
 The configuration is a complex object that allows you to configure the grid in every aspect.
 Here are the types that need to be implemented:
 
-```GridConfiguration```: overall grid configuration.
-
+### GridConfiguration
 ```js
 type GridConfiguration {
-    id: string;                                // grid id
-    header: GridHeader[];                      // headers configuration
-    multiselect: boolean;                      // [optional] enables multiselection
-    selectable: boolean;                       // [optional] enable selection
+    header: GridHeader[];                                                   // headers configuration
+    id: string;                                                             // grid id
+    multiselect: boolean;                                                   // [optional] enables multiselection
+    selectable: boolean;                                                    // [optional] enable selection
 }
 ```
 
-```GridHeader```: grid header configuration.
+### GridHeader
 
 ```js
 type GridHeader {
-    id: string;                                // header id (data in the column should have the same id)
-    text: string;                              // header text
-    icon: IconLibraryType;                     // [optional] header icon
-    type: "text" | "component";                // header type
-    align: "left" | "center" | "right";        // [optional] text alignment
-    sortable: boolean;                         // [optional] enables column sorting
-    sortFunction:                              // [optional] custom sorting function
-        (a: GridRow, b: GridRow) => 0 | 1 | -1;
-    sortDirection: "asc" | "desc" | null;      // [optional] sorting direction
-    width: number;                             // [optional] column width in pixels
-    filterType: "text" | "select" | "date";    // [optional] filter type
-    filterPlaceholder: string;                 // [optional] filter placeholder text
-    customFilter:                              // [optional] custom filtering function
+    align: "left" | "center" | "right";                                     // [optional] text alignment
+    colspan: number;                                                        // [optional] colspan
+    customFilter:                                                           // [optional] custom filtering function
         (row: GridRow, filter: {cellId: string, value: string}) => boolean;
+    filterPlaceholder: string;                                              // [optional] filter placeholder text
+    filterType: "text" | "select" | "date";                                 // [optional] filter type
+    icon: IconLibraryType;                                                  // [optional] header icon
+    id: string;                                                             // header id (data id should have the same id)
+    sortDirection: "asc" | "desc" | null;                                   // [optional] sorting direction
+    sortFunction:                                                           // [optional] custom sorting function
+        (a: GridRow, b: GridRow) => 0 | 1 | -1;
+    sortable: boolean;                                                      // [optional] enables column sorting
+    staticHTML: string;                                                     // [optional] static html content
+    text: string;                                                           // header text
+    type: "text" | "component" | "static" | "boolean" | undefined;          // header type
+    width: number;                                                          // [optional] column width in pixels
 }
 ```
+> The ```static``` type allows to use static HTML content to be displayed on every row. The content can be configured using the ```staticHTML``` property and (currently) it **cannot include** custom Vue components.
 
-```GridRow```: grid row configuration.
-
-**Note**: The keys inside ```data``` must have the same ids as the headers, otherwise they will not be displayed.
-
+### GridRow
 ```js
 type GridRow {
-    id: string;                                // row id
-    textColor: string;                         // [optional] text color
-    backgroundColor: string;                   // [optional] background color
-    componentProps: any;                       // [optional] object with component props
-    data: {                                    // row data (object with key-value pairs)
+    id: string;                                                             // row id
+    backgroundColor: string;                                                // [optional] background color
+    componentProps: any;                                                    // [optional] object with component props
+    data: {                                                                 // row data (object with key-value pairs)
         key: value,
         key: value,
         ...
     };
+    textColor: string;                                                      // [optional] text color
+
 }
 ```
+> The keys inside ```data``` must have the same ids as the headers, otherwise they will not be displayed.
+<br/>
 
-## API
+## 📜 API
 <table style={{width: '100%'}}>
     <thead>
         <tr>
@@ -155,8 +157,9 @@ type GridRow {
         </tr>
     </tbody>
 </table>
+<br/>
 
-## Custom Events
+## 🪄 Custom Events
 The following custom events are emitted by the component and can be used with ```@event-name="..."```:
 <table style={{width: '100%'}}>
     <thead>
@@ -196,5 +199,6 @@ The following custom events are emitted by the component and can be used with ``
     </tr>
     </tbody>
 </table>
+<br/>
 
 For API's details and configuration please read the [documentation](./?path=/docs/vrxgrid--docs)
