@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 
-import {monthsLib} from "@/components/VrxInput/DatePickerLibrary.ts";
+import {monthsLib} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 
 const emit = defineEmits(['changeYear', 'changeMonth', 'changeStage']);

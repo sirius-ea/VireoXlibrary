@@ -32,3 +32,27 @@ export const shortDaysLib : string[] = [
     'Fr',
     'Sa'
 ];
+
+export type CalendarDay = {
+    day: number;
+    number: number;
+    month: number;
+    year: number;
+    isToday: boolean;
+    isCurrentMonth: boolean;
+    disabled: boolean;
+}
+
+export const dateFormatLib: string[] = [
+    'YYYY-MM-DD',
+    'DD-MM-YYYY',
+    'MM-DD-YYYY',
+    'YYYY/MM/DD',
+    'DD/MM/YYYY',
+    'MM/DD/YYYY',
+    'YYYY.MM.DD',
+    'DD.MM.YYYY',
+    'MM.DD.YYYY'
+];
+
+export type DateFormat = typeof dateFormatLib[number];
