@@ -43,3 +43,52 @@ Tutti i componenti iniziano con il prefisso "Vrx" per evitare conflitti con altr
 # Sito Documentazione
 
 https://sirius-ea.github.io/VireoXlibrary/
+
+
+# For English 
+
+# VireoXlibrary
+
+VireoXlibrary is a library of Vue3 components for building web applications.
+Use Tailwind CSS.
+
+## Requirements
+
+- Tailwind CSS
+
+To install Tailwind CSS refer to the following guide:
+https://tailwindcss.com/docs/guides/vite
+
+## Installation
+
+To download and install the library run the command:
+
+```
+npm i @sirius-rd/vireoxlibrary
+```
+
+or
+
+```
+yarn add @sirius-rd/vireoxlibrary
+```
+
+Installed and configured Tailwind CSS, go to the `tailwind.config.js` file and edit it as follows:
+
+```js
+module.exports = {
+     ...,
+     content: [
+         ...
+         './node_modules/@sirius-rd/vireoxlibrary/src/**/*.{ts,js,vue}'
+     ]
+}
+```
+
+## Usage
+
+All components start with the prefix "Vrx" to avoid conflicts with other components.
+
+# Documentation site
+
+https://sirius-ea.github.io/VireoXlibrary/
