@@ -9,7 +9,7 @@
         placeholder="Select date"
         readonly="readonly"
         @focus="showDropdown = true"
-        :value="selectedDate ? selectedDate.toLocaleDateString() : ''"
+        :value="selectedDate ? formattedDate(selectedDate, dateFormat ?? 'DD-MM-YYYY') : ''"
     >
     <div
         v-if="showDropdown"
@@ -52,7 +52,7 @@ import {computed, ref} from "vue";
 import DaysPick from "@/components/VrxDatePicker/DaysPick.vue";
 import MonthPick from "@/components/VrxDatePicker/MonthPick.vue";
 import YearPick from "@/components/VrxDatePicker/YearPick.vue";
-import {DateFormat} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
+import {DateFormat, formattedDate} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
 
   const props = defineProps<{
     type: 'date' | 'time' | 'datetime-local',

@@ -55,4 +55,16 @@ export const dateFormatLib: string[] = [
     'MM.DD.YYYY'
 ];
 
+export function formattedDate (date: Date, format: DateFormat): string {
+    const map: Record<string, string> = {
+        'MM': String(date.getMonth() + 1).length === 1 ? `0${date.getMonth() + 1}` : String(date.getMonth() + 1),
+        'DD': String(date.getDate()).length === 1 ? `0${date.getDate()}` : String(date.getDate()),
+        'YYYY': String(date.getFullYear())
+    };
+
+    return format.replace(/MM|DD|YYYY/gi, (matched) => {
+        return map[matched];
+    });
+}
+
 export type DateFormat = typeof dateFormatLib[number];

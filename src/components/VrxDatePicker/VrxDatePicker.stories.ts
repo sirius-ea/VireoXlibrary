@@ -40,16 +40,3 @@ const Template: DatePickerStories = {
 export const Primary: DatePickerStories = {
     ...Template
 };
-export const Date: DatePickerStories = {
-    ...Template,
-    args: {
-        type: 'time'
-    }
-};
-
-export const Date_And_Time: DatePickerStories = {
-    ...Template,
-    args: {
-        type: 'datetime-local'
-    }
-};
