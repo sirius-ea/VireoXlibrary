@@ -5,18 +5,15 @@
       class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 vrx-row"
       :class="rowStyle"
       v-if="!isFiltered"
-      @click="rowModel.rowClicked()"
+      @click="rowClicked"
   >
-    <td
+    <VrxGridCell
         v-for="cell in headerConfig"
-        class="px-3 py-4 font-medium whitespace-nowrap vrx-cell"
-        :class="cell.align ? textStyle[cell.align] : null"
-    >
-      <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
-        {{ rowModel.getCellContent(cell.id) }}
-      </span>
-      <component v-else :is="row.data[cell.id]"/>
-    </td>
+        :row="rowModel"
+        :cell="cell"
+        @cell-clicked="cellClicked"
+        @cell-double-clicked="cellDoubleClicked"
+    />
   </tr>
 </template>
 
@@ -24,8 +21,9 @@
   import colors from "tailwindcss/colors";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {computed, inject} from "vue";
+  import {computed, inject, ref} from "vue";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
+  import VrxGridCell from "@/components/VrxGrid/VrxGridCell.vue";
   const props = defineProps<{
     row: GridRow;
     headerConfig: GridHeader [];
@@ -33,8 +31,24 @@
     multiselect?: boolean;
   }>();
 
+  const emit = defineEmits(['rowClicked', 'cellClicked', 'cellDoubleClicked']);
+
   const filters = inject('filters');
   const selectedRows = inject('selectedRows');
+
+  const rowClicked = () => {
+    rowModel.rowClicked()
+    emit('rowClicked', rowModel);
+  }
+
+  const cellClicked = (cell: any) => {
+    emit('cellClicked', cell);
+  }
+
+  const cellDoubleClicked = (cell: any) => {
+    emit('cellDoubleClicked', cell);
+  }
+
 
   const rowModel = new Row(props.row, filters, selectedRows, props.selectable ?? false, props.multiselect ?? false, props.headerConfig);
 
@@ -52,9 +66,8 @@
 </script>
 <style scoped>
   .selected{
-    border-left: 3px solid v-bind(colors.blue[500]);
-    box-sizing: border-box;
     background-color: v-bind(colors.gray[100]);
+    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
   }
 
   .vrx-row {
@@ -67,6 +80,9 @@
 
   .vrx-cell{
     background-color: v-bind(rowModel.backgroundColor);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .row-hover:hover{
@@ -75,7 +91,6 @@
   }
 
   .not-selected{
-    border-left: 3px solid transparent;
     box-sizing: border-box;
   }
 
@@ -86,7 +101,7 @@
   :is([data-mode="dark"] .dark\:selected) {
     background-color:  v-bind(colors.gray[600]);
     color: white;
-    border-left: 3px solid v-bind(colors.blue[500]);
+    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
     box-sizing: border-box;
   }
 </style>

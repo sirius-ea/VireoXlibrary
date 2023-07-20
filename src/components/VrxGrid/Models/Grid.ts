@@ -1,15 +1,17 @@
 import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-import {reactive} from "vue";
+import {reactive, watch} from "vue";
 
 export class Grid {
     private readonly _configuration: GridConfiguration;
     private _filters: GridFilter[];
     private _selectedRows: GridRow[];
+    private readonly _data : GridRow[];
 
-    constructor(grid: GridConfiguration) {
+    constructor(grid: GridConfiguration, gridData: GridRow[]) {
         this._configuration = grid;
         this._filters = reactive([]);
         this._selectedRows = reactive([]);
+        this._data = reactive(gridData);
     }
 
     public get configuration(): GridConfiguration {
@@ -21,7 +23,7 @@ export class Grid {
     }
 
     public get data(): GridRow[] {
-        return this._configuration.data;
+        return this._data;
     }
 
     public get selectedRows(): GridRow[] {
@@ -43,9 +45,13 @@ export class Grid {
             return;
         }
         this.deselectAll();
-        this._configuration.data.forEach((row : GridRow) => {
+        this._data.forEach((row : GridRow) => {
             this._selectedRows.push(row);
         });
+    }
+
+    public getRowById(id: number|string): GridRow | undefined {
+        return this._data.find((row : GridRow) => row.id === id);
     }
 
     public deselectAll() : void {
@@ -59,27 +65,27 @@ export class Grid {
     public clearData() : void {
         this.deselectAll();
         this.resetFilters();
-        this._configuration.data.splice(0, this._configuration.data.length);
+        this._data.splice(0, this._data.length);
     }
 
     public updateData(data :  (any & {id:number|string})[]) : void {
         data.forEach((row : (any & {id:number|string})) => {
-            const exist = this._configuration.data.find((r : (any & {id:number|string})) => r.id === row.id);
+            const exist = this._data.find((r : (any & {id:number|string})) => r.id === row.id);
             if(exist){
-                const index = this._configuration.data.indexOf(exist);
-                this._configuration.data.splice(index, 1);
-                this._configuration.data.splice(index, 0, row);
+                const index = this._data.indexOf(exist);
+                this._data.splice(index, 1);
+                this._data.splice(index, 0, row);
             } else {
-                this._configuration.data.push(row);
+                this._data.push(row);
             }
         });
     }
 
     public setData(data :  (any & {id:number|string})[]) : void {
         this.clearData();
-        this._configuration.data.splice(0, this._configuration.data.length);
+        this._data.splice(0, this._data.length);
         data.forEach((row : (any & {id:number|string})) => {
-            this._configuration.data.push(row);
+            this._data.push(row);
         });
     }
 
@@ -94,7 +100,7 @@ export class Grid {
         this._filters.splice(0, this._filters.length);
         this.deselectAll();
         for(let i = actStart; i <= actEnd; i++){
-            this._selectedRows.push(this._configuration.data[i]);
+            this._selectedRows.push(this._data[i]);
         }
     }
 
