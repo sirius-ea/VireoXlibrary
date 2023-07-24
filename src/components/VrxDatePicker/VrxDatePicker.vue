@@ -3,29 +3,32 @@
     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
       <VrxIcon :icon="type === 'time' ? 'clock' : 'calendar'" size="5"/>
     </div>
-    <input
-        type="text"
-        class="datepicker-input bg-gray-50 border pl-10 border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Select date"
-        readonly="readonly"
-        @focus="showDropdown = true"
-        :value="selectedDate ? formattedDate(selectedDate, dateFormat ?? 'DD-MM-YYYY') : ''"
-    >
+    <VrxInput
+        :model-value="inputValue"
+        icon="calendar"
+        type="text" :placeholder="props.placeholder ?? 'Select a date'"
+        @click="openPicker"
+        readonly="true"
+        :invalid="props.invalid"
+    />
     <div
         v-if="showDropdown"
+        ref="dropdownRef"
         class="dropdown absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
         tabindex="-1"
-        @focusout="showDropdown = false"
     >
       <DaysPick
-          v-if="selectedStage === 'd'"
+          v-if="selectedStage === 'd' && !props.monthsOnly"
           :month="selectedMonth"
           :year="selectedYear"
           :selected-date="selectedDate"
           :valid-range="validRange"
+          :time-enabled="props.type === 'datetime'"
           @change-stage="(stage) => selectedStage = stage"
           @change-month="changeMonth"
           @day-clicked="dayPicked"
+          @change-minute="onMinutesChange"
+          @change-hour="onHoursChange"
       />
 
       <MonthPick
@@ -49,91 +52,198 @@
 
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {computed, ref} from "vue";
-import DaysPick from "@/components/VrxDatePicker/DaysPick.vue";
-import MonthPick from "@/components/VrxDatePicker/MonthPick.vue";
-import YearPick from "@/components/VrxDatePicker/YearPick.vue";
-import {DateFormat, formattedDate} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
+import DaysPick from "@/components/VrxDatePicker/pickers/DaysPick.vue";
+import MonthPick from "@/components/VrxDatePicker/pickers/MonthPick.vue";
+import YearPick from "@/components/VrxDatePicker/pickers/YearPick.vue";
+import {DateFormat, formattedDate, monthsLib} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
+import VrxInput from "@/components/VrxInput/VrxInput.vue";
 
-  const props = defineProps<{
-    type: 'date' | 'time' | 'datetime-local',
-    validRange?: [Date | undefined, Date | undefined],
-    dateFormat?: DateFormat
-  }>();
+const props = defineProps<{
+  type: 'date' | 'time' | 'datetime',
+  validRange?: [Date | undefined, Date | undefined],
+  dateFormat?: string,
+  monthsOnly?: boolean,
+  placeholder?: string,
+  invalid?: boolean
+}>();
 
-  const selectedDate = ref();
-  const selectedMonth = ref(new Date().getMonth());
-  const selectedYear = ref(new Date().getFullYear());
-  const selectedYearRange = ref([Math.floor(new Date().getFullYear() /10) * 10, (Math.floor(new Date().getFullYear() /10) * 10) + 10 ]);
-  const selectedStage = ref('d');
+const selectedDate = ref();
 
-  const validRange = ref(props.validRange);
+const selectedMonth = ref(new Date().getMonth());
+const selectedYear = ref(new Date().getFullYear());
 
-  const showDropdown = ref(false);
+const selectedHorus = ref(0);
+const selectedMinutes = ref(0);
 
-  const dayPicked = (day: any) => {
-    selectedDate.value = new Date(day.year, day.month, day.number);
-    if(selectedDate.value.getMonth() !== selectedMonth.value){
-      selectedMonth.value = selectedDate.value.getMonth();
-      selectedYear.value = selectedDate.value.getFullYear();
-    }
+const selectedYearRange = ref([Math.floor(new Date().getFullYear() / 10) * 10, (Math.floor(new Date().getFullYear() / 10) * 10) + 10]);
+const selectedStage = ref(props.monthsOnly ? 'm' : 'd');
+
+const validRange = ref(props.validRange);
+const showDropdown = ref(false);
+const dropdownRef = ref();
+
+const emit = defineEmits(['dayClicked']);
+
+/**
+ * Open the dropdown and focus it
+ */
+const openPicker = () => {
+  showDropdown.value = true;
+  /*setTimeout(() => {
+    dropdownRef.value.focus();
+  }, 100);*/
+}
+
+/**
+ * Close the dropdown
+ */
+const closePicker = () => {
+  showDropdown.value = false;
+}
+
+/**
+ * Event on day picked
+ * @param day
+ */
+const dayPicked = (day: any) => {
+  selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
+  if (selectedDate.value.getMonth() !== selectedMonth.value) {
+    selectedMonth.value = selectedDate.value.getMonth();
+    selectedYear.value = selectedDate.value.getFullYear();
   }
+  emit('dayClicked', selectedDate.value);
+}
 
-  const changeMonth = (val: number) => {
-    if(selectedMonth.value + val > 11){
-      selectedMonth.value = 0;
-      selectedYear.value += 1;
-    }
-    else if(selectedMonth.value + val < 0) {
-      selectedMonth.value = 11
-      selectedYear.value -= 1;
-    }
-    else selectedMonth.value += val;
+/**
+ * Render for the input value
+ */
+const inputValue = computed(() => {
+  if(props.monthsOnly){
+    return monthsLib[selectedMonth.value] + ' ' + selectedYear.value;
   }
+  return selectedDate.value ? formattedDate(selectedDate.value, props.dateFormat ?? 'DD-MM-YYYY') : '';
+})
 
-  const changeYear = (val: number) => {
-    selectedYear.value += val;
-  }
+/**
+ * Changes the month by the given value
+ * @param val
+ */
+const changeMonth = (val: number) => {
+  if (selectedMonth.value + val > 11) {
+    selectedMonth.value = 0;
+    selectedYear.value += 1;
+  } else if (selectedMonth.value + val < 0) {
+    selectedMonth.value = 11
+    selectedYear.value -= 1;
+  } else selectedMonth.value += val;
+}
 
-  const changeYearRange = (val: number) => {
-    selectedYearRange.value = [selectedYearRange.value[0] + val, selectedYearRange.value[1] + val];
-  }
-  const onMonthChange = (month) => {
-    selectedMonth.value = month;
-    selectedStage.value = 'd';
-  }
+/**
+ * Changes the year by the given value
+ * @param val
+ */
+const changeYear = (val: number) => {
+  selectedYear.value += val;
+}
 
-  const onYearChange = (year) => {
+/**
+ * Changes the year range by the given value
+ * @param val
+ */
+const changeYearRange = (val: number) => {
+  selectedYearRange.value = [selectedYearRange.value[0] + val, selectedYearRange.value[1] + val];
+}
+/**
+ * Changes the month by another component
+ * @param month
+ */
+const onMonthChange = (month: number) => {
+  selectedMonth.value = month;
+  if(props.monthsOnly){
+    showDropdown.value = false;
+    return;
+  }
+  selectedStage.value = 'd';
+}
+
+/**
+ * Changes the year by another component
+ * @param year
+ */
+const onYearChange = (year: number) => {
+  selectedYear.value = year;
+  selectedStage.value = 'm';
+}
+
+const onMinutesChange = (minutes: number) => {
+  selectedMinutes.value = minutes;
+  selectedDate.value ? selectedDate.value.setMinutes(minutes) : null;
+}
+
+const onHoursChange = (hours: number) => {
+  selectedHorus.value = hours;
+  selectedDate.value ? selectedDate.value.setHours(hours) : null;
+}
+
+/**
+ * Set the date
+ * @param date
+ */
+const setDate = (date: Date) => {
+  selectedDate.value = date;
+}
+
+/**
+ * Set the valid range
+ * @param range
+ */
+const setValidRange = (range: [Date | undefined, Date | undefined]) => {
+  validRange.value = range;
+}
+
+/**
+ * Get the date
+ */
+const getDate = () => {
+  return props.monthsOnly ? new Date(selectedYear.value, selectedMonth.value, 1) : selectedDate.value;
+}
+
+/**
+ * Set the month
+ * @param monthIndex
+ * @param year
+ */
+const setMonth = (monthIndex : number, year: number) => {
+  if(props.monthsOnly){
+    selectedMonth.value = monthIndex;
     selectedYear.value = year;
-    selectedStage.value = 'm';
   }
+}
 
-  const inputWidth = computed(() => {
-    switch (props.type) {
-      case 'date':
-        return 'w-36';
-      case 'time':
-        return 'w-24';
-      case 'datetime-local':
-        return 'w-48';
-    }
-  });
+/**
+ * Get the style for the day
+ * @param day
+ */
+const inputWidth = computed(() => {
+  switch (props.type) {
+    case 'date':
+      return 'w-44';
+    case 'time':
+      return 'w-24';
+    case 'datetime':
+      return 'w-48';
+  }
+});
+
+
+defineExpose({ setDate, setValidRange, getDate, setMonth, openPicker, closePicker });
 </script>
 
 <style scoped>
-  .datepicker-input::-webkit-calendar-picker-indicator {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    opacity: 0;
-  }
 
-  .dropdown{
-    z-index: 999;
-  }
+
+.dropdown {
+  z-index: 999;
+}
 
 </style>

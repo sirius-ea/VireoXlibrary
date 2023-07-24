@@ -23,7 +23,7 @@
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 
   const props = defineProps<{
-    yearRange: number[2],
+    yearRange: number[],
   }>();
 
 

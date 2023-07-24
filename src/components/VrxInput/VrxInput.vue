@@ -13,6 +13,7 @@
           :placeholder="placeholder"
           :disabled="disabled"
           :value="modelValue"
+          :readonly="readonly"
           @input="updateValue"
           class="vrx-input text-sm rounded-lg p-2.5 block w-full"
           :class="style.input"
@@ -41,6 +42,7 @@ const props = withDefaults(defineProps<{
   invalid?: boolean,
   icon?: IconLibraryType,
   height?: number,
+  readonly?: boolean
 }>(),{
   type: 'text',
   placeholder: 'Insert Text'
