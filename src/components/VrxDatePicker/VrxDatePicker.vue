@@ -1,5 +1,9 @@
 <template>
-  <div class="relative text-gray-900 dark:text-white" :class="inputWidth">
+  <div
+      class="relative text-gray-900 dark:text-white"
+      :class="inputWidth"
+      v-click-outside="closePicker"
+  >
     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
       <VrxIcon :icon="type === 'time' ? 'clock' : 'calendar'" size="5"/>
     </div>
@@ -8,7 +12,7 @@
         icon="calendar"
         type="text" :placeholder="props.placeholder ?? 'Select a date'"
         @click="openPicker"
-        readonly="true"
+        :readonly="true"
         :invalid="props.invalid"
     />
     <div
@@ -30,16 +34,15 @@
           @change-minute="onMinutesChange"
           @change-hour="onHoursChange"
       />
-
       <MonthPick
-          v-else-if="selectedStage === 'm'"
+          v-if="selectedStage === 'm' || props.monthsOnly"
           :year="selectedYear"
           @change-month="onMonthChange"
           @change-year="changeYear"
           @change-stage="(stage) => selectedStage = stage"
       />
       <YearPick
-          v-else-if="selectedStage === 'y'"
+          v-if="selectedStage === 'y'"
           :year-range="selectedYearRange"
           @change-year="onYearChange"
           @change-year-range="changeYearRange"
@@ -92,6 +95,20 @@ const openPicker = () => {
   /*setTimeout(() => {
     dropdownRef.value.focus();
   }, 100);*/
+}
+
+const vClickOutside = {
+  mounted(el : any, binding : any) {
+    el.clickOutsideEvent = function(event : any) {
+      if (!(el === event.target || el.contains(event.target))) {
+        binding.value(event, el);
+      }
+    };
+    document.body.addEventListener('click', el.clickOutsideEvent);
+  },
+  unmounted(el : any) {
+    document.body.removeEventListener('click', el.clickOutsideEvent);
+  }
 }
 
 /**
@@ -227,11 +244,11 @@ const setMonth = (monthIndex : number, year: number) => {
 const inputWidth = computed(() => {
   switch (props.type) {
     case 'date':
-      return 'w-44';
+      return 'w-48';
     case 'time':
       return 'w-24';
     case 'datetime':
-      return 'w-48';
+      return 'w-56';
   }
 });
 

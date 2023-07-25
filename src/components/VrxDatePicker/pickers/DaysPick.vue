@@ -36,7 +36,11 @@
     </tr>
     </tbody>
   </table>
-  <TimePick v-if="timeEnabled" @change-hour="(h) => emit('changeHour',h)" @change-minute="(m) => emit('changeMinute', m)"/>
+  <TimePick
+      v-if="timeEnabled"
+      @change-hour="(h) => emit('changeHour',h)"
+      @change-minute="(m) => emit('changeMinute', m)"
+  />
 </template>
 
 <script setup lang="ts">

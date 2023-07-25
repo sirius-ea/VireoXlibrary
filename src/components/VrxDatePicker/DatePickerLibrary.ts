@@ -96,13 +96,14 @@ export const dateFormatLib: string[] = [
 export function formattedDate (date: Date, format: string): string {
     const map: Record<string, string> = {
         'MM': String(date.getMonth() + 1).length === 1 ? `0${date.getMonth() + 1}` : String(date.getMonth() + 1),
+        'Month': monthsLib[date.getMonth()],
         'DD': String(date.getDate()).length === 1 ? `0${date.getDate()}` : String(date.getDate()),
         'YYYY': String(date.getFullYear()),
         'HH': String(date.getHours()).length === 1 ? `0${date.getHours()}` : String(date.getHours()),
         'mm': String(date.getMinutes()).length === 1 ? `0${date.getMinutes()}` : String(date.getMinutes()),
     };
 
-    return format.replace(/MM|DD|YYYY|HH|mm/gi, (matched) => {
+    return format.replace(/MM|Month|DD|YYYY|HH|mm/gi, (matched) => {
         return map[matched];
     });
 }
