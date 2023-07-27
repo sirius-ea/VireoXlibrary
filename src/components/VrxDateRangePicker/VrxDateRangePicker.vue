@@ -41,16 +41,19 @@ const props = defineProps<{
   placeholderFrom?: string;
   placeholderTo?: string;
   width?: number;
+  invalid?: boolean;
 }>();
 
-const invalid = computed(() => {
-  if(picker1.value && picker2.value){
-    if(picker1.value.getDate() && picker2.value.getDate()) {
-      return picker1.value.getDate().getTime() > picker2.value.getDate().getTime();
-    }
-  }
-  return false;
-})
+const getDates = () => {
+  return [picker1.value.getDate(), picker2.value.getDate()];
+}
+
+const setDates = (dates: [Date | undefined, Date | undefined]) => {
+  picker1.value.setDate(dates[0]);
+  picker2.value.setDate(dates[1]);
+}
+
+defineExpose({ getDates, setDates });
 
 
 </script>

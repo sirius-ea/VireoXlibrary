@@ -67,7 +67,7 @@ const props = defineProps<{
   dateFormat?: string,
   monthsOnly?: boolean,
   placeholder?: string,
-  invalid?: boolean
+  invalid?: boolean,
 }>();
 
 const selectedDate = ref();

@@ -134,15 +134,22 @@ const Template: DateRangePickerStories = {
             };
         },
         methods: {
+            setDates(dates: Date[]){
+                this.$refs.myRef.setDates(dates);
+            },
+            getDates(){
+                alert(this.$refs.myRef.getDates());
+            },
         },
 
         template: `
           <div style="height: 400px" class="flex flex-col">
           <div style="height: 90%">
-            <VrxDateRangePicker  :type="args.type" v-bind="args"/>
+            <VrxDateRangePicker ref="myRef" :type="args.type" v-bind="args"/>
           </div>
           <div class="bottom-0 flex flex-row gap-2">
-            
+            <VrxButton color='default' size="sm" @click="setDates([new Date(), (new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 4)))])">Set dates</VrxButton>
+            <VrxButton color='default' size="sm" @click="getDates()">Get dates</VrxButton>
           </div>
           </div>`
     }),
