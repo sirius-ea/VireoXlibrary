@@ -31,7 +31,7 @@ import {computed, ref} from "vue";
   }
 
 const style = computed(() => {
-  return toggleStyle(props.variant, props.size);
+  return toggleStyle(props.variant, props.size, props.disabled);
 })
 </script>
 
