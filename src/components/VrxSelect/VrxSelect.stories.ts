@@ -15,7 +15,7 @@ const meta : Meta<typeof VrxSelect> = {
             table: {
                 category: 'props',
                 type: {
-                    summary: '{value: string, label: string}[]',
+                    summary: '{value: string, label: string, icon?: IconLibraryType}[]',
                 },
                 defaultValue: {
                     summary: '[]',
@@ -134,6 +134,30 @@ const meta : Meta<typeof VrxSelect> = {
                 }
             }
         },
+        searchable: {
+            description: 'enable search in select options',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                }
+            }
+        },
+        searchPlaceholder: {
+            description: 'search input placeholder',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                }
+            }
+        },
         variant: {
             description: 'color variant (only on multi-select)',
             control: {
@@ -158,8 +182,8 @@ export default meta;
 
 type SelectStories = StoryObj<typeof VrxSelect>
 const data : Array<SelectItemInterface> = [
-    { value: '1', label: 'Option 1' },
-    { value: '2', label: 'Option 2' },
+    { value: '1', label: 'Option 1', icon: 'mail' },
+    { value: '2', label: 'Option 2', icon: 'palette'},
     { value: '3', label: 'Option 3' },
 ]
 const Template : SelectStories = {
@@ -172,7 +196,7 @@ const Template : SelectStories = {
         },
 
         template: `
-          <div style="height: 200px">
+          <div style="height: 300px">
               <VrxSelect
                   v-model="args.modelValue"
                   :list-data="args.listData"
@@ -201,6 +225,17 @@ export const Labeled: SelectStories = {
         ...Template.args,
         modelValue: [],
         label: 'Select an option',
+    }
+};
+
+export const Searchable: SelectStories = {
+    ...Template,
+    args: {
+        ...Template.args,
+        modelValue: [],
+        label: 'Select an option',
+        searchable: true,
+        searchPlaceholder: 'Search for an option',
     }
 };
 
