@@ -93,7 +93,6 @@ export function toggleStyle(variant : ComponentVariant, size: 'sm' | 'md' | 'lg'
         'green' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-green-600",
         'purple' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-purple-600",
         'yellow' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400",
-        'disabled': "bg-gray-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-gray-300"
     }
 
     let toggleSizes = {
@@ -104,7 +103,8 @@ export function toggleStyle(variant : ComponentVariant, size: 'sm' | 'md' | 'lg'
     let label : string = disabled ? "text-gray-300 dark:text-gray-300" : "text-gray-900 dark:text-white";
 
     // @ts-ignore
-    const variantSelected = disabled ? toggleColor['disabled'] : toggleColor[variant] ?? toggleColor['default'];
+    let variantSelected = toggleColor[variant] ?? toggleColor['default'];
+    disabled ? variantSelected += ' disabled-toggle' : null;
 
     // @ts-ignore
     const sizeSelected = toggleSizes[size] ?? toggleSizes['md'];

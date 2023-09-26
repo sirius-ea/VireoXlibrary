@@ -36,5 +36,8 @@ const style = computed(() => {
 </script>
 
 <style scoped>
-
+  .disabled-toggle{
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 </style>
