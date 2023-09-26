@@ -1,0 +1,107 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxDatePicker/About" />
+
+# VireoxDatePicker
+
+VireoxDatePicker is a "calendar" component for date selection.
+The component exclusively utilizes the Date class in Javascript for date handling.
+
+To use it, import it as follows:
+```js
+import {VrxDatePicker} from 'vireoxlibrary';
+
+<VrxDatePicker type="date" />
+```
+
+## 📜 API
+<table style={{width: '100%'}}>
+    <thead>
+        <tr>
+            <td>
+                <b>Method</b>
+            </td>
+            <td>
+                <b>Params</b>
+            </td>
+            <td>
+                <b>Return</b>
+            </td>
+            <td>
+                <b>Description</b>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>getDate</td>
+            <td>-</td>
+            <td>`Date`</td>
+            <td>Returns the selected Date</td>
+        </tr>
+        <tr>
+            <td>closePicker</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Close the picker dropdown</td>
+        </tr>
+        <tr>
+            <td>openPicker</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Open the picker dropdown</td>
+        </tr>
+        <tr>
+            <td>setDate</td>
+            <td>`date: Date`</td>
+            <td>-</td>
+            <td>Set the passed Date as selected</td>
+        </tr>
+        <tr>
+            <td>setMonth</td>
+            <td>`monthIndex : number, year: number `</td>
+            <td>-</td>
+            <td>If 'monthsOnly' props is enabled, allows the user to set a specific month of the specified year</td>
+        </tr>
+        <tr>
+            <td>setValidRange</td>
+            <td>`validRange: [Date | undefined, Date | undefined]`</td>
+            <td>-</td>
+            <td>Set the interval between the user can select a date</td>
+        </tr>
+    </tbody>
+</table>
+> When the ```monthsOnly``` prop is enabled, using the ```setMonth()``` method will automatically set the date to the 1st day of that month.
+<br/>
+
+## 🪄 Custom Events
+The following custom events are emitted by the component and can be used with ```@event-name="..."```:
+<table style={{width: '100%'}}>
+    <thead>
+    <tr>
+        <td>
+            <b>Event</b>
+        </td>
+        <td>
+            <b>Params</b>
+        </td>
+        <td>
+            <b>Return</b>
+        </td>
+        <td>
+            <b>Description</b>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@day-clicked</td>
+        <td>-</td>
+        <td>`date: Date`</td>
+        <td>Returns the selected date</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+
+For API's details and configuration please read the [documentation](./?path=/docs/vrxdatepicker--docs)

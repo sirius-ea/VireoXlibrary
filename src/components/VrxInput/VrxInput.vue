@@ -3,7 +3,7 @@
     <label data-testid="vrx-input-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
       {{ label }}
     </label>
-    <div class="relative mb-2">
+    <div class="relative">
       <div v-if="icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         <VrxIcon :icon="icon" :color="style.icon" size="5"/>
       </div>
@@ -13,6 +13,7 @@
           :placeholder="placeholder"
           :disabled="disabled"
           :value="modelValue"
+          :readonly="readonly"
           @input="updateValue"
           class="vrx-input text-sm rounded-lg p-2.5 block w-full"
           :class="style.input"
@@ -41,6 +42,7 @@ const props = withDefaults(defineProps<{
   invalid?: boolean,
   icon?: IconLibraryType,
   height?: number,
+  readonly?: boolean
 }>(),{
   type: 'text',
   placeholder: 'Insert Text'
