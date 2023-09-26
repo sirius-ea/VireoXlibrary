@@ -3,7 +3,7 @@
       data-testid="vrx-select"
       class="relative w-full"
       tabindex="0"
-      @focusout="onFocusOut"
+      v-click-outside="onFocusOut"
       @focus="!disabled ? showDropdown = true : null"
   >
     <label data-testid="vrx-select-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
@@ -129,9 +129,24 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
 
   const searchFilter = (event: any) => {
     if(event){
-      listDataCopy.value = props.listData.filter((elem) => elem.label.includes(event.target.value));
+      listDataCopy.value = props.listData.filter((elem) => elem.label.toLowerCase().includes(event.target.value.toLowerCase()));
     }
   }
+
+  const vClickOutside = {
+    mounted(el : any, binding : any) {
+      el.clickOutsideEvent = function(event : any) {
+        if (!(el === event.target || el.contains(event.target))) {
+          binding.value(event, el);
+        }
+      };
+      document.body.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el : any) {
+      document.body.removeEventListener('click', el.clickOutsideEvent);
+    }
+  }
+
   const onFocusOut = () => {
     setTimeout(() => {
       listDataCopy.value = props.listData;

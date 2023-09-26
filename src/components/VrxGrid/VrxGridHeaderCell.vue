@@ -34,6 +34,7 @@
           :height="30"
           :on-select="(val : any) => headerModel.filterByValue(filters as GridFilter[], val.value)"
           :on-clear="() => headerModel.filterByValue(filters as GridFilter[], '')"
+          :searchable="true"
       />
     </th>
 </template>
