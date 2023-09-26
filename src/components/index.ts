@@ -5,4 +5,5 @@ export { default as VrxSelect } from './VrxSelect/VrxSelect.vue';
 export { default as VrxGrid } from './VrxGrid/VrxGrid.vue';
 export { default as VrxNavbar } from './VrxNavbar/VrxNavbar.vue';
 export { default as VrxToggle } from './VrxToggle/VrxToggle.vue';
+export { default as VrxTree } from './VrxTree/VrxTree.vue';
 
