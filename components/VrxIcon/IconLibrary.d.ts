@@ -62,6 +62,7 @@ export declare const iconLibrary: {
     'sort-desc': string;
     table: string;
     thermometer: string;
+    timer: string;
     turbine: string;
     'turbine-alert': string;
     'turbine-ok': string;
