@@ -1,10 +1,10 @@
 <template>
-  <div class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5' ">
-    <div class="tree-element hover:bg-gray-100 rounded">
-      <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5"  @click="open = !open"/>
+  <div class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'">
+    <div class="tree-element hover:bg-gray-100 rounded" @click="clickHandle">
+      <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5"/>
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input v-if="selectable" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" v-model="node.selected" @click="checkBoxClick" />
-      <span @click="open = !open">{{ props.node.text }}</span>
+      <span>{{ props.node.text }}</span>
     </div>
 
     <!-- CHILDREN RECURSIVE -->
@@ -32,6 +32,17 @@
   }>();
 
   const emit = defineEmits(['checkClicked']);
+
+  /**
+   * Depending on the clicked element, open/close the tree or select/unselect the item
+   * @param event
+   */
+  const clickHandle = (event: MouseEvent) => {
+    // @ts-ignore
+    if(event.target.nodeName !== "INPUT"){
+      open.value = !open.value;
+    }
+  }
 
   /**
    * Select/unselect the clicked item and all his children

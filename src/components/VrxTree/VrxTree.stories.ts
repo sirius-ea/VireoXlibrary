@@ -42,7 +42,7 @@ const Template : TreeStories = {
         },
 
         template: `
-          <div style="height: 2000px">
+          <div style="height: 200px; width: 500px">
               <VrxTree :check-nodes="true" :data="args.data" :selectable="true"/>
           </div>
         `
