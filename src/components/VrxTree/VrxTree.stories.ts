@@ -13,18 +13,44 @@ const meta : Meta<typeof VrxTree> = {
 export default meta;
 const data = [
     {
-        text: "ITALY",
+        text: "COUNTRY",
+        icon: "map-pin",
+        selected: false,
+        children: Array.from(Array(10).keys()).map((i) => ({
+            text: `Asset 1.${i}`,
+            icon: "wind",
+            selected: false,
+            children: Array.from(Array(10).keys()).map((x) => ({
+                text: `Plant 1.${i}.${x}`,
+                icon: "wind",
+                selected: false,
+                children: Array.from(Array(25).keys()).map((y) => ({
+                    text: `Device 1.${i}.${x}.${y}`,
+                    icon: "turbine",
+                    selected: false,
+                    children: []
+                }))
+            }))
+        }))
+    },
+    {
+        text: "COUNTRY",
         icon: "map-pin",
         selected: false,
         children: Array.from(Array(50).keys()).map((i) => ({
-            text: `Plant 2.2.${i}`,
+            text: `Asset 2.${i}`,
             icon: "sun",
             selected: false,
-            children: Array.from(Array(50).keys()).map((i) => ({
-                text: `Plant 2.2.${i}`,
+            children: Array.from(Array(50).keys()).map((x) => ({
+                text: `Plant 2.${i}.${x}`,
                 icon: "sun",
                 selected: false,
-                children: []
+                children: Array.from(Array(50).keys()).map((y) => ({
+                    text: `Device 2.${i}.${x}.${y}`,
+                    icon: "solar-panel",
+                    selected: false,
+                    children: []
+                }))
             }))
         }))
     },
