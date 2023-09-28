@@ -71,7 +71,7 @@
   const allChildrenSelected = (node: VrxTreeNode) => {
    let allChecked = true;
     node.children.forEach((child: VrxTreeNode) => {
-      allChecked = child.selected && allChecked && allChildrenSelected(child);
+      allChecked = child.selected && allChecked;
     });
     return allChecked;
   }
