@@ -17,7 +17,7 @@ export declare function selectStyles(disabled: boolean, invalid: boolean, varian
     dropdownItem: string;
     placeholder: string;
 };
-export declare function toggleStyle(variant: ComponentVariant, size: 'sm' | 'md' | 'lg'): {
+export declare function toggleStyle(variant: ComponentVariant, size: 'sm' | 'md' | 'lg', disabled: boolean): {
     toggle: string;
     label: string;
 };

@@ -61,6 +61,15 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         type: __PropType<(() => void) | undefined>;
         required: false;
     };
+    searchable: {
+        type: __PropType<boolean | undefined>;
+        required: false;
+    };
+    searchPlaceholder: {
+        type: __PropType<string | undefined>;
+        required: false;
+        default: string;
+    };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     label: {
         type: __PropType<string | undefined>;
@@ -121,6 +130,15 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         type: __PropType<(() => void) | undefined>;
         required: false;
     };
+    searchable: {
+        type: __PropType<boolean | undefined>;
+        required: false;
+    };
+    searchPlaceholder: {
+        type: __PropType<string | undefined>;
+        required: false;
+        default: string;
+    };
 }>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
@@ -131,5 +149,6 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     invalid: boolean | undefined;
     variant: ComponentVariant | undefined;
     multiselect: boolean | undefined;
+    searchPlaceholder: string | undefined;
 }, {}>;
 export default _sfc_main;
