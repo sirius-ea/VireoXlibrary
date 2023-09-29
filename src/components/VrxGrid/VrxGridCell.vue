@@ -18,8 +18,7 @@
 
     <!-- BOOLEAN -->
     <span v-else-if="cell.type === 'boolean'">
-      <input v-if="cell.editable" type="checkbox" v-model="row.data[cell.id]" class="edit-input" />
-      <input v-else type="checkbox" v-model="row.data[cell.id]" class="edit-input" onclick="return false" />
+      <input :disabled="!cell.editable" type="checkbox" v-model="row.data[cell.id]" class="edit-input" />
     </span>
 
     <!-- COMPONENT -->
@@ -37,6 +36,7 @@
   import {ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
   import colors from "tailwindcss/colors";
+  import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 
 
   const props = defineProps<{
@@ -51,6 +51,7 @@
     let style = props.cell.align ? textStyle[props.cell.align as keyof typeof textStyle] : '';
     style += props.cell.editable && editMode.value ? ' editing' : '';
     style += props.cell.type === 'static' ? ' py-2' : ' py-4';
+    props.cell.type === 'boolean' ? style += ' flex justify-center' : '';
     return style;
   }
 

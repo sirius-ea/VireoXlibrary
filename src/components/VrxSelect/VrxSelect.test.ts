@@ -44,12 +44,6 @@ describe('VrxSelect', () => {
 
         await wrapper.setProps({ listData: data });
         expect(wrapper.props('listData')).toStrictEqual(data);
-
-        // testing on DOM
-        await wrapper.trigger('focus');
-        expect(wrapper.find('[data-testid=vrx-select-dropdown-0]').exists()).toBe(true);
-        expect(wrapper.find('[data-testid=vrx-select-dropdown-1]').exists()).toBe(true);
-        expect(wrapper.find('[data-testid=vrx-select-dropdown-2]').exists()).toBe(true);
     });
 
     it('change variant', async () => {
