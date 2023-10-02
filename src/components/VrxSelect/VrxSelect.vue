@@ -88,6 +88,8 @@ import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {selectStyles, ComponentVariant} from "@/components/styles.ts";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 import {SelectItemInterface} from "./SelectItemInterface.ts";
+import {vClickOutside} from "@/utils.ts";
+
 
   const props = withDefaults(defineProps<{
     label?: string,
@@ -130,20 +132,6 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
   const searchFilter = (event: any) => {
     if(event){
       listDataCopy.value = props.listData.filter((elem) => elem.label.toLowerCase().includes(event.target.value.toLowerCase()));
-    }
-  }
-
-  const vClickOutside = {
-    mounted(el : any, binding : any) {
-      el.clickOutsideEvent = function(event : any) {
-        if (!(el === event.target || el.contains(event.target))) {
-          binding.value(event, el);
-        }
-      };
-      document.body.addEventListener('click', el.clickOutsideEvent);
-    },
-    unmounted(el : any) {
-      document.body.removeEventListener('click', el.clickOutsideEvent);
     }
   }
 
