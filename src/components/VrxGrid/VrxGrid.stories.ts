@@ -1,11 +1,7 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
-import {GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
 import {VrxButton, VrxInput} from "@/components";
-import {reactive, ref} from "vue";
 import {Row} from "@/components/VrxGrid/Models/Row.ts";
-import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
-import VrxButtonsGroup from "@/components/VrxButtonsGroup/VrxButtonsGroup.vue";
 
 const meta : Meta<typeof VrxGrid> = {
     title: 'VrxGrid',
@@ -20,63 +16,17 @@ export default meta;
 
 type GridStories = StoryObj<typeof VrxGrid>;
 
-const gridData = [
-    {
-        id: "1",
-        data:{
-            active: true,
-            name: "Mario Rossi",
-            serialNumber: 1,
-            color: "Red",
-            model: "Fiat",
-            plate: "AA123AA"
-        }
-    },
-    {
-        id: "2",
-        data:{
-            active: true,
-            name: 'Pino Verdi',
-            serialNumber: 2,
-            color: "Black",
-            model: "Audi",
-            plate: "AA123BB"
-        }
-    },
-    {
-        id: "3",
-        data:{
-            active: false,
-            name: 'Ciro Bianchi',
-            serialNumber: 3,
-            color: "Green",
-            model: "BMW",
-            plate: "AA123CC"
-        }
-    },
-    {
-        id: "4",
-        data:{
-            active: false,
-            name: 'Luisa Neri',
-            serialNumber: 4,
-            color: "Gray",
-            model: "Renault",
-            plate: "AA123DD"
-        }
-    },
-    {
-        id: "5",
-        data:{
-            active: false,
-            name: 'Giovanni Gialli',
-            serialNumber: 5,
-            color: "Gray",
-            model: "Toyota",
-            plate: "BC123EE"
-        }
+const gridData = Array.from(Array(10000).keys()).map((i) => ({
+    id: `${i}`,
+    data: {
+        active: true,
+        name: `Mario Rossi ${i}`,
+        serialNumber: i,
+        color: "Red",
+        model: "Fiat",
+        plate: "AA123AA"
     }
-];
+}));
 
 const Template: GridStories = {
     render: (args) => ({

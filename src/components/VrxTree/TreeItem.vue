@@ -1,15 +1,16 @@
 <template>
   <div class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'">
-    <div class="tree-element hover:bg-gray-100 rounded" @click="clickHandle">
+    <div class="tree-element" @click="clickHandle">
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5"/>
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
-      <input v-if="selectable" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" v-model="node.selected" @click="checkBoxClick" />
+      <input v-if="selectable" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" v-model="checkValue" @click="checkBoxClick" />
       <span>{{ props.node.text }}</span>
     </div>
 
     <!-- CHILDREN RECURSIVE -->
     <TreeItem
-        v-if="node.children.length > 0 && open"
+        ref="childrenRef"
+        v-show="node.children.length > 0 && open"
         v-for="child in node.children"
         :node="child" :key="child.text"
         :selectable="selectable"
@@ -22,7 +23,10 @@
 <script setup lang="ts">
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
-  import { ref } from "vue";
+  import {nextTick, ref} from "vue";
+  import {forceReRender} from "@storybook/vue3";
+
+  const childrenRef = ref();
 
   const open = ref(false);
   const props = defineProps<{
@@ -31,6 +35,7 @@
     isParent?: boolean
   }>();
 
+  const checkValue = ref(false);
   const emit = defineEmits(['checkClicked']);
 
   /**
@@ -49,9 +54,11 @@
    * Emits the event for parent component
    */
   const checkBoxClick = () => {
-    props.node.selected = !props.node.selected;
-    selectChildren(props.node);
-    emit('checkClicked', props.node.selected);
+    checkValue.value = !checkValue.value;
+    if(childrenRef.value){
+      selectAllChildren(checkValue.value);
+    }
+    emit('checkClicked', checkValue.value);
   }
 
   /**
@@ -59,33 +66,52 @@
    * Emit
    */
   const childCheckClicked = () => {
-    props.node.selected = allChildrenSelected(props.node);
+    checkValue.value = allChildrenSelected(childrenRef);
     emit('checkClicked', props.node.selected);
   }
 
   /**
    * Checks if all children are selected
-   * @param node
    * @returns {boolean}
+   * @param childrenRef
    */
-  const allChildrenSelected = (node: VrxTreeNode) => {
+  const allChildrenSelected = (childrenRef: any) => {
    let allChecked = true;
-    node.children.forEach((child: VrxTreeNode) => {
-      allChecked = child.selected && allChecked;
+    childrenRef.value.forEach((child: any) => {
+      allChecked = child.isSelected() && allChecked;
     });
     return allChecked;
   }
 
-  /**
-   * Select/unselect all children recursively
-   * @param node
-   */
-  const selectChildren = (node: VrxTreeNode) => {
-    node.children.forEach((child: VrxTreeNode) => {
-      child.selected = props.node.selected;
-      selectChildren(child);
-    });
+
+  const selectAllChildren = (value: boolean) => {
+    if(childrenRef.value){
+      childrenRef.value.forEach((child: any) => {
+        child.setValue(value);
+        child.selectAllChildren(value);
+      });
+    }
   }
+
+  const setValue = (value: boolean) => {
+    checkValue.value = value;
+  }
+
+  const getSelectValue = () => {
+    return {val: checkValue.value, text: props.node.text};
+  }
+
+  const isSelected = () => {
+    return checkValue.value;
+  }
+
+
+  defineExpose({
+    setValue,
+    selectAllChildren,
+    getSelectValue,
+    isSelected
+  });
 </script>
 
 
