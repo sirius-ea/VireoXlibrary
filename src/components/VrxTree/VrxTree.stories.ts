@@ -15,6 +15,7 @@ const data = [
     {
         text: "COUNTRY",
         icon: "map-pin",
+        open: true,
         id: "id" + Math.random().toString(16).slice(2),
         selected: false,
         children: Array.from(Array(10).keys()).map((i) => ({
@@ -51,7 +52,7 @@ const Template : TreeStories = {
         },
 
         template: `
-          <div style="height: 200px; width: 500px">
+          <div style="height: 200px; width: 300px">
               <VrxTree :check-nodes="true" :data="args.data" :selectable="true"/>
           </div>
         `

@@ -1,6 +1,6 @@
 <template>
   <div class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'">
-    <div class="tree-element" @click="clickHandle">
+    <div class="tree-element hover:bg-gray-100 dark:hover:bg-gray-800 rounded-s" @click="clickHandle">
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5"/>
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input v-if="selectable" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" v-model="checkValue" @click="selectHandle" />
@@ -29,7 +29,6 @@
   const childrenRef = ref();
   const selectedChildren: Ref<any[]> = ref([]);
 
-  const open = ref(false);
   const props = defineProps<{
     node: VrxTreeNode,
     selectable: boolean,
@@ -37,6 +36,7 @@
     selected?: boolean
   }>();
 
+  const open = ref(props.node.open);
   const checkValue : Ref<boolean>= ref(props.selected);
   const emit = defineEmits(['checkClicked']);
 
@@ -97,14 +97,9 @@
     }
   }
 
-  const getNode = () => {
-    return JSON.stringify(props.node);
-  }
-
   defineExpose({
     setSelected,
     childSelected,
-    getNode,
     changeChildrenValues
   })
 

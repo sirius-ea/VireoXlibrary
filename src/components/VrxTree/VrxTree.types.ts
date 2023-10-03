@@ -3,5 +3,6 @@ export type VrxTreeNode = {
     text: string;
     icon?: string;
     selected: boolean;
+    open?: boolean;
     children: VrxTreeNode[];
 };
