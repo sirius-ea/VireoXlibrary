@@ -107,10 +107,6 @@
     return selectedChildren.value.length === props.node.children.length;
   }
 
-  const manageSelectedChildren= (child: VrxTreeNode) => {
-
-  }
-
   defineExpose({
     setSelected,
     childSelected,
