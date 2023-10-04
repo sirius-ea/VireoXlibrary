@@ -15,5 +15,5 @@ export default {
         app.component('VrxTree', VrxTree)
     }
 };
-export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxButtonsGroup, VrxGrid, VrxNavbar };
+export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxButtonsGroup, VrxGrid, VrxNavbar, VrxTree };
 
