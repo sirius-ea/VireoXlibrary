@@ -69,9 +69,19 @@
   }
 
   const childSelected = (child: VrxTreeNode) => {
-    manageSelectedChildren(child);
-    console.log(selectedChildren.value);
+    const foundRef = childrenRef.value.find((item: any) => item.getId() === child.id);
+    const foundList = selectedChildren.value.find((item: any) => item.id === child.id);
+
+    if(foundList){
+      selectedChildren.value.slice(selectedChildren.value.indexOf(foundList), 1);
+    } else {
+      if(foundRef && foundRef.allChildrenSelected()){
+        selectedChildren.value.push(child);
+      }
+    }
+
     selectedChildren.value.length === props.node.children.length ? checkValue.value = true : checkValue.value = false;
+    emit('checkClicked', props.node)
   }
 
   const setSelected = (value: boolean) => {
@@ -88,19 +98,25 @@
     })
   }
 
+  const getId = () => {
+    return props.node.id;
+  }
+
+  const allChildrenSelected = () => {
+    if(props.node.children.length === 0) return true;
+    return selectedChildren.value.length === props.node.children.length;
+  }
+
   const manageSelectedChildren= (child: VrxTreeNode) => {
-    const found = selectedChildren.value.find((item: VrxTreeNode) => item.id === child.id);
-    if(found){
-      selectedChildren.value.splice(selectedChildren.value.indexOf(child), 1);
-    } else {
-      selectedChildren.value.push(child);
-    }
+
   }
 
   defineExpose({
     setSelected,
     childSelected,
-    changeChildrenValues
+    changeChildrenValues,
+    getId,
+    allChildrenSelected,
   })
 
 </script>
