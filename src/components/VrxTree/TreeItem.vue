@@ -12,10 +12,15 @@
         ref="childrenRef"
         v-if="node.children.length > 0 && open"
         v-for="child in node.children"
-        :node="child" :key="child.text"
+        :node="child"
+        :key="child.id"
         :selectable="selectable"
         :selected="checkValue || selectedChildren.includes(child)"
-        @check-clicked="childSelected"
+        :selected-nodes="selectedNodes"
+        :manage-selected-nodes="manageSelectedNodes"
+        :add-node="addNode"
+        :remove-node="removeNode"
+        @check-clicked="handleChildClick"
     />
 
   </div>
@@ -24,7 +29,7 @@
 <script setup lang="ts">
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
-  import {nextTick, Ref, ref} from "vue";
+  import {nextTick, Ref, ref, watch} from "vue";
 
   const childrenRef = ref();
   const selectedChildren: Ref<any[]> = ref([]);
@@ -33,12 +38,21 @@
     node: VrxTreeNode,
     selectable: boolean,
     isParent?: boolean,
-    selected?: boolean
+    selected?: boolean,
+    selectedNodes: string[],
+    manageSelectedNodes: (data: string[]) => void
+    addNode: (nodeId: string) => void
+    removeNode: (nodeId: string) => void
   }>();
 
   const open = ref(props.node.open);
-  const checkValue : Ref<boolean>= ref(props.selected);
+  const checkValue : Ref<boolean>= ref(props.selectedNodes.includes(props.node.id));
+
   const emit = defineEmits(['checkClicked']);
+
+  watch(() => props.selectedNodes,(newValue) => {
+    checkValue.value = newValue.includes(props.node.id) || allChildrenSelected();
+  },{deep: true});
 
   const clickHandle = (event: MouseEvent) => {
     // @ts-ignore
@@ -51,69 +65,37 @@
     // SELECT THE CHECKBOX
     checkValue.value = !checkValue.value;
 
-    // SELECT THE CHILDREN
-    if(props.node.children.length > 0 && childrenRef.value){
-      if(!checkValue.value)
-        selectedChildren.value = [];
-      else{
-        props.node.children.forEach((child: VrxTreeNode) => {
-          selectedChildren.value.push(child);
-        });
-      }
-
-      changeChildrenValues();
+    const worker = new Worker(new URL('./TreeWorker.ts', import.meta.url));
+    worker.postMessage(JSON.stringify({node: props.node, value: checkValue.value, selectedNodes: props.selectedNodes}));
+    worker.onmessage = (e) => {
+      props.manageSelectedNodes(e.data);
     }
+    emit('checkClicked', props.node);
 
     // EMIT FOR PARENT
-    emit('checkClicked', props.node);
-  }
-
-  const childSelected = (child: VrxTreeNode) => {
-    const foundRef = childrenRef.value.find((item: any) => item.getId() === child.id);
-    const foundList = selectedChildren.value.find((item: any) => item.id === child.id);
-
-    if(foundList){
-      selectedChildren.value.slice(selectedChildren.value.indexOf(foundList), 1);
-    } else {
-      if(foundRef && foundRef.allChildrenSelected()){
-        selectedChildren.value.push(child);
-      }
-    }
-
-    selectedChildren.value.length === props.node.children.length ? checkValue.value = true : checkValue.value = false;
-    emit('checkClicked', props.node)
-  }
-
-  const setSelected = (value: boolean) => {
-    checkValue.value = value;
-  }
-
-  const changeChildrenValues = () => {
-    nextTick(() => {
-      if(!childrenRef.value) return;
-      childrenRef.value.forEach((child: any) => {
-        child.setSelected(checkValue.value);
-        child.changeChildrenValues();
-      });
-    })
-  }
-
-  const getId = () => {
-    return props.node.id;
+    //emit('checkClicked', props.node);
   }
 
   const allChildrenSelected = () => {
-    if(props.node.children.length === 0) return true;
-    return selectedChildren.value.length === props.node.children.length;
+    if(props.node.children.length === 0){
+      return false;
+    }
+    let result = true;
+    props.node.children.forEach((child) => {
+      console.log(child.id);
+      console.log(props.selectedNodes);
+    });
+    return result;
   }
 
-  defineExpose({
-    setSelected,
-    childSelected,
-    changeChildrenValues,
-    getId,
-    allChildrenSelected,
-  })
+  const handleChildClick = () => {
+    console.log(allChildrenSelected())
+    if(allChildrenSelected()){
+      props.addNode(props.node.id);
+    } else {
+      props.removeNode(props.node.id);
+    }
+  }
 
 </script>
 
