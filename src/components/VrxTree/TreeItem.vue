@@ -9,18 +9,20 @@
 
     <!-- CHILDREN RECURSIVE -->
     <TreeItem
-        ref="childrenRef"
         v-if="node.children.length > 0 && open"
         v-for="child in node.children"
         :node="child"
         :key="child.id"
         :selectable="selectable"
-        :selected="checkValue || selectedChildren.includes(child)"
+        :selected="checkValue"
         :selected-nodes="selectedNodes"
         :manage-selected-nodes="manageSelectedNodes"
         :add-node="addNode"
         :remove-node="removeNode"
-        @check-clicked="handleChildClick"
+        :parent-id="props.node.id"
+        :siblings="node.children"
+        :remove-node-by-id="removeNodeById"
+        @check-clicked="checkClicked"
     />
 
   </div>
@@ -31,9 +33,6 @@
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
   import {nextTick, Ref, ref, watch} from "vue";
 
-  const childrenRef = ref();
-  const selectedChildren: Ref<any[]> = ref([]);
-
   const props = defineProps<{
     node: VrxTreeNode,
     selectable: boolean,
@@ -42,17 +41,26 @@
     selectedNodes: string[],
     manageSelectedNodes: (data: string[]) => void
     addNode: (nodeId: string) => void
-    removeNode: (nodeId: string) => void
+    removeNodeById: (nodeId: string, isParent?: boolean) => void
+    removeNode: (node: VrxTreeNode) => void
+    parentId: string,
+    siblings: VrxTreeNode[]
   }>();
 
   const open = ref(props.node.open);
-  const checkValue : Ref<boolean>= ref(props.selectedNodes.includes(props.node.id));
+
+  const checkValue : Ref<boolean>= ref(props.selected || props.selectedNodes.includes(props.parentId));
 
   const emit = defineEmits(['checkClicked']);
 
   watch(() => props.selectedNodes,(newValue) => {
-    checkValue.value = newValue.includes(props.node.id) || allChildrenSelected();
-  },{deep: true});
+    checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId);
+    console.log(props.selectedNodes);
+  },{immediate: true, deep: true});
+
+  watch(() => props.selected,(newValue) => {
+    checkValue.value = newValue || props.selectedNodes.includes(props.node.id);
+  },{immediate: true, deep: true});
 
   const clickHandle = (event: MouseEvent) => {
     // @ts-ignore
@@ -62,40 +70,55 @@
   }
 
   const selectHandle = () => {
-    // SELECT THE CHECKBOX
+
     checkValue.value = !checkValue.value;
+    checkValue.value ? props.addNode(props.node.id) : props.removeNodeById(props.node.id, props.isParent);
 
-    const worker = new Worker(new URL('./TreeWorker.ts', import.meta.url));
-    worker.postMessage(JSON.stringify({node: props.node, value: checkValue.value, selectedNodes: props.selectedNodes}));
-    worker.onmessage = (e) => {
-      props.manageSelectedNodes(e.data);
+
+    checkParent();
+    checkSiblingsAndParent();
+
+    if(props.node.children.length > 0 && !props.isParent){
+      props.node.children.forEach((child) => {
+        props.removeNode(child);
+      })
     }
+
     emit('checkClicked', props.node);
-
-    // EMIT FOR PARENT
-    //emit('checkClicked', props.node);
   }
 
-  const allChildrenSelected = () => {
-    if(props.node.children.length === 0){
-      return false;
-    }
-    let result = true;
-    props.node.children.forEach((child) => {
-      console.log(child.id);
-      console.log(props.selectedNodes);
+  const checkSiblingsAndParent = () => {
+    let all = true;
+    props.siblings.forEach((node) => {
+      if(!props.selectedNodes.includes(node.id)){
+        all = false;
+      }
     });
-    return result;
-  }
-
-  const handleChildClick = () => {
-    console.log(allChildrenSelected())
-    if(allChildrenSelected()){
-      props.addNode(props.node.id);
-    } else {
-      props.removeNode(props.node.id);
+    if(all){
+      props.siblings.forEach((node) => {
+        props.removeNodeById(node.id);
+      })
+      props.addNode(props.parentId);
     }
   }
+
+  const checkParent = () => {
+    // If parent is actually selected, remove it from selected nodes and add all siblings
+    if(props.selectedNodes.includes(props.parentId)){
+      props.removeNodeById(props.parentId, props.isParent);
+      props.siblings.forEach((sibling) => {
+        if(sibling.id !== props.node.id)
+          props.addNode(sibling.id);
+      })
+    }
+  }
+
+  const checkClicked = () => {
+    checkParent();
+    checkSiblingsAndParent();
+    emit('checkClicked', props.node);
+  }
+
 
 </script>
 

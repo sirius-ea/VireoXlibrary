@@ -23,22 +23,22 @@ const data = [
             text: `Asset 1.${i}`,
             icon: "wind",
             selected: false,
-            children: Array.from(Array(10).keys()).map((x) => ({
+            children: Array.from(Array(5).keys()).map((x) => ({
                 id: "id" + Math.random().toString(16).slice(2),
                 text: `Plant 1.${i}.${x}`,
                 icon: "wind",
                 selected: false,
-                children: Array.from(Array(10).keys()).map((y) => ({
+                children: Array.from(Array(25).keys()).map((y) => ({
                     id: "id" + Math.random().toString(16).slice(2),
                     text: `Device 1.${i}.${x}.${y}`,
                     icon: "turbine",
                     selected: false,
-                    children: Array.from(Array(10).keys()).map((z) => ({
+                    children: Array.from(Array(25).keys()).map((z) => ({
                         id: "id" + Math.random().toString(16).slice(2),
                         text: `Sub-Device 1.${i}.${x}.${y}.${z}`,
                         icon: "turbine",
                         selected: false,
-                        children: Array.from(Array(10).keys()).map((a) => ({
+                        children: Array.from(Array(25).keys()).map((a) => ({
                             id: "id" + Math.random().toString(16).slice(2),
                             text: `Sub-Sub-Device 1.${i}.${x}.${y}.${z}.${a}`,
                             icon: "turbine",
