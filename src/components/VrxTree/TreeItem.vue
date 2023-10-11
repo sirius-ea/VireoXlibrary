@@ -16,7 +16,6 @@
         :selectable="selectable"
         :selected="checkValue"
         :selected-nodes="selectedNodes"
-        :manage-selected-nodes="manageSelectedNodes"
         :add-node="addNode"
         :remove-node="removeNode"
         :parent-id="props.node.id"
@@ -31,7 +30,7 @@
 <script setup lang="ts">
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
-  import {nextTick, Ref, ref, watch} from "vue";
+  import {Ref, ref, watch} from "vue";
 
   const props = defineProps<{
     node: VrxTreeNode,
@@ -39,7 +38,6 @@
     isParent?: boolean,
     selected?: boolean,
     selectedNodes: string[],
-    manageSelectedNodes: (data: string[]) => void
     addNode: (nodeId: string) => void
     removeNodeById: (nodeId: string, isParent?: boolean) => void
     removeNode: (node: VrxTreeNode) => void
@@ -48,10 +46,8 @@
   }>();
 
   const open = ref(props.node.open);
-
   const checkValue : Ref<boolean>= ref(props.selected || props.selectedNodes.includes(props.parentId));
   const hasChildrenChecked = ref(false);
-  const emit = defineEmits(['checkClicked']);
 
   watch(() => props.selectedNodes,(newValue) => {
     checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId) || props.selected;
@@ -62,6 +58,10 @@
     checkValue.value = newValue || props.selectedNodes.includes(props.node.id);
   },{immediate: true, deep: true});
 
+  /**
+   * Handle click for inputs and tree elements
+   * @param event
+   */
   const clickHandle = (event: MouseEvent) => {
     // @ts-ignore
     if(event.target.nodeName !== "INPUT"){
@@ -69,23 +69,30 @@
     }
   }
 
+  /**
+   * Handle the click on the checkbox
+   */
   const selectHandle = () => {
-
     checkValue.value = !checkValue.value;
     checkValue.value ? props.addNode(props.node.id) : props.removeNodeById(props.node.id, props.isParent);
 
-    checkParent();
-    checkSiblingsAndParent();
-
-    if(props.node.children.length > 0 && !props.isParent){
+    if(props.node.children.length > 0){
       props.node.children.forEach((child) => {
         props.removeNode(child);
       })
     }
 
-    emit('checkClicked', props.node);
+    if(!props.isParent){
+      checkParent();
+      checkSiblingsAndParent();
+      emit('checkClicked', props.node);
+    }
   }
 
+
+  /**
+   * Check if all siblings are selected and if so, add the parent
+   */
   const checkSiblingsAndParent = () => {
     let all = true;
     props.siblings.forEach((node) => {
@@ -101,6 +108,9 @@
     }
   }
 
+  /**
+   * Check if parent is selected and if so, remove it and add all siblings
+   */
   const checkParent = () => {
     // If parent is actually selected, remove it from selected nodes and add all siblings
     if(props.selectedNodes.includes(props.parentId) || props.selected){
@@ -112,12 +122,17 @@
     }
   }
 
+  /**
+   * Emitted when a children checkbox is clicked
+   */
   const checkClicked = () => {
+    if(props.isParent) return;
     checkParent();
     checkSiblingsAndParent();
     emit('checkClicked', props.node);
   }
 
+  const emit = defineEmits(['checkClicked']);
 
 </script>
 
