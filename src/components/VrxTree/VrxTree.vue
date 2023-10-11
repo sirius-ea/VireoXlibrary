@@ -36,15 +36,15 @@
    */
   const buildTreeWithIds = (tree: VrxTreeNode[]) => {
     const addChildrenIds = (node: VrxTreeNode, lastId: string) => {
-      node.children.forEach((child, index) => {
-        child.id = `${lastId}.${index}-` + Math.random().toString(16).slice(2);
-        addChildrenIds(child, child.id.split('-')[0]);
+      node.children.forEach((child) => {
+        child.id = lastId + '-' + Math.random().toString(16).slice(2);
+        addChildrenIds(child, child.id);
       })
     }
 
-    tree.forEach((node, index) => {
-      node.id = `id${index}-` + Math.random().toString(16).slice(2);
-      addChildrenIds(node, node.id.split('-')[0]);
+    tree.forEach((node) => {
+      node.id = Math.random().toString(16).slice(2);
+      addChildrenIds(node, node.id);
     })
   }
 
@@ -64,7 +64,7 @@
    * Removes the selected node and removes all the children of the node
    * @param node
    */
-  const removeNode = (node: VrxTreeNode) =>{
+  const removeNode = (node: VrxTreeNode) => {
     removeNodeById(node.id);
     removeSelectedChildren(node);
   }
@@ -85,7 +85,7 @@
    */
   const removeSelectedChildren = (node: VrxTreeNode) => {
     selectedNodes.value.forEach((item : any) => {
-      if(item.includes(node.id.split('-')[0])){
+      if(item.includes(node.id)){
         selectedNodes.value.splice(selectedNodes.value.indexOf(item), 1);
       }
     })

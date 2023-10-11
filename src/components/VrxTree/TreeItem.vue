@@ -51,7 +51,7 @@
 
   watch(() => props.selectedNodes,(newValue) => {
     checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId) || props.selected;
-    hasChildrenChecked.value = newValue.filter(node => node.includes(props.node.id.split('-')[0])).length > 0;
+    hasChildrenChecked.value = newValue.filter(node => node.includes(props.node.id)).length > 0;
   },{immediate: true, deep: true});
 
   watch(() => props.selected,(newValue) => {
