@@ -8,7 +8,7 @@
         :selectable="selectable ?? false"
         :is-parent="true"
         :key="node.id"
-        :selected-nodes="selectedNodes"
+        :selected-nodes="selectedNodes as string[]"
         :add-node="addNode"
         :remove-node-by-id="removeNodeById"
         :remove-node="removeNode"

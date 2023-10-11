@@ -51,7 +51,7 @@
 
   watch(() => props.selectedNodes,(newValue) => {
     checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId) || props.selected;
-    hasChildrenChecked.value = newValue.filter(node => node.includes(props.node.id)).length > 0;
+    hasChildrenChecked.value = newValue.filter((node : string) => node.includes(props.node.id)).length > 0;
   },{immediate: true, deep: true});
 
   watch(() => props.selected,(newValue) => {
@@ -77,7 +77,7 @@
     checkValue.value ? props.addNode(props.node.id) : props.removeNodeById(props.node.id, props.isParent);
 
     if(props.node.children.length > 0){
-      props.node.children.forEach((child) => {
+      props.node.children.forEach((child : VrxTreeNode) => {
         props.removeNode(child);
       })
     }
@@ -95,13 +95,13 @@
    */
   const checkSiblingsAndParent = () => {
     let all = true;
-    props.siblings.forEach((node) => {
+    props.siblings.forEach((node : VrxTreeNode) => {
       if(!props.selectedNodes.includes(node.id)){
         all = false;
       }
     });
     if(all){
-      props.siblings.forEach((node) => {
+      props.siblings.forEach((node : VrxTreeNode) => {
         props.removeNodeById(node.id);
       })
       props.addNode(props.parentId);
@@ -115,7 +115,7 @@
     // If parent is actually selected, remove it from selected nodes and add all siblings
     if(props.selectedNodes.includes(props.parentId) || props.selected){
       props.removeNodeById(props.parentId, props.isParent);
-      props.siblings.forEach((sibling) => {
+      props.siblings.forEach((sibling : VrxTreeNode) => {
         if(sibling.id !== props.node.id)
           props.addNode(sibling.id);
       })
