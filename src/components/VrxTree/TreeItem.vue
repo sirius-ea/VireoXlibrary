@@ -3,7 +3,7 @@
     <div class="tree-element hover:bg-gray-100 dark:hover:bg-gray-800 rounded-s" @click="clickHandle">
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5"/>
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
-      <input v-if="selectable" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" v-model="checkValue" @click="selectHandle" />
+      <input v-if="selectable" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" v-model="checkValue" @click="selectHandle" :indeterminate.prop="hasChildrenChecked && !checkValue"/>
       <span>{{ props.node.text }}</span>
     </div>
 
@@ -50,12 +50,12 @@
   const open = ref(props.node.open);
 
   const checkValue : Ref<boolean>= ref(props.selected || props.selectedNodes.includes(props.parentId));
-
+  const hasChildrenChecked = ref(false);
   const emit = defineEmits(['checkClicked']);
 
   watch(() => props.selectedNodes,(newValue) => {
-    checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId);
-    console.log(props.selectedNodes);
+    checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId) || props.selected;
+    hasChildrenChecked.value = newValue.filter(node => node.includes(props.node.id.split('-')[0])).length > 0;
   },{immediate: true, deep: true});
 
   watch(() => props.selected,(newValue) => {
@@ -73,7 +73,6 @@
 
     checkValue.value = !checkValue.value;
     checkValue.value ? props.addNode(props.node.id) : props.removeNodeById(props.node.id, props.isParent);
-
 
     checkParent();
     checkSiblingsAndParent();
@@ -104,7 +103,7 @@
 
   const checkParent = () => {
     // If parent is actually selected, remove it from selected nodes and add all siblings
-    if(props.selectedNodes.includes(props.parentId)){
+    if(props.selectedNodes.includes(props.parentId) || props.selected){
       props.removeNodeById(props.parentId, props.isParent);
       props.siblings.forEach((sibling) => {
         if(sibling.id !== props.node.id)

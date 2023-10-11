@@ -27,7 +27,8 @@
   const props = defineProps<{
     data: VrxTreeNode[],
     selectable: boolean,
-    searchable?: boolean
+    searchable?: boolean,
+    returnsUserData?: boolean
   }>();
 
   const selectedNodes = ref<String []>([]);
@@ -56,13 +57,49 @@
   }
 
   const removeSelectedChildren = (node: VrxTreeNode) => {
-    if(node.children.length > 0){
+    selectedNodes.value.forEach((item : any) => {
+      if(item.includes(node.id.split('-')[0])){
+        selectedNodes.value.splice(selectedNodes.value.indexOf(item), 1);
+      }
+    })
+  }
+
+  const getSelectedNodes = () => {
+    const result : VrxTreeNode[] = [];
+
+    const traverse = (node: VrxTreeNode) => {
+      if(selectedNodes.value.includes(node.id)){
+        result.push(node);
+      }
+
+      if(node.children.length > 0){
+        node.children.forEach((child) => {
+          traverse(child);
+        })
+      }
+    }
+
+    traverse(props.data[0]);
+    const flatMapResult = result.flatMap(node => flattenTree(node));
+    return props.returnsUserData ? flatMapResult.map(node => node.userData ?? node) : flatMapResult;
+  }
+
+  const flattenTree = (node: VrxTreeNode) => {
+    const result : VrxTreeNode [] = [];
+    const flat = (node: VrxTreeNode) => {
+      result.push(node);
       node.children.forEach((child) => {
-        removeNode(child);
-        removeSelectedChildren(child);
+        flat(child);
       })
     }
+
+    flat(node);
+    return result;
   }
+
+  defineExpose({
+    getSelectedNodes
+  })
 
 
 </script>

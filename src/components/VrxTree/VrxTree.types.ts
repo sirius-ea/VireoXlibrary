@@ -5,4 +5,5 @@ export type VrxTreeNode = {
     selected: boolean;
     open?: boolean;
     children: VrxTreeNode[];
+    userData?: any;
 };
