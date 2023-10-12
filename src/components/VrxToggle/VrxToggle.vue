@@ -31,10 +31,13 @@ import {computed, ref} from "vue";
   }
 
 const style = computed(() => {
-  return toggleStyle(props.variant, props.size);
+  return toggleStyle(props.variant, props.size, props.disabled);
 })
 </script>
 
 <style scoped>
-
+  .disabled-toggle{
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 </style>

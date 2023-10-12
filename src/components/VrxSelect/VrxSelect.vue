@@ -3,7 +3,7 @@
       data-testid="vrx-select"
       class="relative w-full"
       tabindex="0"
-      @focusout="!disabled ? showDropdown = false : null"
+      v-click-outside="onFocusOut"
       @focus="!disabled ? showDropdown = true : null"
   >
     <label data-testid="vrx-select-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
@@ -25,12 +25,18 @@
 
           <div v-else class="selected-container">
             <div :data-testid="'vrx-select-dropdown-selected-'+index" v-if="multiselect" v-for="(element, index) in selectedList" :class="style.selected" class="p-0.5 item-selected">
-              <div>{{ element.label }}</div>
+              <div class="element-label">
+                <VrxIcon v-if="element.icon" :icon="element.icon" size="4"/>
+                {{ element.label }}
+              </div>
               <VrxIcon icon="x" size="4" @click="itemClick(element)"/>
             </div>
 
             <div v-if="!multiselect">
-              {{ selectedList[0].label }}
+              <div class="element-label">
+                <VrxIcon v-if="selectedList[0].icon" :icon="selectedList[0].icon" size="4"/>
+                {{ selectedList[0].label }}
+              </div>
             </div>
           </div>
 
@@ -43,9 +49,27 @@
     </div>
 
     <div data-testid="vrx-select-dropdown" v-if="showDropdown" class="menu text-sm" :class="style.dropdown">
-      <div v-for="(element, index) in listData" class="dropdown-item w-full" :class="style.dropdownItem">
-        <div :data-testid="'vrx-select-dropdown-' + index" class="dropdown-item-content w-full h-full p-2.5" @click="itemClick(element)">
-          {{ element.label }}
+      <div v-if="searchable" class="w-full">
+        <input
+            type="text"
+            :placeholder="searchPlaceholder"
+            class="w-full p-2.5 focus:outline-none bg-transparent"
+            @input="(event) => searchFilter(event)"
+            @focus="searchClick(true)"
+            @focusout="searchClick(false)"
+        />
+      </div>
+      <div v-for="(element, index) in listDataCopy" class="dropdown-item w-full" :class="style.dropdownItem">
+        <div
+            :data-testid="'vrx-select-dropdown-' + index"
+            class="dropdown-item-content w-full h-full p-2.5"
+            :class="selectedList.includes(element) ? 'bg-blue-100 dark:bg-blue-500' : ''"
+            @click="itemClick(element)"
+        >
+          <div class="element-label">
+            <VrxIcon v-if="element.icon" :icon="element.icon" size="4"/>
+            {{ element.label }}
+          </div>
           <VrxIcon v-if="selectedList.includes(element)" icon="check" size="4" :color="style.icon"/>
         </div>
       </div>
@@ -79,6 +103,8 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     height?: number,
     onSelect?: (item: SelectItemInterface) => void
     onClear?: () => void
+    searchable?: boolean
+    searchPlaceholder?: string
   }>(),{
     disabled: false,
     invalid: false,
@@ -86,17 +112,51 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     label: '',
     helperText: '',
     placeholder: 'Select option',
-    variant: 'default'
+    variant: 'default',
+    searchPlaceholder: 'Search'
   })
 
   const showDropdown = ref(false);
+  const searchFocus = ref(false);
   const selectedList = ref(props.modelValue as Array<SelectItemInterface>);
+  const listDataCopy = ref(props.listData as Array<SelectItemInterface>);
 
   const emit = defineEmits(['update:modelValue'])
 
   const style = computed(() => {
     return selectStyles(props.disabled, props.invalid, props.variant);
   })
+
+  const searchFilter = (event: any) => {
+    if(event){
+      listDataCopy.value = props.listData.filter((elem) => elem.label.toLowerCase().includes(event.target.value.toLowerCase()));
+    }
+  }
+
+  const vClickOutside = {
+    mounted(el : any, binding : any) {
+      el.clickOutsideEvent = function(event : any) {
+        if (!(el === event.target || el.contains(event.target))) {
+          binding.value(event, el);
+        }
+      };
+      document.body.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el : any) {
+      document.body.removeEventListener('click', el.clickOutsideEvent);
+    }
+  }
+
+  const onFocusOut = () => {
+    setTimeout(() => {
+      listDataCopy.value = props.listData;
+      if(!props.disabled && searchFocus.value === false) showDropdown.value = false;
+    }, 10)
+  }
+
+  const searchClick = (value: boolean) => {
+    searchFocus.value = value;
+  }
 
   const deselectAll = () => {
     if(props.disabled) return;
@@ -192,5 +252,11 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+  .element-label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
   }
 </style>
