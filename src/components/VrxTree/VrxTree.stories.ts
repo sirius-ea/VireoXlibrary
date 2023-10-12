@@ -3,56 +3,88 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
 import {VrxButton} from "@/components";
+import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
 
 const meta : Meta<typeof VrxTree> = {
     title: 'VrxTree',
     component: VrxTree,
     tags: ['autodocs'],
-    argTypes: {},
-
+    argTypes: {
+        searchable: {
+            description: 'allows nodes search [NOT IMPLEMENTED]',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false'
+                }
+            },
+        },
+      selectable: {
+          description: 'make the tree nodes selectable',
+          control: {
+                type: 'boolean',
+          },
+          table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false'
+                }
+          },
+      },
+        returnsUserData: {
+            description: 'type of returned data of the selected nodes',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false'
+                }
+            },
+        },
+    },
 }
 export default meta;
 const data = [
     {
-        text: "COUNTRY",
-        icon: "map-pin",
+        text: "Parent",
+        icon: "folder",
         id: "x",
         open: false,
         userData: { type: "country" },
         selected: false,
         children: Array.from(Array(5).keys()).map((i) => ({
-            text: `Asset 1.${i}`,
+            text: `Child ${i}`,
             id: "x",
             userData: { test: "ciao" },
-            icon: "wind",
+            icon: "folder",
             selected: false,
-            children: Array.from(Array(10).keys()).map((x) => ({
-                text: `Plant 1.${i}.${x}`,
-                icon: "wind",
+            children: Array.from(Array(2).keys()).map((x) => ({
+                text: `Sub Child ${x}`,
+                icon: "folder",
                 id: "x",
                 userData: { test: "bau" },
                 selected: false,
-                children: Array.from(Array(25).keys()).map((y) => ({
-                    text: `Device 1.${i}.${x}.${y}`,
-                    icon: "turbine",
+                children: Array.from(Array(2).keys()).map((y) => ({
+                    text: `Sub Sub Child ${y}`,
+                    icon: "document",
                     id: "x",
                     userData: { test: "miao" },
                     selected: false,
-                    children: Array.from(Array(25).keys()).map((z) => ({
-                        text: `Sub-Device 1.${i}.${x}.${y}.${z}`,
-                        icon: "turbine",
-                        id: "x",
-                        userData: { test: "mouu" },
-                        selected: false,
-                        children: Array.from(Array(5).keys()).map((a) => ({
-                            text: `Sub-Sub-Device 1.${i}.${x}.${y}.${z}.${a}`,
-                            icon: "turbine",
-                            id: "x",
-                            userData: { test: "chip" },
-                            selected: false,
-                            children: []
-                        }))
-                    }))
+                    children: [],
                 }))
             }))
         }))
@@ -71,16 +103,21 @@ const Template : TreeStories = {
         },
         methods: {
             logSelected(){
-                console.log(this.$refs.myRef.getSelectedNodes());
-            }
+                alert(JSON.stringify(this.$refs.myRef.getSelectedNodes()));
+            },
+            findNode(){
+                alert(JSON.stringify(this.$refs.myRef.getNodeByText("Sub Sub Child 0")));
+            },
         },
         template: `
-          <div style="height: 800px; width: 400px">
-              <VrxTree ref="myRef" :check-nodes="true" :data="args.data" :selectable="true" :searchable="false"/>
+          <div style="height: auto; width: auto">
+                <VrxTree ref="myRef" :check-nodes="true" :data="args.data" :selectable="args.selectable" :searchable="args.searchable" :returns-user-data="args.returnsUserData"/>
+                <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
+                    <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
+                    <VrxButton color="default" size="sm" @click="findNode" >Log found node (Sub Sub Child 0)</VrxButton>
+                </div>
           </div>
-          <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
-            <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
-          </div>
+         
         `
     }),
     args: {},
@@ -89,6 +126,18 @@ const Template : TreeStories = {
 export const Primary: TreeStories = {
     ...Template,
     args: {
-        data
+        data,
+        selectable: false,
+        searchable: false,
+        returnsUserData: false,
     },
 }
+
+export const Selectable: TreeStories = {
+    ...Template,
+    args: {
+        data,
+        selectable: true,
+    },
+}
+

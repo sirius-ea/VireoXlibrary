@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col gap-2.5 text-gray-900 dark:text-white">
+  <div
+      class="flex flex-col gap-2.5 text-gray-900 dark:text-white"
+      data-testid="vrx-tree"
+  >
     <VrxInput v-if="searchable" model-value="test" icon="search"/>
     <TreeItem
         v-for="node in data"
@@ -25,7 +28,7 @@
 
   const props = defineProps<{
     data: VrxTreeNode[],
-    selectable: boolean,
+    selectable?: boolean,
     searchable?: boolean,
     returnsUserData?: boolean
   }>();
@@ -38,12 +41,14 @@
     const addChildrenIds = (node: VrxTreeNode, lastId: string) => {
       node.children.forEach((child) => {
         child.id = lastId + '-' + Math.random().toString(16).slice(2);
+        if(child.selected) selectedNodes.value.push(child.id);
         addChildrenIds(child, child.id);
       })
     }
 
     tree.forEach((node) => {
       node.id = Math.random().toString(16).slice(2);
+      if(node.selected) selectedNodes.value.push(node.id);
       addChildrenIds(node, node.id);
     })
   }
@@ -92,6 +97,27 @@
   }
 
   /**
+   * Returns the node based on the text
+   * @param text
+   */
+  const getNodeByText = (text: string) => {
+    let result;
+    const findText = (node: VrxTreeNode) => {
+      if(node.text === text){
+        result = node;
+        return;
+      }
+      if(node.children.length > 0){
+        node.children.forEach((child) => {
+          findText(child);
+        })
+      }
+    }
+    findText(props.data[0]);
+    return result;
+  }
+
+  /**
    * Returns the selected nodes
    */
   const getSelectedNodes = () => {
@@ -133,10 +159,7 @@
   const selectedNodes = ref<String []>([]);
   buildTreeWithIds(props.data);
 
-  defineExpose({
-    getSelectedNodes
-  })
-
+  defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree });
 
 </script>
 
