@@ -4,10 +4,15 @@
 
 .icon-active{
     transform: rotate(180deg);
-    transition: .5s ease all;
+    transition: .2s ease all;
 }
 
 .icon-off{
     transform: rotate(0deg);
-    transition: .5s ease all;
+    transition: .2s ease all;
+}
+
+.icon-rotate{
+    transform: rotate(90deg);
+    transition: .2s ease all;
 }
