@@ -17,7 +17,7 @@
         @click="emit('changeMonth',1)"
     />
   </div>
-  <table>
+  <table aria-describedby="vrx-table-calendar">
     <thead>
     <tr class="text-gray-400">
       <th class="font-normal select-none" v-for="day in shortDaysLib">{{ day }}</th>

@@ -1,0 +1,72 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxTree/About" />
+
+# VireoxTree
+
+VireoxTree is a highly versatile component for working with tree structures.
+
+The component utilizes 100% of the available width and height. To use it, import it as follows:
+```js
+import {VrxTree} from 'vireoxlibrary';
+
+const data : VrxTreeNode[] = [ ... ]
+<VrxTree :data="data"/>
+```
+## ⚙️ Configuration
+The configuration is a complex object that allows you to configure the tree in multiple aspects.
+Here are the types that need to be implemented:
+
+### VrxTreeNode
+```js
+type VrxTreeNode {
+    id: string;                                 // node id (can be anything, it will be replaced by the tree)
+    text: string;                               // node displayed text
+    icon: boolean;                              // [optional] node icon
+    selected: boolean;                          // [optional] set the node as selected
+    children: VrxTreeNode[];                    // node children
+    userData: any;                              // [optional] optional user data
+}
+```
+
+> If all children of a node are ```selected``` please consider setting the parent node as ```selected``` and not the single nodes.
+
+<br/>
+
+## 📜 API
+<table style={{width: '100%'}}>
+    <thead>
+        <tr>
+            <td>
+                <b>Method</b>
+            </td>
+            <td>
+                <b>Params</b>
+            </td>
+            <td>
+                <b>Return</b>
+            </td>
+            <td>
+                <b>Description</b>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>getSelectedNodes</td>
+            <td>-</td>
+            <td>`VrxTreeNode[] | any[]`</td>
+            <td>Returns all selected nodes or if props `returnUserData` is `true` returns the content of `userData` object</td>
+        </tr>
+        <tr>
+            <td>getNodeByText</td>
+            <td>`text: string`</td>
+            <td>`VrxTreeNode | undefined`</td>
+            <td>Returns the node which has the given text</td>
+        </tr>
+
+    </tbody>
+</table>
+<br/>
+
+For API's details and configuration please read the [documentation](./?path=/docs/vrxtree--docs)

@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import {VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxGrid, VrxNavbar} from "@/components";
+import {VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxGrid, VrxNavbar, VrxTree} from "@/components";
 import VrxButtonsGroup from "@/components/VrxButtonsGroup/VrxButtonsGroup.vue";
 import VrxDatePicker from "@/components/VrxDatePicker/VrxDatePicker.vue";
 import VrxDateRangePicker from "@/components/VrxDateRangePicker/VrxDateRangePicker.vue";
@@ -16,6 +16,8 @@ export default {
         app.component('VrxGrid', VrxGrid)
         app.component('VrxDatePicker', VrxDatePicker)
         app.component('VrxDateRangePicker', VrxDateRangePicker)
+        app.component('VrxTree', VrxTree)
+
     }
 };
 export {
@@ -28,6 +30,9 @@ export {
     VrxGrid,
     VrxNavbar,
     VrxDatePicker,
-    VrxDateRangePicker
+    VrxDateRangePicker,
+    VrxTree
 };
+
+export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxButtonsGroup, VrxGrid, VrxNavbar, VrxTree, VrxDatePicker, VrxDateRangePicker };
 
