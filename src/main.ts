@@ -33,6 +33,3 @@ export {
     VrxDateRangePicker,
     VrxTree
 };
-
-export { VrxButton, VrxInput, VrxIcon, VrxSelect, VrxToggle, VrxButtonsGroup, VrxGrid, VrxNavbar, VrxTree, VrxDatePicker, VrxDateRangePicker };
-
