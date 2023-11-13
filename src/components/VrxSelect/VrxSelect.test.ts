@@ -22,7 +22,7 @@ describe('VrxSelect', () => {
                 disabled: false,
                 invalid: false,
                 variant: 'default',
-                "onUpdate:modelValue" : (e) => {
+                "onUpdate:modelValue" : (e: SelectItemInterface[]) => {
                     wrapper.setProps({modelValue:e})
                 }
             }
