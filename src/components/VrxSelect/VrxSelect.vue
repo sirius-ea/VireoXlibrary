@@ -4,7 +4,6 @@
       class="relative w-full"
       tabindex="0"
       v-click-outside="onFocusOut"
-      @focus="!disabled ? showDropdown = true : null"
   >
     <label data-testid="vrx-select-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
       {{ label }}
@@ -12,6 +11,7 @@
 
     <div
         data-testid="vrx-select-button"
+        @click="!disabled ? showDropdown = !showDropdown : null"
         class="button text-sm rounded-lg p-2.5 block w-full"
         :class="showDropdown ? style.select + ' ' + 'open-overlay' : style.select"
     >
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="button-right-side">
-        <VrxIcon v-if="selectedList.length > 0" :icon="'x'" size="4" :color="style.icon" @click="deselectAll"/>
+        <VrxIcon v-if="selectedList.length > 0" :icon="'x'" size="4" :color="style.icon" @mousedown.stop="deselectAll"/>
         <VrxIcon icon="chevron-down" :class="showDropdown ? 'icon-active' : 'icon-off'" size="5" :color="style.icon"/>
       </div>
     </div>
@@ -160,6 +160,7 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
 
   const deselectAll = () => {
     if(props.disabled) return;
+    showDropdown.value = false;
     selectedList.value = [];
     emit('update:modelValue', selectedList.value);
     props.onClear ? props.onClear() : null;
@@ -168,6 +169,7 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
   const itemClick = (item : SelectItemInterface) => {
     if(props.disabled) return;
     if(!props.multiselect){
+      showDropdown.value = false;
       selectedList.value = [item];
     } else {
       if(selectedList.value.includes(item)){
