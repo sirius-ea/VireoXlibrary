@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="button-right-side">
-        <VrxIcon v-if="selectedList.length > 0" :icon="'x'" size="4" :color="style.icon" @mousedown.stop="deselectAll"/>
+        <VrxIcon v-if="selectedList.length > 0" data-testid="vrx-deselect-button" :icon="'x'" size="4" :color="style.icon" @mousedown.stop="deselectAll"/>
         <VrxIcon icon="chevron-down" :class="showDropdown ? 'icon-active' : 'icon-off'" size="5" :color="style.icon"/>
       </div>
     </div>
