@@ -174,6 +174,21 @@ const meta : Meta<typeof VrxSelect> = {
                 },
             }
         },
+        showRemove: {
+            description: "enable/disable the possibility to clear the select",
+            control: {
+                type: 'boolean'
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                }
+            },
+            defaultValue: {
+                summary: true
+            }
+        }
     }
 }
 
@@ -191,14 +206,20 @@ const Template : SelectStories = {
         components: { VrxSelect },
         setup() {
             return {
-                args
+                args,
+                emptyData: []
             };
         },
 
         template: `
-          <div style="height: 300px">
+          <div style="height: 100px">
               <VrxSelect
                   v-model="args.modelValue"
+                  :list-data="args.listData"
+                  v-bind="args"
+              />
+              <VrxSelect
+                  v-model="args.emptyData"
                   :list-data="args.listData"
                   v-bind="args"
               />

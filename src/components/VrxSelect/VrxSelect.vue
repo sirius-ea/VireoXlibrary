@@ -13,6 +13,7 @@
         data-testid="vrx-select-button"
         @click="!disabled ? showDropdown = !showDropdown : null"
         class="button text-sm rounded-lg p-2.5 block w-full"
+        ref="toggle"
         :class="showDropdown ? style.select + ' ' + 'open-overlay' : style.select"
     >
       <div class="button-left-side">
@@ -43,12 +44,16 @@
         </div>
       </div>
       <div class="button-right-side">
-        <VrxIcon v-if="selectedList.length > 0" data-testid="vrx-deselect-button" :icon="'x'" size="4" :color="style.icon" @mousedown.stop="deselectAll"/>
+        <VrxIcon v-if="selectedList.length > 0 && showRemove" data-testid="vrx-deselect-button" :icon="'x'" size="4" :color="style.icon" @mousedown.stop="deselectAll"/>
         <VrxIcon icon="chevron-down" :class="showDropdown ? 'icon-active' : 'icon-off'" size="5" :color="style.icon"/>
       </div>
     </div>
+    <p data-testid="vrx-select-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
+      {{ helperText }}
+    </p>
+  </div>
 
-    <div data-testid="vrx-select-dropdown" v-if="showDropdown" class="menu text-sm" :class="style.dropdown">
+  <div data-testid="vrx-select-dropdown" v-if="showDropdown" id="menu" class="menu text-sm" :class="style.dropdown" v-append-to-body="$refs" appendToBody>
       <div v-if="searchable" class="w-full">
         <input
             type="text"
@@ -59,7 +64,7 @@
             @focusout="searchClick(false)"
         />
       </div>
-      <div v-for="(element, index) in listDataCopy" class="dropdown-item w-full" :class="style.dropdownItem">
+      <div v-for="(element, index) in listDataCopy" :key="index" class="dropdown-item w-full" :class="style.dropdownItem">
         <div
             :data-testid="'vrx-select-dropdown-' + index"
             class="dropdown-item-content w-full h-full p-2.5"
@@ -75,19 +80,15 @@
       </div>
     </div>
 
-    <p data-testid="vrx-select-helper" v-if="helperText" class="mt-2 text-sm" :class="style.helperText">
-      {{ helperText }}
-    </p>
-  </div>
-
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from "vue";
+import {computed, ref, defineEmits, defineProps, withDefaults} from "vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import {selectStyles, ComponentVariant} from "@/components/styles.ts";
-import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
-import {SelectItemInterface} from "./SelectItemInterface.ts";
+import {selectStyles, ComponentVariant} from "@/components/styles";
+import {IconLibraryType} from "@/components/VrxIcon/IconLibrary";
+import {SelectItemInterface} from "./SelectItemInterface";
+import {vAppendToBody} from "@/directives/appendToBody";
 
   const props = withDefaults(defineProps<{
     label?: string,
@@ -105,10 +106,12 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     onClear?: () => void
     searchable?: boolean
     searchPlaceholder?: string
+    showRemove: boolean
   }>(),{
     disabled: false,
     invalid: false,
     multiselect: false,
+    showRemove:true,
     label: '',
     helperText: '',
     placeholder: 'Select option',
@@ -118,9 +121,8 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
 
   const showDropdown = ref(false);
   const searchFocus = ref(false);
-  const selectedList = ref(props.modelValue as Array<SelectItemInterface>);
-  const listDataCopy = ref(props.listData as Array<SelectItemInterface>);
-
+  const selectedList = ref(props.modelValue);
+  const listDataCopy = ref(props.listData);
   const emit = defineEmits(['update:modelValue'])
 
   const style = computed(() => {
@@ -161,7 +163,7 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
   const deselectAll = () => {
     if(props.disabled) return;
     showDropdown.value = false;
-    selectedList.value = [];
+    selectedList.value.splice(0);
     emit('update:modelValue', selectedList.value);
     props.onClear ? props.onClear() : null;
   }
@@ -172,8 +174,9 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
       showDropdown.value = false;
       selectedList.value = [item];
     } else {
-      if(selectedList.value.includes(item)){
-        selectedList.value = selectedList.value.filter((element) => element !== item);
+      const indexItem = selectedList.value.findIndex((element) => element.value === item.value);
+      if(indexItem > -1){
+        selectedList.value.splice(indexItem,1);
       } else {
         selectedList.value.push(item);
       }
@@ -262,3 +265,7 @@ import {SelectItemInterface} from "./SelectItemInterface.ts";
     gap: 5px;
   }
 </style>
+
+function defineEmits(arg0: {}) {
+  throw new Error("Function not implemented.");
+}
