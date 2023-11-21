@@ -1,6 +1,6 @@
 import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { ComponentVariant } from '../../components/styles.ts';
-import { SelectItemInterface } from "./SelectItemInterface.ts";
+import { ComponentVariant } from '../../components/styles';
+import { SelectItemInterface } from "./SelectItemInterface";
 declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
     label: {
         type: __PropType<string | undefined>;
@@ -69,6 +69,11 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         type: __PropType<string | undefined>;
         required: false;
         default: string;
+    };
+    showRemove: {
+        type: __PropType<boolean>;
+        required: true;
+        default: boolean;
     };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     label: {
@@ -139,6 +144,11 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: false;
         default: string;
     };
+    showRemove: {
+        type: __PropType<boolean>;
+        required: true;
+        default: boolean;
+    };
 }>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
@@ -150,5 +160,6 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     variant: ComponentVariant | undefined;
     multiselect: boolean | undefined;
     searchPlaceholder: string | undefined;
+    showRemove: boolean;
 }, {}>;
 export default _sfc_main;
