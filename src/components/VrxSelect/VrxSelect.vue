@@ -4,6 +4,7 @@
       class="relative w-full"
       tabindex="0"
       v-click-outside="onFocusOut"
+      @keyup.esc="onFocusOut"
   >
     <label data-testid="vrx-select-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
       {{ label }}
