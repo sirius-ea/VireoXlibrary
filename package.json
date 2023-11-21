@@ -32,7 +32,7 @@
     "storybook-build-docs": "storybook build --docs",
     "build-storybook": "storybook build",
     "watch:tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/output.css",
-    "postinstall": "rm -rf ./node_modules/@types/react"
+    "postinstall-dev": "rm -rf ./node_modules/@types/react"
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.17",
