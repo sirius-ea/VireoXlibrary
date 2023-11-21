@@ -13,8 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "types": ["vitest/globals"],
-
+    "types": ["vite/client","vitest/globals"],
     /* Linting */
     "strict": true,
     "noUnusedLocals": false,
