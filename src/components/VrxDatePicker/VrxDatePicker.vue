@@ -2,7 +2,7 @@
   <div
       class="relative text-gray-900 dark:text-white"
       :class="inputWidth"
-      v-click-outside="closePicker"
+      @focusout="closePicker"
   >
     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
       <VrxIcon :icon="type === 'time' ? 'clock' : 'calendar'" size="5"/>
@@ -18,7 +18,7 @@
     <div
         v-if="showDropdown"
         ref="dropdownRef"
-        class="dropdown absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
+        class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
         tabindex="-1"
     >
       <DaysPick
@@ -35,6 +35,7 @@
           @change-hour="onHoursChange"
       />
       <MonthPick
+          id="vrx-month-pick"
           v-if="selectedStage === 'm' || props.monthsOnly"
           :year="selectedYear"
           @change-month="onMonthChange"
@@ -42,6 +43,8 @@
           @change-stage="(stage) => selectedStage = stage"
       />
       <YearPick
+          class="vrx-datepicker"
+          id="vrx-year-pick"
           v-if="selectedStage === 'y'"
           :year-range="selectedYearRange"
           @change-year="onYearChange"
@@ -97,24 +100,12 @@ const openPicker = () => {
   }, 100);*/
 }
 
-const vClickOutside = {
-  mounted(el : any, binding : any) {
-    el.clickOutsideEvent = function(event : any) {
-      if (!(el === event.target || el.contains(event.target))) {
-        binding.value(event, el);
-      }
-    };
-    document.body.addEventListener('click', el.clickOutsideEvent);
-  },
-  unmounted(el : any) {
-    document.body.removeEventListener('click', el.clickOutsideEvent);
-  }
-}
-
 /**
  * Close the dropdown
  */
-const closePicker = () => {
+const closePicker = (event: any) => {
+  const eventTarget = event ? event.relatedTarget : null;
+  if(eventTarget && (eventTarget.classList.contains("dropdown-vrx-picker") || eventTarget.classList.contains("vrx-input"))) return;
   showDropdown.value = false;
 }
 
@@ -257,10 +248,7 @@ defineExpose({ setDate, setValidRange, getDate, setMonth, openPicker, closePicke
 </script>
 
 <style scoped>
-
-
-.dropdown {
+.dropdown-vrx-picker {
   z-index: 999;
 }
-
 </style>

@@ -36,7 +36,7 @@
   import {ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
   import colors from "tailwindcss/colors";
-  import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
+  import {vClickOutside} from "@/utils.ts";
 
 
   const props = defineProps<{
@@ -76,20 +76,6 @@
     setTimeout(() => {
       props.cell.editable  && props.cell.editType === 'text' ? input.value.focus() : null;
     }, 100);
-  }
-
-  const vClickOutside = {
-    mounted(el : any, binding : any) {
-      el.clickOutsideEvent = function(event : any) {
-        if (!(el === event.target || el.contains(event.target))) {
-          binding.value(event, el);
-        }
-      };
-      document.body.addEventListener('click', el.clickOutsideEvent);
-    },
-    unmounted(el : any) {
-      document.body.removeEventListener('click', el.clickOutsideEvent);
-    }
   }
 
   const clickOutside = () => {

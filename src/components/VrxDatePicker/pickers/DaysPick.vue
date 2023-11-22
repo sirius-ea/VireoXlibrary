@@ -37,6 +37,7 @@
     </tbody>
   </table>
   <TimePick
+      :selected-date="selectedDate"
       v-if="timeEnabled"
       @change-hour="(h) => emit('changeHour',h)"
       @change-minute="(m) => emit('changeMinute', m)"
@@ -132,7 +133,7 @@ const getStyle = (day: CalendarDay) => {
   ) {
     style += 'bg-blue-700 dark:bg-blue-500 text-white';
   } else if (day.isToday) {
-    style += ' text-blue-700 dark:text-blue-500';
+    style += ' text-red-500 dark:text-red-500';
   } else if (!day.isCurrentMonth) {
     style += ' text-gray-300 dark:text-gray-500 !font-normal';
     if (day.disabled) style += ' line-through';

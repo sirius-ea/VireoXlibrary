@@ -12,6 +12,7 @@
         class="w-20"
         placeholder=""
         :invalid="invalidTime"
+        @focusout="() => !invalidTime ? emit('changeHour', hours) : null"
         @change="() => !invalidTime ? emit('changeHour', hours) : null"
     />
     <span>:</span>
@@ -22,6 +23,7 @@
         class="w-20"
         placeholder=""
         :invalid="invalidTime"
+        @focusout="() => !invalidTime ? emit('changeMinute', minutes) : null"
         @change="() => !invalidTime ? emit('changeMinute', minutes) : null"
     />
     <VrxIcon
@@ -38,11 +40,16 @@
 import VrxInput from "@/components/VrxInput/VrxInput.vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {computed, ref} from "vue";
-
-const hours = ref('00');
-const minutes = ref('00');
+import {shortHHMMtoString} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
 
 const emit = defineEmits(['changeMinute', 'changeHour']);
+
+const props = defineProps<{
+  selectedDate?: Date,
+}>();
+
+const hours = ref(props.selectedDate ? shortHHMMtoString(props.selectedDate.getHours()) : '00');
+const minutes = ref(props.selectedDate ? shortHHMMtoString(props.selectedDate.getMinutes()) : '00');
 
 const invalidTime = computed(() => {
   let regex = /^([01][0-9]|2[0-3]):([0-5][0-9])$/ ;
