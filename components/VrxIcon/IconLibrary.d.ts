@@ -76,6 +76,7 @@ export declare const iconLibrary: {
     variable: string;
     'warning-circle': string;
     'warning-triangle': string;
+    week: string;
     wind: string;
     x: string;
 };

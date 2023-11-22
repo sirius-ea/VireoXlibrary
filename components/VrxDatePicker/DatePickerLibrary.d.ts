@@ -34,4 +34,5 @@ export declare function setMissingDays(array: CalendarDay[], indexRow: number, b
  * @param validRange
  */
 export declare function checkDisabled(date: Date, validRange: [Date | undefined, Date | undefined] | undefined): boolean;
+export declare function shortHHMMtoString(value: number): string;
 export type DateFormat = typeof dateFormatLib[number];
