@@ -161,4 +161,9 @@ export function checkDisabled (date: Date, validRange: [Date | undefined, Date |
     return false;
 }
 
+export function shortHHMMtoString(value: number){
+    return value < 10 ? `0${value}` : `${value}`;
+}
+
+
 export type DateFormat = typeof dateFormatLib[number];
