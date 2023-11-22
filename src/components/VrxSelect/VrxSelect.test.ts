@@ -12,12 +12,19 @@ describe('VrxSelect', () => {
                 label: 'Label',
                 placeholder: 'Placeholder',
                 helperText: 'Helper text',
-                listData: [],
+                listData: [
+                    { label: 'Option 1', value: 'option1' },
+                    { label: 'Option 2', value: 'option2' },
+                    { label: 'Option 3', value: 'option3' },
+                  ],
                 modelValue: [],
                 multiselect: false,
                 disabled: false,
                 invalid: false,
                 variant: 'default',
+                "onUpdate:modelValue" : (e: SelectItemInterface[]) => {
+                    wrapper.setProps({modelValue:e})
+                }
             }
         });
     });
@@ -29,7 +36,7 @@ describe('VrxSelect', () => {
     });
 
     it('open the select', async () => {
-        await wrapper.trigger('focus');
+        await wrapper.find('[data-testid=vrx-select-button]').trigger('click');
         expect(wrapper.find('[data-testid=vrx-select-dropdown]').exists()).toBe(true);
     });
 
@@ -72,5 +79,20 @@ describe('VrxSelect', () => {
         await wrapper.setProps({ disabled: true });
         expect(wrapper.props('disabled')).toBe(true);
         expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-gray-10');
+    });
+
+    it('Deselect all', async () => {
+
+        await wrapper.find('[data-testid=vrx-select-button]').trigger('click');
+        expect(wrapper.find('[data-testid=vrx-select-dropdown]').exists()).toBe(true);
+        expect(wrapper.find('[data-testid=vrx-select-dropdown-0]').exists()).toBe(true);
+        await wrapper.find('[data-testid=vrx-select-dropdown-0]').trigger('click');
+        await wrapper.vm.$nextTick();
+
+        expect(wrapper.find('[data-testid=vrx-deselect-button]').exists()).toBe(true);
+        await wrapper.find('[data-testid=vrx-deselect-button]').trigger('mousedown');
+        await wrapper.vm.$nextTick();
+        expect(wrapper.props('modelValue')).toHaveLength(0);
+
     });
 })
