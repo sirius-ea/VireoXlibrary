@@ -7,6 +7,9 @@ const vAppendToBody = {
       el.style.left = rect.left + 'px';
       el.style.zIndex = 1000000;
       document.body.appendChild(el);
+    },
+    beforeUnmount:function (el : any) {
+      document.body.removeChild(el);
     }
 }
 
