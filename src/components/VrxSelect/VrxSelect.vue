@@ -88,7 +88,7 @@ import {computed, ref, defineEmits, defineProps, withDefaults} from "vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {selectStyles, ComponentVariant} from "@/components/styles";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary";
-import {SelectItemInterface} from "./SelectItemInterface";
+import type {SelectItemInterface} from "./SelectItemInterface";
 import {vAppendToBody} from "@/directives/appendToBody";
 
   const props = withDefaults(defineProps<{

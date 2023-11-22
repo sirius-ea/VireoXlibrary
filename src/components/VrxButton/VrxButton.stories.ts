@@ -148,7 +148,7 @@ const Template: BtnStory = {
                   {{args.prefix}}
                 </template>
                 <template v-if="args.default" slot="default">
-                ${args.default}
+                {{args.default}}
                 </template>
                 <template v-if="args.suffix" slot="suffix">
                     {{args.suffix}}
