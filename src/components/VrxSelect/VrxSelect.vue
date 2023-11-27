@@ -89,7 +89,7 @@ import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {vClickOutside} from "@/utils.ts";
 import {selectStyles, ComponentVariant} from "@/components/styles";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary";
-import {SelectItemInterface} from "./SelectItemInterface";
+import type {SelectItemInterface} from "./SelectItemInterface";
 import {vAppendToBody} from "@/directives/appendToBody";
 
 

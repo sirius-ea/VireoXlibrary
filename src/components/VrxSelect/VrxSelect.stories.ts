@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
-import {SelectItemInterface} from "./SelectItemInterface.ts";
+import type {SelectItemInterface} from "./SelectItemInterface.ts";
 
 const meta : Meta<typeof VrxSelect> = {
     title: 'VrxSelect',
@@ -215,11 +215,6 @@ const Template : SelectStories = {
           <div style="height: 100px">
               <VrxSelect
                   v-model="args.modelValue"
-                  :list-data="args.listData"
-                  v-bind="args"
-              />
-              <VrxSelect
-                  v-model="args.emptyData"
                   :list-data="args.listData"
                   v-bind="args"
               />

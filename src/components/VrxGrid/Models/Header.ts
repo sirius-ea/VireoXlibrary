@@ -1,5 +1,5 @@
 import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-import {SelectItemInterface} from "@/components/VrxSelect/SelectItemInterface.ts";
+import type {SelectItemInterface} from "@/components/VrxSelect";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
 export class Header {

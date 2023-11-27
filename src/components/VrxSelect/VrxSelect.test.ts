@@ -1,7 +1,7 @@
 import {describe, it, expect, beforeEach} from 'vitest'
 import {VrxSelect} from "@/main.ts";
 import {mount, VueWrapper} from "@vue/test-utils";
-import {SelectItemInterface} from "./SelectItemInterface.ts";
+import type {SelectItemInterface} from "./SelectItemInterface.ts";
 
 describe('VrxSelect', () => {
 
