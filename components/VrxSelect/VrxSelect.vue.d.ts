@@ -1,6 +1,6 @@
 import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
 import { ComponentVariant } from '../../components/styles';
-import { SelectItemInterface } from "./SelectItemInterface";
+import type { SelectItemInterface } from "./SelectItemInterface";
 declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
     label: {
         type: __PropType<string | undefined>;
