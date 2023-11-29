@@ -26,6 +26,66 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                 }
             }
         },
+        labelStart:{
+            description:'label of the start date picker',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: '',
+                }
+            }
+        },
+        labelStop:{
+            description:'label of the stop date picker',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: '',
+                }
+            }
+        },
+        helperTextStart:{
+            description:'helper text of the start date picker',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: '',
+                }
+            }
+        },
+        helperTextStop:{
+            description:'helper text of the stop date picker',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: '',
+                }
+            }
+        },
         validRange: {
             description: 'valid range of the date picker',
             control: {
@@ -35,6 +95,36 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                 category: 'props',
                 type: {
                     summary: '[Date | undefined, Date | undefined]',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            }
+        },
+        dateStart: {
+            description: 'reference to the start date. Must be a ref of type Date',
+            control: {
+                type: 'none',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'Ref<Date> | undefined',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            }
+        },
+        dateStop: {
+            description: 'reference to the stop date. Must be a ref of type Date',
+            control: {
+                type: 'none',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'Ref<Date> | undefined',
                 },
                 defaultValue: {
                     summary: 'undefined',

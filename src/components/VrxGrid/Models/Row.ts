@@ -31,6 +31,12 @@ export class Row {
      * @param id
      */
     public getCellContent (id: string) : any {
+        const gridHeader = this._headerConfig.find(cell => cell.id.toLowerCase() === id.toLowerCase());
+        if(gridHeader?.template)
+            return gridHeader?.template({
+                id: this._id,
+                data: this._data,
+            });
         return this._data[id];
     }
 
@@ -120,6 +126,25 @@ export class Row {
         return !!included;
     }
 
+    /**
+     * Returns if the row has a template
+     * @param id
+     */
+    public hasTemplate (id: string) : boolean {
+        const gridHeader = this._headerConfig.find(cell => cell.id.toLowerCase() === id.toLowerCase());
+        return !!gridHeader?.template;
+    }
+
+    public getProps (id: string) : any {
+        const gridHeader = this._headerConfig.find(cell => cell.id.toLowerCase() === id.toLowerCase());
+        if(gridHeader?.componentProps)
+            return gridHeader?.componentProps({
+                id: this._id,
+                data: this._data,
+            });
+
+        console.warn(`No component props found for cell ${id}, you must provide a componentProps function in the header configuration`);
+    }
     /**
      * Default filter function
      * @param filter

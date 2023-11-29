@@ -11,7 +11,7 @@ export class Grid {
         this._configuration = grid;
         this._filters = reactive([]);
         this._selectedRows = reactive([]);
-        this._data = reactive(gridData);
+        this._data = gridData;
     }
 
     public get configuration(): GridConfiguration {
@@ -46,7 +46,7 @@ export class Grid {
         }
         this.deselectAll();
         this._data.forEach((row : GridRow) => {
-            this._selectedRows.push(row);
+            this._selectedRows.push({...row});
         });
     }
 
@@ -73,8 +73,7 @@ export class Grid {
             const exist = this._data.find((r : (any & {id:number|string})) => r.id === row.id);
             if(exist){
                 const index = this._data.indexOf(exist);
-                this._data.splice(index, 1);
-                this._data.splice(index, 0, row);
+                this._data.splice(index, 1, row);
             } else {
                 this._data.push(row);
             }
@@ -83,7 +82,6 @@ export class Grid {
 
     public setData(data :  (any & {id:number|string})[]) : void {
         this.clearData();
-        this._data.splice(0, this._data.length);
         data.forEach((row : (any & {id:number|string})) => {
             this._data.push(row);
         });

@@ -3,53 +3,64 @@
       class="relative text-gray-900 dark:text-white"
       :class="inputWidth"
       @focusout="closePicker"
+      @keydown.esc="closePicker"
+      ref="main"
   >
-    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-      <VrxIcon :icon="type === 'time' ? 'clock' : 'calendar'" size="5"/>
-    </div>
     <VrxInput
         :model-value="inputValue"
         icon="calendar"
-        type="text" :placeholder="props.placeholder ?? 'Select a date'"
+        :label="label"
+        type="text"
+        :placeholder="placeholder ?? 'Select a date'"
         @click="openPicker"
         :readonly="true"
-        :invalid="props.invalid"
+        :invalid="invalid"
     />
-    <div
-        v-if="showDropdown"
-        ref="dropdownRef"
-        class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
-        tabindex="-1"
-    >
-      <DaysPick
-          v-if="selectedStage === 'd' && !props.monthsOnly"
-          :month="selectedMonth"
-          :year="selectedYear"
-          :selected-date="selectedDate"
-          :valid-range="validRange"
-          :time-enabled="props.type === 'datetime'"
-          @change-stage="(stage) => selectedStage = stage"
-          @change-month="changeMonth"
-          @day-clicked="dayPicked"
-          @change-minute="onMinutesChange"
-          @change-hour="onHoursChange"
-      />
-      <MonthPick
-          id="vrx-month-pick"
-          v-if="selectedStage === 'm' || props.monthsOnly"
-          :year="selectedYear"
-          @change-month="onMonthChange"
-          @change-year="changeYear"
-          @change-stage="(stage) => selectedStage = stage"
-      />
-      <YearPick
-          class="vrx-datepicker"
-          id="vrx-year-pick"
-          v-if="selectedStage === 'y'"
-          :year-range="selectedYearRange"
-          @change-year="onYearChange"
-          @change-year-range="changeYearRange"
-      />
+    <div v-if="helperText">
+      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" :class="invalid ? 'text-red-500' : ''">
+        {{ helperText }}
+      </p>
+    </div>
+    <div v-if="showDropdown" class="fixed top-0 left-0 w-full h-full z-20" @click="closePicker">
+      <div
+          v-if="showDropdown"
+          ref="dropdownRef"
+          class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
+          v-append-to-body="[$refs.main, false]"
+          tabindex="-1"
+          @focusout="closePicker"
+          @keydown.esc="closePicker"
+      >
+        <DaysPick
+            v-if="selectedStage === 'd' && !props.monthsOnly"
+            :month="selectedMonth"
+            :year="selectedYear"
+            :selected-date="selectedDate"
+            :valid-range="validRange"
+            :time-enabled="props.type === 'datetime'"
+            @change-stage="(stage) => selectedStage = stage"
+            @change-month="changeMonth"
+            @day-clicked="dayPicked"
+            @change-minute="onMinutesChange"
+            @change-hour="onHoursChange"
+        />
+        <MonthPick
+            id="vrx-month-pick"
+            v-if="selectedStage === 'm' || props.monthsOnly"
+            :year="selectedYear"
+            @change-month="onMonthChange"
+            @change-year="changeYear"
+            @change-stage="(stage) => selectedStage = stage"
+        />
+        <YearPick
+            class="vrx-datepicker"
+            id="vrx-year-pick"
+            v-if="selectedStage === 'y'"
+            :year-range="selectedYearRange"
+            @change-year="onYearChange"
+            @change-year-range="changeYearRange"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -57,12 +68,15 @@
 <script setup lang="ts">
 
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import {computed, ref} from "vue";
+import {computed, Ref, ref} from "vue";
 import DaysPick from "@/components/VrxDatePicker/pickers/DaysPick.vue";
 import MonthPick from "@/components/VrxDatePicker/pickers/MonthPick.vue";
 import YearPick from "@/components/VrxDatePicker/pickers/YearPick.vue";
-import {DateFormat, formattedDate, monthsLib} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
+import {formattedDate, monthsLib} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
 import VrxInput from "@/components/VrxInput/VrxInput.vue";
+import {vAppendToBody} from "@/directives"
+
+const document = window.document;
 
 const props = defineProps<{
   type: 'date' | 'time' | 'datetime',
@@ -71,9 +85,12 @@ const props = defineProps<{
   monthsOnly?: boolean,
   placeholder?: string,
   invalid?: boolean,
+  date?: Ref<Date>,
+  helperText?: string,
+  label?: string
 }>();
 
-const selectedDate = ref();
+const selectedDate = props.date ? props.date : ref(new Date());
 
 const selectedMonth = ref(new Date().getMonth());
 const selectedYear = ref(new Date().getFullYear());
@@ -87,6 +104,7 @@ const selectedStage = ref(props.monthsOnly ? 'm' : 'd');
 const validRange = ref(props.validRange);
 const showDropdown = ref(false);
 const dropdownRef = ref();
+
 
 const emit = defineEmits(['dayClicked']);
 
@@ -114,6 +132,7 @@ const closePicker = (event: any) => {
  * @param day
  */
 const dayPicked = (day: any) => {
+  console.log("entro")
   selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
   if (selectedDate.value.getMonth() !== selectedMonth.value) {
     selectedMonth.value = selectedDate.value.getMonth();

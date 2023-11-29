@@ -7,8 +7,15 @@
       @click="cellClicked"
       @keydown="keyboardListener($event)"
   >
+
+    <span v-if="cell.type === 'button'">
+      <VrxButton v-bind="{...row.getProps(cell.id), markRaw:true}">
+        {{ row.getCellContent(cell.id) }}
+      </VrxButton>
+
+    </span>
     <!-- TEXT -->
-    <span class="vrx-grid-cell-content" v-if="!cell.type || cell.type === 'text'">
+    <span class="vrx-grid-cell-content" v-else-if="!cell.type || cell.type === 'text'">
       <input ref="input" v-if="cell.editable && editMode && cell.editType ==='text'" v-model="row.data[cell.id]" class="edit-input"/>
       <select v-else-if="cell.editable && cell.editType ==='select'" v-model="row.data[cell.id]" class="edit-input" @focus="editMode = true">
         <option v-for="option in props.cell.editOptions" :value="option.value">{{ option.text }}</option>
@@ -22,7 +29,7 @@
     </span>
 
     <!-- COMPONENT -->
-    <component v-else-if="cell.type === 'component'" :is="row.data[cell.id]" v-bind="row.componentProps"/>
+    <component v-else-if="cell.type === 'component'" :is="cell.component" v-bind="row.getProps(cell.id)"/>
 
     <!-- CUSTOM -->
     <div v-html="cell.staticHTML" v-else-if="cell.type === 'static'"></div>
@@ -36,7 +43,8 @@
   import {ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
   import colors from "tailwindcss/colors";
-  import {vClickOutside} from "@/utils.ts";
+  import {vClickOutside} from "@/directives";
+  import VrxButton from "@/components/VrxButton/VrxButton.vue";
 
 
   const props = defineProps<{
@@ -58,6 +66,9 @@
   const emits = defineEmits(['cellClicked', 'cellDoubleClicked']);
 
   const cellClicked = () => {
+    if(props.cell.type === 'boolean'){
+      props.cell.editable ? props.row.data[props.cell.id] = !props.row.data[props.cell.id] : null;
+    }
     emits('cellClicked', {
       cellId: props.cell.id,
       rowId: props.row.id,
@@ -105,9 +116,9 @@
   }
 
   .editing{
-    -webkit-box-shadow:inset 0px 0px 0px 2px v-bind(colors.blue[500]);
-    -moz-box-shadow:inset 0px 0px 0px 2px v-bind(colors.blue[500]);
-    box-shadow:inset 0px 0px 0px 2px v-bind(colors.blue[500]);
+    -webkit-box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
+    -moz-box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
+    box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
   }
 
 </style>

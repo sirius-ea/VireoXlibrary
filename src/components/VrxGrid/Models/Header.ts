@@ -5,7 +5,7 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 export class Header {
     private readonly _id: string;
     private readonly _text: string;
-    private _type: "text" | "component" | "static" | "boolean" | undefined;
+    private _type: "text" | "component" | "static" | "boolean" | "button" | undefined;
     private readonly _align?: "left" | "center" | "right";
     private readonly _sortable?: boolean;
     private readonly _sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;

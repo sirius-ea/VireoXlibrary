@@ -16,10 +16,9 @@
 <script setup lang="ts">
   import VrxGridHeader from "@/components/VrxGrid/VrxGridHeader.vue";
   import VrxGridBody from "@/components/VrxGrid/VrxGridBody.vue";
-  import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
+  import {GridConfiguration, GridRow} from "@/components";
   import {provide} from "vue";
-  import {Grid} from "@/components/VrxGrid/Models/Grid.ts";
-  import {ReactiveVariable} from "vue/macros";
+  import {Grid} from "./Models";
 
   const keyboardListener = (e: KeyboardEvent) => {
     if((e.ctrlKey || e.metaKey) && e.key === 'a'){
@@ -47,7 +46,7 @@
     gridData: GridRow[];
   }>()
 
-  const gridModel = new Grid(props.gridConfiguration, JSON.parse(JSON.stringify(props.gridData)));
+  const gridModel = new Grid(props.gridConfiguration, props.gridData);
 
   provide('filters', gridModel.filters);
   provide('selectedRows', gridModel.selectedRows);

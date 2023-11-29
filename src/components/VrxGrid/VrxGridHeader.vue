@@ -14,7 +14,7 @@
 import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import VrxGridHeaderCell from "@/components/VrxGrid/VrxGridHeaderCell.vue";
   import {ReactiveVariable} from "vue/macros";
-import {computed} from "vue";
+  import {computed} from "vue";
 
   const props = defineProps<{
     gridConfig: GridConfiguration;
