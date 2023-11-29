@@ -1,4 +1,5 @@
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
+import {Component, VNode} from "vue";
 
 export type GridConfiguration = {
     id: string;
@@ -10,7 +11,7 @@ export type GridConfiguration = {
 export type GridHeader = {
     id: string;
     text: string;
-    type?: "text" | "component" | "static" | "boolean" | undefined;
+    type?: "text" | "component" | "static" | "boolean" | "button" | undefined;
     align?: "left" | "center" | "right";
     sortable?: boolean;
     sortFunction?: ((a : GridRow, b : GridRow) => number) | undefined;
@@ -20,11 +21,14 @@ export type GridHeader = {
     filterPlaceholder?: string;
     customFilter?: (row: GridRow, filter: GridFilter) => boolean;
     editable?: boolean;
-    editType?: "text" | "select" | "date" | "component";
+    editType?: "text" | "select" | "date" | "component" ;
     editOptions?: any[];
     icon?: IconLibraryType;
     staticHTML?: string;
     colspan?: number;
+    template?: (value: GridRow) => any;
+    component?: string | Component;
+    componentProps?: (value: GridRow) => any;
 }
 
 export interface GridRow {

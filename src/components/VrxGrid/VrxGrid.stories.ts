@@ -1,7 +1,9 @@
 import {Meta, StoryObj} from "@storybook/vue3";
 import VrxGrid from "@/components/VrxGrid/VrxGrid.vue";
-import {VrxButton, VrxInput} from "@/components";
+import {GridRow, VrxButton, VrxInput} from "@/components";
 import {Row} from "@/components/VrxGrid/Models/Row.ts";
+import {h, markRaw, ref} from "vue";
+import {VrxDatePicker} from "@/main.ts";
 
 const meta : Meta<typeof VrxGrid> = {
     title: 'VrxGrid',
@@ -25,7 +27,8 @@ const gridData = [
             serialNumber: 1,
             color: "Red",
             model: "Fiat",
-            plate: "AA123AA"
+            plate: "AA123AA",
+            actions: "Ciao"
         }
     },
     {
@@ -110,7 +113,7 @@ const Template: GridStories = {
               <VrxButton color="default" size="sm" @click="setData(
                   [{ data: {name: 'Maria Rosa',serialNumber: 6,color: 'Black',model: 'Audi',plate: 'AA123BC'},id: '6'}])">Set Data</VrxButton>
               <VrxButton color="default" size="sm" @click="updateData(
-                  [{id: '2', data: {name: 'Ilary Blasi',serialNumber: 10,color: 'Blue',model: 'BMW',plate: 'AA123BC'}}])">Update Data</VrxButton>
+                  [{id: '2', data: {name: 'Ilary Blasi',serialNumber: 10,color: 'Black',model: 'BMW',plate: 'AA123BC'}}])">Update Data</VrxButton>
               <VrxButton color="default" size="sm" @click="clearData">Clear Data</VrxButton>
               <VrxButton color="default" size="sm" @click="selectAll">Select All</VrxButton>
               <VrxButton color="default" size="sm" @click="deselectAll">Deselect All</VrxButton>
@@ -489,3 +492,58 @@ export const Colspan: GridStories = {
         gridData: gridData,
     }
 };
+
+export const Custom_Content: GridStories = {
+    ...Template,
+    args: {
+        gridConfiguration: {
+            id: "test",
+            selectable: false,
+            multiselect: false,
+            header: [
+                {
+                    text: "Active",
+                    id: "active",
+                    align: "center",
+                    type: "boolean",
+                    width: 100,
+                },
+                {
+                    text: "Name",
+                    id: "name",
+                    align: "left",
+                    sortable: true,
+                    type: "text",
+                    width: 200,
+                },
+                {
+                    text: "Color",
+                    id: "color",
+                    align: "left",
+                    sortable: true,
+                },
+                {
+                    text: "Plate",
+                    id: "plate",
+                    align: "left",
+                    sortable: true,
+                },
+                {
+                    text: "Actions",
+                    id: "actions",
+                    align: "center",
+                    type: "component",
+                    component: markRaw(VrxDatePicker),
+                    componentProps: (_ : GridRow) => {
+                        return {
+                            type: 'date',
+                            placeholder: 'Select a date',
+                            date: ref(new Date())
+                        }
+                    },
+                },
+            ],
+        },
+        gridData: gridData,
+    }
+}

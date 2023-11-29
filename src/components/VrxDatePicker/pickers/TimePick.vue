@@ -40,7 +40,7 @@
 import VrxInput from "@/components/VrxInput/VrxInput.vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
 import {computed, ref} from "vue";
-import {shortHHMMtoString} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
+import {pad} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
 
 const emit = defineEmits(['changeMinute', 'changeHour']);
 
@@ -48,8 +48,8 @@ const props = defineProps<{
   selectedDate?: Date,
 }>();
 
-const hours = ref(props.selectedDate ? shortHHMMtoString(props.selectedDate.getHours()) : '00');
-const minutes = ref(props.selectedDate ? shortHHMMtoString(props.selectedDate.getMinutes()) : '00');
+const hours = ref(props.selectedDate ? pad(props.selectedDate.getHours()) : '00');
+const minutes = ref(props.selectedDate ? pad(props.selectedDate.getMinutes()) : '00');
 
 const invalidTime = computed(() => {
   let regex = /^([01][0-9]|2[0-3]):([0-5][0-9])$/ ;

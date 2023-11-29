@@ -161,7 +161,7 @@ export function checkDisabled (date: Date, validRange: [Date | undefined, Date |
     return false;
 }
 
-export function shortHHMMtoString(value: number){
+export function pad(value: number){
     return value < 10 ? `0${value}` : `${value}`;
 }
 

@@ -3,19 +3,22 @@
       data-testid="vrx-select"
       class="relative w-full"
       tabindex="0"
+      ref="toggle"
       v-click-outside="onFocusOut"
       @keyup.esc="onFocusOut"
   >
-    <label data-testid="vrx-select-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
+    <label data-testid="vrx-select-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label" :for="id">
       {{ label }}
     </label>
 
     <div
         data-testid="vrx-select-button"
+        :id="id"
         @click="!disabled ? showDropdown = !showDropdown : null"
         class="button text-sm rounded-lg p-2.5 block w-full"
-        ref="toggle"
-        :class="showDropdown ? style.select + ' ' + 'open-overlay' : style.select"
+        :class="[showDropdown ? style.select + ' ' + 'open-overlay' : style.select, elementClass]"
+        :data-toggle="'dropdown-'+id"
+
     >
       <div class="button-left-side">
         <VrxIcon v-if="icon" :icon="icon" :color="style.icon" size="5"/>
@@ -54,7 +57,8 @@
     </p>
   </div>
 
-  <div data-testid="vrx-select-dropdown" v-if="showDropdown" id="menu" class="menu text-sm" :class="style.dropdown" v-append-to-body="$refs" appendToBody>
+  <div class="fixed top-0 left-0 w-full h-full z-20" v-if="showDropdown" @click="onFocusOut">
+  <div data-testid="vrx-select-dropdown" v-if="showDropdown"  class="menu text-sm" :class="style.dropdown" role="listbox" :id="'dropdown-'+id" v-append-to-body="$refs.toggle">
       <div v-if="searchable" class="w-full">
         <input
             type="text"
@@ -80,19 +84,20 @@
         </div>
       </div>
     </div>
+  </div>
 
 </template>
 
 <script setup lang="ts">
-import {computed, ref, defineEmits, defineProps, withDefaults} from "vue";
+import {computed, ref} from "vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import {vClickOutside} from "@/utils.ts";
 import {selectStyles, ComponentVariant} from "@/components/styles";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary";
-import type {SelectItemInterface} from "./SelectItemInterface";
-import {vAppendToBody} from "@/directives/appendToBody";
+import type {SelectItemInterface} from "@/components";
+import {v4 as uuidv4} from 'uuid';
+import {vAppendToBody, vClickOutside} from "@/directives";
 
-
+const id = uuidv4();
   const props = withDefaults(defineProps<{
     label?: string,
     placeholder?: string,
@@ -109,7 +114,8 @@ import {vAppendToBody} from "@/directives/appendToBody";
     onClear?: () => void
     searchable?: boolean
     searchPlaceholder?: string
-    showRemove: boolean
+    showRemove?: boolean
+    elementClass?: string
   }>(),{
     disabled: false,
     invalid: false,
@@ -201,10 +207,6 @@ import {vAppendToBody} from "@/directives/appendToBody";
     justify-content: flex-start;
     overflow-y: auto;
   }
-  .open-overlay{
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
 
   .button-left-side {
     display: flex;
@@ -254,7 +256,3 @@ import {vAppendToBody} from "@/directives/appendToBody";
     gap: 5px;
   }
 </style>
-
-function defineEmits(arg0: {}) {
-  throw new Error("Function not implemented.");
-}

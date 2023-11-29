@@ -25,6 +25,21 @@ const meta : Meta<typeof VrxDatePicker> = {
                 }
             }
         },
+        label: {
+            description: 'label of the date picker',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: '',
+                }
+            }
+        },
         validRange: {
             description: 'valid range of the date picker',
             control: {
@@ -99,7 +114,22 @@ const meta : Meta<typeof VrxDatePicker> = {
                     summary: 'false',
                 }
             }
-        }
+        },
+        helperText:{
+            description: 'helper text of the date picker',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: '',
+                }
+            }
+        },
     }
 
 };

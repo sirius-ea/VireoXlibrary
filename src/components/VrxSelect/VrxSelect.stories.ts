@@ -174,6 +174,18 @@ const meta : Meta<typeof VrxSelect> = {
                 },
             }
         },
+        elementClass: {
+          description: 'additional class for the select element',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                },
+            }
+        },
         showRemove: {
             description: "enable/disable the possibility to clear the select",
             control: {
@@ -212,13 +224,11 @@ const Template : SelectStories = {
         },
 
         template: `
-          <div style="height: 100px">
               <VrxSelect
                   v-model="args.modelValue"
                   :list-data="args.listData"
                   v-bind="args"
               />
-          </div>
         `
     }),
     args: {
