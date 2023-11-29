@@ -1,4 +1,5 @@
 import { IconLibraryType } from '../../components/VrxIcon/IconLibrary.ts';
+import { Component } from './vue/dist/vue.esm-bundler.js';
 export type GridConfiguration = {
     id: string;
     header: GridHeader[];
@@ -8,7 +9,7 @@ export type GridConfiguration = {
 export type GridHeader = {
     id: string;
     text: string;
-    type?: "text" | "component" | "static" | "boolean" | undefined;
+    type?: "text" | "component" | "static" | "boolean" | "button" | undefined;
     align?: "left" | "center" | "right";
     sortable?: boolean;
     sortFunction?: ((a: GridRow, b: GridRow) => number) | undefined;
@@ -23,6 +24,9 @@ export type GridHeader = {
     icon?: IconLibraryType;
     staticHTML?: string;
     colspan?: number;
+    template?: (value: GridRow) => any;
+    component?: string | Component;
+    componentProps?: (value: GridRow) => any;
 };
 export interface GridRow {
     id: string;

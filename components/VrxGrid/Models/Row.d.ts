@@ -53,6 +53,12 @@ export declare class Row {
      */
     isSelected(): boolean;
     /**
+     * Returns if the row has a template
+     * @param id
+     */
+    hasTemplate(id: string): boolean;
+    getProps(id: string): any;
+    /**
      * Default filter function
      * @param filter
      * @private

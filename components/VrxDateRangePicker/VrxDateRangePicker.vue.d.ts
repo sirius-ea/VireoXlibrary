@@ -1,4 +1,5 @@
 import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
+import { Ref } from './vue/dist/vue.esm-bundler.js';
 declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
     type: {
         type: __PropType<"date" | "time" | "datetime">;
@@ -32,6 +33,30 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         type: __PropType<boolean | undefined>;
         required: false;
     };
+    labelStart: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
+    labelStop: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
+    dateStart: {
+        type: __PropType<Ref<Date> | undefined>;
+        required: false;
+    };
+    dateStop: {
+        type: __PropType<Ref<Date> | undefined>;
+        required: false;
+    };
+    helperTextStart: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
+    helperTextStop: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     type: {
         type: __PropType<"date" | "time" | "datetime">;
@@ -63,6 +88,30 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     };
     invalid: {
         type: __PropType<boolean | undefined>;
+        required: false;
+    };
+    labelStart: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
+    labelStop: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
+    dateStart: {
+        type: __PropType<Ref<Date> | undefined>;
+        required: false;
+    };
+    dateStop: {
+        type: __PropType<Ref<Date> | undefined>;
+        required: false;
+    };
+    helperTextStart: {
+        type: __PropType<string | undefined>;
+        required: false;
+    };
+    helperTextStop: {
+        type: __PropType<string | undefined>;
         required: false;
     };
 }>>, {}, {}>;

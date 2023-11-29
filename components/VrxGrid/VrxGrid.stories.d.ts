@@ -10,3 +10,4 @@ export declare const Multiselectable: GridStories;
 export declare const Editable: GridStories;
 export declare const Static_Content: GridStories;
 export declare const Colspan: GridStories;
+export declare const Custom_Content: GridStories;

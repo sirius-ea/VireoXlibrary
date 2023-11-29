@@ -1,5 +1,5 @@
 import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { GridConfiguration, GridRow } from '../../components/VrxGrid/GridConfiguration.ts';
+import { GridConfiguration, GridRow } from '../../components';
 declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
     gridConfiguration: {
         type: __PropType<GridConfiguration>;

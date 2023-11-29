@@ -1,6 +1,6 @@
 import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
 import { ComponentVariant } from '../../components/styles';
-import type { SelectItemInterface } from "./SelectItemInterface";
+import type { SelectItemInterface } from '../../components';
 declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
     label: {
         type: __PropType<string | undefined>;
@@ -71,9 +71,13 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         default: string;
     };
     showRemove: {
-        type: __PropType<boolean>;
-        required: true;
+        type: __PropType<boolean | undefined>;
+        required: false;
         default: boolean;
+    };
+    elementClass: {
+        type: __PropType<string | undefined>;
+        required: false;
     };
 }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     label: {
@@ -145,9 +149,13 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         default: string;
     };
     showRemove: {
-        type: __PropType<boolean>;
-        required: true;
+        type: __PropType<boolean | undefined>;
+        required: false;
         default: boolean;
+    };
+    elementClass: {
+        type: __PropType<string | undefined>;
+        required: false;
     };
 }>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
@@ -160,6 +168,6 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
     variant: ComponentVariant | undefined;
     multiselect: boolean | undefined;
     searchPlaceholder: string | undefined;
-    showRemove: boolean;
+    showRemove: boolean | undefined;
 }, {}>;
 export default _sfc_main;
