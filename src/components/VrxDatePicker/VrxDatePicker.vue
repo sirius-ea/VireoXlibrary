@@ -1,6 +1,6 @@
 <template>
   <div
-      class="relative text-gray-900 dark:text-white"
+      class="relative text-primary-900 dark:text-neutral-0"
       :class="inputWidth"
       @focusout="closePicker"
       @keydown.esc="closePicker"
@@ -17,7 +17,7 @@
         :invalid="invalid"
     />
     <div v-if="helperText">
-      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" :class="invalid ? 'text-red-500' : ''">
+      <p class="mt-2 text-sm text-primary-500 dark:text-primary-400" :class="invalid ? 'text-error-500' : ''">
         {{ helperText }}
       </p>
     </div>
@@ -25,7 +25,7 @@
       <div
           v-if="showDropdown"
           ref="dropdownRef"
-          class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
+          class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-primary-50 dark:bg-primary-700 flex flex-col gap-2 shadow-md"
           v-append-to-body="[$refs.main, false]"
           tabindex="-1"
           @focusout="closePicker"
@@ -132,7 +132,6 @@ const closePicker = (event: any) => {
  * @param day
  */
 const dayPicked = (day: any) => {
-  console.log("entro")
   selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
   if (selectedDate.value.getMonth() !== selectedMonth.value) {
     selectedMonth.value = selectedDate.value.getMonth();

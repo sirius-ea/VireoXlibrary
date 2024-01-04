@@ -36,7 +36,7 @@
 
 import {computed, ref} from "vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import { inputStyles } from "@/components/styles.ts";
+import { inputStyles} from "@/components/styles.ts";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
 const props = withDefaults(defineProps<{
@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<{
   invalid?: boolean,
   icon?: IconLibraryType,
   height?: number,
-  readonly?: boolean
+  readonly?: boolean,
 }>(),{
   type: 'text',
   placeholder: 'Insert Text'

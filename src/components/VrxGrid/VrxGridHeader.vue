@@ -1,5 +1,5 @@
 <template>
-  <thead data-testid="vrx-grid-header" class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white vrx-table">
+  <thead data-testid="vrx-grid-header" class="text-xs text-neutral-700 uppercase bg-primary-100 dark:bg-primary-700 dark:text-neutral-0 vrx-table">
     <tr>
       <VrxGridHeaderCell
           v-for="config in spanReformer"

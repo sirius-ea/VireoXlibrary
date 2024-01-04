@@ -1,33 +1,33 @@
 <template>
   <component
       v-if="config.component"
-      class="card hover:bg-gray-50 rounded-lg p-4 dark:hover:bg-gray-800 mb-2 dark:text-white"
+      class="card hover:bg-primary-50 rounded-lg p-4 dark:hover:bg-primary-800 mb-2 dark:text-neutral-0"
       @click="toggleChildren"
       :is="config.component.name"
       v-bind="config.component.props"
   >
     <div class="child-container" :class="config.description ? 'child-align-start' : 'child-align-center'">
-      <div v-if="config.icon" class="icon-container p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mt-1">
+      <div v-if="config.icon" class="icon-container p-2 bg-primary-100 dark:bg-primary-700 rounded-lg mt-1">
         <VrxIcon :icon="config.icon"/>
       </div>
       <div class="label-text">
-        <span class="text-black dark:text-white">{{ config.text }}</span>
-        <span v-if=config.description class="description text-gray-500">{{ config.description }}</span>
+        <span class="text-neutral-1000 dark:text-neutral-0">{{ config.text }}</span>
+        <span v-if=config.description class="description text-primary-500">{{ config.description }}</span>
       </div>
     </div>
   </component>
 
-  <div v-else class="card hover:bg-gray-50 rounded-lg p-4 dark:hover:bg-gray-800 mb-2 dark:text-white" @click="toggleChildren">
+  <div v-else class="card hover:bg-primary-50 rounded-lg p-4 dark:hover:bg-primary-800 mb-2 dark:text-neutral-0" @click="toggleChildren">
     <div class="child-container" :class="config.description ? 'child-align-start' : 'child-align-center'">
-      <div v-if="config.icon" class="icon-container p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mt-1">
+      <div v-if="config.icon" class="icon-container p-2 bg-primary-100 dark:bg-primary-700 rounded-lg mt-1">
         <VrxIcon :icon="config.icon"/>
       </div>
       <div class="label-text">
         <div class="title">
-          <span class="text-black dark:text-white">{{ config.text }}</span>
+          <span class="text-neutral-1000 dark:text-neutral-0">{{ config.text }}</span>
           <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="showChildren ? 'icon-active' : 'icon-off'" size="3"/>
         </div>
-        <span v-if=config.description class="description text-gray-500">{{ config.description }}</span>
+        <span v-if=config.description class="description text-primary-500">{{ config.description }}</span>
       </div>
     </div>
 

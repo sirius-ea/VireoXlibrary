@@ -100,7 +100,7 @@ const meta : Meta<typeof VrxInput> = {
             table: {
                 category: 'props',
                 type: {
-                    summary: 'text | passsword',
+                    summary: 'text | password',
                 },
                 defaultValue: {
                     summary: 'text',

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center w-fit text-gray-900 dark:text-white">
-    <div class="flex flex-row items-center gap-2 text-gray-400">
+  <div class="flex justify-center w-fit text-primary-900 dark:text-neutral-0">
+    <div class="flex flex-row items-center gap-2 text-primary-400">
       <VrxDatePicker
           ref="pickerStart"
           :type="type"
@@ -18,7 +18,7 @@
 
         <VrxIcon
             icon="chevron-down"
-            class="hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer rounded-full"
+            class="hover:bg-primary-200 dark:hover:bg-primary-600 cursor-pointer rounded-full"
             @click="showDropdown = !showDropdown"
         />
       <VrxDatePicker
@@ -38,22 +38,22 @@
     </div>
     <div
         v-if="showDropdown"
-        class="dropdown-vrx-picker absolute w-48 mt-12 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
+        class="dropdown-vrx-picker absolute w-48 mt-12 p-4 h-auto text-sm rounded-lg bg-primary-50 dark:bg-primary-700 flex flex-col gap-2 shadow-md"
         tabindex="-1"
         @focusout="showDropdown = false"
     >
       <div class="flex flex-row justify-between items-center w-full">
-        <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+        <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer"
                  @click="changeType(-1)"/>
         <span class="rounded-lg font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ type }}</span>
-        <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+        <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer"
                  @click="changeType(+1)"/>
       </div>
       <div class="flex flex-col justify-center w-full">
         <div
             v-for="button in currentButtons"
             @click="button.action()"
-            class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer justify-center flex select-none hover:text-blue-700 dark:hover:text-white">
+            class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer justify-center flex select-none hover:text-secondary-700 dark:hover:text-neutral-0">
           {{ button.value }}
         </div>
       </div>

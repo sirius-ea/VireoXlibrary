@@ -2,7 +2,7 @@
 <template>
   <tr
       :data-testid="'vrx-grid-row-'+ rowModel.id"
-      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 vrx-row"
+      class="bg-primary-50 border-b dark:bg-primary-800 dark:border-primary-700 vrx-row"
       :class="rowStyle"
       v-if="!isFiltered"
       @click="rowClicked"
@@ -18,7 +18,10 @@
 </template>
 
 <script setup lang="ts">
+
+
   import colors from "tailwindcss/colors";
+  import {theme} from "@/components/styles.ts";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {computed, inject, ref} from "vue";
@@ -58,7 +61,7 @@
 
   const rowStyle = computed(() => {
     if(rowModel.selectable){
-      return rowModel.isSelected() ? 'selected row-hover dark:selected dark:row-hover dark:bg-gray-100' : 'not-selected dark:row-hover row-hover dark:bg-gray-100';
+      return rowModel.isSelected() ? 'selected row-hover dark:selected dark:row-hover dark:bg-primary-100' : 'not-selected dark:row-hover row-hover dark:bg-primary-100';
     }
     return 'not-selected';
   });
@@ -66,8 +69,8 @@
 </script>
 <style scoped>
   .selected{
-    background-color: v-bind(colors.gray[100]);
-    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
+    background-color: v-bind(theme.colors.primary[100]);
+    box-shadow: 3px 0 v-bind(theme.colors.secondary[500]) inset;
   }
 
   .vrx-row {
@@ -86,7 +89,7 @@
   }
 
   .row-hover:hover{
-    background-color: v-bind(colors.gray[200]);
+    background-color: v-bind(theme.colors.primary[200]);
     cursor: pointer;
   }
 
@@ -95,13 +98,13 @@
   }
 
   :is([data-mode="dark"] .dark\:row-hover:hover) {
-    background-color: v-bind(colors.gray[700]);
+    background-color: v-bind(theme.colors.primary[700]);
   }
 
   :is([data-mode="dark"] .dark\:selected) {
-    background-color:  v-bind(colors.gray[600]);
+    background-color:  v-bind(theme.colors.primary[600]);
     color: white;
-    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
+    box-shadow: 3px 0 v-bind(theme.colors.secondary[500]) inset;
     box-sizing: border-box;
   }
 </style>

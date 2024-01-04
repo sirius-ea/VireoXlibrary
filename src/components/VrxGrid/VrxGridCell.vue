@@ -39,6 +39,7 @@
 <script setup lang="ts">
 
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
+  import {theme} from "@/components/styles.ts";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   import {ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
@@ -116,9 +117,9 @@
   }
 
   .editing{
-    -webkit-box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
-    -moz-box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
-    box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
+    -webkit-box-shadow:inset 0 0 0 2px v-bind(theme.colors.primary[500]);
+    -moz-box-shadow:inset 0 0 0 2px v-bind(theme.colors.primary[500]);
+    box-shadow:inset 0 0 0 2px v-bind(theme.colors.primary[500]);
   }
 
 </style>

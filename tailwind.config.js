@@ -1,8 +1,26 @@
+import colors from "tailwindcss/colors";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
-      darkMode: true
+      darkMode: true,
+      colors: {
+        primary: {
+          ...colors.gray
+        },
+        secondary: {
+          ...colors.blue
+        },
+        neutral: {
+            '0': colors.white,
+            ...colors.gray,
+            '1000': colors.black,
+        },
+        error: {
+          ...colors.red
+        },
+      },
     }
   },
   variants: {

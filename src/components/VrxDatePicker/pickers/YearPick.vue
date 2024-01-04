@@ -1,17 +1,17 @@
 <template>
   <div class="flex flex-row justify-between items-center">
-    <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer" @click="emit('changeYearRange',-10)"/>
+    <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer" @click="emit('changeYearRange',-10)"/>
     <span
         class="rounded-lg font-bold pt-1 pb-1 pr-2 pl-2 select-none"
     >{{ yearRange.join(" - ") }}</span>
-    <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer" @click="emit('changeYearRange',10)"/>
+    <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer" @click="emit('changeYearRange',10)"/>
   </div>
 
   <div class="w-full flex justify-center">
     <div class="flex flex-row flex-wrap">
       <div
           v-for="year in years"
-          class="font-bold w-14 p-1 rounded-md text-center cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-500 hover:text-blue-700 dark:hover:text-white"
+          class="font-bold w-14 p-1 rounded-md text-center cursor-pointer hover:bg-primary-200 dark:hover:bg-primary-500 hover:text-secondary-700 dark:hover:text-neutral-0"
           @click="emit('changeYear', year)"
       >{{ year }}</div>
     </div>
