@@ -41,7 +41,7 @@
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {theme} from "@/components/styles.ts";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
-  import {ref} from "vue";
+  import {onBeforeMount, ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
   import colors from "tailwindcss/colors";
   import {vClickOutside} from "@/directives";
@@ -55,6 +55,12 @@
 
   const editMode = ref(false);
   const input = ref();
+  const gridCellTheme = ref();
+
+  onBeforeMount(() => { // Initialize theme
+    if(theme && theme.colors)
+      gridCellTheme.value = theme.colors;
+  });
 
   const getCellStyle = () => {
     let style = props.cell.align ? textStyle[props.cell.align as keyof typeof textStyle] : '';
@@ -117,9 +123,9 @@
   }
 
   .editing{
-    -webkit-box-shadow:inset 0 0 0 2px v-bind(theme.colors.primary[500]);
-    -moz-box-shadow:inset 0 0 0 2px v-bind(theme.colors.primary[500]);
-    box-shadow:inset 0 0 0 2px v-bind(theme.colors.primary[500]);
+    -webkit-box-shadow:inset 0 0 0 2px v-bind(gridCellTheme.primary[500]);
+    -moz-box-shadow:inset 0 0 0 2px v-bind(gridCellTheme.primary[500]);
+    box-shadow:inset 0 0 0 2px v-bind(gridCellTheme.primary[500]);
   }
 
 </style>

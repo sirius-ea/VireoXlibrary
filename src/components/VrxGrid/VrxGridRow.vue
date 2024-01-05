@@ -20,11 +20,10 @@
 <script setup lang="ts">
 
 
-  import colors from "tailwindcss/colors";
   import {theme} from "@/components/styles.ts";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {computed, inject, ref} from "vue";
+  import {computed, inject, onBeforeMount, ref} from "vue";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   import VrxGridCell from "@/components/VrxGrid/VrxGridCell.vue";
   const props = defineProps<{
@@ -38,6 +37,12 @@
 
   const filters = inject('filters');
   const selectedRows = inject('selectedRows');
+  const gridRowTheme = ref();
+
+  onBeforeMount(() => { // Initialize theme
+    if(theme && theme.colors)
+      gridRowTheme.value = theme.colors;
+  });
 
   const rowClicked = () => {
     rowModel.rowClicked()
@@ -69,8 +74,8 @@
 </script>
 <style scoped>
   .selected{
-    background-color: v-bind(theme.colors.primary[100]);
-    box-shadow: 3px 0 v-bind(theme.colors.secondary[500]) inset;
+    background-color: v-bind(gridRowTheme.primary[100]);
+    box-shadow: 3px 0 v-bind(gridRowTheme.secondary[500]) inset;
   }
 
   .vrx-row {
@@ -89,7 +94,7 @@
   }
 
   .row-hover:hover{
-    background-color: v-bind(theme.colors.primary[200]);
+    background-color: v-bind(gridRowTheme.primary[200]);
     cursor: pointer;
   }
 
@@ -98,13 +103,13 @@
   }
 
   :is([data-mode="dark"] .dark\:row-hover:hover) {
-    background-color: v-bind(theme.colors.primary[700]);
+    background-color: v-bind(gridRowTheme.primary[700]);
   }
 
   :is([data-mode="dark"] .dark\:selected) {
-    background-color:  v-bind(theme.colors.primary[600]);
+    background-color:  v-bind(gridRowTheme.primary[600]);
     color: white;
-    box-shadow: 3px 0 v-bind(theme.colors.secondary[500]) inset;
+    box-shadow: 3px 0 v-bind(gridRowTheme.secondary[500]) inset;
     box-sizing: border-box;
   }
 </style>
