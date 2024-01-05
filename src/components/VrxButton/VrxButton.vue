@@ -9,7 +9,7 @@
               font-medium
             "
             :class="[
-            customColors ? customColors : classByColor[color],
+            classByColor[color],
             `text-${size}`,
             fullWidth ? 'w-full justify-center' : '',
             fullRounded ? 'rounded-full px-2 py-2' : 'rounded-lg px-5 py-2.5',
@@ -37,14 +37,13 @@ const classByColor = {
     'purple': `text-white bg-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900`,
 }
 
-const {color, disabled, fullRounded, fullWidth, size, customColors} =
+const {color, disabled, fullRounded, fullWidth, size} =
     defineProps<{
       color: 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'blue' | 'purple',
       disabled?: boolean,
       fullRounded?: boolean,
       fullWidth?: boolean,
       size: 'xs' | 'sm' | 'base' | 'lg' | 'xl',
-      customColors?: string
     }>()
 
 </script>

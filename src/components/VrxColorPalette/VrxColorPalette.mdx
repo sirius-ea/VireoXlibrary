@@ -1,0 +1,55 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxColorPalette/About" />
+
+# VrxColorPalette
+
+The VrxLibrary uses the following [default](./?path=/docs/vrxcolorpalette--docs) color palette for all of its components.
+
+This may be modified by editing `tailwind.config.js` found in their project.
+
+Here's an example:
+
+```js
+export default {
+    theme: {
+        extend: {
+            colors: {
+                primary: {
+                    '50': '#fffbeb',
+                    '100': '#fef3c7',
+                    '200': '#fde58a',
+                    '300': '#fbd24e',
+                    '400': '#fabe25',
+                    '500': '#f49d0c',
+                    '600': '#d87607',
+                    '700': '#bc560a',
+                    '800': '#923f0e',
+                    '900': '#78340f',
+                    '950': '#451a03'
+                },
+                secondary: {
+                    '50': '#f6f6f6',
+                    '100': '#e7e7e7',
+                    '200': '#d1d1d1',
+                    '300': '#b0b0b0',
+                    '400': '#888888',
+                    '500': '#6d6d6d',
+                    '600': '#5d5d5d',
+                    '700': '#4f4f4f',
+                    '800': '#454545',
+                    '900': '#3b3b3b',
+                    '950': '#262626'
+                },
+                neutral: {
+                    // ... user defined colors
+                },
+                error: {
+                    // ... user defined colors
+                }
+            }
+        }
+    }
+   // ... other properties
+}
+```

@@ -72,13 +72,13 @@ describe('VrxSelect', () => {
     it('change invalid', async () => {
         await wrapper.setProps({ invalid: true });
         expect(wrapper.props('invalid')).toBe(true);
-        expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-red-50');
+        expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-error-50');
     })
 
     it('change disabled', async () => {
         await wrapper.setProps({ disabled: true });
         expect(wrapper.props('disabled')).toBe(true);
-        expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-gray-10');
+        expect(wrapper.get('[data-testid=vrx-select-button]').classes()).toContain('bg-primary-50');
     });
 
     it('Deselect all', async () => {
