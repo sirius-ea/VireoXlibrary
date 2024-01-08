@@ -10,14 +10,16 @@ const vAppendToBody = {
             elementToAttach = args.value;
         }
 
-        console.log(elementToAttach)
         const overflowParent = getScrollParent(elementToAttach);
         document.body.appendChild(el.parentNode);
         document.body.style.overflow = "hidden";
         calculatePosition(el, elementToAttach, changeWidth)
     },
     beforeUnmount: function (el: any) {
-        el.parentNode.remove();
+        if(el.parentNode)
+            el.parentNode.remove();
+        else
+            el.remove();
         document.body.style.overflow = "auto";
     }
 }
