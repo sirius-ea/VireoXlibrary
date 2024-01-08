@@ -11,16 +11,19 @@
           :placeholder="placeholderFrom"
           :width="width"
           @click="pickerStop.closePicker()"
-          :label="labelStart"
+          :label="(labelStart ? labelStart : (labelStop ? '&nbsp;' : undefined))"
           :date="dateStart"
-          :helper-text="helperTextStart"
+          :helper-text="(helperTextStart ? helperTextStart : (helperTextStop ? '&nbsp;' : undefined))"
       />
-
+      <div class="h-full flex flex-col items-center justify-center">
+        <label v-if="labelStop || labelStart"> &nbsp; <!-- Purely exists for alignment --></label>
         <VrxIcon
             icon="chevron-down"
             class="hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer rounded-full"
             @click="showDropdown = !showDropdown"
         />
+        <label v-if="helperTextStart || helperTextStop" class="mt-2 text-sm"> &nbsp; <!-- Purely exists for alignment --> </label>
+      </div>
       <VrxDatePicker
           ref="pickerStop"
           :type="type"
@@ -31,9 +34,9 @@
           :placeholder="placeholderTo"
           :width="width"
           @click="pickerStart.closePicker()"
-          :label="labelStop"
+          :label="(labelStop ? labelStop : (labelStart ? '&nbsp;' : undefined))"
           :date="dateStop"
-          :helper-text="helperTextStop"
+          :helper-text="(helperTextStop ? helperTextStop : (helperTextStart ? '&nbsp;' : undefined))"
       />
     </div>
     <div

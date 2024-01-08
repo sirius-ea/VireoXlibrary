@@ -4,18 +4,19 @@
       :class="inputWidth"
       @focusout="closePicker"
       @keydown.esc="closePicker"
-      ref="main"
   >
-    <VrxInput
-        :model-value="inputValue"
-        icon="calendar"
-        :label="label"
-        type="text"
-        :placeholder="placeholder ?? 'Select a date'"
-        @click="openPicker"
-        :readonly="true"
-        :invalid="invalid"
-    />
+    <div class="h-fit w-fit" ref="main">
+      <VrxInput
+          :model-value="inputValue"
+          icon="calendar"
+          :label="label"
+          type="text"
+          :placeholder="placeholder ?? 'Select a date'"
+          @click="openPicker"
+          :readonly="true"
+          :invalid="invalid"
+      />
+    </div>
     <div v-if="helperText">
       <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" :class="invalid ? 'text-red-500' : ''">
         {{ helperText }}
