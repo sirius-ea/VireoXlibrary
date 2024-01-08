@@ -19,7 +19,7 @@
         <label v-if="labelStop || labelStart"> &nbsp; <!-- Purely exists for alignment --></label>
         <VrxIcon
             icon="chevron-down"
-            class="hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer rounded-full h-full"
+            class="hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer rounded-full"
             @click="showDropdown = !showDropdown"
         />
         <label v-if="helperTextStart || helperTextStop" class="mt-2 text-sm"> &nbsp; <!-- Purely exists for alignment --> </label>
