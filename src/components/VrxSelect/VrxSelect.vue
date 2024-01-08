@@ -3,7 +3,6 @@
       data-testid="vrx-select"
       class="relative w-full"
       tabindex="0"
-      ref="toggle"
       v-click-outside="onFocusOut"
       @keyup.esc="onFocusOut"
   >
@@ -14,6 +13,7 @@
     <div
         data-testid="vrx-select-button"
         :id="id"
+        ref="toggle"
         @click="!disabled ? showDropdown = !showDropdown : null"
         class="button text-sm rounded-lg p-2.5 block w-full"
         :class="[showDropdown ? style.select + ' ' + 'open-overlay' : style.select, elementClass]"
