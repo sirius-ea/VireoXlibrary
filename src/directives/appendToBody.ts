@@ -9,8 +9,7 @@ const vAppendToBody = {
         } else {
             elementToAttach = args.value;
         }
-
-        console.log(elementToAttach)
+        
         const overflowParent = getScrollParent(elementToAttach);
         document.body.appendChild(el.parentNode);
         document.body.style.overflow = "hidden";
