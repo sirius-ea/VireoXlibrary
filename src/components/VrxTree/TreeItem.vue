@@ -1,7 +1,7 @@
 <template>
   <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'">
-    <div class="tree-element hover:bg-gray-100 dark:hover:bg-gray-800 rounded-s" @click="clickHandle">
-      <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5"/>
+    <div class="tree-element hover:bg-gray-100 dark:hover:bg-gray-800 rounded-s" @click="() => cellClicked(node, props.parentId)">
+      <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input
           data-testid="vrx-tree-node-checkbox"
@@ -12,7 +12,7 @@
           @click="selectHandle"
           :indeterminate.prop="hasChildrenChecked && !checkValue"
       />
-      <span>{{ props.node.text }}</span>
+      <span :class="node.class">{{ props.node.text }}</span>
     </div>
 
     <!-- CHILDREN RECURSIVE -->
@@ -30,6 +30,7 @@
         :siblings="node.children"
         :remove-node-by-id="removeNodeById"
         @check-clicked="checkClicked"
+        @cellClicked="(value, parentId) => cellClicked(value, parentId)"
     />
 
   </div>
@@ -75,6 +76,10 @@
     if(event.target.nodeName !== "INPUT"){
       open.value = !open.value;
     }
+  }
+
+  const cellClicked = (value : VrxTreeNode, parentId : string) => {
+    emit('cellClicked', value, parentId);
   }
 
   /**
@@ -140,7 +145,7 @@
     emit('checkClicked', props.node);
   }
 
-  const emit = defineEmits(['checkClicked']);
+  const emit = defineEmits(['checkClicked', 'cellClicked']);
 
 </script>
 

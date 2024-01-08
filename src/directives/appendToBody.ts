@@ -31,7 +31,7 @@ function calculatePosition(el: HTMLElement, elementToAttach : HTMLElement , chan
     el.style.left = rect.left + 'px';
     el.style.zIndex = "1000000";
 }
-function getScrollParent(node: HTMLElement | null) {
+function getScrollParent(node: HTMLElement | null) : HTMLElement {
     if (node == null) {
         return document.body;
     }
