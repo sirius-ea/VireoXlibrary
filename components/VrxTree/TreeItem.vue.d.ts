@@ -41,7 +41,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         type: __PropType<VrxTreeNode[]>;
         required: true;
     };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "checkClicked"[], "checkClicked", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, ("cellClicked" | "checkClicked")[], "cellClicked" | "checkClicked", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     node: {
         type: __PropType<VrxTreeNode>;
         required: true;
@@ -83,6 +83,7 @@ declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent
         required: true;
     };
 }>> & {
+    onCellClicked?: ((...args: any[]) => any) | undefined;
     onCheckClicked?: ((...args: any[]) => any) | undefined;
 }, {}, {}>;
 export default _sfc_main;
