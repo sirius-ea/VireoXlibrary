@@ -3,7 +3,6 @@
       data-testid="vrx-select"
       class="relative w-full"
       tabindex="0"
-      ref="toggle"
       v-click-outside="onFocusOut"
       @keyup.esc="onFocusOut"
   >
@@ -14,6 +13,7 @@
     <div
         data-testid="vrx-select-button"
         :id="id"
+        ref="toggle"
         @click="!disabled ? showDropdown = !showDropdown : null"
         class="button text-sm rounded-lg p-2.5 block w-full"
         :class="[showDropdown ? style.select + ' ' + 'open-overlay' : style.select, elementClass]"
@@ -140,7 +140,7 @@ const id = uuidv4();
 
   const searchFilter = (event: any) => {
     if(event){
-      listDataCopy.value = props.listData.filter((elem) => elem.label.toLowerCase().includes(event.target.value.toLowerCase()));
+      listDataCopy.value = props.listData.filter((elem : any) => elem.label.toLowerCase().includes(event.target.value.toLowerCase()));
     }
   }
 
@@ -169,7 +169,7 @@ const id = uuidv4();
       showDropdown.value = false;
       selectedList.value = [item];
     } else {
-      const indexItem = selectedList.value.findIndex((element) => element.value === item.value);
+      const indexItem = selectedList.value.findIndex((element : any) => element.value === item.value);
       if(indexItem > -1){
         selectedList.value.splice(indexItem,1);
       } else {

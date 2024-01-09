@@ -16,6 +16,7 @@
         :remove-node-by-id="removeNodeById"
         :remove-node="removeNode"
         :siblings="node.children"
+        @cell-clicked="cellClicked"
     />
   </div>
 </template>
@@ -156,7 +157,12 @@
     return result;
   }
 
+  const cellClicked = (node: VrxTreeNode, parentId: string) => {
+    emit('cellClicked', node, parentId)
+  }
+
   const selectedNodes = ref<String []>([]);
+  const emit = defineEmits(['cellClicked']);
   buildTreeWithIds(props.data);
 
   defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree });

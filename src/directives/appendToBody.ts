@@ -9,7 +9,7 @@ const vAppendToBody = {
         } else {
             elementToAttach = args.value;
         }
-
+        
         const overflowParent = getScrollParent(elementToAttach);
         document.body.appendChild(el.parentNode);
         document.body.style.overflow = "hidden";
@@ -30,7 +30,7 @@ function calculatePosition(el: HTMLElement, elementToAttach : HTMLElement , chan
     el.style.left = rect.left + 'px';
     el.style.zIndex = "1000000";
 }
-function getScrollParent(node: HTMLElement | null) {
+function getScrollParent(node: HTMLElement | null) : HTMLElement {
     if (node == null) {
         return document.body;
     }
