@@ -16,7 +16,10 @@ const vAppendToBody = {
         calculatePosition(el, elementToAttach, changeWidth)
     },
     beforeUnmount: function (el: any) {
-        el.remove()
+        if(el.parentNode)
+            el.parentNode.remove();
+        else
+            el.remove();
         document.body.style.overflow = "auto";
     }
 }
