@@ -70,5 +70,18 @@ export const Error: ColorStory = {
     }
 };
 
+export const Root: ColorStory = {
+    ...Template,
+    args: {
+        ...Template.args,
+        colors: { //@ts-ignore
+            'text-darkMode': theme.colors['text-darkMode'], //@ts-ignore
+            'text-lightMode': theme.colors['text-lightMode'], //@ts-ignore
+            'background-darkMode': theme.colors['background-darkMode'], //@ts-ignore
+            'background-lightMode': theme.colors['background-lightMode']
+        },
+    }
+};
+
 
 

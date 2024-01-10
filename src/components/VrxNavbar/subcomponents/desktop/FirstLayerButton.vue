@@ -1,7 +1,7 @@
 <template>
   <component
       v-if="config.component"
-      class="card hover:bg-primary-50 rounded-lg p-4 dark:hover:bg-primary-800 mb-2 dark:text-neutral-0"
+      class="card hover:bg-primary-100 rounded-lg p-4 dark:hover:bg-primary-800 mb-2 text-text-lightMode dark:text-text-darkMode"
       @click="toggleChildren"
       :is="config.component.name"
       v-bind="config.component.props"
@@ -11,23 +11,23 @@
         <VrxIcon :icon="config.icon"/>
       </div>
       <div class="label-text">
-        <span class="text-neutral-1000 dark:text-neutral-0">{{ config.text }}</span>
-        <span v-if=config.description class="description text-primary-500">{{ config.description }}</span>
+        <span class="text-text-lightMode dark:text-text-darkMode">{{ config.text }}</span>
+        <span v-if=config.description class="description text-text-lightMode/80 dark:text-text-darkMode/80">{{ config.description }}</span>
       </div>
     </div>
   </component>
 
-  <div v-else class="card hover:bg-primary-50 rounded-lg p-4 dark:hover:bg-primary-800 mb-2 dark:text-neutral-0" @click="toggleChildren">
+  <div v-else class="card hover:bg-primary-100 rounded-lg p-4 dark:hover:bg-primary-800 mb-2 text-text-lightMode dark:text-text-darkMode" @click="toggleChildren">
     <div class="child-container" :class="config.description ? 'child-align-start' : 'child-align-center'">
       <div v-if="config.icon" class="icon-container p-2 bg-primary-100 dark:bg-primary-700 rounded-lg mt-1">
         <VrxIcon :icon="config.icon"/>
       </div>
       <div class="label-text">
         <div class="title">
-          <span class="text-neutral-1000 dark:text-neutral-0">{{ config.text }}</span>
+          <span class="text-text-lightMode dark:text-text-darkMode">{{ config.text }}</span>
           <VrxIcon v-if="config.children && config.children.length > 0" :icon="'chevron-down'" :class="showChildren ? 'icon-active' : 'icon-off'" size="3"/>
         </div>
-        <span v-if=config.description class="description text-primary-500">{{ config.description }}</span>
+        <span v-if=config.description class="description text-text-lightMode/80 dark:text-text-darkMode/80">{{ config.description }}</span>
       </div>
     </div>
 

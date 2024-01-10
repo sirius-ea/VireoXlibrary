@@ -1,6 +1,6 @@
 <template>
   <div
-      class="vrx-navbar-header bg-neutral-0 border-primary-200 dark:bg-primary-900"
+      class="vrx-navbar-header bg-primary-50 border-primary-200 dark:bg-primary-900"
       :class="{'scrolled-nav' : scrolledNav}"
       data-testid="vrx-navbar"
       @mouseleave="mouseLeave"
@@ -8,7 +8,7 @@
     <nav class="vrx-navbar" ref="navbar">
       <slot name="leftComponent"/>
 
-      <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 border border-primary-100 rounded-lg bg-primary-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-neutral-0 dark:bg-primary-800 md:dark:bg-primary-900 dark:border-primary-700">
+      <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 border border-primary-100 rounded-lg bg-primary-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-primary-50 dark:bg-primary-800 md:dark:bg-primary-900 dark:border-primary-700">
         <NavButton
             ref="buttonRef"
             v-for="button in props.buttons"
@@ -38,7 +38,7 @@
     <transition name="bottom">
       <div
           v-show="showBottomNav && !mobile"
-          class="bottom-nav border-b bg-neutral-0 dark:bg-primary-900 dark:border-primary-700"
+          class="bottom-nav border-b bg-primary-50 dark:bg-primary-900 dark:border-primary-700"
           data-testid="vrx-navbar-dropdown"
       >
         <FirstLayerButton v-for="config in selectedButton.children" :config="config"/>

@@ -1,6 +1,6 @@
 <template>
   <div
-      class="relative text-primary-900 dark:text-neutral-0"
+      class="relative text-text-lightMode dark:text-text-darkMode"
       :class="inputWidth"
       @focusout="closePicker"
       @keydown.esc="closePicker"
@@ -18,7 +18,7 @@
       />
     </div>
     <div v-if="helperText">
-      <p class="mt-2 text-sm text-primary-500 dark:text-primary-400" :class="invalid ? 'text-error-500' : ''">
+      <p class="mt-2 text-sm text-text-lightMode dark:text-text-darkMode" :class="invalid ? 'text-error-500' : ''">
         {{ helperText }}
       </p>
     </div>
