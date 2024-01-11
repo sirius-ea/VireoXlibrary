@@ -22,12 +22,12 @@
         {{ helperText }}
       </p>
     </div>
-    <div v-if="showDropdown" class="fixed top-0 left-0 w-full h-full z-20" @click="closePicker">
+    <div v-if="showDropdown" class="fixed top-0 left-0 w-full h-full z-20">
       <div
           v-if="showDropdown"
           ref="dropdownRef"
           class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
-          v-append-to-body="[$refs.main, false]"
+          v-append-to-body="[$refs.main,false,false]"
           tabindex="-1"
           @focusout="closePicker"
           @keydown.esc="closePicker"
