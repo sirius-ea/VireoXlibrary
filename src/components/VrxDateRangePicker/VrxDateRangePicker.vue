@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center w-fit text-primary-900 dark:text-neutral-0">
-    <div class="flex flex-row items-center gap-2 text-primary-400">
+  <div class="flex justify-center w-fit text-gray-900 dark:text-white relative">
+    <div class="flex flex-row items-center gap-2 text-gray-400">
       <VrxDatePicker
           ref="pickerStart"
           :type="type"
@@ -15,11 +15,13 @@
           :date="dateStart"
           :helper-text="(helperTextStart ? helperTextStart : (helperTextStop ? '&nbsp;' : undefined))"
       />
-      <div class="h-full flex flex-col items-center justify-center">
+      <div class="vrx-rangePickerBtn h-full flex flex-col items-center justify-center" ref="dropdownBtn">
         <label v-if="labelStop || labelStart"> &nbsp; <!-- Purely exists for alignment --></label>
         <VrxIcon
+            @focusout="closePicker"
+            @keydown.esc="closePicker"
             icon="chevron-down"
-            class="hover:bg-primary-200 dark:hover:bg-primary-600 cursor-pointer rounded-full"
+            class="hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-600 cursor-pointer rounded-full"
             @click="showDropdown = !showDropdown"
         />
         <label v-if="helperTextStart || helperTextStop" class="mt-2 text-sm"> &nbsp; <!-- Purely exists for alignment --> </label>
@@ -39,29 +41,34 @@
           :helper-text="(helperTextStop ? helperTextStop : (helperTextStart ? '&nbsp;' : undefined))"
       />
     </div>
-    <div
-        v-if="showDropdown"
-        class="dropdown-vrx-picker absolute w-48 mt-12 p-4 h-auto text-sm rounded-lg bg-primary-50 dark:bg-primary-700 flex flex-col gap-2 shadow-md"
-        tabindex="-1"
-        @focusout="showDropdown = false"
-    >
-      <div class="flex flex-row justify-between items-center w-full">
-        <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer"
-                 @click="changeType(-1)"/>
-        <span class="rounded-lg font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ type }}</span>
-        <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer"
-                 @click="changeType(+1)"/>
-      </div>
-      <div class="flex flex-col justify-center w-full">
-        <div
-            v-for="button in currentButtons"
-            @click="button.action()"
-            class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer justify-center flex select-none hover:text-secondary-700 dark:hover:text-neutral-0">
-          {{ button.value }}
+  </div>
+    <div class="fixed top-0 left-0 w-full h-full z-20" v-if="showDropdown">
+      <div
+          v-append-to-body="[$refs.dropdownBtn, false, true]"
+          v-if="showDropdown"
+          @focusout="closePicker"
+          @keydown.esc="closePicker"
+          class="dropdown-vrx-picker absolute w-48 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
+          tabindex="0"
+      >
+        <div class="flex flex-row justify-between items-center w-full">
+          <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+                   @click="changeType(-1)"/>
+          <span class="rounded-lg font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ type }}</span>
+          <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+                   @click="changeType(+1)"/>
+        </div>
+        <div class="flex flex-col justify-center w-full">
+          <div
+              v-for="button in currentButtons"
+              @click="button.action()"
+              class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer justify-center flex select-none hover:text-blue-700 dark:hover:text-white">
+            {{ button.value }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -69,7 +76,7 @@
 import VrxDatePicker from "@/components/VrxDatePicker/VrxDatePicker.vue";
 import {Ref, ref} from "vue";
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import {vAppendToBody} from "@/directives";
+import {vAppendToBody} from "@/directives"
 
 const pickerStart = ref();
 const pickerStop = ref();
@@ -126,6 +133,12 @@ const getDates = () => {
 const setDates = (dates: [Date | undefined, Date | undefined]) => {
   pickerStart.value.setDate(dates[0]);
   pickerStop.value.setDate(dates[1]);
+}
+
+const closePicker = (event: any) => {
+  const eventTarget = event ? event.relatedTarget : null;
+  if(eventTarget && (eventTarget.classList.contains("dropdown-vrx-picker") || eventTarget.classList.contains("vrx-rangePickerBtn"))) return;
+  showDropdown.value = false;
 }
 
 const setCurrentPeriod = (period: 'y' | 'm' | 'w') => {

@@ -22,12 +22,12 @@
         {{ helperText }}
       </p>
     </div>
-    <div v-if="showDropdown" class="fixed top-0 left-0 w-full h-full z-20" @click="closePicker">
+    <div v-if="showDropdown" class="fixed top-0 left-0 w-full h-full z-20">
       <div
           v-if="showDropdown"
           ref="dropdownRef"
+          v-append-to-body="[$refs.main,false,false]"
           class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-primary-50 dark:bg-primary-700 flex flex-col gap-2 shadow-md"
-          v-append-to-body="[$refs.main, false]"
           tabindex="-1"
           @focusout="closePicker"
           @keydown.esc="closePicker"
@@ -133,12 +133,14 @@ const closePicker = (event: any) => {
  * @param day
  */
 const dayPicked = (day: any) => {
+
   selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
   if (selectedDate.value.getMonth() !== selectedMonth.value) {
     selectedMonth.value = selectedDate.value.getMonth();
     selectedYear.value = selectedDate.value.getFullYear();
   }
   emit('dayClicked', selectedDate.value);
+  showDropdown.value = false; // Close popup on day selection
 }
 
 /**
