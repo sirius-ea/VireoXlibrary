@@ -133,13 +133,14 @@ const closePicker = (event: any) => {
  * @param day
  */
 const dayPicked = (day: any) => {
-  console.log("entro")
+
   selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
   if (selectedDate.value.getMonth() !== selectedMonth.value) {
     selectedMonth.value = selectedDate.value.getMonth();
     selectedYear.value = selectedDate.value.getFullYear();
   }
   emit('dayClicked', selectedDate.value);
+  showDropdown.value = false; // Close popup on day selection
 }
 
 /**
