@@ -45,7 +45,7 @@ Tutti i componenti iniziano con il prefisso "Vrx" per evitare conflitti con altr
 https://sirius-ea.github.io/VireoXlibrary/
 
 
-# For English 
+# English
 
 # VireoXlibrary
 
