@@ -12,21 +12,22 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType? : 
     let input : string = "vrxinput-input-style"
     let label : string = "vrxinput-label-style"
     let helperText : string = "vrxinput-helperText-style"
-    if(!theme || !theme.colors) return
-    let icon = theme.colors.icon;
+
+    //TODO: Fix RecursiveKeyValuePair<string, string>
+    let icon : string = theme && theme.colors ? theme.colors.icon as string : colors.gray[400];
 
     if(invalid){
         input = "vrxinput-input-invalid-style"
         label = "vrxinput-label-invalid-style"
         helperText = "vrxinput-helperText-invalid-style"
-        icon = theme.colors['icon-invalid'];
+        icon = theme && theme.colors ? theme.colors['icon-invalid'] as string : colors.red[600];
     }
 
     if(disabled){
         input = "vrxinput-input-disabled-style"
         label = "vrxinput-label-disabled-style"
         helperText = "vrxinput-helperText-disabled-style"
-        icon = theme.colors['icon-disabled'];
+        icon = theme && theme.colors ? theme.colors['icon-disabled'] as string : colors.gray[300];
     }
 
     if(iconType){
@@ -67,8 +68,7 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
     let helperText : string = "vrxselect-helperText-style";
     let placeholder : string = "vrxselect-placeholder-style";
     let dropdown : string = "vrxselect-dropdown-style"
-    // @ts-ignore
-    let icon: string = theme.colors.icon;
+    let icon: string = theme && theme.colors ? theme.colors.icon as string : colors.gray[400];
     // @ts-ignore
     const selected = selectedItem[variant];
     // @ts-ignore
@@ -79,8 +79,7 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
         label = "vrxselect-label-disabled-style"
         helperText = "vrxselect-helperText-disabled-style"
         placeholder = "vrxselect-placeholder-disabled-style"
-        // @ts-ignore
-        icon= theme.colors["icon-disabled"];
+        icon= theme && theme.colors ? theme.colors['icon-disabled'] as string : colors.gray[300];
     }
 
     if(invalid){
@@ -89,8 +88,7 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
         helperText = "vrxselect-helperText-invalid-style"
         placeholder = "vrxselect-placeholder-invalid-style"
         dropdown = "vrxselect-dropdown-invalid-style"
-        // @ts-ignore
-        icon = theme.colors["icon-invalid"];
+        icon = theme && theme.colors ? theme.colors['icon-invalid'] as string : colors.red[600];
     }
 
     return { select, label, helperText, icon, selected, selectedIcon, dropdown, dropdownItem, placeholder };
