@@ -13,6 +13,7 @@ export default {
         app.component('VrxDatePicker', components.VrxDatePicker)
         app.component('VrxDateRangePicker', components.VrxDateRangePicker)
         app.component('VrxTree', components.VrxTree)
+        app.component('VrxColorPalette', components.VrxColorPalette)
     }
 };
 export * from "@/components";

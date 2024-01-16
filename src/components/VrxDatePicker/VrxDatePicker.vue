@@ -1,6 +1,6 @@
 <template>
   <div
-      class="relative text-gray-900 dark:text-white"
+      class="relative"
       :class="inputWidth"
       @focusout="closePicker"
       @keydown.esc="closePicker"
@@ -18,7 +18,7 @@
       />
     </div>
     <div v-if="helperText">
-      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" :class="invalid ? 'text-red-500' : ''">
+      <p class="mt-2 text-sm vrxdatepicker-helpertext-style" :class="invalid ? 'vrxdatepicker-helpertext-invalid-style' : ''">
         {{ helperText }}
       </p>
     </div>
@@ -26,8 +26,8 @@
       <div
           v-if="showDropdown"
           ref="dropdownRef"
-          class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg bg-gray-50 dark:bg-gray-700 flex flex-col gap-2 shadow-md"
           v-append-to-body="[$refs.main,false,false]"
+          class="dropdown-vrx-picker absolute w-64 mt-1 p-4 h-auto text-sm rounded-lg vrxdatepicker-dropdown-bg-style flex flex-col gap-2 shadow-md"
           tabindex="-1"
           @focusout="closePicker"
           @keydown.esc="closePicker"

@@ -55,7 +55,7 @@ const meta : Meta<typeof VrxButton> = {
                     summary: 'string',
                 }
             },
-            options: ['default',  'alternative' , 'dark' , 'light' , 'green' , 'red' , 'yellow' , 'purple'],
+            options: ['default',  'alternative' , 'dark' , 'light' , 'green' , 'red' , 'yellow' , 'blue' , 'purple'],
             defaultValue: {
                 summary: 'default',
             },

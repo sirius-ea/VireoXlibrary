@@ -1,6 +1,6 @@
 <template>
   <td
-      class="px-3 font-medium whitespace-nowrap vrx-cell"
+      class="px-3 font-medium whitespace-nowrap"
       :class="getCellStyle()"
       v-click-outside="clickOutside"
       @dblclick="cellDbClicked"
@@ -39,8 +39,9 @@
 <script setup lang="ts">
 
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
+  import {theme} from "@/components/styles.ts";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
-  import {ref} from "vue";
+  import {onBeforeMount, ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
   import colors from "tailwindcss/colors";
   import {vClickOutside} from "@/directives";
@@ -54,10 +55,16 @@
 
   const editMode = ref(false);
   const input = ref();
+  const gridCellTheme = ref();
+
+  onBeforeMount(() => { // Initialize theme
+    if(theme && theme.colors)
+      gridCellTheme.value = theme.colors;
+  });
 
   const getCellStyle = () => {
     let style = props.cell.align ? textStyle[props.cell.align as keyof typeof textStyle] : '';
-    style += props.cell.editable && editMode.value ? ' editing' : '';
+    style += props.cell.editable && editMode.value ? ' vrxgrid-editing-cell-style' : '';
     style += props.cell.type === 'static' ? ' py-2' : ' py-4';
     props.cell.type === 'boolean' ? style += ' flex justify-center' : '';
     return style;
@@ -115,10 +122,5 @@
     max-width: v-bind(cell.width+ 'px');
   }
 
-  .editing{
-    -webkit-box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
-    -moz-box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
-    box-shadow:inset 0 0 0 2px v-bind(colors.blue[500]);
-  }
 
 </style>

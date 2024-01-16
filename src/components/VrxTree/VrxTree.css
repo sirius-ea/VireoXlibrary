@@ -1,0 +1,11 @@
+@layer components {
+    .vrxtree-text-style{
+        @apply text-primary-900;
+        @apply dark:text-base-content-dark;
+    }
+
+    .vrxtree-element-style{
+        @apply hover:bg-primary-100;
+        @apply dark:hover:bg-primary-800;
+    }
+}

@@ -1,25 +1,33 @@
 import colors from "tailwindcss/colors";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config.js'
+
+export const {theme} = resolveConfig(tailwindConfig)
+
 export type ComponentVariant = 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple';
+
 export function inputStyles (invalid : boolean, disabled : boolean, iconType? : IconLibraryType){
-    let input : string = "bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    let label : string = "text-gray-900 dark:text-white"
-    let helperText : string = "text-gray-500 dark:text-gray-300"
-    let icon : string = colors.gray[400];
+    let input : string = "vrxinput-input-style"
+    let label : string = "vrxinput-label-style"
+    let helperText : string = "vrxinput-helperText-style"
+
+    //TODO: Fix RecursiveKeyValuePair<string, string>
+    let icon : string = theme && theme.colors ? theme.colors.icon as string : colors.gray[400];
 
     if(invalid){
-        input = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500"
-        label = "text-red-700 dark:text-red-500"
-        helperText = "text-red-600 dark:text-red-500"
-        icon = colors.red[600]
+        input = "vrxinput-input-invalid-style"
+        label = "vrxinput-label-invalid-style"
+        helperText = "vrxinput-helperText-invalid-style"
+        icon = theme && theme.colors ? theme.colors['icon-invalid'] as string : colors.red[600];
     }
 
     if(disabled){
-        input = "bg-gray-10 border border-gray-00 text-gray-300"
-        label = "text-gray-300 dark:text-white"
-        helperText = "text-gray-300 dark:text-gray-300"
-        icon = colors.gray[300]
+        input = "vrxinput-input-disabled-style"
+        label = "vrxinput-label-disabled-style"
+        helperText = "vrxinput-helperText-disabled-style"
+        icon = theme && theme.colors ? theme.colors['icon-disabled'] as string : colors.gray[300];
     }
 
     if(iconType){
@@ -30,8 +38,8 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType? : 
 }
 
 export function selectStyles (disabled: boolean, invalid: boolean, variant : string){
-    const selectedItem  = {
-        'default': `text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`,
+    const selectedItem  = { // TODO: Custom text color?
+        'default': `text-base-content-dark bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`,
         'alternative': `text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700`,
         'dark': `text-white bg-gray-800 hover:bg-gray-900  focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700`,
         'light': `text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700`,
@@ -42,7 +50,9 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
     }
 
     const selectedIconColor = {
-        'default': colors.blue[700],
+        //@ts-ignore
+        'default': theme.colors.primary[700],
+        'blue': colors.blue[700],
         'alternative': colors.gray[400],
         'dark': colors.gray[900],
         'light': colors.gray[400],
@@ -52,34 +62,33 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
         'purple': colors.purple[700],
     }
 
-    // @ts-ignore
-    let dropdownItem : string = "hover:bg-gray-100 dark:hover:bg-gray-800"
-    let select : string = "bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    let label: string = "text-gray-900 dark:text-white";
-    let helperText : string = "text-gray-500 dark:text-gray-300";
-    let placeholder : string = "text-gray-500 dark:text-gray-300";
-    let dropdown : string = "bg-white border border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-    let icon: string = colors.gray[400];
+    let dropdownItem : string = "vrxselect-dropdownItem-style"
+    let select : string = "vrxselect-input-style"
+    let label: string = "vrxselect-label-style";
+    let helperText : string = "vrxselect-helperText-style";
+    let placeholder : string = "vrxselect-placeholder-style";
+    let dropdown : string = "vrxselect-dropdown-style"
+    let icon: string = theme && theme.colors ? theme.colors.icon as string : colors.gray[400];
     // @ts-ignore
     const selected = selectedItem[variant];
     // @ts-ignore
     const selectedIcon = selectedIconColor[variant];
 
     if(disabled){
-        select = "bg-gray-10 border border-gray-00 text-gray-300"
-        label = "text-gray-300 dark:text-white"
-        helperText = "text-gray-300 dark:text-gray-300"
-        placeholder = "text-gray-300 dark:text-gray-300"
-        icon = colors.gray[300]
+        select = "vrxselect-input-disabled-style"
+        label = "vrxselect-label-disabled-style"
+        helperText = "vrxselect-helperText-disabled-style"
+        placeholder = "vrxselect-placeholder-disabled-style"
+        icon= theme && theme.colors ? theme.colors['icon-disabled'] as string : colors.gray[300];
     }
 
     if(invalid){
-        select = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500"
-        label = "text-red-700 dark:text-red-500"
-        helperText = "text-red-600 dark:text-red-500"
-        placeholder = "text-red-600 dark:text-red-600"
-        dropdown = "bg-red-50 border border-red-500 text-red-900 dark:bg-gray-700 dark:border-red-500 dark:text-red-500"
-        icon = colors.red[600]
+        select = "vrxselect-input-invalid-style"
+        label = "vrxselect-label-invalid-style"
+        helperText = "vrxselect-helperText-invalid-style"
+        placeholder = "vrxselect-placeholder-invalid-style"
+        dropdown = "vrxselect-dropdown-invalid-style"
+        icon = theme && theme.colors ? theme.colors['icon-invalid'] as string : colors.red[600];
     }
 
     return { select, label, helperText, icon, selected, selectedIcon, dropdown, dropdownItem, placeholder };
@@ -88,28 +97,28 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
 export function toggleStyle(variant : ComponentVariant, size: 'sm' | 'md' | 'lg', disabled: boolean){
 
     let toggleColor = {
-        'default': "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-blue-600",
-        'red' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-red-600",
-        'green' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-green-600",
-        'purple' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-purple-600",
-        'yellow' : "bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400",
+        'default': "vrxtoggle-default-style",
+        'red' : "vrxtoggle-red-style",
+        'green' : "vrxtoggle-green-style",
+        'purple' : "vrxtoggle-purple-style",
+        'yellow' : "vrxtoggle-yellow-style",
     }
 
     let toggleSizes = {
-        'sm' : 'w-9 h-5 after:top-[2px] after:left-[2px] after:h-4 after:w-4',
-        'md' : 'w-11 h-6 after:top-[2px] after:left-[2px] after:h-5 after:w-5',
-        'lg' : 'w-14 h-7 after:top-0.5 after:left-[4px] after:h-6 after:w-6'
+        'sm' : 'vrxtoggle-sm-style',
+        'md' : 'vrxtoggle-md-style',
+        'lg' : 'vrxtoggle-lg-style'
     }
-    let label : string = disabled ? "text-gray-300 dark:text-gray-300" : "text-gray-900 dark:text-white";
+    let label : string = disabled ? "vrxtoggle-label-disabled-style" : "vrxtoggle-label-style";
 
     // @ts-ignore
     let variantSelected = toggleColor[variant] ?? toggleColor['default'];
-    disabled ? variantSelected += ' disabled-toggle' : null;
+    disabled ? variantSelected += ' vrxtoggle-disabled-toggle' : null;
 
     // @ts-ignore
     const sizeSelected = toggleSizes[size] ?? toggleSizes['md'];
 
-    const toggle : string = variantSelected + " " + sizeSelected;
+    const toggle : string = variantSelected + " vrxtoggle-style " + sizeSelected;
     return { toggle, label };
 }
 
@@ -129,18 +138,8 @@ export function navbarButtonStyle(selected : boolean, hasChildren : boolean){
         };
     }
 
-    const navbarButton: string =  selected ?
-        "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" :
-        "text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
+    const navbarButton: string = "rounded md:border-0 md:p-0 " + selected ?
+        "vrxnavbar-navbarbutton-selected-style" :
+        "vrxnavbar-navbarbutton-unselected-style";
     return { navbarButton, dropdownStyle };
-}
-
-export function buttonsGroupStyle (){
-    const firstButton : string  = "text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:text-white";
-    const middleButton : string = "text-gray-900 bg-white border-t border-b border-r border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:text-white";
-    const lastButton : string = "text-gray-900 bg-white border-t border-b border-r border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:text-white";
-    const singleButton : string = "text-gray-900 bg-white border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:text-white"
-
-
-    return { firstButton, middleButton, lastButton, singleButton };
 }

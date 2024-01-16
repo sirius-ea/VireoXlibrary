@@ -2,7 +2,7 @@
 <template>
   <tr
       :data-testid="'vrx-grid-row-'+ rowModel.id"
-      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 vrx-row"
+      class="vrxgrid-row-style border-b vrx-row"
       :class="rowStyle"
       v-if="!isFiltered"
       @click="rowClicked"
@@ -18,10 +18,12 @@
 </template>
 
 <script setup lang="ts">
-  import colors from "tailwindcss/colors";
+
+
+  import {theme} from "@/components/styles.ts";
   import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
-  import {computed, inject, ref} from "vue";
+  import {computed, inject, onBeforeMount, ref} from "vue";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   import VrxGridCell from "@/components/VrxGrid/VrxGridCell.vue";
   const props = defineProps<{
@@ -35,6 +37,12 @@
 
   const filters = inject('filters');
   const selectedRows = inject('selectedRows');
+  const gridRowTheme = ref();
+
+  onBeforeMount(() => { // Initialize theme
+    if(theme && theme.colors)
+      gridRowTheme.value = theme.colors;
+  });
 
   const rowClicked = () => {
     rowModel.rowClicked()
@@ -58,16 +66,15 @@
 
   const rowStyle = computed(() => {
     if(rowModel.selectable){
-      return rowModel.isSelected() ? 'selected row-hover dark:selected dark:row-hover dark:bg-gray-100' : 'not-selected dark:row-hover row-hover dark:bg-gray-100';
+      return rowModel.isSelected() ? 'selected dark:selected vrxgrid-selected-style vrxgrid-selectedable-style' : 'not-selected dark:not-selected vrxgrid-selectedable-style';
     }
-    return 'not-selected';
+    return 'not-selected dark:not-selected';
   });
 
 </script>
 <style scoped>
   .selected{
-    background-color: v-bind(colors.gray[100]);
-    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
+    box-shadow: 3px 0 v-bind(gridRowTheme.secondary[500]) inset;
   }
 
   .vrx-row {
@@ -85,23 +92,11 @@
     text-overflow: ellipsis;
   }
 
-  .row-hover:hover{
-    background-color: v-bind(colors.gray[200]);
-    cursor: pointer;
-  }
-
   .not-selected{
     box-sizing: border-box;
   }
 
-  :is([data-mode="dark"] .dark\:row-hover:hover) {
-    background-color: v-bind(colors.gray[700]);
-  }
-
   :is([data-mode="dark"] .dark\:selected) {
-    background-color:  v-bind(colors.gray[600]);
-    color: white;
-    box-shadow:3px 0 v-bind(colors.blue[500]) inset;
     box-sizing: border-box;
   }
 </style>

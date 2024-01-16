@@ -73,7 +73,7 @@
         <div
             :data-testid="'vrx-select-dropdown-' + index"
             class="dropdown-item-content w-full h-full p-2.5"
-            :class="selectedList.includes(element) ? 'bg-blue-100 dark:bg-blue-500' : ''"
+            :class="selectedList.includes(element) ? 'vrxselect-included-style' : ''"
             @click="itemClick(element)"
         >
           <div class="element-label">

@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full h-16 border-t border-gray-200 dark:border-gray-600 flex justify-center gap-2 items-center">
+  <div class="w-full h-16 border-t vrxdatepicker-timepicker-bg-style flex justify-center gap-2 items-center">
     <VrxIcon
         icon="chevron-left"
-        class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+        class="rounded-lg vrxdatepicker-timepicker-text-style cursor-pointer"
         @click="hourIncrement(-10)"
     />
     <VrxInput
@@ -28,7 +28,7 @@
     />
     <VrxIcon
         icon="chevron-right"
-        class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+        class="rounded-lg vrxdatepicker-timepicker-text-style cursor-pointer"
         @click="hourIncrement(10)"
     />
 

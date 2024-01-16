@@ -1,6 +1,6 @@
 <template>
   <div
-      class="flex flex-col gap-2.5 text-gray-900 dark:text-white"
+      class="flex flex-col gap-2.5 vrxtree-text-style"
       data-testid="vrx-tree"
   >
     <VrxInput v-if="searchable" model-value="test" icon="search"/>

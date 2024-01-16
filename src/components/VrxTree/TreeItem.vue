@@ -1,13 +1,13 @@
 <template>
   <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'">
-    <div class="tree-element hover:bg-gray-100 dark:hover:bg-gray-800 rounded-s" @click="() => cellClicked(node, props.parentId)">
+    <div class="tree-element vrxtree-element-style rounded-s" @click="() => cellClicked(node, props.parentId)">
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input
           data-testid="vrx-tree-node-checkbox"
           v-if="selectable"
           type="checkbox"
-          class="form-checkbox h-4 w-4 text-gray-600"
+          class="form-checkbox h-4 w-4"
           v-model="checkValue"
           @click="selectHandle"
           :indeterminate.prop="hasChildrenChecked && !checkValue"

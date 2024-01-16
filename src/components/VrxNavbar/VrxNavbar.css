@@ -1,0 +1,47 @@
+@layer components {
+    .vrxnavbar-navbarbutton-selected-style{
+        @apply md:bg-transparent md:text-secondary-700;
+        @apply dark:text-base-content-dark md:dark:text-secondary-500;
+        @apply text-base-content-dark bg-secondary-700;
+    }
+    .vrxnavbar-navbarbutton-unselected-style{
+        @apply md:hover:bg-transparent;
+        @apply text-primary-900 hover:bg-primary-100 md:hover:text-secondary-700;
+        @apply dark:text-base-content-dark md:dark:hover:text-secondary-500 dark:hover:bg-primary-700 dark:hover:text-base-content-dark md:dark:hover:bg-transparent;
+    }
+
+    .vrxnavbar-bg-style{
+        @apply bg-primary-50 border-red-600;
+        @apply dark:bg-primary-900;
+    }
+
+    .vrxnavbar-bottomnav-style{
+        @apply bg-primary-50;
+        @apply dark:bg-primary-900 dark:border-primary-700;
+    }
+
+    .vrxnavbar-navbutton-text-style{
+        @apply text-base-content-light md:hover:text-base-content-light/80;
+        @apply dark:text-base-content-dark md:dark:hover:text-base-content-dark/80;
+    }
+
+    .vrxnavbar-card-style{
+        @apply hover:bg-primary-100 text-base-content-light;
+        @apply dark:hover:bg-primary-800 dark:text-base-content-dark;
+    }
+    .vrxnavbar-card-icon-bg-style{
+        @apply bg-primary-200;
+        @apply dark:bg-primary-700;
+    }
+    .vrxnavbar-card-text-style{
+        @apply text-base-content-light;
+        @apply dark:text-base-content-dark;
+    }
+    .vrxnavbar-card-description-style{
+        @apply text-base-content-light/80;
+        @apply dark:text-base-content-dark/80;
+    }
+
+
+
+}

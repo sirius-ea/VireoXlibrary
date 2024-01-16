@@ -1,0 +1,46 @@
+@layer components {
+    .vrxdatepicker-helpertext-style{
+        @apply text-base-content-light/60;
+        @apply dark:text-base-content-dark/60;
+    }
+
+    .vrxdatepicker-helpertext-invalid-style{
+        @apply text-error-500;
+        @apply dark:text-error-700;
+    }
+
+    .vrxdatepicker-dropdown-bg-style{
+        @apply bg-base-light;
+        @apply dark:bg-base-dark;
+    }
+
+    .vrxdatepicker-daypicker-text-style, .vrxdatepicker-monthpicker-text-style, .vrxdatepicker-yearpicker-text-style, .vrxdatepicker-timepicker-text-style{
+        @apply hover:bg-primary-200 hover:text-base-content-light text-base-content-light/80;
+        @apply dark:hover:bg-primary-500 dark:hover:text-base-content-dark dark:text-base-content-dark/80;
+    }
+
+    .vrxdatepicker-yearpicker-header-text-style{
+        @apply text-base-content-light/80;
+        @apply dark:text-base-content-dark/80;
+    }
+
+    .vrxdatepicker-timepicker-bg-style{
+        @apply border-primary-200;
+        @apply dark:border-primary-600;
+    }
+
+    .vrxdatepicker-daypicker-isselected-style{
+        @apply bg-secondary-700 text-base-content-light/80;
+        @apply dark:bg-secondary-500 dark:text-base-content-dark/80;
+    }
+
+    .vrxdatepicker-daypicker-istoday-style{
+        @apply text-secondary-400;
+        @apply dark:text-secondary-700;
+    }
+
+    .vrxdatepicker-daypicker-iscurrentmonth-style{
+        @apply text-primary-300;
+        @apply dark:text-primary-500;
+    }
+}

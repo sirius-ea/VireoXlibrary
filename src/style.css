@@ -2,6 +2,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "./components/VrxButton/VrxButton.css";
+@import "./components/VrxInput/VrxInput.css";
+@import "./components/VrxSelect/VrxSelect.css";
+@import "./components/VrxToggle/VrxToggle.css";
+@import "./components/VrxNavbar/VrxNavbar.css";
+@import "./components/VrxTree/VrxTree.css";
+@import "./components/VrxGrid/VrxGrid.css";
+@import "./components/VrxDatePicker/VrxDatePicker.css";
+@import "./components/VrxDateRangePicker/VrxDateRangePicker.css";
+
 .icon-active{
     transform: rotate(180deg);
     transition: .2s ease all;
