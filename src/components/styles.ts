@@ -12,14 +12,13 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType? : 
     let input : string = "vrxinput-input-style"
     let label : string = "vrxinput-label-style"
     let helperText : string = "vrxinput-helperText-style"
-    // @ts-ignore
-    let icon : string = theme.colors.icon;
+    if(!theme || !theme.colors) return
+    let icon = theme.colors.icon;
 
     if(invalid){
         input = "vrxinput-input-invalid-style"
         label = "vrxinput-label-invalid-style"
         helperText = "vrxinput-helperText-invalid-style"
-        // @ts-ignore
         icon = theme.colors['icon-invalid'];
     }
 
@@ -27,7 +26,6 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType? : 
         input = "vrxinput-input-disabled-style"
         label = "vrxinput-label-disabled-style"
         helperText = "vrxinput-helperText-disabled-style"
-        // @ts-ignore
         icon = theme.colors['icon-disabled'];
     }
 
@@ -40,7 +38,7 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType? : 
 
 export function selectStyles (disabled: boolean, invalid: boolean, variant : string){
     const selectedItem  = { // TODO: Custom text color?
-        'default': `text-text-dark bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`,
+        'default': `text-base-content-dark bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`,
         'alternative': `text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700`,
         'dark': `text-white bg-gray-800 hover:bg-gray-900  focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700`,
         'light': `text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700`,

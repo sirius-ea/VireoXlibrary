@@ -30,12 +30,12 @@
     }
 
     .vrxtoggle-label-style{
-        @apply text-text-light;
-        @apply dark:text-text-dark;
+        @apply text-base-content-light;
+        @apply dark:text-base-content-dark;
     }
     .vrxtoggle-label-disabled-style{
-        @apply text-text-light/60;
-        @apply dark:text-text-dark/60;
+        @apply text-base-content-light/60;
+        @apply dark:text-base-content-dark/60;
     }
 
     .vrxtoggle-disabled-toggle{

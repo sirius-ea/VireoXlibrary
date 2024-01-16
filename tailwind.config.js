@@ -18,10 +18,12 @@ export default {
         error: {
           ...colors.red
         },
-        'text-light': colors.slate['950'],
-        'text-dark': colors.slate['50'],
-        'bg-light': colors.gray['100'],
-        'bg-dark': colors.gray['700'],
+        base: {
+          "content-light": colors.slate['950'],
+          "content-dark":  colors.slate['50'],
+          light: colors.gray['100'],
+          dark: colors.gray['700']
+        },
         'icon': colors.gray['400'],
         'icon-disabled': colors.gray['300'],
         'icon-invalid': colors.red['600'],

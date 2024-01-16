@@ -3,27 +3,27 @@
         @apply outline-none border text-sm rounded-lg p-2.5 block w-full;
     }
     .vrxinput-input-style{
-        @apply border-primary-300 text-text-light focus:ring-secondary-500 focus:border-secondary-500;
-        @apply dark:text-text-dark dark:bg-bg-dark dark:border-primary-600 dark:placeholder-text-dark/30 dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
+        @apply border-primary-300 text-base-content-light focus:ring-secondary-500 focus:border-secondary-500;
+        @apply dark:text-base-content-dark dark:bg-base-dark dark:border-primary-600 dark:placeholder-base-content-dark/30 dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
     }
     .vrxinput-input-disabled-style{
         @apply border-primary-50;
-        @apply bg-bg-light/90 text-text-light/60;
-        @apply dark:bg-bg-dark/90 dark:text-text-dark/60;
+        @apply bg-base-light/90 text-base-content-light/60;
+        @apply dark:bg-base-dark/90 dark:text-base-content-dark/60;
     }
     .vrxinput-input-invalid-style{
         @apply border-error-500;
         @apply bg-error-50 text-error-900 placeholder-error-700 focus:ring-error-500 focus:border-error-500;
-        @apply dark:bg-bg-dark/80 dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
+        @apply dark:bg-base-dark/80 dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
     }
 
     .vrxinput-label-style {
-        @apply text-text-light;
-        @apply dark:text-text-dark;
+        @apply text-base-content-light;
+        @apply dark:text-base-content-dark;
     }
     .vrxinput-label-disabled-style {
-        @apply text-text-light/60;
-        @apply dark:text-text-dark/60;
+        @apply text-base-content-light/60;
+        @apply dark:text-base-content-dark/60;
     }
     .vrxinput-label-invalid-style {
         @apply text-error-700;
@@ -31,12 +31,12 @@
     }
 
     .vrxinput-helperText-style {
-        @apply text-text-light/60;
-        @apply dark:text-text-dark/60;
+        @apply text-base-content-light/60;
+        @apply dark:text-base-content-dark/60;
     }
     .vrxinput-helperText-disabled-style{
-        @apply text-text-light/40;
-        @apply dark:text-text-dark/40;
+        @apply text-base-content-light/40;
+        @apply dark:text-base-content-dark/40;
     }
     .vrxinput-helperText-invalid-style{
         @apply text-error-600;

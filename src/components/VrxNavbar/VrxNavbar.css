@@ -1,13 +1,13 @@
 @layer components {
     .vrxnavbar-navbarbutton-selected-style{
         @apply md:bg-transparent md:text-secondary-700;
-        @apply dark:text-text-dark md:dark:text-secondary-500;
-        @apply text-text-dark bg-secondary-700;
+        @apply dark:text-base-content-dark md:dark:text-secondary-500;
+        @apply text-base-content-dark bg-secondary-700;
     }
     .vrxnavbar-navbarbutton-unselected-style{
         @apply md:hover:bg-transparent;
         @apply text-primary-900 hover:bg-primary-100 md:hover:text-secondary-700;
-        @apply dark:text-text-dark md:dark:hover:text-secondary-500 dark:hover:bg-primary-700 dark:hover:text-text-dark md:dark:hover:bg-transparent;
+        @apply dark:text-base-content-dark md:dark:hover:text-secondary-500 dark:hover:bg-primary-700 dark:hover:text-base-content-dark md:dark:hover:bg-transparent;
     }
 
     .vrxnavbar-bg-style{
@@ -21,25 +21,25 @@
     }
 
     .vrxnavbar-navbutton-text-style{
-        @apply text-text-light md:hover:text-text-light/80;
-        @apply dark:text-text-dark md:dark:hover:text-text-dark/80;
+        @apply text-base-content-light md:hover:text-base-content-light/80;
+        @apply dark:text-base-content-dark md:dark:hover:text-base-content-dark/80;
     }
 
     .vrxnavbar-card-style{
-        @apply hover:bg-primary-100 text-text-light;
-        @apply dark:hover:bg-primary-800 dark:text-text-dark;
+        @apply hover:bg-primary-100 text-base-content-light;
+        @apply dark:hover:bg-primary-800 dark:text-base-content-dark;
     }
     .vrxnavbar-card-icon-bg-style{
         @apply bg-primary-200;
         @apply dark:bg-primary-700;
     }
     .vrxnavbar-card-text-style{
-        @apply text-text-light;
-        @apply dark:text-text-dark;
+        @apply text-base-content-light;
+        @apply dark:text-base-content-dark;
     }
     .vrxnavbar-card-description-style{
-        @apply text-text-light/80;
-        @apply dark:text-text-dark/80;
+        @apply text-base-content-light/80;
+        @apply dark:text-base-content-dark/80;
     }
 
 

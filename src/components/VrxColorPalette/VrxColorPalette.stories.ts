@@ -75,10 +75,10 @@ export const Root: ColorStory = {
     args: {
         ...Template.args,
         colors: { //@ts-ignore
-            'text-dark': theme.colors['text-dark'], //@ts-ignore
-            'text-light': theme.colors['text-light'], //@ts-ignore
-            'bg-dark': theme.colors['bg-dark'], //@ts-ignore
-            'bg-light': theme.colors['bg-light'],//@ts-ignore
+            'base-content-dark': theme.colors['base-content-dark'], //@ts-ignore
+            'base-content-light': theme.colors['base-content-light'], //@ts-ignore
+            'base-dark': theme.colors['base-dark'], //@ts-ignore
+            'base-light': theme.colors['base-light'],//@ts-ignore
             'icon': theme.colors['icon'],//@ts-ignore
             'icon-disabled': theme.colors['icon-disabled'],//@ts-ignore
             'icon-invalid': theme.colors['icon-invalid']
