@@ -131,14 +131,14 @@ const getStyle = (day: CalendarDay) => {
       && day.month === props.selectedDate.getMonth()
       && day.year === props.selectedDate.getFullYear()
   ) {
-    style += 'bg-secondary-700 dark:bg-secondary-500 text-neutral-0';
+    style += ' vrxdatepicker-daypicker-isselected-style';
   } else if (day.isToday) {
-    style += ' text-secondary-400 dark:text-secondary-700';
+    style += ' vrxdatepicker-daypicker-istoday-style';
   } else if (!day.isCurrentMonth) {
-    style += ' text-primary-300 dark:text-primary-500 !font-normal';
+    style += ' vrxdatepicker-daypicker-iscurrentmonth-style !font-normal';
     if (day.disabled) style += ' line-through';
   } else if (day.disabled) {
-    style += ' text-primary-300 dark:text-primary-500 line-through';
+    style += ' vrxdatepicker-daypicker-isdisabled-style line-through';
   }
   return style;
 }

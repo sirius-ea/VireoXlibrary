@@ -1,8 +1,8 @@
 @layer components {
 
     .vrxgrid-bg-style{
-        @apply bg-bg-lightMode;
-        @apply dark:bg-bg-darkMode;
+        @apply bg-bg-light;
+        @apply dark:bg-bg-dark;
     }
 
     .vrxgrid-header-style{

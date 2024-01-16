@@ -1,13 +1,13 @@
 @layer components {
     .vrxnavbar-navbarbutton-selected-style{
         @apply md:bg-transparent md:text-secondary-700;
-        @apply dark:text-text-darkMode md:dark:text-secondary-500;
-        @apply text-text-darkMode bg-secondary-700;
+        @apply dark:text-text-dark md:dark:text-secondary-500;
+        @apply text-text-dark bg-secondary-700;
     }
     .vrxnavbar-navbarbutton-unselected-style{
         @apply md:hover:bg-transparent;
         @apply text-primary-900 hover:bg-primary-100 md:hover:text-secondary-700;
-        @apply dark:text-text-darkMode md:dark:hover:text-secondary-500 dark:hover:bg-primary-700 dark:hover:text-text-darkMode md:dark:hover:bg-transparent;
+        @apply dark:text-text-dark md:dark:hover:text-secondary-500 dark:hover:bg-primary-700 dark:hover:text-text-dark md:dark:hover:bg-transparent;
     }
 
     .vrxnavbar-bg-style{
@@ -21,25 +21,25 @@
     }
 
     .vrxnavbar-navbutton-text-style{
-        @apply text-text-lightMode md:hover:text-text-lightMode/80;
-        @apply dark:text-text-darkMode md:dark:hover:text-text-darkMode/80;
+        @apply text-text-light md:hover:text-text-light/80;
+        @apply dark:text-text-dark md:dark:hover:text-text-dark/80;
     }
 
     .vrxnavbar-card-style{
-        @apply hover:bg-primary-100 text-text-lightMode;
-        @apply dark:hover:bg-primary-800 dark:text-text-darkMode;
+        @apply hover:bg-primary-100 text-text-light;
+        @apply dark:hover:bg-primary-800 dark:text-text-dark;
     }
     .vrxnavbar-card-icon-bg-style{
         @apply bg-primary-200;
         @apply dark:bg-primary-700;
     }
     .vrxnavbar-card-text-style{
-        @apply text-text-lightMode;
-        @apply dark:text-text-darkMode;
+        @apply text-text-light;
+        @apply dark:text-text-dark;
     }
     .vrxnavbar-card-description-style{
-        @apply text-text-lightMode/80;
-        @apply dark:text-text-darkMode/80;
+        @apply text-text-light/80;
+        @apply dark:text-text-dark/80;
     }
 
 

@@ -3,27 +3,27 @@
         @apply outline-none border text-sm rounded-lg p-2.5 block w-full;
     }
     .vrxselect-input-style{
-        @apply border-primary-300 text-text-lightMode focus:ring-secondary-500 focus:border-secondary-500;
-        @apply dark:text-text-darkMode dark:bg-bg-darkMode dark:border-primary-600 dark:placeholder-text-darkMode/30 dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
+        @apply border-primary-300 text-text-light focus:ring-secondary-500 focus:border-secondary-500;
+        @apply dark:text-text-dark dark:bg-bg-dark dark:border-primary-600 dark:placeholder-text-dark/30 dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
     }
     .vrxselect-input-disabled-style{
         @apply border-primary-50;
-        @apply bg-bg-lightMode/90 text-text-lightMode/60;
-        @apply dark:bg-bg-darkMode/90 dark:text-text-darkMode/60;
+        @apply bg-bg-light/90 text-text-light/60;
+        @apply dark:bg-bg-dark/90 dark:text-text-dark/60;
     }
     .vrxselect-input-invalid-style{
         @apply border-error-500;
         @apply bg-error-50 text-error-900 placeholder-error-700 focus:ring-error-500 focus:border-error-500;
-        @apply dark:bg-bg-darkMode/80 dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
+        @apply dark:bg-bg-dark/80 dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
     }
 
     .vrxselect-label-style {
-        @apply text-text-lightMode;
-        @apply dark:text-text-darkMode;
+        @apply text-text-light;
+        @apply dark:text-text-dark;
     }
     .vrxselect-label-disabled-style {
-        @apply text-text-lightMode/60;
-        @apply dark:text-text-darkMode/60;
+        @apply text-text-light/60;
+        @apply dark:text-text-dark/60;
     }
     .vrxselect-label-invalid-style {
         @apply text-error-700;
@@ -31,12 +31,12 @@
     }
 
     .vrxselect-helperText-style {
-        @apply text-text-lightMode/60;
-        @apply dark:text-text-darkMode/60;
+        @apply text-text-light/60;
+        @apply dark:text-text-dark/60;
     }
     .vrxselect-helperText-disabled-style{
-        @apply text-text-lightMode/40;
-        @apply dark:text-text-darkMode/40;
+        @apply text-text-light/40;
+        @apply dark:text-text-dark/40;
     }
     .vrxselect-helperText-invalid-style{
         @apply text-error-600;
@@ -44,33 +44,33 @@
     }
 
     .vrxselect-dropdownItem-style{
-        @apply hover:bg-bg-lightMode/80;
-        @apply dark:hover:bg-bg-darkMode/80;
+        @apply hover:bg-bg-light/80;
+        @apply dark:hover:bg-bg-dark/80;
     }
 
     .vrxselect-placeholder-style{
-        @apply text-text-lightMode/30;
-        @apply dark:text-text-darkMode/30;
+        @apply text-text-light/30;
+        @apply dark:text-text-dark/30;
     }
     .vrxselect-placeholder-invalid-style{
         @apply text-error-600;
         @apply dark:text-error-600;
     }
     .vrxselect-placeholder-disabled-style{
-        @apply text-text-lightMode/20;
-        @apply dark:text-text-darkMode/20;
+        @apply text-text-light/20;
+        @apply dark:text-text-dark/20;
     }
 
     .vrxselect-dropdown-style, .vrxselect-dropdown-invalid-style{
         @apply border;
     }
     .vrxselect-dropdown-style{
-        @apply bg-bg-lightMode border-primary-300 text-text-lightMode;
-        @apply dark:bg-bg-darkMode dark:border-primary-600 dark:text-text-darkMode;
+        @apply bg-bg-light border-primary-300 text-text-light;
+        @apply dark:bg-bg-dark dark:border-primary-600 dark:text-text-dark;
     }
     .vrxselect-dropdown-invalid-style{
         @apply bg-error-50 border-error-500 text-error-900;
-        @apply dark:bg-bg-darkMode/80 dark:border-error-500 dark:text-error-500;
+        @apply dark:bg-bg-dark/80 dark:border-error-500 dark:text-error-500;
     }
 
     .vrxselect-included-style{

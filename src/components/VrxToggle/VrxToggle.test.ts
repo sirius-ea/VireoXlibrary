@@ -27,21 +27,21 @@ describe('VrxToggle', () => {
         expect(wrapper.props('modelValue')).toBe(true);
 
         await wrapper.find('[data-testid=vrx-toggle]').trigger('click');
-        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("bg-primary-200 rounded-full peer dark:bg-primary-600 peer-checked:after:translate-x-full peer-checked:after:border-neutral-0 after:content-[''] after:absolute after:bg-neutral-0 after:border-primary-300 after:border after:rounded-full after:transition-all dark:border-primary-600 peer-checked:bg-blue-600")
+        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("vrxtoggle-default-style vrxtoggle-style")
     });
 
     it('change size', async () => {
         await wrapper.setProps({ size: 'sm' });
         expect(wrapper.props().size).toBe('sm');
-        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("w-9 h-5");
+        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("vrxtoggle-sm-style");
 
         await wrapper.setProps({ size: 'md' });
         expect(wrapper.props().size).toBe('md');
-        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("w-11 h-6");
+        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("vrxtoggle-md-style");
 
         await wrapper.setProps({ size: 'lg' });
         expect(wrapper.props().size).toBe('lg');
-        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("w-14 h-7");
+        expect(wrapper.get('[data-testid=vrx-toggle-content]').classes().join(" ")).toContain("vrxtoggle-lg-style");
     });
 
     it('change label', async () => {

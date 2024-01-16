@@ -13,17 +13,15 @@ export default {
           ...colors.blue
         },
         neutral: {
-            '0': colors.white,
             ...colors.gray,
-            '1000': colors.black,
         },
         error: {
           ...colors.red
         },
-        'text-lightMode': colors.slate['950'],
-        'text-darkMode': colors.slate['50'],
-        'bg-lightMode': colors.gray['100'],
-        'bg-darkMode': colors.gray['700'],
+        'text-light': colors.slate['950'],
+        'text-dark': colors.slate['50'],
+        'bg-light': colors.gray['100'],
+        'bg-dark': colors.gray['700'],
         'icon': colors.gray['400'],
         'icon-disabled': colors.gray['300'],
         'icon-invalid': colors.red['600'],
