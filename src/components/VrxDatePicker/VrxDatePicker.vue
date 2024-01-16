@@ -69,7 +69,7 @@
 <script setup lang="ts">
 
 import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import {computed, Ref, ref} from "vue";
+import {computed, Ref, ref, nextTick} from "vue";
 import DaysPick from "@/components/VrxDatePicker/pickers/DaysPick.vue";
 import MonthPick from "@/components/VrxDatePicker/pickers/MonthPick.vue";
 import YearPick from "@/components/VrxDatePicker/pickers/YearPick.vue";
@@ -114,9 +114,9 @@ const emit = defineEmits(['dayClicked']);
  */
 const openPicker = () => {
   showDropdown.value = true;
-  /*setTimeout(() => {
+  nextTick().then(() => {
     dropdownRef.value.focus();
-  }, 100);*/
+  })
 }
 
 /**
