@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center w-fit text-gray-900 dark:text-white relative">
-    <div class="flex flex-row items-center gap-2 text-gray-400">
+  <div class="flex justify-center w-fit relative">
+    <div class="flex flex-row items-center gap-2">
       <VrxDatePicker
           ref="pickerStart"
           :type="type"
@@ -21,7 +21,7 @@
             @focusout="closePicker"
             @keydown.esc="closePicker"
             icon="chevron-down"
-            class="hover:bg-gray-200 focus:outline-none dark:hover:bg-gray-600 cursor-pointer rounded-full"
+            class="vrxdaterangepicker-dropdown-btn-style focus:outline-none cursor-pointer rounded-full"
             @click="showDropdown = !showDropdown"
         />
         <label v-if="helperTextStart || helperTextStop" class="mt-2 text-sm"> &nbsp; <!-- Purely exists for alignment --> </label>
@@ -52,17 +52,17 @@
           tabindex="0"
       >
         <div class="flex flex-row justify-between items-center w-full">
-          <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+          <VrxIcon icon="chevron-left" class="rounded-lg vrxdaterangepicker-dropdown-text-style cursor-pointer"
                    @click="changeType(-1)"/>
-          <span class="rounded-lg font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ type }}</span>
-          <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 cursor-pointer"
+          <span class="rounded-lg vrxdaterangepicker-dropdown-header-style font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ type }}</span>
+          <VrxIcon icon="chevron-right" class="rounded-lg vrxdaterangepicker-dropdown-text-style cursor-pointer"
                    @click="changeType(+1)"/>
         </div>
         <div class="flex flex-col justify-center w-full">
           <div
               v-for="button in currentButtons"
               @click="button.action()"
-              class="rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer justify-center flex select-none hover:text-blue-700 dark:hover:text-white">
+              class="rounded-lg vrxdaterangepicker-dropdown-text-style pt-1 pb-1 pr-2 pl-2 cursor-pointer justify-center flex select-none">
             {{ button.value }}
           </div>
         </div>

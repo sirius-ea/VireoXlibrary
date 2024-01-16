@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-row justify-between items-center">
-    <VrxIcon icon="chevron-left" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer" @click="() => emit('changeYear', -1)"/>
+    <VrxIcon icon="chevron-left" class="rounded-lg vrxdatepicker-monthpicker-text-style cursor-pointer" @click="() => emit('changeYear', -1)"/>
     <span
-        class="rounded-lg font-bold hover:bg-primary-200 dark:hover:bg-primary-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer select-none hover:text-secondary-700 dark:hover:text-neutral-0"
+        class="rounded-lg font-bold vrxdatepicker-monthpicker-text-style pt-1 pb-1 pr-2 pl-2 cursor-pointer select-none"
         @click="() => emit('changeStage', 'y')"
     >{{ props.year }}</span>
-    <VrxIcon icon="chevron-right" class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer" @click="() => emit('changeYear', 1)"/>
+    <VrxIcon icon="chevron-right" class="rounded-lg vrxdatepicker-monthpicker-text-style cursor-pointer" @click="() => emit('changeYear', 1)"/>
   </div>
   <div class="flex flex-row flex-wrap justify-between gap-1 p-2">
     <div
         v-for="month in monthsShortLib"
-        class="font-bold w-16 p-1 rounded-md text-center cursor-pointer hover:bg-primary-200 dark:hover:bg-primary-500 hover:text-secondary-700 dark:hover:text-neutral-0"
+        class="font-bold w-16 p-1 rounded-md text-center cursor-pointer vrxdatepicker-monthpicker-text-style"
         @click="() => changeMonth(monthsShortLib.indexOf(month))"
     >
       {{ month }}

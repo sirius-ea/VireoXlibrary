@@ -1,6 +1,6 @@
 <template>
   <component
-      class="child-button flex items-center p-2 text-text-lightMode rounded-lg dark:text-text-darkMode hover:bg-primary-100 dark:hover:bg-primary-700"
+      class="child-button vrxnavbar-card-style flex items-center p-2 rounded-lg"
       v-if="config.component"
       :is="config.component.name"
       v-bind="config.component.props"
@@ -9,7 +9,7 @@
     <span class="flex-1 whitespace-nowrap">{{ config.text }}</span>
   </component>
 
-  <div v-else @click="toggleShowChildren" class="child-button flex items-center p-2 text-text-lightMode rounded-lg dark:text-text-darkMode hover:bg-primary-100 dark:hover:bg-primary-700">
+  <div v-else @click="toggleShowChildren" class="child-button vrxnavbar-card-style flex items-center p-2 rounded-lg">
     <VrxIcon v-if="config.icon" :icon="config.icon" size="4"/>
     <span class="flex-1 whitespace-nowrap">{{ config.text }}</span>
     <VrxIcon v-if="config.children && config.children?.length > 0" icon="chevron-down" :class="showChildren ? 'icon-active' : 'icon-off'" size="4"/>

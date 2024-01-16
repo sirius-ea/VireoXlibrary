@@ -1,13 +1,13 @@
 <template>
   <component
       v-if="config.component"
-      class="children text-text-lightMode dark:text-text-darkMode hover:dark:text-text-darkMode/70 hover:text-text-lightMode/70"
+      class="children vrxnavbar-navbutton-text-style"
       :is="config.component.name"
       v-bind="config.component.props"
   >
     {{ config.text }}
   </component>
-  <div v-else class="children text-text-lightMode dark:text-text-darkMode hover:dark:text-text-darkMode/70 hover:text-text-lightMode/70">
+  <div v-else class="children vrxnavbar-navbutton-text-style">
     {{ config.text }}
   </div>
 

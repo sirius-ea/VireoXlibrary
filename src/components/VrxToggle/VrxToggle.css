@@ -1,0 +1,45 @@
+@layer components {
+    .vrxtoggle-style{
+        @apply bg-neutral-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-neutral-50 after:content-[''] after:absolute after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:transition-all;
+        @apply dark:border-neutral-600 dark:bg-neutral-600;
+    }
+    .vrxtoggle-default-style{
+        @apply peer-checked:bg-primary-600;
+    }
+    .vrxtoggle-red-style{
+        @apply peer-checked:bg-red-600;
+    }
+    .vrxtoggle-green-style{
+        @apply peer-checked:bg-green-600;
+    }
+    .vrxtoggle-purple-style{
+        @apply peer-checked:bg-purple-600;
+    }
+    .vrxtoggle-yellow-style{
+        @apply peer-checked:bg-yellow-400;
+    }
+
+    .vrxtoggle-sm-style{
+        @apply w-9 h-5 after:top-[2px] after:left-[2px] after:h-4 after:w-4;
+    }
+    .vrxtoggle-md-style{
+        @apply w-11 h-6 after:top-[2px] after:left-[2px] after:h-5 after:w-5;
+    }
+    .vrxtoggle-lg-style{
+        @apply w-14 h-7 after:top-0.5 after:left-[4px] after:h-6 after:w-6;
+    }
+
+    .vrxtoggle-label-style{
+        @apply text-text-lightMode;
+        @apply dark:text-text-darkMode;
+    }
+    .vrxtoggle-label-disabled-style{
+        @apply text-text-lightMode/60;
+        @apply dark:text-text-darkMode/60;
+    }
+
+    .vrxtoggle-disabled-toggle{
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}

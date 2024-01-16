@@ -2,7 +2,7 @@
 <template>
   <tr
       :data-testid="'vrx-grid-row-'+ rowModel.id"
-      class="bg-primary-50 border-b dark:bg-primary-800 dark:border-primary-700 vrx-row"
+      class="vrxgrid-row-style border-b vrx-row"
       :class="rowStyle"
       v-if="!isFiltered"
       @click="rowClicked"
@@ -66,15 +66,14 @@
 
   const rowStyle = computed(() => {
     if(rowModel.selectable){
-      return rowModel.isSelected() ? 'selected row-hover dark:selected dark:row-hover dark:bg-primary-100' : 'not-selected dark:row-hover row-hover dark:bg-primary-100';
+      return rowModel.isSelected() ? 'selected dark:selected vrxgrid-selected-style vrxgrid-selectedable-style' : 'not-selected dark:not-selected vrxgrid-selectedable-style';
     }
-    return 'not-selected';
+    return 'not-selected dark:not-selected';
   });
 
 </script>
 <style scoped>
   .selected{
-    background-color: v-bind(gridRowTheme.primary[100]);
     box-shadow: 3px 0 v-bind(gridRowTheme.secondary[500]) inset;
   }
 
@@ -93,23 +92,11 @@
     text-overflow: ellipsis;
   }
 
-  .row-hover:hover{
-    background-color: v-bind(gridRowTheme.primary[200]);
-    cursor: pointer;
-  }
-
   .not-selected{
     box-sizing: border-box;
   }
 
-  :is([data-mode="dark"] .dark\:row-hover:hover) {
-    background-color: v-bind(gridRowTheme.primary[700]);
-  }
-
   :is([data-mode="dark"] .dark\:selected) {
-    background-color:  v-bind(gridRowTheme.primary[600]);
-    color: white;
-    box-shadow: 3px 0 v-bind(gridRowTheme.secondary[500]) inset;
     box-sizing: border-box;
   }
 </style>

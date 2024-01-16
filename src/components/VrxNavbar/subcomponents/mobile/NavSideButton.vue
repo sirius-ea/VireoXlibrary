@@ -6,7 +6,7 @@
           data-testid="vrx-navbar-button"
           :is="config.component.name"
           v-bind="config.component.props"
-          class="father-button flex items-center p-2 text-text-lightMode rounded-lg dark:text-text-darkMode hover:bg-primary-100 dark:hover:bg-primary-700"
+          class="father-button vrxnavbar-card-style flex items-center p-2 rounded-lg"
           @click="toggleShowChildren"
       >
         <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
@@ -15,7 +15,7 @@
       </component>
 
       <div v-else>
-        <div @click="toggleShowChildren" class="father-button flex items-center p-2 text-text-lightMode rounded-lg dark:text-text-darkMode hover:bg-primary-100 dark:hover:bg-primary-700">
+        <div @click="toggleShowChildren" class="father-button vrxnavbar-card-style flex items-center p-2 rounded-lg">
           <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
           <span class="flex-1 whitespace-nowrap">{{ config.text }}</span>
           <VrxIcon v-if="config.children && config.children?.length > 0" icon="chevron-down" :class="showChildren ? 'icon-active' : 'icon-off'" size="4"/>

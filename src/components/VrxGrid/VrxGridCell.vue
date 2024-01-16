@@ -1,6 +1,6 @@
 <template>
   <td
-      class="px-3 font-medium whitespace-nowrap vrx-cell"
+      class="px-3 font-medium whitespace-nowrap"
       :class="getCellStyle()"
       v-click-outside="clickOutside"
       @dblclick="cellDbClicked"
@@ -64,7 +64,7 @@
 
   const getCellStyle = () => {
     let style = props.cell.align ? textStyle[props.cell.align as keyof typeof textStyle] : '';
-    style += props.cell.editable && editMode.value ? ' editing' : '';
+    style += props.cell.editable && editMode.value ? ' vrxgrid-editing-cell-style' : '';
     style += props.cell.type === 'static' ? ' py-2' : ' py-4';
     props.cell.type === 'boolean' ? style += ' flex justify-center' : '';
     return style;
@@ -122,10 +122,5 @@
     max-width: v-bind(cell.width+ 'px');
   }
 
-  .editing{
-    -webkit-box-shadow:inset 0 0 0 2px v-bind(gridCellTheme.primary[500]);
-    -moz-box-shadow:inset 0 0 0 2px v-bind(gridCellTheme.primary[500]);
-    box-shadow:inset 0 0 0 2px v-bind(gridCellTheme.primary[500]);
-  }
 
 </style>

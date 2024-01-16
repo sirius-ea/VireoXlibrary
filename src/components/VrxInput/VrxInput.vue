@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="vrx-input">
+  <div data-testid="vrx-input" class="vrxinput-style">
     <label data-testid="vrx-input-label" v-if="label" class="block mb-2 text-sm font-medium" :class="style.label">
       {{ label }}
     </label>
@@ -15,7 +15,7 @@
           :value="modelValue"
           :readonly="readonly"
           @input="updateValue"
-          class="vrx-input text-sm rounded-lg p-2.5 block w-full"
+          class="vrx-input vrxinput-input-style"
           :class="style.input"
       />
       <div

@@ -1,0 +1,37 @@
+@layer components {
+
+    .vrxgrid-bg-style{
+        @apply bg-bg-lightMode;
+        @apply dark:bg-bg-darkMode;
+    }
+
+    .vrxgrid-header-style{
+        @apply text-neutral-700 bg-primary-200;
+        @apply dark:bg-primary-700 dark:text-neutral-50;
+    }
+
+    .vrxgrid-row-style{
+        @apply bg-primary-50;
+        @apply dark:bg-primary-800 dark:border-primary-700;
+    }
+
+    .vrxgrid-row-text-style{
+        @apply text-primary-500;
+        @apply dark:text-neutral-400;
+    }
+
+    .vrxgrid-selectedable-style{
+        @apply hover:bg-primary-200 hover:cursor-pointer;
+        @apply hover:dark:bg-primary-700;
+    }
+
+    .vrxgrid-selected-style{
+        @apply bg-primary-100 hover:bg-primary-200 text-neutral-700 dark:text-neutral-50;
+        @apply dark:bg-primary-600 hover:dark:bg-primary-700;
+    }
+
+    .vrxgrid-editing-cell-style{
+        @apply shadow-[inset_0_0_0_2px] shadow-secondary-500;
+    }
+
+}

@@ -77,8 +77,8 @@ export const Root: ColorStory = {
         colors: { //@ts-ignore
             'text-darkMode': theme.colors['text-darkMode'], //@ts-ignore
             'text-lightMode': theme.colors['text-lightMode'], //@ts-ignore
-            'background-darkMode': theme.colors['background-darkMode'], //@ts-ignore
-            'background-lightMode': theme.colors['background-lightMode']
+            'bg-darkMode': theme.colors['bg-darkMode'], //@ts-ignore
+            'bg-lightMode': theme.colors['bg-lightMode']
         },
     }
 };

@@ -2,18 +2,18 @@
   <div class="flex flex-row justify-between items-center">
     <VrxIcon
         icon="chevron-left"
-        class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer"
+        class="rounded-lg vrxdatepicker-daypicker-text-style cursor-pointer"
         @click="emit('changeMonth', -1)"
     />
     <span
-        class="rounded-lg font-bold hover:bg-primary-200 dark:hover:bg-primary-500 pt-1 pb-1 pr-2 pl-2 cursor-pointer select-none hover:text-secondary-700 dark:hover:text-neutral-0"
+        class="rounded-lg font-bold vrxdatepicker-daypicker-text-style pt-1 pb-1 pr-2 pl-2 cursor-pointer select-none"
         @click="() => emit('changeStage', 'm')"
     >
       {{ monthsLib[month] + ' ' + year }}
     </span>
     <VrxIcon
         icon="chevron-right"
-        class="rounded-lg hover:bg-primary-200 dark:hover:bg-primary-500 cursor-pointer"
+        class="rounded-lg vrxdatepicker-daypicker-text-style cursor-pointer"
         @click="emit('changeMonth',1)"
     />
   </div>
@@ -27,7 +27,7 @@
     <tr v-for="week in matrix">
       <td
           v-for="day in week"
-          class='hover:bg-primary-200 dark:hover:bg-primary-500 rounded-lg hover:text-secondary-700 dark:hover:text-neutral-0'
+          class='rounded-lg vrxdatepicker-daypicker-text-style'
           :class="getStyle(day)"
           @click="() => day.disabled ? null : emit('dayClicked', day)"
       >
@@ -133,7 +133,7 @@ const getStyle = (day: CalendarDay) => {
   ) {
     style += 'bg-secondary-700 dark:bg-secondary-500 text-neutral-0';
   } else if (day.isToday) {
-    style += ' text-error-500 dark:text-error-500';
+    style += ' text-secondary-400 dark:text-secondary-700';
   } else if (!day.isCurrentMonth) {
     style += ' text-primary-300 dark:text-primary-500 !font-normal';
     if (day.disabled) style += ' line-through';

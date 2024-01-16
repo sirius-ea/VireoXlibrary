@@ -6,7 +6,7 @@
           data-testid="vrx-navbar-button"
           :is="config.component.name"
           v-bind="config.component.props"
-          class="navbar-button block py-2 pl-3 pr-4 text-text-lightMode rounded md:hover:bg-transparent md:border-0 md:hover:text-text-lightMode/80 md:p-0 dark:text-text-darkMode md:dark:hover:text-text-darkMode/80"
+          class="navbar-button block py-2 pl-3 pr-4 vrxnavbar-navbutton-text-style rounded md:hover:bg-transparent md:border-0 md:p-0"
           @click="onClickEvent"
       >
         <VrxIcon v-if="config.icon" :icon="config.icon" size="5"/>
@@ -17,7 +17,7 @@
       <div
           v-else
           data-testid="vrx-navbar-button"
-          class="navbar-button block py-2 pl-3 pr-4 text-text-lightMode rounded md:hover:bg-transparent md:border-0 md:hover:text-text-lightMode/80 md:p-0 dark:text-text-darkMode md:dark:hover:text-text-darkMode/80"
+          class="navbar-button block py-2 pl-3 pr-4 vrxnavbar-navbutton-text-style rounded md:hover:bg-transparent md:border-0 md:p-0"
           @click="onClickEvent"
           ref="componentRef"
       >

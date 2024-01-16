@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-wrap h-full w-full justify-left items-center gap-2">
+    <div data-testid="vrx-color-palette" class="flex flex-wrap h-full w-full justify-left items-center gap-2">
       <VrxColorItem v-for="(color,index) in colors" :key="index" :color="color" :name="index"/>
     </div>
 </template>

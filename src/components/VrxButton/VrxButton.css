@@ -1,0 +1,47 @@
+@layer components {
+    .vrxbutton-default-style {
+        @apply text-text-darkMode;
+        @apply bg-primary-700 hover:bg-primary-800 focus:ring-primary-300;
+        @apply dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800;
+    }
+    .vrxbutton-alternate-style {
+        @apply text-gray-900 border focus:z-10;
+        @apply bg-white border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:ring-gray-200;
+        @apply dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700;
+    }
+    .vrxbutton-dark-style {
+        @apply text-white;
+        @apply bg-gray-800 hover:bg-gray-900 focus:ring-gray-300;
+        @apply dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700;
+    }
+    .vrxbutton-light-style {
+        @apply text-gray-900 border;
+        @apply bg-white border-gray-300 hover:bg-gray-100 focus:ring-gray-200;
+        @apply dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700;
+    }
+    .vrxbutton-green-style {
+        @apply text-white;
+        @apply bg-green-700 hover:bg-green-800 focus:ring-green-300 ;
+        @apply dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800;
+    }
+    .vrxbutton-red-style {
+        @apply text-white;
+        @apply bg-red-700 hover:bg-red-800 focus:ring-red-300;
+        @apply dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900;
+    }
+    .vrxbutton-yellow-style {
+        @apply text-white;
+        @apply bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300;
+        @apply dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-900;
+    }
+    .vrxbutton-blue-style {
+        @apply text-white;
+        @apply bg-blue-700 hover:bg-blue-800 focus:ring-blue-300;
+        @apply dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+    }
+    .vrxbutton-purple-style {
+        @apply text-white;
+        @apply bg-purple-700 hover:bg-purple-800 focus:ring-purple-300;
+        @apply dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900;
+    }
+}

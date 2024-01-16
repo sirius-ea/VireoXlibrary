@@ -7,10 +7,10 @@ export default {
       darkMode: true,
       colors: {
         primary: {
-            ...colors.green
+            ...colors.gray
         },
         secondary: {
-          ...colors.red
+          ...colors.blue
         },
         neutral: {
             '0': colors.white,
@@ -22,13 +22,11 @@ export default {
         },
         'text-lightMode': colors.slate['950'],
         'text-darkMode': colors.slate['50'],
-        'background-lightMode': colors.gray['100'],
-        'background-darkMode': colors.gray['700'],
-        /*select: {
-          text: this.primary['100'],
-          bg: 'red',
-          disabled: 'grey'
-        }*/
+        'bg-lightMode': colors.gray['100'],
+        'bg-darkMode': colors.gray['700'],
+        'icon': colors.gray['400'],
+        'icon-disabled': colors.gray['300'],
+        'icon-invalid': colors.red['600'],
       },
     }
   },
@@ -46,6 +44,3 @@ export default {
   // Toggle dark-mode based on data-mode="dark"
   darkMode: ['class', '[data-mode="dark"]'],
 }
-
-//colors = { ...colors, select: { ...colors.select, bg: 'green' } }
-

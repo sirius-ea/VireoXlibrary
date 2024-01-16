@@ -1,6 +1,6 @@
 <template>
-  <div data-testid="vrx-grid" @keydown="keyboardListener($event)" @click="mouseListener($event)" class="table-outline relative overflow-x-auto h-full shadow-md w-full bg-primary-50 dark:bg-primary-800" tabindex="1">
-    <table class="w-full text-sm text-left text-primary-500 dark:text-neutral-400" aria-describedby="vrx-table-grid">
+  <div data-testid="vrx-grid" @keydown="keyboardListener($event)" @click="mouseListener($event)" class="table-outline relative overflow-x-auto h-full shadow-md w-full vrxgrid-bg-style" tabindex="1">
+    <table class="w-full text-sm text-left vrxgrid-row-text-style" aria-describedby="vrx-table-grid">
       <VrxGridHeader v-model:grid-config="gridModel.configuration" :grid-data="gridModel.data"/>
       <VrxGridBody
           v-model="gridModel.configuration"
