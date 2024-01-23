@@ -1,7 +1,7 @@
 @layer components {
     .vrxtree-text-style{
         @apply text-primary-900;
-        @apply dark:text-base-content-dark;
+        @apply dark:text-content-dark;
     }
 
     .vrxtree-element-style{

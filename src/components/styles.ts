@@ -39,7 +39,7 @@ export function inputStyles (invalid : boolean, disabled : boolean, iconType? : 
 
 export function selectStyles (disabled: boolean, invalid: boolean, variant : string){
     const selectedItem  = { // TODO: Custom text color?
-        'default': `text-base-content-dark bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`,
+        'default': `text-content-dark bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`,
         'alternative': `text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700`,
         'dark': `text-white bg-gray-800 hover:bg-gray-900  focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700`,
         'light': `text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700`,
@@ -50,8 +50,8 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
     }
 
     const selectedIconColor = {
-        //@ts-ignore
-        'default': theme.colors.primary[700],
+        // @ts-ignore
+        'default': theme?.colors?.primary["700"],
         'blue': colors.blue[700],
         'alternative': colors.gray[400],
         'dark': colors.gray[900],
@@ -62,7 +62,7 @@ export function selectStyles (disabled: boolean, invalid: boolean, variant : str
         'purple': colors.purple[700],
     }
 
-    let dropdownItem : string = "vrxselect-dropdownItem-style"
+    let dropdownItem : string = "vrxselect-dropdown-item"
     let select : string = "vrxselect-input-style"
     let label: string = "vrxselect-label-style";
     let helperText : string = "vrxselect-helperText-style";

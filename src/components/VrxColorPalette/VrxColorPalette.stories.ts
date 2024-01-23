@@ -75,8 +75,8 @@ export const Root: ColorStory = {
     args: {
         ...Template.args,
         colors: { //@ts-ignore
-            'base-content-dark': theme.colors['base-content-dark'], //@ts-ignore
-            'base-content-light': theme.colors['base-content-light'], //@ts-ignore
+            'content-dark': theme.colors['content-dark'], //@ts-ignore
+            'content-light': theme.colors['content-light'], //@ts-ignore
             'base-dark': theme.colors['base-dark'], //@ts-ignore
             'base-light': theme.colors['base-light'],//@ts-ignore
             'icon': theme.colors['icon'],//@ts-ignore

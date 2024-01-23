@@ -1,12 +1,12 @@
 @layer components {
     .vrxdaterangepicker-dropdown-btn-style, .vrxdaterangepicker-dropdown-text-style{
-        @apply hover:bg-primary-200 hover:text-base-content-light text-base-content-light/80;
-        @apply dark:hover:bg-primary-500 dark:hover:text-base-content-dark dark:text-base-content-dark/80;
+        @apply hover:bg-primary-200 hover:text-content-light text-content-light;
+        @apply dark:hover:bg-primary-500 dark:hover:text-content-dark dark:text-content-dark;
     }
 
     .vrxdaterangepicker-dropdown-header-style{
-        @apply text-base-content-light/80;
-        @apply dark:text-base-content-dark/80;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
 
     .vrxdaterangepicker-dropdown-bg-style{

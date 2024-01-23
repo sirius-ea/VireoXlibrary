@@ -69,7 +69,7 @@
             @focusout="searchClick(false)"
         />
       </div>
-      <div v-for="(element, index) in listDataCopy" :key="index" class="dropdown-item w-full" :class="style.dropdownItem">
+      <div v-for="(element, index) in listDataCopy" :key="index" class="dropdown-item w-full vrxselect-dropdown-item" :class="style.dropdownItem">
         <div
             :data-testid="'vrx-select-dropdown-' + index"
             class="dropdown-item-content w-full h-full p-2.5"

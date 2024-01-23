@@ -1,6 +1,6 @@
 @layer components {
     .vrxbutton-default-style {
-        @apply text-base-content-dark;
+        @apply text-content-dark;
         @apply bg-primary-700 hover:bg-primary-800 focus:ring-primary-300;
         @apply dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800;
     }

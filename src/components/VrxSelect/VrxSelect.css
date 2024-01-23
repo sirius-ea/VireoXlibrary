@@ -3,27 +3,27 @@
         @apply outline-none border text-sm rounded-lg p-2.5 block w-full;
     }
     .vrxselect-input-style{
-        @apply border-primary-300 text-base-content-light focus:ring-secondary-500 focus:border-secondary-500;
-        @apply dark:text-base-content-dark dark:bg-base-dark dark:border-primary-600 dark:placeholder-base-content-dark/30 dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
+        @apply border-primary-300 text-content-light focus:ring-secondary-500 focus:border-secondary-500;
+        @apply dark:text-content-dark dark:bg-base-dark dark:border-primary-600 dark:placeholder-content-dark dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
     }
     .vrxselect-input-disabled-style{
         @apply border-primary-50;
-        @apply bg-base-light/90 text-base-content-light/60;
-        @apply dark:bg-base-dark/90 dark:text-base-content-dark/60;
+        @apply bg-base-light text-content-light;
+        @apply dark:bg-base-dark dark:text-content-dark;
     }
     .vrxselect-input-invalid-style{
         @apply border-error-500;
         @apply bg-error-50 text-error-900 placeholder-error-700 focus:ring-error-500 focus:border-error-500;
-        @apply dark:bg-base-dark/80 dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
+        @apply dark:bg-base-dark dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
     }
 
     .vrxselect-label-style {
-        @apply text-base-content-light;
-        @apply dark:text-base-content-dark;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
     .vrxselect-label-disabled-style {
-        @apply text-base-content-light/60;
-        @apply dark:text-base-content-dark/60;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
     .vrxselect-label-invalid-style {
         @apply text-error-700;
@@ -31,12 +31,12 @@
     }
 
     .vrxselect-helperText-style {
-        @apply text-base-content-light/60;
-        @apply dark:text-base-content-dark/60;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
     .vrxselect-helperText-disabled-style{
-        @apply text-base-content-light/40;
-        @apply dark:text-base-content-dark/40;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
     .vrxselect-helperText-invalid-style{
         @apply text-error-600;
@@ -44,33 +44,38 @@
     }
 
     .vrxselect-dropdownItem-style{
-        @apply hover:bg-base-light/80;
-        @apply dark:hover:bg-base-dark/80;
+        @apply hover:bg-base-light;
+        @apply dark:hover:bg-base-dark;
     }
 
     .vrxselect-placeholder-style{
-        @apply text-base-content-light/30;
-        @apply dark:text-base-content-dark/30;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
     .vrxselect-placeholder-invalid-style{
         @apply text-error-600;
         @apply dark:text-error-600;
     }
     .vrxselect-placeholder-disabled-style{
-        @apply text-base-content-light/20;
-        @apply dark:text-base-content-dark/20;
+        @apply text-content-light;
+        @apply dark:text-content-dark;
     }
 
     .vrxselect-dropdown-style, .vrxselect-dropdown-invalid-style{
         @apply border;
     }
     .vrxselect-dropdown-style{
-        @apply bg-base-light border-primary-300 text-base-content-light;
-        @apply dark:bg-base-dark dark:border-primary-600 dark:text-base-content-dark;
+        @apply bg-base-light border-primary-300 text-content-light;
+        @apply dark:bg-base-dark dark:border-primary-600 dark:text-content-dark;
     }
     .vrxselect-dropdown-invalid-style{
         @apply bg-error-50 border-error-500 text-error-900;
-        @apply dark:bg-base-dark/80 dark:border-error-500 dark:text-error-500;
+        @apply dark:bg-base-dark dark:border-error-500 dark:text-error-500;
+    }
+
+    .vrxselect-dropdown-item{
+        @apply hover:bg-neutral-200;
+        @apply dark:hover:bg-neutral-500;
     }
 
     .vrxselect-included-style{
