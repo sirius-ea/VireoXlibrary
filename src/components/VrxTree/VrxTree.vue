@@ -157,8 +157,8 @@
     return result;
   }
 
-  const cellClicked = (node: VrxTreeNode, parentId: string) => {
-    emit('cellClicked', node, parentId)
+  const cellClicked = (node: VrxTreeNode, parentId: string, elementRef: Element | null) => {
+    emit('cellClicked', node, parentId, elementRef);
   }
 
   const selectedNodes = ref<String []>([]);

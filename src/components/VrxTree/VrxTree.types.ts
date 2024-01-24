@@ -1,3 +1,5 @@
+import {VueElementConstructor} from "vue";
+
 export type VrxTreeNode = {
     id: string;
     text: string;
@@ -7,4 +9,8 @@ export type VrxTreeNode = {
     children: VrxTreeNode[];
     userData?: any;
     class?: any;
+    asComponent?: boolean;
+    component?: string | object;
+    componentProps?: () => any;
+    componentSlots?: any;
 };

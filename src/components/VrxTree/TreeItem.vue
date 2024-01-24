@@ -1,6 +1,6 @@
 <template>
-  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'">
-    <div class="tree-element vrxtree-element-style rounded-s" @click="() => cellClicked(node, props.parentId)">
+  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'" @click.stop="() => cellClicked(node, props.parentId)" ref="elementRef" >
+    <div class="tree-element vrxtree-element-style rounded-s" >
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input
@@ -12,8 +12,13 @@
           @click="selectHandle"
           :indeterminate.prop="hasChildrenChecked && !checkValue"
       />
-      <span :class="node.class">{{ props.node.text }}</span>
+      <component v-if="node.asComponent === true && node.componentProps" :is="node.component" v-bind="node.componentProps()">
+        {{ node.componentSlots ?? node.text }}
+      </component>
+      <span v-else  :class="node.class">{{ props.node.text }}</span>
+
     </div>
+
 
     <!-- CHILDREN RECURSIVE -->
     <TreeItem
@@ -30,7 +35,7 @@
         :siblings="node.children"
         :remove-node-by-id="removeNodeById"
         @check-clicked="checkClicked"
-        @cellClicked="(value, parentId) => cellClicked(value, parentId)"
+        @cellClicked="(value, parentId, element) => cellClicked(value, parentId, element)"
     />
 
   </div>
@@ -53,6 +58,8 @@
     parentId: string,
     siblings: VrxTreeNode[]
   }>();
+
+  const elementRef = ref<Element | null>(null);
 
   const open = ref(props.node.open);
   const checkValue : Ref<boolean>= ref(props.selected || props.selectedNodes.includes(props.parentId));
@@ -78,8 +85,9 @@
     }
   }
 
-  const cellClicked = (value : VrxTreeNode, parentId : string) => {
-    emit('cellClicked', value, parentId);
+  const cellClicked = (value : VrxTreeNode, parentId : string, element ?: Element ) => {
+
+    emit('cellClicked', value, parentId, element ? element : elementRef.value);
   }
 
   /**

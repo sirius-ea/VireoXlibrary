@@ -1,6 +1,8 @@
 import {mount, VueWrapper} from "@vue/test-utils";
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import {expect} from "vitest";
+import {VrxButton, VrxTreeNode} from "@/components";
+import TreeItem from "@/components/VrxTree/TreeItem.vue";
 
 describe('VrxTree', () => {
     let wrapper : VueWrapper<any>;
@@ -34,6 +36,32 @@ describe('VrxTree', () => {
                 icon: "folder",
                 children: [],
             })),
+        }
+    ]
+
+    const dataWithComponent : VrxTreeNode[] = [
+        {
+            text: "Parent",
+            icon: "folder",
+            id: "x-parent",
+            open: false,
+            userData: { type: "country" },
+            selected: false,
+            children: Array.from(Array(5).keys()).map((i) => ({
+                id: "x",
+                text: `Child ${i}`,
+                userData: { test: "ciao" },
+                selected: false,
+                children: [],
+                asComponent: true,
+                component: VrxButton,
+                componentProps: () => ({
+                    color: i % 2 === 0 ? "default" : "green",
+                    size: "md",
+                    class: "my-2"
+                }),
+                componentSlots: `Child ${i}`
+            }))
         }
     ]
 
@@ -83,4 +111,13 @@ describe('VrxTree', () => {
     it('flats the tree', () => {
         expect(wrapper.vm.flattenTree(data[0]).length).toBe(6);
     });
+
+    it("renders a node as component", () => {
+        wrapper = mount(VrxTree as any, {props: {data: dataWithComponent}});
+        wrapper.findAll('button').forEach((node, index) => {
+            expect(node.text()).toBe("Child " + index);
+            expect(node.classes()).toContain("my-2");
+            expect(node.classes()).toContain("vrx-button-"+ (index%2 === 0 ? "default" : "green") + "style");
+        })
+    })
 });
