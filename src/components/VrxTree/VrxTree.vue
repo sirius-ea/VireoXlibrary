@@ -118,6 +118,24 @@
     return result;
   }
 
+  const getNodeById = (id:string) => {
+    let result : VrxTreeNode | null = null;
+    const findNode = (node: VrxTreeNode) => {
+      if(node.id === id){
+        result = node;
+        return;
+      }
+      if(node.children.length > 0){
+        node.children.forEach((child) => {
+          if(!result)
+            findNode(child);
+        })
+      }
+    }
+    findNode(props.data[0]);
+    return result;
+  }
+
   /**
    * Returns the selected nodes
    */
@@ -165,7 +183,7 @@
   const emit = defineEmits(['cellClicked']);
   buildTreeWithIds(props.data);
 
-  defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree });
+  defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById });
 
 </script>
 

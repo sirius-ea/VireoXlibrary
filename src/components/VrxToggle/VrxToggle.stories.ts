@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import VrxToggle from "@/components/VrxToggle/VrxToggle.vue";
+import {ref} from "vue";
 
 const meta : Meta<typeof VrxToggle> = {
     title: 'VrxToggle',
@@ -7,9 +8,9 @@ const meta : Meta<typeof VrxToggle> = {
     tags: ['autodocs'],
     argTypes: {
         modelValue: {
-            description: 'binded value with v-model',
+            description: 'bound value with v-model',
             control:{
-              type: 'string'
+              type: 'boolean',
             },
             table: {
                 category: 'props',
@@ -90,14 +91,10 @@ const Template : ToggleStories = {
         },
         template: `
             <VrxToggle 
-                v-bind="args"
-                v-model="args.modelValue"
+               v-model="args.modelValue"
             />
-        `
+        `,
     }),
-    args: {
-        modelValue: true,
-    },
 }
 
 export const Primary: ToggleStories = {
@@ -111,19 +108,19 @@ export const Size: ToggleStories = {
     render: (args) => ({
         components: { VrxToggle },
         setup() {
-            return { args };
+            const value = ref(false);
+            return { args, value };
         },
         template: `
             <div style="display: flex; flex-direction: column; gap: 10px">
-                <VrxToggle size="sm" label="sm" />
-                <VrxToggle size="md" label="md" />
-                <VrxToggle size="lg" label="lg" />
+                <VrxToggle size="sm" label="sm" v-model="value"/>
+                <VrxToggle size="md" label="md" v-model="value"/>
+                <VrxToggle size="lg" label="lg" v-model="value"/>
             </div>
         `
     }),
     args: {
-        label: '',
-        modelValue: false,
+        label: ''
     }
 };
 
@@ -135,15 +132,15 @@ export const Variants: ToggleStories = {
         },
         template: `
             <div style="display: flex; flex-direction: row; gap: 5px">
-                <VrxToggle variant="red" model-value />
-                <VrxToggle variant="green" modelValue />
-                <VrxToggle variant="yellow" modelValue />
-                <VrxToggle variant="purple" modelValue />
+                <VrxToggle variant="red" v-model="args.modelValue" />
+                <VrxToggle variant="green" v-model="args.modelValue" />
+                <VrxToggle variant="yellow" v-model="args.modelValue" />
+                <VrxToggle variant="purple" v-model="args.modelValue" />
             </div>
         `
     }),
     args: {
         label: '',
-        modelValue: true,
+        modelValue: false,
     }
 };
