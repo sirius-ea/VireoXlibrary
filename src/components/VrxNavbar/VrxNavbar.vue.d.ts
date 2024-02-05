@@ -1,14 +1,23 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { NavbarButton } from '../../components/VrxNavbar/NavbarButton.ts';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
-    buttons: {
-        type: __PropType<NavbarButton[]>;
+import { NavbarButton } from './NavbarButton.ts';
+declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    buttons: NavbarButton[];
+}>, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    buttons: NavbarButton[];
+}>>>, {}, {}>, {
+    leftComponent?(_: {}): any;
+}>;
+export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<T[K]>;
         required: true;
     };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    buttons: {
-        type: __PropType<NavbarButton[]>;
-        required: true;
+};
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
     };
-}>>, {}, {}>;
-export default _sfc_main;
+};

@@ -1,64 +1,54 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { ComponentVariant } from '../../components/styles.ts';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
-    size: {
-        type: __PropType<"sm" | "lg" | "md" | undefined>;
-        required: false;
-        default: string;
+import { ComponentVariant } from '../styles.ts';
+declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
+    modelValue: {
+        required: true;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
     };
-    variant: {
-        type: __PropType<ComponentVariant | undefined>;
-        required: false;
+    disabled: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        default: boolean;
+    };
+    size: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"sm" | "lg" | "md">;
         default: string;
     };
     label: {
-        type: __PropType<string | undefined>;
-        required: false;
-        default: string;
-    };
-    disabled: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-        default: boolean;
-    };
-    modelValue: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-        default: boolean;
-    };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    size: {
-        type: __PropType<"sm" | "lg" | "md" | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
         default: string;
     };
     variant: {
-        type: __PropType<ComponentVariant | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<ComponentVariant>;
+        default: string;
+    };
+}, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+    "update:modelValue": (...args: any[]) => void;
+}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+    modelValue: {
+        required: true;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+    };
+    disabled: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        default: boolean;
+    };
+    size: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"sm" | "lg" | "md">;
         default: string;
     };
     label: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
         default: string;
     };
-    disabled: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-        default: boolean;
-    };
-    modelValue: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-        default: boolean;
+    variant: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<ComponentVariant>;
+        default: string;
     };
 }>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
-    disabled: boolean | undefined;
-    size: "sm" | "lg" | "md" | undefined;
-    label: string | undefined;
-    modelValue: boolean | undefined;
-    variant: ComponentVariant | undefined;
+    disabled: boolean;
+    size: 'sm' | 'md' | 'lg';
+    label: string;
+    variant: ComponentVariant;
 }, {}>;
-export default _sfc_main;
+export default _default;

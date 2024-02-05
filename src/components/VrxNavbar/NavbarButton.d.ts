@@ -1,5 +1,5 @@
-import { IconLibraryType } from '../../components/VrxIcon/IconLibrary.ts';
-import { Component } from './vue/dist/vue.esm-bundler.js';
+import { IconLibraryType } from '../VrxIcon/IconLibrary.ts';
+import { Component } from '../../../vue/dist/vue.esm-bundler.js';
 export type NavbarButton = {
     text: string;
     icon?: IconLibraryType | string;

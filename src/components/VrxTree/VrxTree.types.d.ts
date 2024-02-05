@@ -7,4 +7,11 @@ export type VrxTreeNode = {
     children: VrxTreeNode[];
     userData?: any;
     class?: any;
+    asComponent?: boolean;
+    component?: string | object;
+    componentProps?: () => any;
+    componentSlots?: any;
+    rightSlot?: boolean;
+    rightComponent?: string | object;
+    rightComponentProps?: () => any;
 };

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import VrxInput from '../../components/VrxInput/VrxInput.vue';
+import VrxInput from './VrxInput.vue';
 declare const meta: Meta<typeof VrxInput>;
 export default meta;
 type InputStories = StoryObj<typeof VrxInput>;

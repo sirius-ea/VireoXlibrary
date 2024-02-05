@@ -1,4 +1,4 @@
-import { GridHeader, GridRow } from '../../../components/VrxGrid/GridConfiguration.ts';
+import { GridHeader, GridRow } from '../GridConfiguration.ts';
 export declare class Row {
     private readonly _id;
     private readonly _textColor;

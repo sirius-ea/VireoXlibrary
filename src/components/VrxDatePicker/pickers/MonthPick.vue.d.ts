@@ -1,17 +1,23 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
-    year: {
-        type: __PropType<number>;
-        required: true;
-    };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, ("changeMonth" | "changeStage" | "changeYear")[], "changeMonth" | "changeStage" | "changeYear", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    year: {
-        type: __PropType<number>;
-        required: true;
-    };
-}>> & {
+declare const _default: import('../../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    year: number;
+}>, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+    changeMonth: (...args: any[]) => void;
+    changeStage: (...args: any[]) => void;
+    changeYear: (...args: any[]) => void;
+}, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    year: number;
+}>>> & {
     onChangeMonth?: ((...args: any[]) => any) | undefined;
     onChangeStage?: ((...args: any[]) => any) | undefined;
     onChangeYear?: ((...args: any[]) => any) | undefined;
 }, {}, {}>;
-export default _sfc_main;
+export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<T[K]>;
+        required: true;
+    };
+};

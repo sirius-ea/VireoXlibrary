@@ -1,45 +1,32 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
-    color: {
-        type: __PropType<"default" | "alternative" | "dark" | "light" | "green" | "red" | "yellow" | "blue" | "purple">;
+declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    color: "default" | "alternative" | "dark" | "light" | "green" | "red" | "yellow" | "blue" | "purple";
+    disabled?: boolean | undefined;
+    fullRounded?: boolean | undefined;
+    fullWidth?: boolean | undefined;
+    size: "xs" | "sm" | "base" | "lg" | "xl";
+}>, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    color: "default" | "alternative" | "dark" | "light" | "green" | "red" | "yellow" | "blue" | "purple";
+    disabled?: boolean | undefined;
+    fullRounded?: boolean | undefined;
+    fullWidth?: boolean | undefined;
+    size: "xs" | "sm" | "base" | "lg" | "xl";
+}>>>, {}, {}>, {
+    prefix?(_: {}): any;
+    default?(_: {}): any;
+    suffix?(_: {}): any;
+}>;
+export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<T[K]>;
         required: true;
     };
-    disabled: {
-        type: __PropType<boolean | undefined>;
-        required: false;
+};
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
     };
-    fullRounded: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    fullWidth: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    size: {
-        type: __PropType<"xs" | "sm" | "base" | "lg" | "xl">;
-        required: true;
-    };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    color: {
-        type: __PropType<"default" | "alternative" | "dark" | "light" | "green" | "red" | "yellow" | "blue" | "purple">;
-        required: true;
-    };
-    disabled: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    fullRounded: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    fullWidth: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    size: {
-        type: __PropType<"xs" | "sm" | "base" | "lg" | "xl">;
-        required: true;
-    };
-}>>, {}, {}>;
-export default _sfc_main;
+};

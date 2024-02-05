@@ -1,26 +1,25 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { Row } from '../../components/VrxGrid/Models/Row.ts';
-import { GridHeader } from '../../components/VrxGrid/GridConfiguration.ts';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
-    row: {
-        type: __PropType<Row>;
-        required: true;
-    };
-    cell: {
-        type: __PropType<GridHeader>;
-        required: true;
-    };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, ("cellClicked" | "cellDoubleClicked")[], "cellClicked" | "cellDoubleClicked", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    row: {
-        type: __PropType<Row>;
-        required: true;
-    };
-    cell: {
-        type: __PropType<GridHeader>;
-        required: true;
-    };
-}>> & {
+import { Row } from './Models/Row.ts';
+import { GridHeader } from './GridConfiguration.ts';
+declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    row: Row;
+    cell: GridHeader;
+}>, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+    cellClicked: (...args: any[]) => void;
+    cellDoubleClicked: (...args: any[]) => void;
+}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    row: Row;
+    cell: GridHeader;
+}>>> & {
     onCellClicked?: ((...args: any[]) => any) | undefined;
     onCellDoubleClicked?: ((...args: any[]) => any) | undefined;
 }, {}, {}>;
-export default _sfc_main;
+export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<T[K]>;
+        required: true;
+    };
+};

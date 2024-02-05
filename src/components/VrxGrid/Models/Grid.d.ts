@@ -1,4 +1,4 @@
-import { GridConfiguration, GridFilter, GridRow } from '../../../components/VrxGrid/GridConfiguration.ts';
+import { GridConfiguration, GridFilter, GridRow } from '../GridConfiguration.ts';
 export declare class Grid {
     private readonly _configuration;
     private _filters;

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import VrxSelect from '../../components/VrxSelect/VrxSelect.vue';
+import VrxSelect from './VrxSelect.vue';
 declare const meta: Meta<typeof VrxSelect>;
 export default meta;
 type SelectStories = StoryObj<typeof VrxSelect>;

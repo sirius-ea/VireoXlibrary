@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import VrxToggle from '../../components/VrxToggle/VrxToggle.vue';
+import VrxToggle from './VrxToggle.vue';
 declare const meta: Meta<typeof VrxToggle>;
 export default meta;
 type ToggleStories = StoryObj<typeof VrxToggle>;

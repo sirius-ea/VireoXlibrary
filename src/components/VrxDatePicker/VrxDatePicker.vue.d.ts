@@ -1,80 +1,67 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { Ref } from './vue/dist/vue.esm-bundler.js';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
+declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
+    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date>;
     type: {
-        type: __PropType<"date" | "time" | "datetime">;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"time" | "date" | "datetime">;
         required: true;
     };
     validRange: {
-        type: __PropType<[Date | undefined, Date | undefined] | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<[Date | undefined, Date | undefined]>;
     };
     dateFormat: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
     monthsOnly: {
-        type: __PropType<boolean | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
     };
     placeholder: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
     invalid: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    date: {
-        type: __PropType<Ref<Date> | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
     };
     helperText: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
     label: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, "dayClicked"[], "dayClicked", import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+}, {
+    setDate: (date: Date) => void;
+    setValidRange: (range: [Date | undefined, Date | undefined]) => void;
+    getDate: () => Date;
+    setMonth: (monthIndex: number, year: number) => void;
+    openPicker: () => void;
+    closePicker: (event: any) => void;
+}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+    dayClicked: (...args: any[]) => void;
+}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date>;
     type: {
-        type: __PropType<"date" | "time" | "datetime">;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"time" | "date" | "datetime">;
         required: true;
     };
     validRange: {
-        type: __PropType<[Date | undefined, Date | undefined] | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<[Date | undefined, Date | undefined]>;
     };
     dateFormat: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
     monthsOnly: {
-        type: __PropType<boolean | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
     };
     placeholder: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
     invalid: {
-        type: __PropType<boolean | undefined>;
-        required: false;
-    };
-    date: {
-        type: __PropType<Ref<Date> | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
     };
     helperText: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
     label: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
 }>> & {
     onDayClicked?: ((...args: any[]) => any) | undefined;
 }, {}, {}>;
-export default _sfc_main;
+export default _default;

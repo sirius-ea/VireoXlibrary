@@ -1,14 +1,16 @@
-import type { PropType as __PropType } from './vue/dist/vue.esm-bundler.js';
-import { NavbarSecondLayerButton } from '../../../../components/VrxNavbar/NavbarButton.ts';
-declare const _sfc_main: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
-    config: {
-        type: __PropType<NavbarSecondLayerButton>;
+import { NavbarSecondLayerButton } from '../../NavbarButton.ts';
+declare const _default: import('../../../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    config: NavbarSecondLayerButton;
+}>, {}, unknown, {}, {}, import('../../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    config: NavbarSecondLayerButton;
+}>>>, {}, {}>;
+export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('../../../../../vue/dist/vue.esm-bundler.js').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('../../../../../vue/dist/vue.esm-bundler.js').PropType<T[K]>;
         required: true;
     };
-}, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    config: {
-        type: __PropType<NavbarSecondLayerButton>;
-        required: true;
-    };
-}>>, {}, {}>;
-export default _sfc_main;
+};
