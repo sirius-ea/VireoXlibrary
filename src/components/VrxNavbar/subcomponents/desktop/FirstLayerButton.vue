@@ -3,7 +3,7 @@
       v-if="config.component"
       class="card vrxnavbar-card-style rounded-lg p-4 mb-2"
       @click="toggleChildren"
-      :is="config.component.name"
+      :is="{...config.component.name}"
       v-bind="config.component.props"
   >
     <div class="child-container" :class="config.description ? 'child-align-start' : 'child-align-center'">
