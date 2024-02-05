@@ -3,6 +3,7 @@ import VrxButtonsGroup from './VrxButtonsGroup.vue'
 import VrxDatePicker from "@/components/VrxDatePicker/VrxDatePicker.vue";
 import {VrxButton} from "@/components";
 import {dateFormatLib} from "@/components/VrxDatePicker/DatePickerLibrary.ts";
+import {ref} from "vue";
 
 const meta : Meta<typeof VrxDatePicker> = {
     title: 'VrxDatePicker',
@@ -130,6 +131,21 @@ const meta : Meta<typeof VrxDatePicker> = {
                 }
             }
         },
+        modelValue:{
+            description: 'value of the date picker, if you want to use v-model',
+            control: {
+                type: 'none',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'Date',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                }
+            }
+        },
     }
 
 };
@@ -143,10 +159,16 @@ const Template: DatePickerStories = {
     render: (args) => ({
         components: { VrxDatePicker, VrxButton },
         setup() {
+            const date = new Date()
             return {
-                args
+                args : {
+                    ...args,
+                }
             };
         },
+        data:() => ({
+            date: new Date(),
+        }),
         methods: {
           setDate(date: Date){
               this.$refs.myRef.setDate(date);
@@ -171,7 +193,7 @@ const Template: DatePickerStories = {
         template: `
           <div style="height: 400px" class="flex flex-col">
           <div style="height: 90%">
-            <VrxDatePicker :type="args.type" v-bind="args" ref="myRef" />
+            <VrxDatePicker :type="args.type" v-bind="args" v-model="date" ref="myRef" />
           </div>
           <div class="bottom-0 flex flex-row gap-2">
             <VrxButton color="default" size="sm" @click="setDate(new Date())">Set Date</VrxButton>

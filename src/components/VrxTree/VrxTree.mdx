@@ -22,10 +22,13 @@ Here are the types that need to be implemented:
 type VrxTreeNode {
     id: string;                                 // node id (can be anything, it will be replaced by the tree)
     text: string;                               // node displayed text
+    children: VrxTreeNode[];                    // node children
     icon: boolean;                              // [optional] node icon
     selected: boolean;                          // [optional] set the node as selected
-    children: VrxTreeNode[];                    // node children
     userData: any;                              // [optional] optional user data
+    asComponent: boolean;                       // [optional] if true, the node will be rendered as a component
+    component: string | object;                 // [optional] An HTML tag name, a Component name or Component class reference.
+    componentProps: object;                     // [optional] props to pass to the component
 }
 ```
 
@@ -68,5 +71,36 @@ type VrxTreeNode {
     </tbody>
 </table>
 <br/>
+
+## 📜 Emits
+<table style={{width: '100%'}}>
+    <thead>
+    <tr>
+        <td>
+            <b>Name</b>
+        </td>
+        <td>
+            <b>Callback Params</b>
+        </td>
+        <td>
+            <b>Description</b>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>cellClicked</td>
+        <td>
+            <ul>
+                <li>`value: VrxTreeNode`</li>
+                <li>`parentId: string`</li>
+                <li>`nodeRef: HTMLElement`</li>
+            </ul>
+        </td>
+        <td>Event emitted when clicking on node</td>
+    </tr>
+
+    </tbody>
+</table>
 
 For API's details and configuration please read the [documentation](./?path=/docs/vrxtree--docs)

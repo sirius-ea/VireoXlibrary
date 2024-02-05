@@ -12,7 +12,7 @@
           :width="width"
           @click="pickerStop.closePicker()"
           :label="(labelStart ? labelStart : (labelStop ? '&nbsp;' : undefined))"
-          :date="dateStart"
+          v-model="dateStart"
           :helper-text="(helperTextStart ? helperTextStart : (helperTextStop ? '&nbsp;' : undefined))"
       />
       <div class="vrx-rangePickerBtn h-full flex flex-col items-center justify-center" ref="dropdownBtn">
@@ -37,7 +37,7 @@
           :width="width"
           @click="pickerStart.closePicker()"
           :label="(labelStop ? labelStop : (labelStart ? '&nbsp;' : undefined))"
-          :date="dateStop"
+          v-model="dateStop"
           :helper-text="(helperTextStop ? helperTextStop : (helperTextStart ? '&nbsp;' : undefined))"
       />
     </div>
@@ -81,7 +81,10 @@ import {vAppendToBody} from "@/directives"
 const pickerStart = ref();
 const pickerStop = ref();
 
-const type = ref('Current');
+const dateStart = defineModel<Date | undefined>('dataStart');
+const dateStop = defineModel<Date | undefined>('dataStop');
+
+const presetType = ref('Current');
 
 const showDropdown = ref(false);
 
@@ -96,8 +99,6 @@ defineProps<{
   invalid?: boolean;
   labelStart?: string;
   labelStop?: string;
-  dateStart?: Ref<Date>;
-  dateStop?: Ref<Date>;
   helperTextStart?: string;
   helperTextStop?: string;
 }>();
@@ -110,17 +111,17 @@ const currentButtons = [
 
 const changeType = (value: number) => {
   const values = ['Previous', 'Current', 'Next'];
-  const index = values.indexOf(type.value);
+  const index = values.indexOf(presetType.value);
 
   switch (index) {
     case 0:
-      value > 0 ? type.value = values[1] : type.value = values[2];
+      value > 0 ? presetType.value = values[1] : presetType.value = values[2];
       break;
     case 1:
-      value > 0 ? type.value = values[2] : type.value = values[0];
+      value > 0 ? presetType.value = values[2] : presetType.value = values[0];
       break;
     case 2:
-      value > 0 ? type.value = values[0] : type.value = values[1];
+      value > 0 ? presetType.value = values[0] : presetType.value = values[1];
       break;
   }
 }
@@ -151,9 +152,9 @@ const setCurrentPeriod = (period: 'y' | 'm' | 'w') => {
       dayStop = 31;
       monthStart = 0;
       monthStop = 11;
-      if (type.value === 'Current') {
+      if (presetType.value === 'Current') {
         yearStart = yearStop = today.getFullYear();
-      } else if (type.value === 'Previous') {
+      } else if (presetType.value === 'Previous') {
         yearStart = yearStop = today.getFullYear() - 1;
       } else {
         yearStart = yearStop = today.getFullYear() + 1;
@@ -164,10 +165,10 @@ const setCurrentPeriod = (period: 'y' | 'm' | 'w') => {
       dayStart = 1;
       dayStop = 0;
 
-      if (type.value === 'Current') {
+      if (presetType.value === 'Current') {
         monthStart = today.getMonth();
         monthStop = today.getMonth() + 1;
-      } else if (type.value === 'Previous') {
+      } else if (presetType.value === 'Previous') {
         monthStart = today.getMonth() - 1;
         monthStop = today.getMonth();
       } else {
@@ -178,10 +179,10 @@ const setCurrentPeriod = (period: 'y' | 'm' | 'w') => {
     case 'w':
       yearStart = yearStop = today.getFullYear();
       monthStart = monthStop = today.getMonth();
-      if (type.value === 'Current') {
+      if (presetType.value === 'Current') {
         dayStart = today.getDate() - today.getDay();
         dayStop = today.getDate() + (6 - today.getDay());
-      } else if (type.value === 'Previous') {
+      } else if (presetType.value === 'Previous') {
         dayStart = today.getDate() - today.getDay() - 7;
         dayStop = today.getDate() - today.getDay() - 1;
       } else {

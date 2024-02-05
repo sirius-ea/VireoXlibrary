@@ -4,7 +4,7 @@ import * as components from "@/components";
 import "./style.css";
 
 export default {
-    install: (app: App) => {
+    install: (app: App, _ = {}) => {
         app.component('VrxButton', components.VrxButton);
         app.component('VrxInput', components.VrxInput);
         app.component('VrxIcon', components.VrxIcon);

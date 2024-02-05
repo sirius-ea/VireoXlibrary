@@ -47,13 +47,12 @@
   import {Header} from "@/components/VrxGrid/Models/Header.ts";
   import {GridConfiguration, GridFilter, GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {inject, ref} from "vue";
-  import {ReactiveVariable} from "vue/macros";
 
 
   const props = defineProps<{
     gridConfig: GridConfiguration;
     headerConfig: GridHeader;
-    gridData: ReactiveVariable<GridRow[]>
+    gridData: GridRow[];
   }>();
 
   const filters : any = inject('filters');

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 // @ts-ignore
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
-import {VrxButton} from "@/components";
+import {VrxButton, VrxToggle} from "@/components";
 import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
 
 const meta : Meta<typeof VrxTree> = {
@@ -91,6 +91,47 @@ const data = [
     },
 ]
 
+const dataWithComponent : VrxTreeNode[] = [
+    {
+        text: "Parent",
+        icon: "folder",
+        id: "x",
+        open: false,
+        userData: { type: "country" },
+        selected: false,
+        children: Array.from(Array(5).keys()).map((i) => ({
+            id: "x",
+            text: `Child ${i}`,
+            userData: { test: "ciao" },
+            selected: false,
+            children: [],
+            asComponent: true,
+            component: VrxButton,
+            componentProps: () => ({
+                color: i % 2 === 0 ? "default" : "green",
+                size: "md",
+                class: "my-2"
+            }),
+            componentSlots: `Child ${i}`
+        }))
+    }
+]
+
+const dataWithRightSlot : VrxTreeNode[] = [
+    {
+        text: "Parent",
+        icon: "folder",
+        id: "x",
+        open: false,
+        userData: { type: "country" },
+        selected: false,
+        children: [],
+        rightSlot: true,
+        rightComponent: VrxToggle,
+        rightComponentProps: () => ({})
+    }
+]
+
 
 type TreeStories = StoryObj<typeof VrxTree>;
 const Template : TreeStories = {
@@ -111,7 +152,7 @@ const Template : TreeStories = {
         },
         template: `
           <div style="height: auto; width: auto">
-                <VrxTree ref="myRef" :check-nodes="true" :data="args.data" :selectable="args.selectable" :searchable="args.searchable" :returns-user-data="args.returnsUserData"/>
+                <VrxTree @cell-clicked="(a,b,c) => console.log('cellClicked', a, b, c)" ref="myRef" :check-nodes="true" :data="args.data" :selectable="args.selectable" :searchable="args.searchable" :returns-user-data="args.returnsUserData"/>
                 <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
                     <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
                     <VrxButton color="default" size="sm" @click="findNode" >Log found node (Sub Sub Child 0)</VrxButton>
@@ -141,3 +182,17 @@ export const Selectable: TreeStories = {
     },
 }
 
+export const WithComponent: TreeStories = {
+    ...Template,
+    args: {
+        data: dataWithComponent
+    }
+
+}
+
+export const RightSlot: TreeStories = {
+    ...Template,
+    args: {
+        data: dataWithRightSlot,
+    }
+}

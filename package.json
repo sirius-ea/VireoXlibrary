@@ -2,7 +2,7 @@
   "name": "@sirius-rd/vireoxlibrary",
   "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
   "private": false,
-  "version": "0.6.2",
+  "version": "0.6.8",
   "type": "module",
   "files": [
     "dist"
@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.17",
-    "tailwindcss": "^3.3.2",
+    "tailwindcss": "^3.4.1",
     "uuid": "^9.0.1",
-    "vue": "^3.2.47"
+    "vue": "^3.4.15"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.7",
@@ -51,7 +51,7 @@
     "@storybook/vue3": "^7.0.7",
     "@storybook/vue3-vite": "^7.0.7",
     "@types/uuid": "^9.0.7",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^5.0.0",
     "@vue/test-utils": "^2.3.2",
     "autoprefixer": "^10.4.14",
     "concurrently": "^8.0.1",
@@ -66,9 +66,9 @@
     "storybook-tailwind-foundations": "^1.1.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
-    "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-dts": "^3.7.2",
     "vitest": "^0.31.0",
-    "vue-tsc": "^1.4.2"
+    "vue-tsc": "^1.8.27"
   },
   "description": "Vue3 Component Library based on Tailwind CSS",
   "author": "Sirius SRL",

@@ -13,12 +13,11 @@
 <script setup lang="ts">
 import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import VrxGridHeaderCell from "@/components/VrxGrid/VrxGridHeaderCell.vue";
-  import {ReactiveVariable} from "vue/macros";
-  import {computed} from "vue";
+import {computed, Ref} from "vue";
 
   const props = defineProps<{
     gridConfig: GridConfiguration;
-    gridData: ReactiveVariable<GridRow[]>
+    gridData: GridRow[];
   }>()
 
   const spanReformer = computed(() => {

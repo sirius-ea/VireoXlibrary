@@ -4,7 +4,7 @@ import {IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../../tailwind.config.js'
 
-export const {theme} = resolveConfig(tailwindConfig)
+export const {theme} = resolveConfig<any>(tailwindConfig)
 
 export type ComponentVariant = 'default' | 'alternative' | 'dark' | 'light' | 'green' | 'red' | 'yellow' | 'purple';
 

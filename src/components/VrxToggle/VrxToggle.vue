@@ -8,26 +8,27 @@
 
 <script setup lang="ts">
 import {ComponentVariant, toggleStyle} from "@/components/styles.ts";
-import {computed, ref} from "vue";
+import {computed} from "vue";
   const props = withDefaults(defineProps<{
     size?: 'sm' | 'md' | 'lg',
     variant?: ComponentVariant,
     label?: string,
     disabled?: boolean,
-    modelValue?: boolean,
   }>(),{
     size: 'md',
     variant: 'default',
     label: '',
-    modelValue: false,
     disabled: false,
   })
 
+  const toggle = defineModel<boolean>({
+    required: true,
+    default:false
+  });
+
   const emit = defineEmits(['update:modelValue'])
-  const toggle = ref(props.modelValue as boolean);
   const toggleClick = () => {
     toggle.value = !toggle.value;
-    emit('update:modelValue', toggle.value);
   }
 
 const style = computed(() => {
@@ -35,9 +36,4 @@ const style = computed(() => {
 })
 </script>
 
-<style scoped>
-  .disabled-toggle{
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-</style>
+<style scoped></style>
