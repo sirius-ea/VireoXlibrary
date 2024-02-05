@@ -112,6 +112,15 @@ describe('VrxTree', () => {
         expect(wrapper.vm.flattenTree(data[0]).length).toBe(6);
     });
 
+    it("should find the path of a node", () => {
+        wrapper = mount(VrxTree as any, {props: {data: data2}});
+        const nodeId: string = wrapper.vm.getNodeByText("Children 0").id;
+        const path = wrapper.vm.getNodePath(nodeId);
+
+        expect(path).toEqual(['0', 'Children 0']);
+
+    })
+
     it("renders a node as component", () => {
         wrapper = mount(VrxTree as any, {props: {data: dataWithComponent}});
         wrapper.findAll('button').forEach((node, index) => {

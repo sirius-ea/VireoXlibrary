@@ -149,6 +149,9 @@ const Template : TreeStories = {
             findNode(){
                 alert(JSON.stringify(this.$refs.myRef.getNodeByText("Sub Sub Child 0")));
             },
+            findPath(){
+                alert(JSON.stringify(this.$refs.myRef.getNodePath(this.$refs.myRef.getNodeByText("Sub Sub Child 0").id)));
+            },
         },
         template: `
           <div style="height: auto; width: auto">
@@ -156,6 +159,7 @@ const Template : TreeStories = {
                 <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
                     <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
                     <VrxButton color="default" size="sm" @click="findNode" >Log found node (Sub Sub Child 0)</VrxButton>
+                    <VrxButton color="default" size="sm" @click="findPath" >Log find path (Sub Sub Child 0)</VrxButton>
                 </div>
           </div>
          
