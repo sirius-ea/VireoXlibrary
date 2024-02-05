@@ -17,11 +17,9 @@
 <script setup lang="ts">
   import {GridConfiguration, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import VrxGridRow from "@/components/VrxGrid/VrxGridRow.vue";
-  import {ReactiveVariable} from "vue/macros";
-
   const props = defineProps<{
     modelValue: GridConfiguration;
-    gridData: ReactiveVariable<GridRow[]>
+    gridData: GridRow[];
   }>()
 
   const emits = defineEmits(['rowClicked','cellClicked','cellDoubleClicked']);

@@ -101,30 +101,30 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                 },
             }
         },
-        dateStart: {
-            description: 'reference to the start date. Must be a ref of type Date',
+        dataStart: {
+            description: 'reference to the start date. You can use this to set the date from outside. use v-model:data-start="myDate" to bind it to a date variable',
             control: {
                 type: 'none',
             },
             table: {
-                category: 'props',
+                category: 'v-model',
                 type: {
-                    summary: 'Ref<Date> | undefined',
+                    summary: 'Date | undefined',
                 },
                 defaultValue: {
                     summary: 'undefined',
                 },
             }
         },
-        dateStop: {
-            description: 'reference to the stop date. Must be a ref of type Date',
+        dataStop: {
+            description: 'reference to the stop date. You can use this to set the date from outside. use v-model:data-stop="myDate" to bind it to a date variable',
             control: {
                 type: 'none',
             },
             table: {
-                category: 'props',
+                category: 'v-model',
                 type: {
-                    summary: 'Ref<Date> | undefined',
+                    summary: 'Date | undefined',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -219,10 +219,15 @@ const Template: DateRangePickerStories = {
     render: (args) => ({
         components: { VrxDateRangePicker, VrxButton },
         setup() {
+            const dateStart = new Date(1704120916000);
             return {
                 args
             };
         },
+        data:() => ({
+            dateStart: new Date(1704120916000),
+            dateStop: new Date(),
+        }),
         methods: {
             setDates(dates: Date[]){
                 this.$refs.myRef.setDates(dates);
@@ -235,7 +240,7 @@ const Template: DateRangePickerStories = {
         template: `
           <div style="height: 400px" class="flex flex-col">
           <div style="height: 90%">
-            <VrxDateRangePicker ref="myRef" :type="args.type" v-bind="args"/>
+            <VrxDateRangePicker ref="myRef" :type="args.type" v-bind="args" v-model:data-start="this.dateStart" v-model:data-stop="this.dateStop"/>
           </div>
           <div class="bottom-0 flex flex-row gap-2">
             <VrxButton color='default' size="sm" @click="setDates([new Date(), (new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 4)))])">Set dates</VrxButton>

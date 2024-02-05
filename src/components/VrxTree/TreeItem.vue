@@ -12,10 +12,13 @@
           @click="selectHandle"
           :indeterminate.prop="hasChildrenChecked && !checkValue"
       />
-      <component v-if="node.asComponent === true && node.componentProps" :is="node.component" v-bind="node.componentProps()">
-        {{ node.componentSlots ?? node.text }}
-      </component>
-      <span v-else  :class="node.class">{{ props.node.text }}</span>
+      <div class="w-full flex justify-between items-center flex-row">
+        <component v-if="node.asComponent === true && node.componentProps" :is="node.component" v-bind="node.componentProps()">
+          {{ node.componentSlots ?? node.text }}
+        </component>
+        <span v-else  :class="node.class">{{ props.node.text }}</span>
+        <component v-if="node.rightComponent && node.rightComponentProps" :is="node.rightComponent" v-bind="node.rightComponentProps()" />
+      </div>
 
     </div>
 

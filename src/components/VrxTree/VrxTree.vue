@@ -137,6 +137,28 @@
   }
 
   /**
+   * Return the parent of the passed node, if have no parent return nullù
+   * @param toFind VrxTreeNode
+   */
+  const getParentNode = (toFind: VrxTreeNode) => {
+    let result : VrxTreeNode | null = null;
+    const findParent = (node: VrxTreeNode) => {
+      if(node.children.some(child => child.id === toFind.id)){
+        result = node;
+        return;
+      }
+      if(node.children.length > 0){
+        node.children.forEach((child) => {
+          if(!result)
+            findParent(child);
+        })
+      }
+    }
+    findParent(props.data[0]);
+    return result;
+  }
+
+  /**
    * Returns the selected nodes
    */
   const getSelectedNodes = () => {
@@ -183,7 +205,7 @@
   const emit = defineEmits(['cellClicked']);
   buildTreeWithIds(props.data);
 
-  defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById });
+  defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById, getParentNode });
 
 </script>
 

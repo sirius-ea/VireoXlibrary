@@ -120,4 +120,16 @@ describe('VrxTree', () => {
             expect(node.classes()).toContain("vrx-button-"+ (index%2 === 0 ? "default" : "green") + "style");
         })
     })
+
+    it("should find the parent of a node", () => {
+      wrapper = mount(VrxTree as any, {props: {data: dataWithComponent}});
+        const child = wrapper.vm.getNodeByText("Child 0");
+        const firstNode = wrapper.vm.getNodeByText("Parent");
+        const parent = wrapper.vm.getParentNode(child);
+        const empty = wrapper.vm.getParentNode(firstNode);
+
+        expect(parent).toEqual(dataWithComponent[0]);
+        expect(empty).toEqual(null);
+
+    })
 });

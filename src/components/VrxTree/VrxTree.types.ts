@@ -13,4 +13,7 @@ export type VrxTreeNode = {
     component?: string | object;
     componentProps?: () => any;
     componentSlots?: any;
+    rightSlot?: boolean;
+    rightComponent?: string | object;
+    rightComponentProps?: () => any;
 };

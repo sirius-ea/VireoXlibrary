@@ -77,7 +77,9 @@ import {formattedDate, monthsLib} from "@/components/VrxDatePicker/DatePickerLib
 import VrxInput from "@/components/VrxInput/VrxInput.vue";
 import {vAppendToBody} from "@/directives"
 
-const document = window.document;
+const selectedDate = defineModel<Date>({
+  default: new Date()
+});
 
 const props = defineProps<{
   type: 'date' | 'time' | 'datetime',
@@ -86,12 +88,10 @@ const props = defineProps<{
   monthsOnly?: boolean,
   placeholder?: string,
   invalid?: boolean,
-  date?: Ref<Date>,
   helperText?: string,
   label?: string
 }>();
 
-const selectedDate = props.date ? props.date : ref(new Date());
 
 const selectedMonth = ref(new Date().getMonth());
 const selectedYear = ref(new Date().getFullYear());

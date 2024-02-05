@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 // @ts-ignore
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
-import {VrxButton} from "@/components";
+import {VrxButton, VrxToggle} from "@/components";
 import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
 
 const meta : Meta<typeof VrxTree> = {
@@ -117,6 +117,21 @@ const dataWithComponent : VrxTreeNode[] = [
     }
 ]
 
+const dataWithRightSlot : VrxTreeNode[] = [
+    {
+        text: "Parent",
+        icon: "folder",
+        id: "x",
+        open: false,
+        userData: { type: "country" },
+        selected: false,
+        children: [],
+        rightSlot: true,
+        rightComponent: VrxToggle,
+        rightComponentProps: () => ({})
+    }
+]
+
 
 type TreeStories = StoryObj<typeof VrxTree>;
 const Template : TreeStories = {
@@ -173,4 +188,11 @@ export const WithComponent: TreeStories = {
         data: dataWithComponent
     }
 
+}
+
+export const RightSlot: TreeStories = {
+    ...Template,
+    args: {
+        data: dataWithRightSlot,
+    }
 }
