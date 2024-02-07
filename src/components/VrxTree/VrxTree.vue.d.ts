@@ -5,6 +5,7 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     searchable?: boolean | undefined;
     returnsUserData?: boolean | undefined;
 }>, {
+    getNodePath: (nodeId: string) => String[];
     getSelectedNodes: () => any[];
     getNodeByText: (text: string) => undefined;
     removeNodeById: (nodeId: string, isParent?: boolean) => void;
