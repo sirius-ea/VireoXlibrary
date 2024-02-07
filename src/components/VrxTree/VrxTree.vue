@@ -137,7 +137,7 @@
   }
 
   /**
-   * Return the parent of the passed node, if have no parent return nullù
+   * Return the parent of the passed node, if have no parent return null
    * @param toFind VrxTreeNode
    */
   const getParentNode = (toFind: VrxTreeNode) => {
@@ -159,6 +159,20 @@
   }
 
   /**
+   * Return the complete path of the node
+   * @param nodeId
+   */
+  const getNodePath = (nodeId: string): String[] => {
+    const node: VrxTreeNode | null = getNodeById(nodeId);
+    const _recursiveFind = (toFind: VrxTreeNode | null): String[] => {
+      if(!toFind) return [];
+      else return _recursiveFind(getParentNode(toFind)).concat([toFind.text]);
+    }
+
+    return (_recursiveFind(node));
+  }
+
+  /**
    * Returns the selected nodes
    */
   const getSelectedNodes = () => {
@@ -176,7 +190,10 @@
       }
     }
 
-    traverse(props.data[0]);
+    props.data.forEach((dt) => {
+      traverse(dt);
+    })
+
     const flatMapResult = result.flatMap(node => flattenTree(node));
     return props.returnsUserData ? flatMapResult.map(node => node.userData ?? node) : flatMapResult;
   }
@@ -205,7 +222,7 @@
   const emit = defineEmits(['cellClicked']);
   buildTreeWithIds(props.data);
 
-  defineExpose({ getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById, getParentNode });
+  defineExpose({ getNodePath, getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById, getParentNode });
 
 </script>
 
