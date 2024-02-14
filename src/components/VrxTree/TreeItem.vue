@@ -24,22 +24,27 @@
 
 
     <!-- CHILDREN RECURSIVE -->
-    <TreeItem
-        v-if="node.children.length > 0 && open"
-        v-for="child in node.children"
-        :node="child"
-        :key="child.id"
-        :selectable="selectable"
-        :selected="checkValue"
-        :selected-nodes="selectedNodes"
-        :add-node="addNode"
-        :remove-node="removeNode"
-        :parent-id="props.node.id"
-        :siblings="node.children"
-        :remove-node-by-id="removeNodeById"
-        @check-clicked="checkClicked"
-        @cellClicked="(value, parentId, element) => cellClicked(value, parentId, element)"
-    />
+    <draggable
+      v-if="open && node.children.length > 0"
+      v-model="node.children"
+      item-key="id"
+      :disabled="!isDraggable"
+    >
+      <template #item="{element}">
+        <TreeItem
+            :node="element"
+            :key="element.id"
+            :selectable="selectable"
+            :selected="checkValue"
+            :parent-id="node.id"
+            :siblings="node.children"
+            @check-clicked="checkClicked"
+            :isDraggable="isDraggable"
+            @cellClicked="(value, parentIdValue, oldElement) => cellClicked(value, parentIdValue, oldElement)"
+        />
+      </template>
+    </draggable>
+
 
   </div>
 </template>
@@ -47,34 +52,35 @@
 <script setup lang="ts">
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
-  import {Ref, ref, watch} from "vue";
+  import {inject, Ref, ref, watch} from "vue";
+  import draggable from "vuedraggable";
 
   const props = defineProps<{
     node: VrxTreeNode,
     selectable: boolean,
     isParent?: boolean,
     selected?: boolean,
-    selectedNodes: string[],
-    addNode: (nodeId: string) => void
-    removeNodeById: (nodeId: string, isParent?: boolean) => void
-    removeNode: (node: VrxTreeNode) => void
     parentId: string,
-    siblings: VrxTreeNode[]
+    siblings: VrxTreeNode[],
+    isDraggable?: boolean
   }>();
 
   const elementRef = ref<Element | null>(null);
-
+  const addNode = inject<(nodeId: string) => void>('addNode', () => console.error("AddNode not provided"));
+  const removeNodeById = inject<(nodeId: string, isParent?: boolean) => void>('removeNodeById', () => console.error("RemoveNodeById not provided"));
+  const removeNode = inject<(node: VrxTreeNode) => void>('removeNode', () => console.error("RemoveNode not provided"));
+  const selectedNodes = inject<string[]>('selectedNodes', []);
   const open = ref(props.node.open);
-  const checkValue : Ref<boolean>= ref(props.selected || props.selectedNodes.includes(props.parentId));
+  const checkValue = ref<boolean>(props.selected || selectedNodes.includes(props.parentId));
   const hasChildrenChecked = ref(false);
 
-  watch(() => props.selectedNodes,(newValue) => {
+  watch(() => selectedNodes,(newValue) => {
     checkValue.value = newValue.includes(props.node.id) || newValue.includes(props.parentId) || props.selected;
     hasChildrenChecked.value = newValue.filter((node : string) => node.includes(props.node.id)).length > 0;
   },{immediate: true, deep: true});
 
   watch(() => props.selected,(newValue) => {
-    checkValue.value = newValue || props.selectedNodes.includes(props.node.id);
+    checkValue.value = newValue || selectedNodes.includes(props.node.id);
   },{immediate: true, deep: true});
 
   /**
@@ -89,8 +95,7 @@
   }
 
   const cellClicked = (value : VrxTreeNode, parentId : string, element ?: Element ) => {
-
-    emit('cellClicked', value, parentId, element ? element : elementRef.value);
+      emit('cellClicked', value, parentId, element ? element : elementRef.value);
   }
 
   /**
@@ -98,11 +103,18 @@
    */
   const selectHandle = () => {
     checkValue.value = !checkValue.value;
-    checkValue.value ? props.addNode(props.node.id) : props.removeNodeById(props.node.id, props.isParent);
+
+    console.log(checkValue.value, props.node.id)
+
+    if(checkValue.value)
+      addNode(props.node.id);
+    else
+      removeNodeById(props.node.id, props.isParent);
+
 
     if(props.node.children.length > 0){
       props.node.children.forEach((child : VrxTreeNode) => {
-        props.removeNode(child);
+        removeNode(child);
       })
     }
 
@@ -120,15 +132,16 @@
   const checkSiblingsAndParent = () => {
     let all = true;
     props.siblings.forEach((node : VrxTreeNode) => {
-      if(!props.selectedNodes.includes(node.id)){
+      if(!selectedNodes.includes(node.id)){
         all = false;
       }
     });
+
     if(all){
       props.siblings.forEach((node : VrxTreeNode) => {
-        props.removeNodeById(node.id);
+        removeNodeById(node.id);
       })
-      props.addNode(props.parentId);
+      addNode(props.parentId);
     }
   }
 
@@ -137,11 +150,12 @@
    */
   const checkParent = () => {
     // If parent is actually selected, remove it from selected nodes and add all siblings
-    if(props.selectedNodes.includes(props.parentId) || props.selected){
-      props.removeNodeById(props.parentId, props.isParent);
+    console.log("checkParent", selectedNodes)
+    if(selectedNodes.includes(props.parentId) || props.selected){
+      removeNodeById(props.parentId, props.isParent);
       props.siblings.forEach((sibling : VrxTreeNode) => {
         if(sibling.id !== props.node.id)
-          props.addNode(sibling.id);
+          addNode(sibling.id);
       })
     }
   }

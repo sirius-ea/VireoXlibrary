@@ -10,6 +10,18 @@ const meta : Meta<typeof VrxTree> = {
     component: VrxTree,
     tags: ['autodocs'],
     argTypes: {
+        modelValue: {
+          description: 'model value of the tree',
+            control: {
+                type: 'object',
+            },
+            table: {
+                category: 'model',
+                type: {
+                    summary: 'VrxTreeNode[]',
+                }
+            }
+        },
         searchable: {
             description: 'allows nodes search [NOT IMPLEMENTED]',
             control: {
@@ -58,7 +70,7 @@ const meta : Meta<typeof VrxTree> = {
     },
 }
 export default meta;
-const data = [
+const modelValue = [
     {
         text: "Parent",
         icon: "folder",
@@ -68,20 +80,20 @@ const data = [
         selected: false,
         children: Array.from(Array(5).keys()).map((i) => ({
             text: `Child ${i}`,
-            id: "x",
+            id: "x-"+i,
             userData: { test: "ciao" },
             icon: "folder",
             selected: false,
             children: Array.from(Array(2).keys()).map((x) => ({
                 text: `Sub Child ${x}`,
                 icon: "folder",
-                id: "x",
+                id: "x-"+i+"-"+x,
                 userData: { test: "bau" },
                 selected: false,
                 children: Array.from(Array(2).keys()).map((y) => ({
                     text: `Sub Sub Child ${y}`,
                     icon: "document",
-                    id: "x",
+                    id: "x-"+i+"-"+x+"-"+y,
                     userData: { test: "miao" },
                     selected: false,
                     children: [],
@@ -89,9 +101,39 @@ const data = [
             }))
         }))
     },
+    {
+        text: "Parent 2",
+        icon: "folder",
+        id: "y",
+        open: false,
+        userData: { type: "country" },
+        selected: false,
+        children: Array.from(Array(5).keys()).map((i) => ({
+            text: `Child ${i}`,
+            id: "y-"+i,
+            userData: { test: "ciao" },
+            icon: "folder",
+            selected: false,
+            children: Array.from(Array(2).keys()).map((x) => ({
+                text: `Sub Child ${x}`,
+                icon: "folder",
+                id: "y-"+i+"-"+x,
+                userData: { test: "bau" },
+                selected: false,
+                children: Array.from(Array(2).keys()).map((y) => ({
+                    text: `Sub Sub Child ${y}`,
+                    icon: "document",
+                    id: "y-"+i+"-"+x+"-"+y,
+                    userData: { test: "miao" },
+                    selected: false,
+                    children: [],
+                }))
+            }))
+        }))
+    }
 ]
 
-const dataWithComponent : VrxTreeNode[] = [
+const modelValueWithComponent : VrxTreeNode[] = [
     {
         text: "Parent",
         icon: "folder",
@@ -117,7 +159,7 @@ const dataWithComponent : VrxTreeNode[] = [
     }
 ]
 
-const dataWithRightSlot : VrxTreeNode[] = [
+const modelValueWithRightSlot : VrxTreeNode[] = [
     {
         text: "Parent",
         icon: "folder",
@@ -155,7 +197,7 @@ const Template : TreeStories = {
         },
         template: `
           <div style="height: auto; width: auto">
-                <VrxTree @cell-clicked="(a,b,c) => console.log('cellClicked', a, b, c)" ref="myRef" :check-nodes="true" :data="args.data" :selectable="args.selectable" :searchable="args.searchable" :returns-user-data="args.returnsUserData"/>
+                <VrxTree @cell-clicked="(a,b,c) => console.log('cellClicked', a, b, c)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData"/>
                 <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
                     <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
                     <VrxButton color="default" size="sm" @click="findNode" >Log found node (Sub Sub Child 0)</VrxButton>
@@ -171,17 +213,18 @@ const Template : TreeStories = {
 export const Primary: TreeStories = {
     ...Template,
     args: {
-        data,
+        modelValue,
         selectable: false,
         searchable: false,
         returnsUserData: false,
+        isDraggable: true
     },
 }
 
 export const Selectable: TreeStories = {
     ...Template,
     args: {
-        data,
+        modelValue,
         selectable: true,
     },
 }
@@ -189,7 +232,7 @@ export const Selectable: TreeStories = {
 export const WithComponent: TreeStories = {
     ...Template,
     args: {
-        data: dataWithComponent
+        modelValue: modelValueWithComponent
     }
 
 }
@@ -197,6 +240,6 @@ export const WithComponent: TreeStories = {
 export const RightSlot: TreeStories = {
     ...Template,
     args: {
-        data: dataWithRightSlot,
+        modelValue: modelValueWithRightSlot,
     }
 }

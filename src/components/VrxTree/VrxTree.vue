@@ -4,20 +4,26 @@
       data-testid="vrx-tree"
   >
     <VrxInput v-if="searchable" model-value="test" icon="search"/>
-    <TreeItem
-        v-for="node in data"
-        :parent-id="node.id"
-        :node="node"
-        :selectable="selectable ?? false"
-        :is-parent="true"
-        :key="node.id"
-        :selected-nodes="selectedNodes as string[]"
-        :add-node="addNode"
-        :remove-node-by-id="removeNodeById"
-        :remove-node="removeNode"
-        :siblings="node.children"
-        @cell-clicked="cellClicked"
-    />
+    <draggable
+      v-model="data"
+      :disabled="!isDraggable"
+      item-key="id"
+      tag="div"
+      :move="() => console.log('move')"
+    >
+      <template #item="{element}">
+        <TreeItem
+            :parent-id="element.id"
+            :node="element"
+            :selectable="selectable ?? false"
+            :is-parent="true"
+            :key="element.id"
+            :siblings="data"
+            :isDraggable="isDraggable"
+            @cell-clicked="cellClicked"
+        />
+      </template>
+    </draggable>
   </div>
 </template>
 
@@ -25,13 +31,18 @@
   import TreeItem from "@/components/VrxTree/TreeItem.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
   import VrxInput from "@/components/VrxInput/VrxInput.vue";
-  import {ref} from "vue";
+  import {provide, ref} from "vue";
+  import draggable from "vuedraggable";
+
+  const data = defineModel<VrxTreeNode[]>({
+    required: true,
+  })
 
   const props = defineProps<{
-    data: VrxTreeNode[],
     selectable?: boolean,
     searchable?: boolean,
     returnsUserData?: boolean
+    isDraggable: boolean
   }>();
 
   /**
@@ -41,14 +52,17 @@
   const buildTreeWithIds = (tree: VrxTreeNode[]) => {
     const addChildrenIds = (node: VrxTreeNode, lastId: string) => {
       node.children.forEach((child) => {
-        child.id = lastId + '-' + Math.random().toString(16).slice(2);
+        if(!child.id)
+          child.id = lastId + '-' + Math.random().toString(16).slice(2);
+
         if(child.selected) selectedNodes.value.push(child.id);
         addChildrenIds(child, child.id);
       })
     }
 
     tree.forEach((node) => {
-      node.id = Math.random().toString(16).slice(2);
+      if(!node.id)
+        node.id = Math.random().toString(16).slice(2);
       if(node.selected) selectedNodes.value.push(node.id);
       addChildrenIds(node, node.id);
     })
@@ -60,7 +74,8 @@
    * @param isParent
    */
   const removeNodeById = (nodeId: string, isParent : boolean = false) => {
-      if(isParent) selectedNodes.value = [];
+      if(isParent) selectedNodes.value.splice(0);
+
       if(selectedNodes.value.includes(nodeId)){
         selectedNodes.value.splice(selectedNodes.value.indexOf(nodeId), 1);
       }
@@ -114,7 +129,9 @@
         })
       }
     }
-    findText(props.data[0]);
+    for(const nodes of data.value){
+      findText(nodes);
+    }
     return result;
   }
 
@@ -132,7 +149,10 @@
         })
       }
     }
-    findNode(props.data[0]);
+
+    for(const nodes of data.value){
+      findNode(nodes);
+    }
     return result;
   }
 
@@ -154,7 +174,10 @@
         })
       }
     }
-    findParent(props.data[0]);
+    for(const nodes of data.value){
+      findParent(nodes);
+    }
+
     return result;
   }
 
@@ -190,7 +213,7 @@
       }
     }
 
-    props.data.forEach((dt) => {
+    data.value.forEach((dt) => {
       traverse(dt);
     })
 
@@ -220,7 +243,13 @@
 
   const selectedNodes = ref<String []>([]);
   const emit = defineEmits(['cellClicked']);
-  buildTreeWithIds(props.data);
+
+  provide('addNode', addNode);
+  provide('removeNodeById', removeNodeById);
+  provide('removeNode', removeNode);
+  provide('selectedNodes', selectedNodes.value);
+
+  buildTreeWithIds(data.value);
 
   defineExpose({ getNodePath, getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById, getParentNode });
 
