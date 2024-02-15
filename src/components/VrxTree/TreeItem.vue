@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="isParent ? null : 'pl-5'" @click.stop="() => cellClicked(node, props.parentId)" ref="elementRef" >
+  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => cellClicked(node, props.parentId)" ref="elementRef" >
     <div class="tree-element vrxtree-element-style rounded-s" >
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
@@ -25,19 +25,22 @@
 
     <!-- CHILDREN RECURSIVE -->
     <draggable
-      v-if="open && node.children.length > 0"
       v-model="node.children"
       item-key="id"
       :disabled="!isDraggable"
+      :group="{name:'tree'}"
+      class="flex flex-col"
     >
       <template #item="{element}">
         <TreeItem
+            v-if="open"
             :node="element"
             :key="element.id"
             :selectable="selectable"
             :selected="checkValue"
             :parent-id="node.id"
             :siblings="node.children"
+            :class="element.class"
             @check-clicked="checkClicked"
             :isDraggable="isDraggable"
             @cellClicked="(value, parentIdValue, oldElement) => cellClicked(value, parentIdValue, oldElement)"
@@ -62,7 +65,8 @@
     selected?: boolean,
     parentId: string,
     siblings: VrxTreeNode[],
-    isDraggable?: boolean
+    isDraggable?: boolean,
+    class?: string
   }>();
 
   const elementRef = ref<Element | null>(null);
@@ -70,7 +74,7 @@
   const removeNodeById = inject<(nodeId: string, isParent?: boolean) => void>('removeNodeById', () => console.error("RemoveNodeById not provided"));
   const removeNode = inject<(node: VrxTreeNode) => void>('removeNode', () => console.error("RemoveNode not provided"));
   const selectedNodes = inject<string[]>('selectedNodes', []);
-  const open = ref(props.node.open);
+  const open = ref(props.node.open || false);
   const checkValue = ref<boolean>(props.selected || selectedNodes.includes(props.parentId));
   const hasChildrenChecked = ref(false);
 
@@ -103,9 +107,6 @@
    */
   const selectHandle = () => {
     checkValue.value = !checkValue.value;
-
-    console.log(checkValue.value, props.node.id)
-
     if(checkValue.value)
       addNode(props.node.id);
     else

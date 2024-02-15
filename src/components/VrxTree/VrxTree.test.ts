@@ -66,7 +66,7 @@ describe('VrxTree', () => {
     ]
 
     beforeEach(() => {
-        wrapper = mount(VrxTree as any, {props: {data: data}});
+        wrapper = mount(VrxTree as any, {props: {modelValue: data}});
     });
 
     it('renders the component', () => {
@@ -85,12 +85,12 @@ describe('VrxTree', () => {
     });
 
     it('get the selected nodes when none selected', () => {
-        wrapper = mount(VrxTree as any, {props: {data: data}});
+        wrapper = mount(VrxTree as any, {props: {modelValue: data}});
         expect(wrapper.vm.getSelectedNodes()).length(0);
     });
 
     it('get the selected nodes when main parent selected', () => {
-        wrapper = mount(VrxTree as any, {props: {data: data2}});
+        wrapper = mount(VrxTree as any, {props: {modelValue: data2}});
         expect(wrapper.vm.getSelectedNodes()).length(6);
     })
 
@@ -113,7 +113,7 @@ describe('VrxTree', () => {
     });
 
     it("should find the path of a node", () => {
-        wrapper = mount(VrxTree as any, {props: {data: data2}});
+        wrapper = mount(VrxTree as any, {props: {modelValue: data2}});
         const nodeId: string = wrapper.vm.getNodeByText("Children 0").id;
         const path = wrapper.vm.getNodePath(nodeId);
 
@@ -122,7 +122,7 @@ describe('VrxTree', () => {
     })
 
     it("renders a node as component", () => {
-        wrapper = mount(VrxTree as any, {props: {data: dataWithComponent}});
+        wrapper = mount(VrxTree as any, {props: {modelValue: dataWithComponent}});
         wrapper.findAll('button').forEach((node, index) => {
             expect(node.text()).toBe("Child " + index);
             expect(node.classes()).toContain("my-2");
@@ -131,7 +131,7 @@ describe('VrxTree', () => {
     })
 
     it("should find the parent of a node", () => {
-      wrapper = mount(VrxTree as any, {props: {data: dataWithComponent}});
+      wrapper = mount(VrxTree as any, {props: {modelValue: dataWithComponent}});
         const child = wrapper.vm.getNodeByText("Child 0");
         const firstNode = wrapper.vm.getNodeByText("Parent");
         const parent = wrapper.vm.getParentNode(child);

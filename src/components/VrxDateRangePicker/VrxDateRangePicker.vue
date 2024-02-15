@@ -81,8 +81,8 @@ import {vAppendToBody} from "@/directives"
 const pickerStart = ref();
 const pickerStop = ref();
 
-const dateStart = defineModel<Date | undefined>('dataStart');
-const dateStop = defineModel<Date | undefined>('dataStop');
+const dateStart = defineModel<Date | undefined>('dateStart');
+const dateStop = defineModel<Date | undefined>('dateStop');
 
 const presetType = ref('Current');
 

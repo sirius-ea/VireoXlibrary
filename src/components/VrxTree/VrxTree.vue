@@ -8,8 +8,9 @@
       v-model="data"
       :disabled="!isDraggable"
       item-key="id"
-      tag="div"
       :move="() => console.log('move')"
+      :group="{name:'tree'}"
+      class="flex flex-col"
     >
       <template #item="{element}">
         <TreeItem
@@ -19,8 +20,9 @@
             :is-parent="true"
             :key="element.id"
             :siblings="data"
-            :isDraggable="isDraggable"
+            :isDraggable="isDraggable ?? false"
             @cell-clicked="cellClicked"
+            @moveEnd="onMoveEnd"
         />
       </template>
     </draggable>
@@ -33,6 +35,7 @@
   import VrxInput from "@/components/VrxInput/VrxInput.vue";
   import {provide, ref} from "vue";
   import draggable from "vuedraggable";
+  import TreeBranch from "@/components/VrxTree/TreeBranch.vue";
 
   const data = defineModel<VrxTreeNode[]>({
     required: true,
@@ -42,7 +45,7 @@
     selectable?: boolean,
     searchable?: boolean,
     returnsUserData?: boolean
-    isDraggable: boolean
+    isDraggable?: boolean
   }>();
 
   /**
@@ -241,8 +244,13 @@
     emit('cellClicked', node, parentId, elementRef);
   }
 
+
+  function onMoveEnd(a : any, b : any, c : any) {
+    emit('onMoveEnd', a, b, c);
+  }
+
   const selectedNodes = ref<String []>([]);
-  const emit = defineEmits(['cellClicked']);
+  const emit = defineEmits(['cellClicked', 'onMoveEnd']);
 
   provide('addNode', addNode);
   provide('removeNodeById', removeNodeById);
