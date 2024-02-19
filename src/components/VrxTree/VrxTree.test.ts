@@ -39,7 +39,7 @@ describe('VrxTree', () => {
         }
     ]
 
-    const dataWithComponent : VrxTreeNode[] = [
+    const dataWithComponent : VrxTreeNode<{type?:string, test?:string}>[] = [
         {
             text: "Parent",
             icon: "folder",
@@ -52,6 +52,7 @@ describe('VrxTree', () => {
                 text: `Child ${i}`,
                 userData: { test: "ciao" },
                 selected: false,
+                open: false,
                 children: [],
                 asComponent: true,
                 component: VrxButton,

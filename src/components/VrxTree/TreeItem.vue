@@ -1,7 +1,7 @@
 <template>
   <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => cellClicked(node, props.parentId)" ref="elementRef" >
     <div class="tree-element vrxtree-element-style rounded-s" >
-      <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
+      <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="node.open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input
           data-testid="vrx-tree-node-checkbox"
@@ -33,7 +33,7 @@
     >
       <template #item="{element}">
         <TreeItem
-            v-if="open"
+            v-if="node.open && !element.filtered"
             :node="element"
             :key="element.id"
             :selectable="selectable"
@@ -52,29 +52,28 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
-  import {inject, Ref, ref, watch} from "vue";
+  import {computed, inject, ref, watch} from "vue";
   import draggable from "vuedraggable";
 
   const props = defineProps<{
-    node: VrxTreeNode,
+    node: VrxTreeNode<T>,
     selectable: boolean,
     isParent?: boolean,
     selected?: boolean,
     parentId: string,
-    siblings: VrxTreeNode[],
+    siblings: VrxTreeNode<T>[],
     isDraggable?: boolean,
-    class?: string
+    class?: string,
   }>();
 
   const elementRef = ref<Element | null>(null);
   const addNode = inject<(nodeId: string) => void>('addNode', () => console.error("AddNode not provided"));
   const removeNodeById = inject<(nodeId: string, isParent?: boolean) => void>('removeNodeById', () => console.error("RemoveNodeById not provided"));
-  const removeNode = inject<(node: VrxTreeNode) => void>('removeNode', () => console.error("RemoveNode not provided"));
+  const removeNode = inject<(node: VrxTreeNode<T>) => void>('removeNode', () => console.error("RemoveNode not provided"));
   const selectedNodes = inject<string[]>('selectedNodes', []);
-  const open = ref(props.node.open || false);
   const checkValue = ref<boolean>(props.selected || selectedNodes.includes(props.parentId));
   const hasChildrenChecked = ref(false);
 
@@ -94,11 +93,11 @@
   const clickHandle = (event: MouseEvent) => {
     // @ts-ignore
     if(event.target.nodeName !== "INPUT"){
-      open.value = !open.value;
+      props.node.open = !props.node.open;
     }
   }
 
-  const cellClicked = (value : VrxTreeNode, parentId : string, element ?: Element ) => {
+  const cellClicked = (value : VrxTreeNode<T>, parentId : string, element ?: Element ) => {
       emit('cellClicked', value, parentId, element ? element : elementRef.value);
   }
 
@@ -114,7 +113,7 @@
 
 
     if(props.node.children.length > 0){
-      props.node.children.forEach((child : VrxTreeNode) => {
+      props.node.children.forEach((child : VrxTreeNode<T>) => {
         removeNode(child);
       })
     }
@@ -132,14 +131,14 @@
    */
   const checkSiblingsAndParent = () => {
     let all = true;
-    props.siblings.forEach((node : VrxTreeNode) => {
+    props.siblings.forEach((node : VrxTreeNode<T>) => {
       if(!selectedNodes.includes(node.id)){
         all = false;
       }
     });
 
     if(all){
-      props.siblings.forEach((node : VrxTreeNode) => {
+      props.siblings.forEach((node : VrxTreeNode<T>) => {
         removeNodeById(node.id);
       })
       addNode(props.parentId);
@@ -151,10 +150,9 @@
    */
   const checkParent = () => {
     // If parent is actually selected, remove it from selected nodes and add all siblings
-    console.log("checkParent", selectedNodes)
     if(selectedNodes.includes(props.parentId) || props.selected){
       removeNodeById(props.parentId, props.isParent);
-      props.siblings.forEach((sibling : VrxTreeNode) => {
+      props.siblings.forEach((sibling : VrxTreeNode<T>) => {
         if(sibling.id !== props.node.id)
           addNode(sibling.id);
       })

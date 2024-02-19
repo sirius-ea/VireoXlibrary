@@ -3,17 +3,20 @@
       class="flex flex-col gap-2.5 vrxtree-text-style"
       data-testid="vrx-tree"
   >
-    <VrxInput v-if="searchable" model-value="test" icon="search"/>
+    <div :class="[toolbarClass,'flex flex-row gap-2']" v-if="searchable || $slots.toolbar">
+      <VrxInput v-if="searchable" v-model="textFilter" icon="search" type="text" class="flex-1"/>
+      <slot name="toolbar"/>
+    </div>
     <draggable
       v-model="data"
       :disabled="!isDraggable"
       item-key="id"
-      :move="() => console.log('move')"
       :group="{name:'tree'}"
       class="flex flex-col"
     >
       <template #item="{element}">
         <TreeItem
+            v-if="!element.filtered"
             :parent-id="element.id"
             :node="element"
             :selectable="selectable ?? false"
@@ -23,37 +26,40 @@
             :isDraggable="isDraggable ?? false"
             @cell-clicked="cellClicked"
             @moveEnd="onMoveEnd"
+            :parent-filtered="false"
         />
       </template>
     </draggable>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
   import TreeItem from "@/components/VrxTree/TreeItem.vue";
-  import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
+  import {IVrxTreeUseCase, VrxTreeNode} from "@/components";
   import VrxInput from "@/components/VrxInput/VrxInput.vue";
-  import {provide, ref} from "vue";
+  import {provide, ref, watch} from "vue";
   import draggable from "vuedraggable";
-  import TreeBranch from "@/components/VrxTree/TreeBranch.vue";
 
-  const data = defineModel<VrxTreeNode[]>({
+  const data = defineModel<VrxTreeNode<T>[]>({
     required: true,
   })
+  const textFilter = ref('');
 
   const props = defineProps<{
     selectable?: boolean,
     searchable?: boolean,
     returnsUserData?: boolean
     isDraggable?: boolean
+    enableToolbar?: boolean
+    toolbarClass?: string
   }>();
 
   /**
    * Assigns a unique id to each node so that operations can be performed on them
    * @param tree
    */
-  const buildTreeWithIds = (tree: VrxTreeNode[]) => {
-    const addChildrenIds = (node: VrxTreeNode, lastId: string) => {
+  const buildTreeWithIds = (tree: VrxTreeNode<T>[]) => {
+    const addChildrenIds = (node: VrxTreeNode<T>, lastId: string) => {
       node.children.forEach((child) => {
         if(!child.id)
           child.id = lastId + '-' + Math.random().toString(16).slice(2);
@@ -88,7 +94,7 @@
    * Removes the selected node and removes all the children of the node
    * @param node
    */
-  const removeNode = (node: VrxTreeNode) => {
+  const removeNode = (node: VrxTreeNode<T>) => {
     removeNodeById(node.id);
     removeSelectedChildren(node);
   }
@@ -107,7 +113,7 @@
    * If parent is removed, remove all the children of the parent
    * @param node
    */
-  const removeSelectedChildren = (node: VrxTreeNode) => {
+  const removeSelectedChildren = (node: VrxTreeNode<T>) => {
     selectedNodes.value.forEach((item : any) => {
       if(item.includes(node.id)){
         selectedNodes.value.splice(selectedNodes.value.indexOf(item), 1);
@@ -121,7 +127,7 @@
    */
   const getNodeByText = (text: string) => {
     let result;
-    const findText = (node: VrxTreeNode) => {
+    const findText = (node: VrxTreeNode<T>) => {
       if(node.text === text){
         result = node;
         return;
@@ -138,9 +144,9 @@
     return result;
   }
 
-  const getNodeById = (id:string) => {
-    let result : VrxTreeNode | null = null;
-    const findNode = (node: VrxTreeNode) => {
+  const getNodeById = (id:string) : VrxTreeNode<T> | null => {
+    let result : VrxTreeNode<T> | null = null;
+    const findNode = (node: VrxTreeNode<T>) => {
       if(node.id === id){
         result = node;
         return;
@@ -163,9 +169,9 @@
    * Return the parent of the passed node, if have no parent return null
    * @param toFind VrxTreeNode
    */
-  const getParentNode = (toFind: VrxTreeNode) => {
-    let result : VrxTreeNode | null = null;
-    const findParent = (node: VrxTreeNode) => {
+  const getParentNode = (toFind: VrxTreeNode<T>) : VrxTreeNode<T> | null => {
+    let result : VrxTreeNode<T> | null = null;
+    const findParent = (node: VrxTreeNode<T>) => {
       if(node.children.some(child => child.id === toFind.id)){
         result = node;
         return;
@@ -189,8 +195,8 @@
    * @param nodeId
    */
   const getNodePath = (nodeId: string): String[] => {
-    const node: VrxTreeNode | null = getNodeById(nodeId);
-    const _recursiveFind = (toFind: VrxTreeNode | null): String[] => {
+    const node = getNodeById(nodeId);
+    const _recursiveFind = (toFind: VrxTreeNode<T> | null): String[] => {
       if(!toFind) return [];
       else return _recursiveFind(getParentNode(toFind)).concat([toFind.text]);
     }
@@ -202,9 +208,9 @@
    * Returns the selected nodes
    */
   const getSelectedNodes = () => {
-    const result : VrxTreeNode[] = [];
+    const result : VrxTreeNode<T>[] = [];
 
-    const traverse = (node: VrxTreeNode) => {
+    const traverse = (node: VrxTreeNode<T>) => {
       if(selectedNodes.value.includes(node.id)){
         result.push(node);
       }
@@ -220,17 +226,16 @@
       traverse(dt);
     })
 
-    const flatMapResult = result.flatMap(node => flattenTree(node));
-    return props.returnsUserData ? flatMapResult.map(node => node.userData ?? node) : flatMapResult;
+    return result.flatMap(node => flattenTree(node));
   }
 
   /**
    * Flattens the tree structure so that can be used as a list
    * @param node
    */
-  const flattenTree = (node: VrxTreeNode) => {
-    const result : VrxTreeNode [] = [];
-    const flat = (node: VrxTreeNode) => {
+  const flattenTree = (node: VrxTreeNode<T>) => {
+    const result : VrxTreeNode<T> [] = [];
+    const flat = (node: VrxTreeNode<T>) => {
       result.push(node);
       node.children.forEach((child) => {
         flat(child);
@@ -240,7 +245,42 @@
     return result;
   }
 
-  const cellClicked = (node: VrxTreeNode, parentId: string, elementRef: Element | null) => {
+  const clearSelectedNodes = () => {
+    selectedNodes.value.splice(0)
+  }
+
+  const setSelectedNode = (id : string, select = true) => {
+    const nodeToSet = getNodeById(id);
+    if(!nodeToSet) return;
+
+    if(select){
+      nodeToSet.selected = true;
+      selectedNodes.value.push(id);
+    } else {
+      nodeToSet.selected = false;
+      selectedNodes.value.splice(selectedNodes.value.indexOf(id), 1);
+    }
+  }
+
+  const openClose = (node: VrxTreeNode<T>, value : boolean) => {
+    node.open = value;
+    node.children.forEach((child) => {
+      openClose(child, value);
+    })
+  }
+
+  const expandAll = () => {
+    data.value.forEach((node) => {
+      openClose(node, true);
+    })
+  }
+
+  const collapseAll = () => {
+    data.value.forEach((node) => {
+      openClose(node, false);
+    })
+  }
+  const cellClicked = (node: VrxTreeNode<T>, parentId: string, elementRef: Element | null) => {
     emit('cellClicked', node, parentId, elementRef);
   }
 
@@ -259,8 +299,60 @@
 
   buildTreeWithIds(data.value);
 
-  defineExpose({ getNodePath, getSelectedNodes, getNodeByText, removeNodeById, addNode, removeNode, flattenTree, getNodeById, getParentNode });
+  defineExpose<IVrxTreeUseCase<T>>({
+    getNodePath,
+    getSelectedNodes,
+    getNodeByText,
+    removeNodeById,
+    addNode,
+    removeNode,
+    flattenTree,
+    getNodeById,
+    getParentNode,
+    setSelectedNode,
+    clearSelectedNodes,
+    expandAll,
+    collapseAll
+  });
 
+
+
+  watch(() => textFilter.value, (newValue) => {
+    const filterText = newValue.trim().toLowerCase();
+
+    for(const node of data.value){
+      filter(node, filterText);
+    }
+
+
+  },{immediate: true});
+
+
+  function filter(node: VrxTreeNode<T>, search: string) {
+    if (node.text.toLowerCase().includes(search)) {
+      setFiltered(node, false);
+      return;
+    }
+
+    let atLeastOneChildContainsSearch = false;
+    for (const child of node.children) {
+      filter(child, search);
+    }
+
+    for (const child of node.children) {
+      if (!child.filtered) {
+        atLeastOneChildContainsSearch = true;
+        break;
+      }
+    }
+
+    node.filtered = !atLeastOneChildContainsSearch;
+  }
+
+  function setFiltered(node: VrxTreeNode<T>, filtered: boolean) {
+    node.filtered = filtered;
+    node.children.forEach(child => setFiltered(child, filtered));
+  }
 </script>
 
 <style scoped>
