@@ -38,9 +38,7 @@
     "@heroicons/vue": "^2.0.17",
     "tailwindcss": "^3.4.1",
     "uuid": "^9.0.1",
-    "vue": "^3.4.15"
-  },
-  "peerDependencies": {
+    "vue": "^3.4.15",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
