@@ -73,8 +73,10 @@ interface IVrxTreeUseCase {
     removeNode: (node: VrxTreeNode) => void,
     flattenTree: (node: VrxTreeNode) => VrxTreeNode[],
     getParentNode: (toFind: VrxTreeNode) => VrxTreeNode | null,
-    clearSelectedNodes: () => void
-    setSelectedNode: (id: string, select:boolean) => void
+    clearSelectedNodes: () => void,
+    setSelectedNode: (id: string, select:boolean) => void,
+    expandAll: () => void,
+    collapseAll: () => void,
 }
 ```
 
@@ -127,42 +129,54 @@ interface IVrxTreeUseCase {
             <td>-</td>
             <td>Remove the node with the given id</td>
         </tr>
-    <tr>
-        <td>addNode</td>
-        <td>`nodeId : string`</td>
-        <td>-</td>
-        <td>Add node to the selected ones</td>
-    </tr>
-    <tr>
-        <td>removeNode</td>
-        <td>`node: VrxTreeNode`</td>
-        <td>-</td>
-        <td>Remove node from the selected ones</td>
-    </tr>
-    <tr>
-        <td>flattenTree</td>
-        <td>`node: VrxTreeNode`</td>
-        <td>`VrxTreeNode[]`</td>
-        <td>Flatten the tree and return an array of nodes</td>
-    </tr>
-    <tr>
-        <td>getParentNode</td>
-        <td>`node: VrxTreeNode`</td>
-        <td>`VrxTreeNode | null`</td>
-        <td>Return the parent node of the given node</td>
-    </tr>
-    <tr>
-        <td>clearSelectedNodes</td>
-        <td>-</td>
-        <td>-</td>
-        <td>Clear all selected nodes</td>
-    </tr>
-    <tr>
-        <td>setSelectedNode</td>
-        <td>`nodeId: string, select:boolean`</td>
-        <td>-</td>
-        <td>Set the node with the given id as selected or not</td>
-    </tr>
+        <tr>
+            <td>addNode</td>
+            <td>`nodeId : string`</td>
+            <td>-</td>
+            <td>Add node to the selected ones</td>
+        </tr>
+        <tr>
+            <td>removeNode</td>
+            <td>`node: VrxTreeNode`</td>
+            <td>-</td>
+            <td>Remove node from the selected ones</td>
+        </tr>
+        <tr>
+            <td>flattenTree</td>
+            <td>`node: VrxTreeNode`</td>
+            <td>`VrxTreeNode[]`</td>
+            <td>Flatten the input tree and return an array of nodes</td>
+        </tr>
+        <tr>
+            <td>getParentNode</td>
+            <td>`node: VrxTreeNode`</td>
+            <td>`VrxTreeNode | null`</td>
+            <td>Return the parent node of the given node</td>
+        </tr>
+        <tr>
+            <td>clearSelectedNodes</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Clear all selected nodes</td>
+        </tr>
+        <tr>
+            <td>setSelectedNode</td>
+            <td>`nodeId: string, select:boolean`</td>
+            <td>-</td>
+            <td>Set the node with the given id as selected or not</td>
+        </tr>
+        <tr>
+            <td>expandAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Expand all nodes</td>
+        </tr>
+        <tr>
+            <td>collapseAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Collapse all nodes</td>
+        </tr>
     </tbody>
 </table>
 <br/>
@@ -184,7 +198,7 @@ interface IVrxTreeUseCase {
     </thead>
     <tbody>
     <tr>
-        <td>cellClicked</td>
+        <td>onClickNode</td>
         <td>
             <ul>
                 <li>`value: VrxTreeNode`</li>
@@ -194,7 +208,15 @@ interface IVrxTreeUseCase {
         </td>
         <td>Event emitted when clicking on node</td>
     </tr>
-
+    <tr>
+        <td>onCheckNode</td>
+        <td>
+            <ul>
+                <li>`value: VrxTreeNode`</li>
+            </ul>
+        </td>
+        <td>Event emitted when checking a node</td>
+    </tr>
     </tbody>
 </table>
 

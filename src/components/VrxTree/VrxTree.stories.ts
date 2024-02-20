@@ -213,7 +213,7 @@ const Template : TreeStories = {
         },
         template: `
           <div style="height: auto; width: auto">
-                <VrxTree @cell-clicked="(a,b,c) => console.log('cellClicked', a, b, c)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
+                <VrxTree @on-check-node="(a) => console.log('onCheckNode', a)" @on-click-node="(a) => console.log('onClickNode',a)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
                 <template #toolbar>
                   <VrxButton color="default" size="base" @click="logSelected" >Log selected nodes</VrxButton>
                 </template>

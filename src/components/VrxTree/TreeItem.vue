@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => cellClicked(node, props.parentId)" ref="elementRef" >
+  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => onClickNode(node, props.parentId)" ref="elementRef" >
     <div class="tree-element vrxtree-element-style rounded-s" >
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="node.open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
@@ -41,9 +41,9 @@
             :parent-id="node.id"
             :siblings="node.children"
             :class="element.class"
-            @check-clicked="checkClicked"
+            @onCheckNode="value => onCheckNode(value)"
             :isDraggable="isDraggable"
-            @cellClicked="(value, parentIdValue, oldElement) => cellClicked(value, parentIdValue, oldElement)"
+            @onClickNode="(value, parentIdValue, oldElement) => onClickNode(value, parentIdValue, oldElement)"
         />
       </template>
     </draggable>
@@ -97,8 +97,8 @@
     }
   }
 
-  const cellClicked = (value : VrxTreeNode<T>, parentId : string, element ?: Element ) => {
-      emit('cellClicked', value, parentId, element ? element : elementRef.value);
+  const onClickNode = (value : VrxTreeNode<T>, parentId : string, element ?: Element ) => {
+      emit('onClickNode', value, parentId, element ? element : elementRef.value);
   }
 
   /**
@@ -121,7 +121,7 @@
     if(!props.isParent){
       checkParent();
       checkSiblingsAndParent();
-      emit('checkClicked', props.node);
+      emit('onCheckNode', props.node);
     }
   }
 
@@ -162,14 +162,14 @@
   /**
    * Emitted when a children checkbox is clicked
    */
-  const checkClicked = () => {
+  const onCheckNode = (node : VrxTreeNode<T>) => {
+    emit('onCheckNode', node ?? props.node);
     if(props.isParent) return;
     checkParent();
     checkSiblingsAndParent();
-    emit('checkClicked', props.node);
   }
 
-  const emit = defineEmits(['checkClicked', 'cellClicked']);
+  const emit = defineEmits(['onCheckNode', 'onClickNode']);
 
 </script>
 

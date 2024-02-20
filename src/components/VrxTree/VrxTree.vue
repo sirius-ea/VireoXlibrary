@@ -24,7 +24,8 @@
             :key="element.id"
             :siblings="data"
             :isDraggable="isDraggable ?? false"
-            @cell-clicked="cellClicked"
+            @onClickNode="onClickNode"
+            @onCheckNode="checkClicked"
             @moveEnd="onMoveEnd"
             :parent-filtered="false"
         />
@@ -43,6 +44,10 @@
   const data = defineModel<VrxTreeNode<T>[]>({
     required: true,
   })
+
+  if(!data.value)
+    throw new Error('vueModel is required');
+
   const textFilter = ref('');
 
   const props = defineProps<{
@@ -280,8 +285,12 @@
       openClose(node, false);
     })
   }
-  const cellClicked = (node: VrxTreeNode<T>, parentId: string, elementRef: Element | null) => {
-    emit('cellClicked', node, parentId, elementRef);
+  const onClickNode = (node: VrxTreeNode<T>, parentId: string, elementRef: Element | null) => {
+    emit('onClickNode', node, parentId, elementRef);
+  }
+
+  const checkClicked = (node: VrxTreeNode<T>) => {
+    emit('onCheckNode', node);
   }
 
 
@@ -290,7 +299,7 @@
   }
 
   const selectedNodes = ref<String []>([]);
-  const emit = defineEmits(['cellClicked', 'onMoveEnd']);
+  const emit = defineEmits(['onClickNode', 'onMoveEnd', "onCheckNode"]);
 
   provide('addNode', addNode);
   provide('removeNodeById', removeNodeById);
