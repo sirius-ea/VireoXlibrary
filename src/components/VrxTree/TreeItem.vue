@@ -41,7 +41,7 @@
             :parent-id="node.id"
             :siblings="node.children"
             :class="element.class"
-            @onCheckNode="value => onCheckNode(value)"
+            @onCheckNode="(value, isChecked) => onCheckNode(value, isChecked)"
             :isDraggable="isDraggable"
             @onClickNode="(value, parentIdValue, oldElement) => onClickNode(value, parentIdValue, oldElement)"
         />
@@ -121,7 +121,7 @@
     if(!props.isParent){
       checkParent();
       checkSiblingsAndParent();
-      emit('onCheckNode', props.node);
+      emit('onCheckNode', props.node, checkValue.value);
     }
   }
 
@@ -162,8 +162,8 @@
   /**
    * Emitted when a children checkbox is clicked
    */
-  const onCheckNode = (node : VrxTreeNode<T>) => {
-    emit('onCheckNode', node ?? props.node);
+  const onCheckNode = (node : VrxTreeNode<T>, isChecked: boolean) => {
+    emit('onCheckNode', node ?? props.node, isChecked);
     if(props.isParent) return;
     checkParent();
     checkSiblingsAndParent();

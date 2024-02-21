@@ -289,8 +289,8 @@
     emit('onClickNode', node, parentId, elementRef);
   }
 
-  const checkClicked = (node: VrxTreeNode<T>) => {
-    emit('onCheckNode', node);
+  const checkClicked = (node: VrxTreeNode<T>, isChecked:boolean) => {
+    emit('onCheckNode', node, isChecked);
   }
 
 
