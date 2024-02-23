@@ -7,36 +7,80 @@ import {Meta} from "@storybook/blocks";
 VireoxTree is a highly versatile component for working with tree structures.
 
 The component utilizes 100% of the available width and height. To use it, import it as follows:
-```js
+```vue
 import {VrxTree} from 'vireoxlibrary';
 
 const data : VrxTreeNode[] = [ ... ]
-<VrxTree :data="data"/>
+<VrxTree v-model="data" :is-draggable :searchable :selectable/>
 ```
+
+Here the list of the props that can be used to configure the tree:
+
+### Props
+
+- `v-model` : VrxTreeNode[] - The tree data
+- `is-draggable` : boolean - If true, the tree will be draggable
+- `searchable` : boolean - If true, the tree will be searchable. An input will be displayed on top of the tree to search for nodes
+- `selectable` : boolean - If true, the tree will be selectable. The user will be able to select nodes via checkboxes
+- `returnUserData` : boolean - not implemented yet, probably will be removed
+
+
 ## ⚙️ Configuration
 The configuration is a complex object that allows you to configure the tree in multiple aspects.
 Here are the types that need to be implemented:
 
 ### VrxTreeNode
-```js
-type VrxTreeNode {
-    id: string;                                 // node id (can be anything, it will be replaced by the tree)
-    text: string;                               // node displayed text
-    children: VrxTreeNode[];                    // node children
-    icon: boolean;                              // [optional] node icon
-    selected: boolean;                          // [optional] set the node as selected
-    userData: any;                              // [optional] optional user data
-    asComponent: boolean;                       // [optional] if true, the node will be rendered as a component
-    component: string | object;                 // [optional] An HTML tag name, a Component name or Component class reference.
-    componentProps: object;                     // [optional] props to pass to the component
+```ts
+type VrxTreeNode<T> = {
+    id: string,                                 // node id (can be anything, it will be replaced by the tree)
+    text: string,                               // node displayed text
+    children: VrxTreeNode<T>[],                    // node children
+    icon: boolean,                              // [optional] node icon
+    selected: boolean,                          // [optional] set the node as selected
+    open: boolean,                              // [optional] set the node as open
+    userData: T,                              // [optional] optional user data
+    asComponent: boolean,                       // [optional] if true, the node will be rendered as a component
+    component: string | object,                 // [optional] An HTML tag name, a Component name or Component class reference.
+    componentProps: object,                     // [optional] props to pass to the component
+    componentSlots: object,                     // [optional] slots to pass to the component
+    rightSlot:boolean,                          // [optional] if true, the slot will be rendered on the right side of the node
+    rightComponent: string | object,            // [optional] An HTML tag name, a Component name or Component class reference.
+    rightComponentProps: object,                // [optional] props to pass to the component
 }
 ```
 
 > If all children of a node are ```selected``` please consider setting the parent node as ```selected``` and not the single nodes.
 
+VrxTreeNode accepts a generic type that can be used to define the type of the `userData` property.
+
 <br/>
 
 ## 📜 API
+
+The grid exposes a set of methods that can be used to interact with the tree. For using them use
+a reference to the component and call the method on it. For using with typescript, cast the reference to the `IVrxTreeUseCase` interface.
+
+
+### IVrxTreeUseCase
+```ts
+interface IVrxTreeUseCase {
+    getSelectedNodes: () => VrxTreeNode[],
+    getNodeByText: (text: string) => VrxTreeNode | undefined,
+    getNodeById: (id: string) => VrxTreeNode | null,
+    getNodePath: (nodeId: string) => String[],
+    removeNodeById: (nodeId: string, isParent?: boolean) => void,
+    addNode: (nodeId: string) => void,
+    removeNode: (node: VrxTreeNode) => void,
+    flattenTree: (node: VrxTreeNode) => VrxTreeNode[],
+    getParentNode: (toFind: VrxTreeNode) => VrxTreeNode | null,
+    clearSelectedNodes: () => void,
+    setSelectedNode: (id: string, select:boolean) => void,
+    expandAll: () => void,
+    collapseAll: () => void,
+}
+```
+
+### Methods
 <table style={{width: '100%'}}>
     <thead>
         <tr>
@@ -67,7 +111,72 @@ type VrxTreeNode {
             <td>`VrxTreeNode | undefined`</td>
             <td>Returns the node which has the given text</td>
         </tr>
-
+        <tr>
+            <td>getNodeById</td>
+            <td>`nodeId: string`</td>
+            <td>`VrxTreeNode | undefined`</td>
+            <td>Returns the node which has the given id</td>
+        </tr>
+        <tr>
+            <td>getNodePath</td>
+            <td>`nodeId : string`</td>
+            <td>`string[]`</td>
+            <td>Return the path to the node (concatenation of text of all elements from root to leaf)</td>
+        </tr>
+        <tr>
+            <td>removeNodeById</td>
+            <td>`nodeId : string`</td>
+            <td>-</td>
+            <td>Remove the node with the given id</td>
+        </tr>
+        <tr>
+            <td>addNode</td>
+            <td>`nodeId : string`</td>
+            <td>-</td>
+            <td>Add node to the selected ones</td>
+        </tr>
+        <tr>
+            <td>removeNode</td>
+            <td>`node: VrxTreeNode`</td>
+            <td>-</td>
+            <td>Remove node from the selected ones</td>
+        </tr>
+        <tr>
+            <td>flattenTree</td>
+            <td>`node: VrxTreeNode`</td>
+            <td>`VrxTreeNode[]`</td>
+            <td>Flatten the input tree and return an array of nodes</td>
+        </tr>
+        <tr>
+            <td>getParentNode</td>
+            <td>`node: VrxTreeNode`</td>
+            <td>`VrxTreeNode | null`</td>
+            <td>Return the parent node of the given node</td>
+        </tr>
+        <tr>
+            <td>clearSelectedNodes</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Clear all selected nodes</td>
+        </tr>
+        <tr>
+            <td>setSelectedNode</td>
+            <td>`nodeId: string, select:boolean`</td>
+            <td>-</td>
+            <td>Set the node with the given id as selected or not</td>
+        </tr>
+        <tr>
+            <td>expandAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Expand all nodes</td>
+        </tr>
+        <tr>
+            <td>collapseAll</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Collapse all nodes</td>
+        </tr>
     </tbody>
 </table>
 <br/>
@@ -89,7 +198,7 @@ type VrxTreeNode {
     </thead>
     <tbody>
     <tr>
-        <td>cellClicked</td>
+        <td>onClickNode</td>
         <td>
             <ul>
                 <li>`value: VrxTreeNode`</li>
@@ -99,7 +208,16 @@ type VrxTreeNode {
         </td>
         <td>Event emitted when clicking on node</td>
     </tr>
-
+    <tr>
+        <td>onCheckNode</td>
+        <td>
+            <ul>
+                <li>`value: VrxTreeNode`</li>
+                <li>`isChecked: boolean`</li>
+            </ul>
+        </td>
+        <td>Event emitted when checking a node</td>
+    </tr>
     </tbody>
 </table>
 

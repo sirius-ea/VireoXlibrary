@@ -2,7 +2,7 @@
   "name": "@sirius-rd/vireoxlibrary",
   "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
   "private": false,
-  "version": "0.6.9",
+  "version": "0.6.10",
   "type": "module",
   "files": [
     "dist"
@@ -38,7 +38,8 @@
     "@heroicons/vue": "^2.0.17",
     "tailwindcss": "^3.4.1",
     "uuid": "^9.0.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.15",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.7",

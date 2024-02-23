@@ -49,7 +49,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, "src/main.ts")
       },
-      external: ['vue'],
+      external: ['vue', "vuedraggable"],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'main.css') return 'vireoxlibrary.css';

@@ -101,8 +101,8 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                 },
             }
         },
-        dataStart: {
-            description: 'reference to the start date. You can use this to set the date from outside. use v-model:data-start="myDate" to bind it to a date variable',
+        dateStart: {
+            description: 'reference to the start date. You can use this to set the date from outside. use v-model:date-start="myDate" to bind it to a date variable',
             control: {
                 type: 'none',
             },
@@ -116,8 +116,8 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                 },
             }
         },
-        dataStop: {
-            description: 'reference to the stop date. You can use this to set the date from outside. use v-model:data-stop="myDate" to bind it to a date variable',
+        dateStop: {
+            description: 'reference to the stop date. You can use this to set the date from outside. use v-model:date-stop="myDate" to bind it to a date variable',
             control: {
                 type: 'none',
             },
