@@ -25,7 +25,7 @@
             :siblings="data"
             :isDraggable="isDraggable ?? false"
             @onClickNode="onClickNode"
-            @onCheckNode="checkClicked"
+            @onCheckNode="(value,isChecked) => checkClicked(value, isChecked)"
             @moveEnd="onMoveEnd"
             :parent-filtered="false"
         />
@@ -85,11 +85,8 @@
   /**
    * Removes the selected node based on the id
    * @param nodeId
-   * @param isParent
    */
-  const removeNodeById = (nodeId: string, isParent : boolean = false) => {
-      if(isParent) selectedNodes.value.splice(0);
-
+  const removeNodeById = (nodeId: string) => {
       if(selectedNodes.value.includes(nodeId)){
         selectedNodes.value.splice(selectedNodes.value.indexOf(nodeId), 1);
       }
@@ -171,7 +168,7 @@
   }
 
   /**
-   * Return the parent of the passed node, if have no parent return null
+   * Return the parent of the passed node, if it has no parent return null
    * @param toFind VrxTreeNode
    */
   const getParentNode = (toFind: VrxTreeNode<T>) : VrxTreeNode<T> | null => {

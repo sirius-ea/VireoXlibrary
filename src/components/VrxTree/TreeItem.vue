@@ -118,10 +118,10 @@
       })
     }
 
+    emit('onCheckNode', props.node, checkValue.value);
     if(!props.isParent){
       checkParent();
       checkSiblingsAndParent();
-      emit('onCheckNode', props.node, checkValue.value);
     }
   }
 
