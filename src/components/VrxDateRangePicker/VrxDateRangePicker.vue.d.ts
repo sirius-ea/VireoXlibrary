@@ -1,6 +1,6 @@
 declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
-    dataStart: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
-    dataStop: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
+    dateStart: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
+    dateStop: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
     type: {
         type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"time" | "date" | "datetime">;
         required: true;
@@ -42,8 +42,8 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     getDates: () => any[];
     setDates: (dates: [Date | undefined, Date | undefined]) => void;
 }, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    dataStart: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
-    dataStop: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
+    dateStart: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
+    dateStop: import('../../../vue/dist/vue.esm-bundler.js').PropType<Date | undefined>;
     type: {
         type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"time" | "date" | "datetime">;
         required: true;

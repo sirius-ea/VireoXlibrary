@@ -1,2 +1,2 @@
-export type { VrxTreeNode } from './VrxTree.types';
+export type { VrxTreeNode, IVrxTreeUseCase } from './VrxTree.types';
 export { default as VrxTree } from './VrxTree.vue';

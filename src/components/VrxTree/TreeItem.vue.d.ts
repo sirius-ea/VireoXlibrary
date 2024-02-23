@@ -1,40 +1,53 @@
 import { VrxTreeNode } from './VrxTree.types.ts';
-declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
-    node: VrxTreeNode;
+declare const _default: <T>(__VLS_props: {
+    onOnCheckNode?: ((...args: any[]) => any) | undefined;
+    onOnClickNode?: ((...args: any[]) => any) | undefined;
+    node: VrxTreeNode<T>;
     selectable: boolean;
     isParent?: boolean | undefined;
     selected?: boolean | undefined;
-    selectedNodes: string[];
-    addNode: (nodeId: string) => void;
-    removeNodeById: (nodeId: string, isParent?: boolean) => void;
-    removeNode: (node: VrxTreeNode) => void;
     parentId: string;
-    siblings: VrxTreeNode[];
-}>, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
-    checkClicked: (...args: any[]) => void;
-    cellClicked: (...args: any[]) => void;
-}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-    node: VrxTreeNode;
-    selectable: boolean;
-    isParent?: boolean | undefined;
-    selected?: boolean | undefined;
-    selectedNodes: string[];
-    addNode: (nodeId: string) => void;
-    removeNodeById: (nodeId: string, isParent?: boolean) => void;
-    removeNode: (node: VrxTreeNode) => void;
-    parentId: string;
-    siblings: VrxTreeNode[];
-}>>> & {
-    onCheckClicked?: ((...args: any[]) => any) | undefined;
-    onCellClicked?: ((...args: any[]) => any) | undefined;
-}, {}, {}>;
-export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<T[K]>;
-        required: true;
-    };
+    siblings: VrxTreeNode<T>[];
+    isDraggable?: boolean | undefined;
+} & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps, __VLS_ctx?: {
+    attrs: any;
+    slots: {};
+    emit: (event: "onCheckNode" | "onClickNode", ...args: any[]) => void;
+} | undefined, __VLS_expose?: ((exposed: import('../../../vue/dist/vue.esm-bundler.js').ShallowUnwrapRef<{}>) => void) | undefined, __VLS_setup?: Promise<{
+    props: {
+        onOnCheckNode?: ((...args: any[]) => any) | undefined;
+        onOnClickNode?: ((...args: any[]) => any) | undefined;
+        node: VrxTreeNode<T>;
+        selectable: boolean;
+        isParent?: boolean | undefined;
+        selected?: boolean | undefined;
+        parentId: string;
+        siblings: VrxTreeNode<T>[];
+        isDraggable?: boolean | undefined;
+    } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps;
+    expose(exposed: import('../../../vue/dist/vue.esm-bundler.js').ShallowUnwrapRef<{}>): void;
+    attrs: any;
+    slots: {};
+    emit: (event: "onCheckNode" | "onClickNode", ...args: any[]) => void;
+}>) => import('../../../vue/dist/vue.esm-bundler.js').VNode<import('../../../vue/dist/vue.esm-bundler.js').RendererNode, import('../../../vue/dist/vue.esm-bundler.js').RendererElement, {
+    [key: string]: any;
+}> & {
+    __ctx?: {
+        props: {
+            onOnCheckNode?: ((...args: any[]) => any) | undefined;
+            onOnClickNode?: ((...args: any[]) => any) | undefined;
+            node: VrxTreeNode<T>;
+            selectable: boolean;
+            isParent?: boolean | undefined;
+            selected?: boolean | undefined;
+            parentId: string;
+            siblings: VrxTreeNode<T>[];
+            isDraggable?: boolean | undefined;
+        } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps;
+        expose(exposed: import('../../../vue/dist/vue.esm-bundler.js').ShallowUnwrapRef<{}>): void;
+        attrs: any;
+        slots: {};
+        emit: (event: "onCheckNode" | "onClickNode", ...args: any[]) => void;
+    } | undefined;
 };
+export default _default;

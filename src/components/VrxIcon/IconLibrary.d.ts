@@ -52,6 +52,7 @@ export declare const iconLibrary: {
     'qr-code': string;
     'qr-code-scan': string;
     rocket: string;
+    save: string;
     search: string;
     settings: string;
     sun: string;
