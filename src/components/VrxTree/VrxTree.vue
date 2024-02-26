@@ -1,36 +1,38 @@
 <template>
   <div
-      class="flex flex-col gap-2.5 vrxtree-text-style"
+      class="flex flex-col gap-2.5 vrxtree-text-style h-full"
       data-testid="vrx-tree"
   >
-    <div :class="[toolbarClass,'flex flex-row gap-2']" v-if="searchable || $slots.toolbar">
+    <div :class="[toolbarClass,'flex flex-row gap-2 sticky w-full z-10']" v-if="searchable || $slots.toolbar">
       <VrxInput v-if="searchable" v-model="textFilter" icon="search" type="text" class="flex-1"/>
       <slot name="toolbar"/>
     </div>
-    <draggable
-      v-model="data"
-      :disabled="!isDraggable"
-      item-key="id"
-      :group="{name:'tree'}"
-      class="flex flex-col"
-    >
-      <template #item="{element}">
-        <TreeItem
-            v-if="!element.filtered"
-            :parent-id="element.id"
-            :node="element"
-            :selectable="selectable ?? false"
-            :is-parent="true"
-            :key="element.id"
-            :siblings="data"
-            :isDraggable="isDraggable ?? false"
-            @onClickNode="onClickNode"
-            @onCheckNode="(value,isChecked) => checkClicked(value, isChecked)"
-            @moveEnd="onMoveEnd"
-            :parent-filtered="false"
-        />
-      </template>
-    </draggable>
+    <div class="h-full overflow-auto ">
+      <draggable
+          v-model="data"
+          :disabled="!isDraggable"
+          item-key="id"
+          :group="{name:'tree'}"
+          class="flex flex-col"
+      >
+        <template #item="{element}">
+          <TreeItem
+              v-if="!element.filtered"
+              :parent-id="element.id"
+              :node="element"
+              :selectable="selectable ?? false"
+              :is-parent="true"
+              :key="element.id"
+              :siblings="data"
+              :isDraggable="isDraggable ?? false"
+              @onClickNode="onClickNode"
+              @onCheckNode="(value,isChecked) => checkClicked(value, isChecked)"
+              @moveEnd="onMoveEnd"
+              :parent-filtered="false"
+          />
+        </template>
+      </draggable>
+    </div>
   </div>
 </template>
 
