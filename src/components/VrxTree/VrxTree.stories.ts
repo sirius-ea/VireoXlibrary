@@ -51,22 +51,7 @@ const meta : Meta<typeof VrxTree<any>> = {
                     summary: 'false'
                 }
           },
-      },
-        returnsUserData: {
-            description: 'type of returned data of the selected nodes',
-            control: {
-                type: 'boolean',
-            },
-            table: {
-                category: 'props',
-                type: {
-                    summary: 'boolean',
-                },
-                defaultValue: {
-                    summary: 'false'
-                }
-            },
-        },
+      }
     },
 }
 export default meta;
@@ -239,7 +224,6 @@ export const Primary: TreeStories = {
         modelValue,
         selectable: false,
         searchable: false,
-        returnsUserData: false,
         isDraggable: true
     },
 }
