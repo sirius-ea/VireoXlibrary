@@ -53,9 +53,7 @@
   const props = defineProps<{
     selectable?: boolean,
     searchable?: boolean,
-    returnsUserData?: boolean
-    isDraggable?: boolean
-    enableToolbar?: boolean
+    isDraggable?: boolean,
     toolbarClass?: string
   }>();
 
