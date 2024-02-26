@@ -1,0 +1,33 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxMenu/About" />
+
+# VireoXmenu
+
+VireoXmenu is a series of components that can be used to create a menu system for your web application.
+It is designed to be used with the component from VireoX library, but can be used independently.
+
+We have created a series of components that can be used to create a menu system for your web application.
+
+The first component is the ***VrxMenu*** component.
+This component is used to create a menu container for your web application.
+
+Inside the VrxMenu component you can add whatever you want, but we have also created a series of components that can be used to create a menu system for your web application.
+In particular, we have created the VrxLink component, which is used to create a menu item for your web application.
+
+
+The ***VrxLink*** component can be used to create a menu item for your web application.
+It has two slots:
+- Default slot: used to add the content of the menu item
+- Child slot: used to add a submenu to the menu item
+
+This will create a menu item with a submenu. On click, the submenu will be displayed on the right of the menu item.
+
+Example:
+```Vue
+<VrxMenu>
+  <VrxLink>Home</VrxLink>
+  <VrxLink>About</VrxLink>
+  <VrxLink>Contact</VrxLink>
+</VrxMenu>
+```
