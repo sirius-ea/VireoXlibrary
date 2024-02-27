@@ -51,22 +51,7 @@ const meta : Meta<typeof VrxTree<any>> = {
                     summary: 'false'
                 }
           },
-      },
-        returnsUserData: {
-            description: 'type of returned data of the selected nodes',
-            control: {
-                type: 'boolean',
-            },
-            table: {
-                category: 'props',
-                type: {
-                    summary: 'boolean',
-                },
-                defaultValue: {
-                    summary: 'false'
-                }
-            },
-        },
+      }
     },
 }
 export default meta;
@@ -212,20 +197,21 @@ const Template : TreeStories = {
             }
         },
         template: `
-          <div style="height: auto; width: auto">
+          <div style="height: 500px; width: auto; overflow: hidden">
                 <VrxTree @on-check-node="(a) => console.log('onCheckNode', a)" @on-click-node="(a) => console.log('onClickNode',a)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
                 <template #toolbar>
                   <VrxButton color="default" size="base" @click="logSelected" >Log selected nodes</VrxButton>
                 </template>
                 </VrxTree>
-                <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
-                    <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
-                    <VrxButton color="default" size="sm" @click="findNode" >Log found node (Sub Sub Child 0)</VrxButton>
-                    <VrxButton color="default" size="sm" @click="findPath" >Log find path (Sub Sub Child 0)</VrxButton>
-                    <VrxButton color="default" size="sm" @click="clearSelection" >Clear Selection</VrxButton>
-                    <VrxButton color="default" size="sm" @click="setSelection" >Set Selection</VrxButton>
-                    <VrxButton color="default" size="sm" @click="expandAll" >Expand all</VrxButton>
-                </div>
+          </div>
+
+          <div style="padding-top: 30px; display: flex; flex-direction: row; gap: 5px">
+            <VrxButton color="default" size="sm" @click="logSelected" >Log selected nodes</VrxButton>
+            <VrxButton color="default" size="sm" @click="findNode" >Log found node (Sub Sub Child 0)</VrxButton>
+            <VrxButton color="default" size="sm" @click="findPath" >Log find path (Sub Sub Child 0)</VrxButton>
+            <VrxButton color="default" size="sm" @click="clearSelection" >Clear Selection</VrxButton>
+            <VrxButton color="default" size="sm" @click="setSelection" >Set Selection</VrxButton>
+            <VrxButton color="default" size="sm" @click="expandAll" >Expand all</VrxButton>
           </div>
          
         `
@@ -239,7 +225,6 @@ export const Primary: TreeStories = {
         modelValue,
         selectable: false,
         searchable: false,
-        returnsUserData: false,
         isDraggable: true
     },
 }
