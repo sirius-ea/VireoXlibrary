@@ -43,7 +43,6 @@
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
   import {onBeforeMount, ref} from "vue";
   import {GridHeader} from "@/components/VrxGrid/GridConfiguration.ts";
-  import colors from "tailwindcss/colors";
   import {vClickOutside} from "@/directives";
   import VrxButton from "@/components/VrxButton/VrxButton.vue";
 
