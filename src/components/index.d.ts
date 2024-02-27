@@ -10,3 +10,4 @@ export * from './VrxDatePicker';
 export * from './VrxGrid';
 export * from './VrxIcon';
 export * from './VrxNavbar';
+export * from './VrxMenu';

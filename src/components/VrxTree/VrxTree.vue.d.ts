@@ -7,8 +7,6 @@ declare const _default: <T>(__VLS_props: {
     isDraggable?: boolean | undefined;
     onOnMoveEnd?: ((...args: any[]) => any) | undefined;
     searchable?: boolean | undefined;
-    returnsUserData?: boolean | undefined;
-    enableToolbar?: boolean | undefined;
     toolbarClass?: string | undefined;
 } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps, __VLS_ctx?: {
     attrs: any;
@@ -25,8 +23,6 @@ declare const _default: <T>(__VLS_props: {
         isDraggable?: boolean | undefined;
         onOnMoveEnd?: ((...args: any[]) => any) | undefined;
         searchable?: boolean | undefined;
-        returnsUserData?: boolean | undefined;
-        enableToolbar?: boolean | undefined;
         toolbarClass?: string | undefined;
     } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps;
     expose(exposed: import('../../../vue/dist/vue.esm-bundler.js').ShallowUnwrapRef<IVrxTreeUseCase<T>>): void;
@@ -47,8 +43,6 @@ declare const _default: <T>(__VLS_props: {
             isDraggable?: boolean | undefined;
             onOnMoveEnd?: ((...args: any[]) => any) | undefined;
             searchable?: boolean | undefined;
-            returnsUserData?: boolean | undefined;
-            enableToolbar?: boolean | undefined;
             toolbarClass?: string | undefined;
         } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps;
         expose(exposed: import('../../../vue/dist/vue.esm-bundler.js').ShallowUnwrapRef<IVrxTreeUseCase<T>>): void;

@@ -32,6 +32,7 @@ export declare const iconLibrary: {
     eye: string;
     'eye-hide': string;
     excel: string;
+    export: string;
     filter: string;
     fingerprint: string;
     folder: string;
@@ -49,8 +50,11 @@ export declare const iconLibrary: {
     password: string;
     pencil: string;
     plus: string;
+    png: string;
+    pin: string;
     'qr-code': string;
     'qr-code-scan': string;
+    reload: string;
     rocket: string;
     save: string;
     search: string;
@@ -74,6 +78,7 @@ export declare const iconLibrary: {
     'user-circle': string;
     'user-plus': string;
     'user-minus': string;
+    unpin: string;
     variable: string;
     'warning-circle': string;
     'warning-triangle': string;
