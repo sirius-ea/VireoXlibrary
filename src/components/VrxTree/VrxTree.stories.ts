@@ -85,6 +85,7 @@ const modelValue: VrxTreeNode<any>[] = [
                     userData: { test: "miao" },
                     selected: false,
                     children: [],
+                    disableDrag:true
                 }))
             }))
         }))

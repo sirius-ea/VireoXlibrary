@@ -25,6 +25,7 @@
 
     <!-- CHILDREN RECURSIVE -->
     <draggable
+      v-if="!node.disableDrag"
       v-model="node.children"
       item-key="id"
       :disabled="!isDraggable"
@@ -68,6 +69,11 @@
     isDraggable?: boolean,
     class?: string,
   }>();
+
+  
+  if(props.node.disableDrag && props.node.children.length > 0) {
+    console.warn("Disable drag is setted while the node having some child. This will be not rendered")
+  }
 
   const elementRef = ref<Element | null>(null);
   const addNode = inject<(nodeId: string) => void>('addNode', () => console.error("AddNode not provided"));
