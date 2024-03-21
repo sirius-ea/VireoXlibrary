@@ -24,6 +24,7 @@
               :is-parent="true"
               :key="element.id"
               :siblings="data"
+              :tooltip="element.tooltip"
               :isDraggable="isDraggable ?? false"
               @onClickNode="onClickNode"
               @onCheckNode="(value,isChecked) => checkClicked(value, isChecked)"
