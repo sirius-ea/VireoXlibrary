@@ -22,6 +22,18 @@ const meta : Meta<typeof VrxTree<any>> = {
                 }
             }
         },
+        searchablePlaceholder: {
+            description: 'helper text',
+            control: {
+                type: 'text',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                }
+            }
+        },
         searchable: {
             description: 'allows nodes search',
             control: {
@@ -80,6 +92,7 @@ const modelValue: VrxTreeNode<any>[] = [
                 children: Array.from(Array(2).keys()).map((y) => ({
                     text: `Sub Sub Child ${y}`,
                     icon: "document",
+                    tooltip: "Tooltip!",
                     id: "x-"+i+"-"+x+"-"+y,
                     open: false,
                     userData: { test: "miao" },
@@ -114,6 +127,7 @@ const modelValue: VrxTreeNode<any>[] = [
                     text: `Sub Sub Child ${y}`,
                     icon: "document",
                     open: false,
+                    tooltip: "Tooltip!",
                     id: "y-"+i+"-"+x+"-"+y,
                     userData: { test: "miao" },
                     selected: false,
@@ -198,7 +212,7 @@ const Template : TreeStories = {
         },
         template: `
           <div style="height: 500px; width: auto; overflow: hidden">
-                <VrxTree @on-check-node="(a) => console.log('onCheckNode', a)" @on-click-node="(a) => console.log('onClickNode',a)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
+                <VrxTree @on-check-node="(a) => console.log('onCheckNode', a)" @on-click-node="(a) => console.log('onClickNode',a)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :searchablePlaceholder="args.searchablePlaceholder" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
                 <template #toolbar>
                   <VrxButton color="default" size="base" @click="logSelected" >Log selected nodes</VrxButton>
                 </template>
@@ -234,6 +248,7 @@ export const Searchable: TreeStories = {
     args: {
         modelValue,
         searchable: true,
+        searchablePlaceholder: 'My custom placeholder'
     },
 }
 
