@@ -7,7 +7,14 @@
       :class="props.size ? size : 'size-5'"
       :fill="iconColor"
   >
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="iconLibrary[props.icon as keyof typeof iconLibrary] ?? props.icon"></path>
+
+    <template v-if="Array.isArray(iconLibrary[props.icon as keyof typeof iconLibrary] ?? props.icon)">
+      <path v-for="(item, index) in (iconLibrary[props.icon as keyof typeof iconLibrary] ?? props.icon)" :key="index" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="item"></path>
+    </template>
+    <template v-else>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="iconLibrary[props.icon as keyof typeof iconLibrary] ?? props.icon"></path>
+    </template>
+
   </svg>
 
 </template>
@@ -19,7 +26,7 @@
   import {iconLibrary, IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
   const props = defineProps<{
-    icon: IconLibraryType | string,
+    icon: IconLibraryType | string | string[],
     color?: string,
     size?: string,
   }>();
