@@ -18,6 +18,10 @@ export default {
         app.component('VrxColorPalette', components.VrxColorPalette)
         app.component('VrxMenu', components.VrxMenu)
         app.component('VrxLink', components.VrxLink)
+        app.component('VrxTabbar', components.VrxTabbar)
+        app.component('VrxTabList', components.VrxTabList)
+        app.component('VrxTabLink', components.VrxTabLink)
+        app.component('VrxTabContent', components.VrxTabContent)
     }
 };
 export * from "@/components";
