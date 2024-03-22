@@ -4,7 +4,7 @@
       data-testid="vrx-tree"
   >
     <div :class="[toolbarClass,'flex flex-row gap-2 sticky w-full z-10']" v-if="searchable || $slots.toolbar">
-      <VrxInput v-if="searchable" v-model="textFilter" :placeholder="searchablePlaceholder" icon="search" type="text" class="flex-1"/>
+      <VrxInput v-if="searchable" v-model="textFilter" :placeholder="searchPlaceholder" icon="search" type="text" class="flex-1"/>
       <slot name="toolbar"/>
     </div>
     <div class="h-full overflow-auto ">
@@ -56,7 +56,7 @@
   const props = defineProps<{
     selectable?: boolean,
     searchable?: boolean,
-    searchablePlaceholder?: string,
+    searchPlaceholder?: string,
     isDraggable?: boolean,
     toolbarClass?: string
   }>();
