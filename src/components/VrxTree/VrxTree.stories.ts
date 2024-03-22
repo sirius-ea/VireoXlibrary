@@ -22,7 +22,7 @@ const meta : Meta<typeof VrxTree<any>> = {
                 }
             }
         },
-        searchablePlaceholder: {
+        searchPlaceholder: {
             description: 'helper text',
             control: {
                 type: 'text',
@@ -212,7 +212,7 @@ const Template : TreeStories = {
         },
         template: `
           <div style="height: 500px; width: auto; overflow: hidden">
-                <VrxTree @on-check-node="(a) => console.log('onCheckNode', a)" @on-click-node="(a) => console.log('onClickNode',a)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :searchablePlaceholder="args.searchablePlaceholder" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
+                <VrxTree @on-check-node="(a) => console.log('onCheckNode', a)" @on-click-node="(a) => console.log('onClickNode',a)" ref="myRef" :check-nodes="true" v-model="args.modelValue" :selectable="args.selectable" :searchable="args.searchable" :searchPlaceholder="args.searchPlaceholder" :is-draggable="args.isDraggable" :returns-user-data="args.returnsUserData">
                 <template #toolbar>
                   <VrxButton color="default" size="base" @click="logSelected" >Log selected nodes</VrxButton>
                 </template>
@@ -248,7 +248,7 @@ export const Searchable: TreeStories = {
     args: {
         modelValue,
         searchable: true,
-        searchablePlaceholder: 'My custom placeholder'
+        searchPlaceholder: 'My custom placeholder'
     },
 }
 
