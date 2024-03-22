@@ -70,11 +70,6 @@
     class?: string,
   }>();
 
-  
-  if(props.node.disableDrag && props.node.children.length > 0) {
-    console.warn("Disable drag is setted while the node having some child. This will be not rendered")
-  }
-
   const elementRef = ref<Element | null>(null);
   const addNode = inject<(nodeId: string) => void>('addNode', () => console.error("AddNode not provided"));
   const removeNodeById = inject<(nodeId: string, isParent?: boolean) => void>('removeNodeById', () => console.error("RemoveNodeById not provided"));
