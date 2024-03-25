@@ -67,17 +67,17 @@ describe('VrxTree', () => {
 
     const data3 = [
         {
-            id: "",
-            text: "0",
+            id: "Parent",
+            text: "Parent",
             icon: "rocket",
             selected: true,
             userData: { type: "root" },
             children: Array.from(Array(5).keys()).map((i) => ({
-                id: "",
+                id: `Children ${i}`,
                 text: `Children ${i}`,
                 userData: { test: "ciao" },
                 icon: "folder",
-                disableDrag: i % 2 == 0 ?   true : false,
+                disableDrag: i % 2 == 0,
                 children: [],
             })),
         }
@@ -162,5 +162,12 @@ describe('VrxTree', () => {
 
     it('child node should not be draggable', () => {
         wrapper = mount(VrxTree as any, {props: {modelValue: data3}});
+        expect(wrapper.vm.getNodeByText("Children 0").disableDrag).toBe(true);
+        expect(wrapper.vm.getNodeByText("Children 1").disableDrag).toBe(false);
+
+        wrapper.findAll('disableDrag').forEach((element) => {
+            expect(element.find('span')).toContain('Children\s[024]')
+            expect(element.find('span')).not.toContain('Children\s[13]')
+        });
     });
 });

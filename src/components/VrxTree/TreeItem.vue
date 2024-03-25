@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => onClickNode(node, props.parentId)" ref="elementRef" >
+  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class, node.disableDrag ? 'disableDrag' : '']" @click.stop="() => onClickNode(node, props.parentId)" ref="elementRef" >
     <div class="tree-element vrxtree-element-style rounded-s" >
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="node.open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
