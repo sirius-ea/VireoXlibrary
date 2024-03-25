@@ -39,6 +39,7 @@ export declare const iconLibrary: {
     'cloud-download': string;
     'cloud-upload': string;
     cog: string;
+    copy: string;
     'cog-filled': string;
     database: string;
     document: string;
@@ -59,6 +60,7 @@ export declare const iconLibrary: {
     fingerprint: string;
     folder: string;
     'folder-add': string;
+    function: string;
     'folder-filled': string;
     'hamburger-menu': string;
     home: string;
