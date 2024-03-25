@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 // @ts-ignore
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
-import VrxSelect from "@/components/VrxSelect/VrxSelect.vue";
 import {VrxButton, VrxToggle} from "@/components";
 import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
 
@@ -98,6 +97,7 @@ const modelValue: VrxTreeNode<any>[] = [
                     userData: { test: "miao" },
                     selected: false,
                     children: [],
+                    disableDrag: true
                 }))
             }))
         }))

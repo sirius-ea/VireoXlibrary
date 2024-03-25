@@ -2,7 +2,6 @@ import {mount, VueWrapper} from "@vue/test-utils";
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import {expect} from "vitest";
 import {VrxButton, VrxTreeNode} from "@/components";
-import TreeItem from "@/components/VrxTree/TreeItem.vue";
 
 describe('VrxTree', () => {
     let wrapper : VueWrapper<any>;
@@ -64,6 +63,24 @@ describe('VrxTree', () => {
                 }),
                 componentSlots: `Child ${i}`
             }))
+        }
+    ]
+
+    const data3 = [
+        {
+            id: "Parent",
+            text: "Parent",
+            icon: "rocket",
+            selected: true,
+            userData: { type: "root" },
+            children: Array.from(Array(5).keys()).map((i) => ({
+                id: `Children ${i}`,
+                text: `Children ${i}`,
+                userData: { test: "ciao" },
+                icon: "folder",
+                disableDrag: i % 2 == 0,
+                children: [],
+            })),
         }
     ]
 
@@ -155,4 +172,15 @@ describe('VrxTree', () => {
         expect(empty).toEqual(null);
 
     })
+
+    it('child node should not be draggable', () => {
+        wrapper = mount(VrxTree as any, {props: {modelValue: data3}});
+        expect(wrapper.vm.getNodeByText("Children 0").disableDrag).toBe(true);
+        expect(wrapper.vm.getNodeByText("Children 1").disableDrag).toBe(false);
+
+        wrapper.findAll('disableDrag').forEach((element) => {
+            expect(element.find('span')).toContain('Children\s[024]')
+            expect(element.find('span')).not.toContain('Children\s[13]')
+        });
+    });
 });
