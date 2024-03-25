@@ -2,7 +2,6 @@ import {mount, VueWrapper} from "@vue/test-utils";
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import {expect} from "vitest";
 import {VrxButton, VrxTreeNode} from "@/components";
-import TreeItem from "@/components/VrxTree/TreeItem.vue";
 
 describe('VrxTree', () => {
     let wrapper : VueWrapper<any>;
@@ -35,6 +34,7 @@ describe('VrxTree', () => {
                 userData: { test: "ciao" },
                 icon: "folder",
                 children: [],
+                tooltip: "Test",
             })),
         }
     ]
@@ -66,6 +66,24 @@ describe('VrxTree', () => {
         }
     ]
 
+    const data3 = [
+        {
+            id: "Parent",
+            text: "Parent",
+            icon: "rocket",
+            selected: true,
+            userData: { type: "root" },
+            children: Array.from(Array(5).keys()).map((i) => ({
+                id: `Children ${i}`,
+                text: `Children ${i}`,
+                userData: { test: "ciao" },
+                icon: "folder",
+                disableDrag: i % 2 == 0,
+                children: [],
+            })),
+        }
+    ]
+
     beforeEach(() => {
         wrapper = mount(VrxTree as any, {props: {modelValue: data}});
     });
@@ -84,6 +102,18 @@ describe('VrxTree', () => {
         expect(wrapper.vm.getNodeByText("0")).toEqual(data[0]);
         expect(wrapper.vm.getNodeByText("Children 0")).toEqual(data[0].children[0]);
     });
+
+    it('check if node has a tooltip', () => {
+        wrapper = mount(VrxTree as any, {props: {modelValue: data2}});
+        expect(wrapper.vm.getNodeByText("0").tooltip).toBeUndefined();
+        expect(wrapper.vm.getNodeByText("Children 0").tooltip).toEqual("Test");
+        wrapper.findAll("span[title='Test']").forEach((node, index: number) => {
+            expect(node.exists()).toBe(true);
+            expect(node.text()).toBe("Children " + index);
+        });
+
+
+    })
 
     it('get the selected nodes when none selected', () => {
         wrapper = mount(VrxTree as any, {props: {modelValue: data}});
@@ -142,4 +172,15 @@ describe('VrxTree', () => {
         expect(empty).toEqual(null);
 
     })
+
+    it('child node should not be draggable', () => {
+        wrapper = mount(VrxTree as any, {props: {modelValue: data3}});
+        expect(wrapper.vm.getNodeByText("Children 0").disableDrag).toBe(true);
+        expect(wrapper.vm.getNodeByText("Children 1").disableDrag).toBe(false);
+
+        wrapper.findAll('disableDrag').forEach((element) => {
+            expect(element.find('span')).toContain('Children\s[024]')
+            expect(element.find('span')).not.toContain('Children\s[13]')
+        });
+    });
 });

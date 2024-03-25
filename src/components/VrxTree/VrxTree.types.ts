@@ -5,7 +5,9 @@ export type VrxTreeNode<T> = {
     selected: boolean;
     open: boolean;
     children: VrxTreeNode<T>[];
+    disableDrag ?:boolean;
     userData?: T;
+    tooltip?: string,
     class?: any;
     filtered?: boolean;
     asComponent?: boolean;

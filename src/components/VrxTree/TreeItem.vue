@@ -1,6 +1,6 @@
 <template>
-  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => onClickNode(node, props.parentId)" ref="elementRef" >
-    <div class="tree-element vrxtree-element-style rounded-s" >
+  <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class, node.disableDrag ? 'disableDrag' : '']" @click.stop="() => onClickNode(node, props.parentId)" ref="elementRef" >
+    <div class="tree-element vrxtree-element-style rounded-s" :title="tooltip ?? ''">
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="node.open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input
@@ -25,15 +25,34 @@
 
     <!-- CHILDREN RECURSIVE -->
     <draggable
+      v-if="!node.disableDrag"
       v-model="node.children"
       item-key="id"
       :disabled="!isDraggable"
       :group="{name:'tree'}"
-      class="flex flex-col"
+      class="flex flex-col ciao"
     >
       <template #item="{element}">
         <TreeItem
             v-if="node.open && !element.filtered"
+            :node="element"
+            :key="element.id"
+            :selectable="selectable"
+            :selected="checkValue"
+            :parent-id="node.id"
+            :tooltip="element.tooltip"
+            :siblings="node.children"
+            :class="element.class"
+            @onCheckNode="(value, isChecked) => onCheckNode(value, isChecked)"
+            :isDraggable="isDraggable"
+            @onClickNode="(value, parentIdValue, oldElement) => onClickNode(value, parentIdValue, oldElement)"
+        />
+      </template>
+    </draggable>
+    <div class="flex flex-col" v-else v-for="(element) in node.children">
+      <TreeItem
+          
+          v-if="node.open && !element.filtered"
             :node="element"
             :key="element.id"
             :selectable="selectable"
@@ -45,8 +64,7 @@
             :isDraggable="isDraggable"
             @onClickNode="(value, parentIdValue, oldElement) => onClickNode(value, parentIdValue, oldElement)"
         />
-      </template>
-    </draggable>
+    </div>
 
 
   </div>
@@ -55,7 +73,7 @@
 <script setup lang="ts" generic="T">
   import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
   import {VrxTreeNode} from "@/components/VrxTree/VrxTree.types.ts";
-  import {computed, inject, ref, watch} from "vue";
+  import {inject, ref, watch} from "vue";
   import draggable from "vuedraggable";
 
   const props = defineProps<{
@@ -64,10 +82,17 @@
     isParent?: boolean,
     selected?: boolean,
     parentId: string,
+    tooltip?: string,
     siblings: VrxTreeNode<T>[],
     isDraggable?: boolean,
     class?: string,
   }>();
+
+  console.log(props.node.disableDrag)
+
+  if(props.node.disableDrag && props.node.children.length > 0) {
+    console.warn("Disable drag was set on a node with children. The Children will not be rendered")
+  }
 
   const elementRef = ref<Element | null>(null);
   const addNode = inject<(nodeId: string) => void>('addNode', () => console.error("AddNode not provided"));
