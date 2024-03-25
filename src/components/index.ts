@@ -11,3 +11,4 @@ export * from './VrxGrid';
 export * from './VrxIcon';
 export * from './VrxNavbar';
 export * from './VrxMenu';
+export * from './VrxTabbar';
