@@ -2,7 +2,6 @@ import {mount, VueWrapper} from "@vue/test-utils";
 import VrxTree from "@/components/VrxTree/VrxTree.vue";
 import {expect} from "vitest";
 import {VrxButton, VrxTreeNode} from "@/components";
-import TreeItem from "@/components/VrxTree/TreeItem.vue";
 
 describe('VrxTree', () => {
     let wrapper : VueWrapper<any>;
@@ -63,6 +62,24 @@ describe('VrxTree', () => {
                 }),
                 componentSlots: `Child ${i}`
             }))
+        }
+    ]
+
+    const data3 = [
+        {
+            id: "",
+            text: "0",
+            icon: "rocket",
+            selected: true,
+            userData: { type: "root" },
+            children: Array.from(Array(5).keys()).map((i) => ({
+                id: "",
+                text: `Children ${i}`,
+                userData: { test: "ciao" },
+                icon: "folder",
+                disableDrag: i % 2 == 0 ?   true : false,
+                children: [],
+            })),
         }
     ]
 
@@ -142,4 +159,8 @@ describe('VrxTree', () => {
         expect(empty).toEqual(null);
 
     })
+
+    it('child node should not be draggable', () => {
+        wrapper = mount(VrxTree as any, {props: {modelValue: data3}});
+    });
 });
