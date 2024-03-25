@@ -1,6 +1,6 @@
 <template>
   <div data-testid="vrx-tree-node" class="w-auto h-full flex flex-col" :class="[isParent ? null : 'pl-5', props.class]" @click.stop="() => onClickNode(node, props.parentId)" ref="elementRef" >
-    <div class="tree-element vrxtree-element-style rounded-s" >
+    <div class="tree-element vrxtree-element-style rounded-s" :title="tooltip ?? ''">
       <VrxIcon :icon="node.children.length > 0 ? 'chevron-right': 'empty'" :class="node.open ? 'icon-rotate' : 'icon-off'" size="5" @click="clickHandle" />
       <VrxIcon v-if="node.icon" :icon="node.icon" size="4"/>
       <input
@@ -39,6 +39,7 @@
             :selectable="selectable"
             :selected="checkValue"
             :parent-id="node.id"
+            :tooltip="element.tooltip"
             :siblings="node.children"
             :class="element.class"
             @onCheckNode="(value, isChecked) => onCheckNode(value, isChecked)"
@@ -64,6 +65,7 @@
     isParent?: boolean,
     selected?: boolean,
     parentId: string,
+    tooltip?: string,
     siblings: VrxTreeNode<T>[],
     isDraggable?: boolean,
     class?: string,
