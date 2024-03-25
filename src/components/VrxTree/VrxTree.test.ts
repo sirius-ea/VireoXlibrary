@@ -34,6 +34,7 @@ describe('VrxTree', () => {
                 userData: { test: "ciao" },
                 icon: "folder",
                 children: [],
+                tooltip: "Test",
             })),
         }
     ]
@@ -101,6 +102,18 @@ describe('VrxTree', () => {
         expect(wrapper.vm.getNodeByText("0")).toEqual(data[0]);
         expect(wrapper.vm.getNodeByText("Children 0")).toEqual(data[0].children[0]);
     });
+
+    it('check if node has a tooltip', () => {
+        wrapper = mount(VrxTree as any, {props: {modelValue: data2}});
+        expect(wrapper.vm.getNodeByText("0").tooltip).toBeUndefined();
+        expect(wrapper.vm.getNodeByText("Children 0").tooltip).toEqual("Test");
+        wrapper.findAll("span[title='Test']").forEach((node, index: number) => {
+            expect(node.exists()).toBe(true);
+            expect(node.text()).toBe("Children " + index);
+        });
+
+
+    })
 
     it('get the selected nodes when none selected', () => {
         wrapper = mount(VrxTree as any, {props: {modelValue: data}});

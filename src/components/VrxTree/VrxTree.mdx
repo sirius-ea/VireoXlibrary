@@ -43,6 +43,7 @@ type VrxTreeNode<T> = {
     disableDrag : boolean,                      // [optional] disable node drag
     userData: T,                              // [optional] optional user data
     asComponent: boolean,                       // [optional] if true, the node will be rendered as a component
+    tooltip: string,                            // [optional] set a tooltip for the node
     component: string | object,                 // [optional] An HTML tag name, a Component name or Component class reference.
     componentProps: object,                     // [optional] props to pass to the component
     componentSlots: object,                     // [optional] slots to pass to the component
