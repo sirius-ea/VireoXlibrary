@@ -252,6 +252,7 @@ const Template: DateRangePickerStories = {
         type: 'date',
         placeholderFrom: 'Start date',
         placeholderTo: 'Stop date',
+        rangeScroller: true,
         dateFormat: undefined,
         monthsOnly: false,
         invalid: false,
