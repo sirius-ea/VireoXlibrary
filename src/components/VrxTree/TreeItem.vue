@@ -30,7 +30,7 @@
       item-key="id"
       :disabled="!isDraggable"
       :group="{name:'tree'}"
-      class="flex flex-col ciao"
+      class="flex flex-col"
     >
       <template #item="{element}">
         <TreeItem
@@ -87,8 +87,6 @@
     isDraggable?: boolean,
     class?: string,
   }>();
-
-  console.log(props.node.disableDrag)
 
   if(props.node.disableDrag && props.node.children.length > 0) {
     console.warn("Disable drag was set on a node with children. The Children will not be rendered")

@@ -10,16 +10,16 @@ To use it, import the component and use it as follows:
 ```js
 import {VrxTabbar, VrxTabList, VrxTabLink, VrxTabContent} from 'vireoxlibrary';
 
-<VrxTabbar default-value="tab1">
+  <VrxTabbar default-value="tab1">
     <VrxTabList>
-        <VrxTabLink to="tab1">Tab 1</VrxTabLink>
-        <VrxTabLink to="tab2">Tab 2</VrxTabLink>
-        <VrxTabLink to="tab3">Tab 3</VrxTabLink>
+      <VrxTabLink tab_name="tab1">Tab 1</VrxTabLink>
+      <VrxTabLink tab_name="tab2">Tab 2</VrxTabLink>
+      <VrxTabLink tab_name="tab3">Tab 3</VrxTabLink>
     </VrxTabList>
-    <VrxTabContent name="tab1">Tab 1 content</VrxTabContent>
-    <VrxTabContent name="tab2">Tab 2 content</VrxTabContent>
-    <VrxTabContent name="tab3">Tab 3 content</VrxTabContent>
-</VrxTabbar>
+    <VrxTabContent tab_name="tab1">Tab 1 content</VrxTabContent>
+    <VrxTabContent tab_name="tab2">Tab 2 content</VrxTabContent>
+    <VrxTabContent tab_name="tab3">Tab 3 content</VrxTabContent>
+  </VrxTabbar>
 ```
 
 The VrxTabbar component has the following subcomponents:
