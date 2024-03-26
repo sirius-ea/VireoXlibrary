@@ -205,6 +205,21 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                     summary: 'false',
                 }
             }
+        } ,
+        rangeScroller:{
+            description: 'Enable back and forward date range scroll',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
         }
     }
 
