@@ -87,10 +87,10 @@
 
 <script setup lang="ts">
 
-import VrxDatePicker from "@/components/VrxDatePicker/VrxDatePicker.vue";
+import VrxDatePicker from "../VrxDatePicker/VrxDatePicker.vue";
 import {Ref, ref} from "vue";
-import VrxIcon from "@/components/VrxIcon/VrxIcon.vue";
-import {vAppendToBody} from "@/directives"
+import VrxIcon from "../VrxIcon/VrxIcon.vue";
+import {vAppendToBody} from "../../directives"
 
 const pickerStart = ref();
 const pickerStop = ref();
