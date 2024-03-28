@@ -25,7 +25,7 @@ function onLinkClick() {
 </script>
 
 <template>
-  <li class="cursor-pointer px-4 py-2 border-b-2 border-b-transparent hover:border-b-primary-100 active:border-b-primary-400" :class="[ selected ? 'active !border-b-primary-500' : '']" @click="onLinkClick" :aria-label="tab_name">
+  <li class="cursor-pointer px-4 py-2 border-b-2 border-b-gray-200 hover:border-b-primary-100 active:border-b-primary-400" :class="[ selected ? 'active !border-b-primary-500' : '']" @click="onLinkClick" :aria-label="tab_name">
       <slot></slot>
   </li>
 </template>
