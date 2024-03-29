@@ -116,6 +116,21 @@ const meta : Meta<typeof VrxDatePicker> = {
                 }
             }
         },
+        clearable:{
+            description: 'Make datepicker clearable, will be set to null',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
+        },
         helperText:{
             description: 'helper text of the date picker',
             control: {

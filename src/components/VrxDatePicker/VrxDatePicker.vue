@@ -15,7 +15,12 @@
           @click="openPicker"
           :readonly="true"
           :invalid="invalid"
-      />
+      >
+        <template #right v-if="clearable && selectedDate !== null">
+          <VrxIcon class="cursor-pointer text-gray-400" icon="x" size="4" @click.stop="selectedDate = null"></VrxIcon>
+        </template>
+      </VrxInput>
+
     </div>
     <div v-if="helperText">
       <p class="mt-2 text-sm vrxdatepicker-helpertext-style" :class="invalid ? 'vrxdatepicker-helpertext-invalid-style' : ''">
@@ -84,6 +89,7 @@ const selectedDate = defineModel<Date | null>({
 const props = defineProps<{
   type: 'date' | 'time' | 'datetime',
   validRange?: [Date | undefined, Date | undefined],
+  clearable?: boolean,
   dateFormat?: string,
   monthsOnly?: boolean,
   placeholder?: string,
