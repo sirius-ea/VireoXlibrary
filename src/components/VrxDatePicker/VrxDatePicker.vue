@@ -36,7 +36,7 @@
             v-if="selectedStage === 'd' && !props.monthsOnly"
             :month="selectedMonth"
             :year="selectedYear"
-            :selected-date="selectedDate"
+            :selected-date="selectedDate === null ? undefined : selectedDate"
             :valid-range="validRange"
             :time-enabled="props.type === 'datetime'"
             @change-stage="(stage) => selectedStage = stage"
@@ -77,7 +77,7 @@ import {formattedDate, monthsLib} from "@/components/VrxDatePicker/DatePickerLib
 import VrxInput from "@/components/VrxInput/VrxInput.vue";
 import {vAppendToBody} from "@/directives"
 
-const selectedDate = defineModel<Date>({
+const selectedDate = defineModel<Date | null>({
   default: new Date()
 });
 
@@ -135,12 +135,17 @@ const closePicker = (event: any) => {
 const dayPicked = (day: any) => {
 
   selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
-  if (selectedDate.value.getMonth() !== selectedMonth.value) {
-    selectedMonth.value = selectedDate.value.getMonth();
-    selectedYear.value = selectedDate.value.getFullYear();
-  }
-  emit('dayClicked', selectedDate.value);
-  showDropdown.value = false; // Close popup on day selection
+
+  nextTick(() => {
+    if(selectedDate.value) {
+      if (selectedDate.value.getMonth() !== selectedMonth.value) {
+        selectedMonth.value = selectedDate.value.getMonth();
+        selectedYear.value = selectedDate.value.getFullYear();
+      }
+      emit('dayClicked', selectedDate.value);
+      showDropdown.value = false; // Close popup on day selection
+    }
+  });
 }
 
 /**
@@ -218,7 +223,7 @@ const onHoursChange = (hours: number) => {
  * Set the date
  * @param date
  */
-const setDate = (date: Date) => {
+const setDate = (date: Date | null) => {
   selectedDate.value = date;
 }
 
