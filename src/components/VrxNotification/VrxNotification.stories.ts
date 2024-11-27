@@ -37,7 +37,7 @@ const meta : Meta<typeof VrxNotification | typeof VrxNotificationContainer> = {
             }
         },
         duration: {
-            description: 'duration',
+            description: 'number of milliseconds the notification will be visible for; if set to 0, the notification will remain visible until clicked',
             control: {
                 type: 'number',
             },
@@ -52,7 +52,7 @@ const meta : Meta<typeof VrxNotification | typeof VrxNotificationContainer> = {
             }
         },
         maxNotifications: {
-            description: 'maxNotifications',
+            description: 'maximum number of notifications displayed on screen before overflowing',
             control: {
                 type: 'number',
             },
@@ -67,7 +67,7 @@ const meta : Meta<typeof VrxNotification | typeof VrxNotificationContainer> = {
             }
         },
         customOverflowText: {
-            description: 'customOverflowText',
+            description: 'custom overflow container text',
             control: {
                 type: 'text',
             },
