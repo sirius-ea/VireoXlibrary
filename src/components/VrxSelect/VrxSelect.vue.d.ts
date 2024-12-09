@@ -63,10 +63,10 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
 }, {
     disabled: boolean;
     label: string;
-    variant: ComponentVariant;
     placeholder: string;
     helperText: string;
     invalid: boolean;
+    variant: ComponentVariant;
     searchPlaceholder: string;
     multiselect: boolean;
     showRemove: boolean;
