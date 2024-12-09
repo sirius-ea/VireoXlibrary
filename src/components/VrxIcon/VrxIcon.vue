@@ -7,6 +7,7 @@
       :class="props.size ? size : 'size-5'"
       :fill="iconColor"
   >
+    <title>{{props.tooltip}}</title>
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="iconLibrary[props.icon as keyof typeof iconLibrary] ?? props.icon"></path>
   </svg>
 
@@ -22,6 +23,7 @@
     icon: IconLibraryType | string,
     color?: string,
     size?: string,
+    tooltip?: string,
   }>();
 
   const iconColor = computed(() => {
