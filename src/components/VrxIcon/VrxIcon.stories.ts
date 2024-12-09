@@ -10,7 +10,7 @@ const meta : Meta<typeof VrxIcon> = {
     tags: ['autodocs'],
     argTypes: {
         icon: {
-            description: 'icon type or SVG path',
+            description: 'Icon type or SVG path',
             control: {
                 type: 'select',
             },
@@ -26,6 +26,7 @@ const meta : Meta<typeof VrxIcon> = {
             }
         },
         size: {
+            description: 'Size of the icon (from 1 to 10)',
             control: {
                 type: 'text',
             },
@@ -37,13 +38,24 @@ const meta : Meta<typeof VrxIcon> = {
             },
             defaultValue: {
                 summary: '5',
-            },
-            description: 'size of the button (from 1 to 10)'
+            }
         },
         color: {
-            description: 'color',
             control: {
                 type: 'color',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'string',
+                }
+            },
+            description: 'Color',
+        },
+        tooltip: {
+            description: 'Tooltip of the icon',
+            control: {
+                type: 'text',
             },
             table: {
                 category: 'props',
@@ -61,7 +73,7 @@ type IconStories = StoryObj<typeof VrxIcon>;
 
 
 const Template: IconStories = {
-    render: (args) => ({
+    render: (args: any) => ({
         components: { VrxIcon },
         setup() {
             return {
@@ -75,7 +87,7 @@ const Template: IconStories = {
     }),
     args: {
         icon: 'mail',
-        size: '5',
+        size: '5'
     },
 }
 
@@ -85,7 +97,7 @@ export const Primary: IconStories = {
 
 
 export const AllIcons: IconStories = {
-    render: (args) => ({
+    render: (args: any) => ({
         components: { VrxIcon, VrxInput},
         setup() {
             return {
@@ -97,7 +109,7 @@ export const AllIcons: IconStories = {
             search: '',
         }),
         computed: {
-            iconLibrary() {
+            iconLibrary() : string[] {
                 return iconLibrarySet.filter((icon) => icon.toLowerCase().includes(this.search.toLowerCase()));
 
             }
@@ -125,14 +137,14 @@ export const AllIcons: IconStories = {
         },
         template: `
             <div class="flex flex-wrap gap-4 justify-center">
-                <VrxInput v-model="search" placeholder="Search icon" class="w-full mb-4" type="text" icon="search"/>
+                <VrxInput v-model="search" placeholder="Search icon" class="w-full mb-4" type="text" icon="search" />
                 <div 
                     v-for="icon in iconLibrary" 
                     :key="icon" 
                     class="flex flex-col items-center w-20 gap-2 border p-2 rounded-2xl justify-center hover:bg-content-light hover:text-white cursor-pointer active:bg-primary-500" 
                     @click="() => copyCode(icon)"
                 >
-                    <VrxIcon  :key="icon" :icon="icon" :size="args.size"/>
+                    <VrxIcon :key="icon" :icon="icon" :size="args.size" :tooltip="icon" />
                     <span class="text-xs text-center text-gray-400">{{ icon }}</span>
                 </div>
             </div>

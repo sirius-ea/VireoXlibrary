@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from "vue";
-import {IconLibraryType} from "@/components";
 
 const props = withDefaults(defineProps<{
   message: string,

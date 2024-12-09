@@ -1,0 +1,5 @@
+@layer components {
+    .vrxprogress-color {
+        @apply border-t-neutral-500 dark:border-t-neutral-400;
+    }
+}

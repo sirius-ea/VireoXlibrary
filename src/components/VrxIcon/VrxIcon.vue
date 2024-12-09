@@ -7,6 +7,7 @@
       :class="props.size ? size : 'size-5'"
       :fill="iconColor"
   >
+    <title>{{props.tooltip}}</title>
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="iconLibrary[props.icon as keyof typeof iconLibrary] ?? props.icon"></path>
   </svg>
 
@@ -15,13 +16,14 @@
 <script setup lang="ts">
   // ICON LIBRARY - https://pictogrammers.com/library/mdi/
 
-  import {computed, onMounted, ref} from "vue";
+  import {computed} from "vue";
   import {iconLibrary, IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
   const props = defineProps<{
     icon: IconLibraryType | string,
     color?: string,
     size?: string,
+    tooltip?: string,
   }>();
 
   const iconColor = computed(() => {
