@@ -1,7 +1,7 @@
 <template>
     <div
       :class="[
-      'vrxprogress-default-style',
+      'vrxprogress-color',
       props.size ? size : 'size-base',
       'vrx-progress']"
     >
@@ -12,10 +12,6 @@
 <script setup lang="ts">
 
 import {computed} from "vue";
-
-const classByColor = {
-    'default': `vrxprogress-default-style`,
-}
 
 const props =
     defineProps<{
