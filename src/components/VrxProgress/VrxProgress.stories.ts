@@ -8,23 +8,8 @@ const meta : Meta<typeof VrxProgress> = {
     component: VrxProgress,
     tags: ['autodocs'],
     argTypes: {
-        color: {
-            control: {
-                type: 'select',
-            },
-            table: {
-                category: 'props',
-                type: {
-                    summary: 'string',
-                }
-            },
-            options: ['default',  'alternative' , 'dark' , 'light'],
-            defaultValue: {
-                summary: 'default',
-            },
-            description: 'color of the progress'
-        },
         size: {
+            description: 'Size of the progress',
             control: {
                 type: 'select',
             },
@@ -34,21 +19,20 @@ const meta : Meta<typeof VrxProgress> = {
                     summary: 'string',
                 }
             },
-            options: ['sm', 'md','base', 'lg'],
+            options: ['xs', 'sm', 'base', 'lg', 'xl'],
             defaultValue: {
                 summary: 'base',
-            },
-            description: 'size of the progress'
+            }
         }
     }
 };
 
 export default meta;
 
-type BtnStory = StoryObj<typeof VrxProgress>;
+type ProgressStory = StoryObj<typeof VrxProgress>;
 
 
-const Template: BtnStory = {
+const Template: ProgressStory = {
     render: (args) => ({
         components: { VrxProgress },
         setup() {
@@ -56,27 +40,19 @@ const Template: BtnStory = {
                 args
             };
         },
-
         template: `
+          <div style="height: 120px; width: 100%">
             <VrxProgress v-bind="args">
-                <template v-if="args.prefix" slot="prefix">
-                  {{args.prefix}}
-                </template>
-                <template v-if="args.default" slot="default">
-                {{args.default}}
-                </template>
-                <template v-if="args.suffix" slot="suffix">
-                    {{args.suffix}}
-                </template>
-            </VrxProgress>`
+            </VrxProgress>
+          </div>
+        `
     }),
     args: {
-        color: 'default',
         size: 'base',
     },
 }
 
-export const Primary: BtnStory = {
+export const Primary: ProgressStory = {
     ...Template
 
 };

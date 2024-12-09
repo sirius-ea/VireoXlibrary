@@ -18,21 +18,12 @@ describe('VrxProgress', () => {
         expect(wrapper.find('div').exists()).toBe(true);
     });
 
-    //test change color props
-    it('change color props', async () => {
-        expect(wrapper.props('color')).toBe('default');
-        expect(wrapper.get('div').classes().join(" ")).toContain('VrxProgress-default-style');
-        await wrapper.setProps({ color: 'alternative' });
-        expect(wrapper.props('color')).toBe('alternative');
-        expect(wrapper.get('div').classes().join(" ")).toContain('VrxProgress-alternate-style');
-    })
-
     //test change size props
     it('change size props', async () => {
         expect(wrapper.props('size')).toBe('base');
-        expect(wrapper.get('div').classes()).toContain('text-base');
+        expect(wrapper.get('div').classes()).toContain('size-base');
         await wrapper.setProps({ size: 'sm' });
         expect(wrapper.props('size')).toBe('sm');
-        expect(wrapper.get('div').classes()).toContain('text-sm');
+        expect(wrapper.get('div').classes()).toContain('size-sm');
     })
 })

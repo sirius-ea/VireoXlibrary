@@ -16,7 +16,7 @@
 <script setup lang="ts">
   // ICON LIBRARY - https://pictogrammers.com/library/mdi/
 
-  import {computed, onMounted, ref} from "vue";
+  import {computed} from "vue";
   import {iconLibrary, IconLibraryType} from "@/components/VrxIcon/IconLibrary.ts";
 
   const props = defineProps<{
