@@ -1,5 +1,6 @@
 import { VrxTreeNode } from './VrxTree.types.ts';
 declare const _default: <T>(__VLS_props: {
+    tooltip?: string | undefined;
     onOnCheckNode?: ((...args: any[]) => any) | undefined;
     onOnClickNode?: ((...args: any[]) => any) | undefined;
     node: VrxTreeNode<T>;
@@ -7,7 +8,6 @@ declare const _default: <T>(__VLS_props: {
     isParent?: boolean | undefined;
     selected?: boolean | undefined;
     parentId: string;
-    tooltip?: string | undefined;
     siblings: VrxTreeNode<T>[];
     isDraggable?: boolean | undefined;
 } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps, __VLS_ctx?: {
@@ -16,6 +16,7 @@ declare const _default: <T>(__VLS_props: {
     emit: (event: "onCheckNode" | "onClickNode", ...args: any[]) => void;
 } | undefined, __VLS_expose?: ((exposed: import('../../../vue/dist/vue.esm-bundler.js').ShallowUnwrapRef<{}>) => void) | undefined, __VLS_setup?: Promise<{
     props: {
+        tooltip?: string | undefined;
         onOnCheckNode?: ((...args: any[]) => any) | undefined;
         onOnClickNode?: ((...args: any[]) => any) | undefined;
         node: VrxTreeNode<T>;
@@ -23,7 +24,6 @@ declare const _default: <T>(__VLS_props: {
         isParent?: boolean | undefined;
         selected?: boolean | undefined;
         parentId: string;
-        tooltip?: string | undefined;
         siblings: VrxTreeNode<T>[];
         isDraggable?: boolean | undefined;
     } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps;
@@ -36,6 +36,7 @@ declare const _default: <T>(__VLS_props: {
 }> & {
     __ctx?: {
         props: {
+            tooltip?: string | undefined;
             onOnCheckNode?: ((...args: any[]) => any) | undefined;
             onOnClickNode?: ((...args: any[]) => any) | undefined;
             node: VrxTreeNode<T>;
@@ -43,7 +44,6 @@ declare const _default: <T>(__VLS_props: {
             isParent?: boolean | undefined;
             selected?: boolean | undefined;
             parentId: string;
-            tooltip?: string | undefined;
             siblings: VrxTreeNode<T>[];
             isDraggable?: boolean | undefined;
         } & import('../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps;

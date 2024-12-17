@@ -1,14 +1,7 @@
-import { IconLibraryType } from './IconLibrary.ts';
 declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
-    icon: IconLibraryType | string;
-    color?: string | undefined;
-    size?: string | undefined;
-    tooltip?: string | undefined;
+    size: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
 }>, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-    icon: IconLibraryType | string;
-    color?: string | undefined;
-    size?: string | undefined;
-    tooltip?: string | undefined;
+    size: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
 }>>>, {}, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
