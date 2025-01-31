@@ -20,6 +20,7 @@
           @click="pickerStop.closePicker()"
           :label="(labelStart ? labelStart : (labelStop ? '&nbsp;' : undefined))"
           v-model="dateStart"
+          :clearable="clearable"
           :helper-text="(helperTextStart ? helperTextStart : (helperTextStop ? '&nbsp;' : undefined))"
       />
       <div class="vrx-rangePickerBtn h-full flex flex-col items-center justify-center" ref="dropdownBtn">
@@ -45,6 +46,7 @@
           @click="pickerStart.closePicker()"
           :label="(labelStop ? labelStop : (labelStart ? '&nbsp;' : undefined))"
           v-model="dateStop"
+          :clearable="clearable"
           :helper-text="(helperTextStop ? helperTextStop : (helperTextStart ? '&nbsp;' : undefined))"
       />
       <div v-if="rangeScroller">
@@ -116,6 +118,7 @@ defineProps<{
   helperTextStart?: string;
   helperTextStop?: string;
   rangeScroller?: boolean;
+  clearable?: boolean;
 }>();
 
 const currentButtons = [
@@ -142,6 +145,8 @@ const changeType = (value: number) => {
 }
 
 const move = (forward: boolean = true) => {
+  if(!pickerStart.value || !pickerStop.value) return;
+
   const start = pickerStart.value.getDate().getTime();
   const stop = pickerStop.value.getDate().getTime();
 
@@ -194,7 +199,7 @@ const move = (forward: boolean = true) => {
 
 
 const getDates = () => {
-  return [pickerStart.value.getDate(), pickerStop.value.getDate()];
+  return [pickerStart.value ? pickerStart.value.getDate() : null, pickerStop.value ? pickerStop.value.getDate() : null];
 }
 
 const setDates = (dates: [Date | undefined, Date | undefined]) => {

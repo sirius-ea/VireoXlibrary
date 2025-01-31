@@ -206,6 +206,21 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                 }
             }
         } ,
+        clearable:{
+            description: 'Clear the input value',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
+        } ,
         rangeScroller:{
             description: 'Enable back and forward date range scroll',
             control: {
