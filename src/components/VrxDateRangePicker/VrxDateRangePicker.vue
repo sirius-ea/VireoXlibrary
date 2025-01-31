@@ -1,6 +1,13 @@
 <template>
   <div class="flex justify-center w-fit relative">
     <div class="flex flex-row items-center gap-2">
+      <div v-if="rangeScroller">
+        <VrxIcon
+            icon="chevron-left"
+            class="vrxdaterangepicker-dropdown-btn-style focus:outline-none cursor-pointer rounded-full"
+            @click="move(false)"
+        />
+      </div>
       <VrxDatePicker
           ref="pickerStart"
           :type="type"
@@ -40,6 +47,13 @@
           v-model="dateStop"
           :helper-text="(helperTextStop ? helperTextStop : (helperTextStart ? '&nbsp;' : undefined))"
       />
+      <div v-if="rangeScroller">
+        <VrxIcon
+            icon="chevron-right"
+            class="vrxdaterangepicker-dropdown-btn-style focus:outline-none cursor-pointer rounded-full"
+            @click="move"
+        />
+      </div>
     </div>
   </div>
     <div class="fixed top-0 left-0 w-full h-full z-20" v-if="showDropdown">
@@ -54,8 +68,8 @@
         <div class="flex flex-row justify-between items-center w-full">
           <VrxIcon icon="chevron-left" class="rounded-lg vrxdaterangepicker-dropdown-text-style cursor-pointer"
                    @click="changeType(-1)"/>
-          <span class="rounded-lg vrxdaterangepicker-dropdown-header-style font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ type }}</span>
-          <VrxIcon icon="chevron-right" class="rounded-lg vrxdaterangepicker-dropdown-text-style cursor-pointer"
+          <span class="rounded-lg vrxdaterangepicker-dropdown-header-style font-bold pt-1 pb-1 pr-2 pl-2 text-content-light dark:text-content-dark select-none">{{ presetType }}</span>
+          <VrxIcon icon="chevron-right" class="rounded-lg vrxdaterangepicker-dropdown-text-style text-content-light dark:text-content-dark cursor-pointer"
                    @click="changeType(+1)"/>
         </div>
         <div class="flex flex-col justify-center w-full">
@@ -101,6 +115,7 @@ defineProps<{
   labelStop?: string;
   helperTextStart?: string;
   helperTextStop?: string;
+  rangeScroller?: boolean;
 }>();
 
 const currentButtons = [
@@ -124,6 +139,57 @@ const changeType = (value: number) => {
       value > 0 ? presetType.value = values[0] : presetType.value = values[1];
       break;
   }
+}
+
+const move = (forward: boolean = true) => {
+  const start = pickerStart.value.getDate().getTime();
+  const stop = pickerStop.value.getDate().getTime();
+
+  const daysInMonth = (year: number, month:number) => new Date(year, month, 0).getDate();
+
+  const cleansedStop = new Date(stop);
+  cleansedStop.setHours(0,0,0,0);
+  const cleansedStart = new Date(start);
+  cleansedStart.setHours(0,0,0,0);
+
+  const selectMonth = ((cleansedStart.getDate() === cleansedStop.getDate()) && (cleansedStop.getMonth() - cleansedStart.getMonth()  === 1 || (cleansedStop.getMonth() === 0 && cleansedStart.getMonth()  === 11)));
+  if (selectMonth)
+  {
+    const date = forward ? cleansedStop : cleansedStart
+    const month = forward ? date.getMonth() + 1 : date.getMonth() - 1;
+    const tmp = new Date(new Date(date).setMonth(month));
+    if(forward) {
+      pickerStart.value.setDate(new Date(date));
+      pickerStop.value.setDate(new Date(tmp));
+    }
+    else {
+      pickerStart.value.setDate(new Date(tmp));
+      pickerStop.value.setDate(new Date(date));
+    }
+  }
+  else{
+  const monthDays = daysInMonth(cleansedStop.getFullYear(), cleansedStop.getMonth());
+  const isSameYear = (cleansedStart.getFullYear() === cleansedStop.getFullYear())
+  const isInMonth = (cleansedStart.getDate() === 1) && (cleansedStop.getDate() === monthDays)
+  const sameMonth = (isInMonth && (cleansedStart.getMonth() === cleansedStop.getMonth()) && isSameYear);
+  const sameYear = (isInMonth && (cleansedStart.getMonth() === 0) && (cleansedStop.getMonth() === 11) && isSameYear);
+
+  if (sameMonth) {
+    cleansedStart.setMonth(forward ? cleansedStart.getMonth() + 1 : cleansedStart.getMonth() - 1);
+    cleansedStop.setMonth(forward ? cleansedStop.getMonth() + 1 : cleansedStop.getMonth() - 1);
+    pickerStart.value.setDate(new Date(cleansedStart));
+    pickerStop.value.setDate(new Date(cleansedStop));
+  } else if (sameYear){
+    cleansedStart.setFullYear(forward ? cleansedStart.getFullYear() + 1 : cleansedStart.getFullYear() - 1);
+    cleansedStop.setFullYear(forward ? cleansedStop.getFullYear() + 1 : cleansedStop.getFullYear() - 1);
+    pickerStart.value.setDate(new Date(cleansedStart));
+    pickerStop.value.setDate(new Date(cleansedStop));
+  } else {
+    const diff = Math.abs(cleansedStop.getTime() - cleansedStart.getTime());
+    pickerStart.value.setDate(new Date(forward ? start + diff : start - diff));
+    pickerStop.value.setDate(new Date(forward ? stop + diff : stop - diff));
+  }
+}
 }
 
 
