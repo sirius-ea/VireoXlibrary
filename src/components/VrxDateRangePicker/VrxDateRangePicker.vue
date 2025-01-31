@@ -68,8 +68,8 @@
         <div class="flex flex-row justify-between items-center w-full">
           <VrxIcon icon="chevron-left" class="rounded-lg vrxdaterangepicker-dropdown-text-style cursor-pointer"
                    @click="changeType(-1)"/>
-          <span class="rounded-lg vrxdaterangepicker-dropdown-header-style font-bold pt-1 pb-1 pr-2 pl-2 select-none">{{ presetType }}</span>
-          <VrxIcon icon="chevron-right" class="rounded-lg vrxdaterangepicker-dropdown-text-style cursor-pointer"
+          <span class="rounded-lg vrxdaterangepicker-dropdown-header-style font-bold pt-1 pb-1 pr-2 pl-2 text-content-light dark:text-content-dark select-none">{{ presetType }}</span>
+          <VrxIcon icon="chevron-right" class="rounded-lg vrxdaterangepicker-dropdown-text-style text-content-light dark:text-content-dark cursor-pointer"
                    @click="changeType(+1)"/>
         </div>
         <div class="flex flex-col justify-center w-full">

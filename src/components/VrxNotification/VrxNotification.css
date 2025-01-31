@@ -1,0 +1,43 @@
+@layer components {
+
+    .vrx-notification {
+        @apply border border-solid rounded-lg p-4 relative mb-2 cursor-pointer;
+        @apply text-gray-50 dark:text-gray-900;
+    }
+
+    .vrx-notification-success {
+        @apply border-emerald-700 dark:border-emerald-800;
+        @apply bg-emerald-700 bg-opacity-90 dark:bg-emerald-600 dark:bg-opacity-90;
+        @apply text-gray-50 dark:text-gray-50;
+    }
+
+    .vrx-notification-warning {
+        @apply border-orange-700 dark:border-orange-800;
+        @apply bg-orange-600 bg-opacity-90 dark:bg-orange-500 dark:bg-opacity-90;
+        @apply text-gray-50 dark:text-gray-50;
+    }
+
+    .vrx-notification-error {
+        @apply border-red-900 dark:border-red-800;
+        @apply bg-red-600 bg-opacity-90 dark:bg-red-600 dark:bg-opacity-90;
+        @apply text-gray-50 dark:text-gray-50;
+    }
+
+    .vrx-progress-bar {
+        left: 2px;
+        @apply absolute bottom-0 h-1 rounded-b-lg overflow-hidden;
+        @apply transition-all duration-100 ease-linear;
+        @apply bg-gray-50 bg-opacity-90 dark:bg-gray-50 dark:bg-opacity-90;
+    }
+
+    .vrx-notification-container {
+        @apply fixed top-4 right-4 w-[300px] z-50;
+    }
+
+    .vrx-unread-notifications {
+        @apply border border-solid border-gray-800 dark:border-gray-600 rounded-lg p-4 relative my-2 mx-0 text-center;
+        @apply bg-gray-50 dark:bg-gray-800;
+        @apply text-gray-800 dark:text-gray-50;
+    }
+
+}
