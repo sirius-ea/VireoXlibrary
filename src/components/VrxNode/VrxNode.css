@@ -1,0 +1,5 @@
+@layer components {
+    .vrxnode-chevron-color{
+        @apply dark:text-content-dark text-content-light;
+    }
+}

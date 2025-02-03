@@ -1,0 +1,36 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="VrxNode/About" />
+
+# VireoxNode
+
+VireoxNode is an alternative to VrxTree, which allows the user to have full control on the 'HOW' the tree is built and on the 'HOW' each node behaves.
+
+This component has only one job, assist the user in building an acceptable tree structure with the ability to collapse or expand a node. It is completely up to the user to implement functionalities such as checkboxes or node searches
+
+A very basic example of the nodes in action is the following:
+
+```ts
+    <div class="h-full w-full">
+        <VrxNode>
+          <template #content> <span class="dark:text-content-dark text-content-light"> Parent 1 </span> </template>
+          <VrxNode>
+            <VrxNode> <template #content> <span class="dark:text-content-dark text-content-light"> Child 1.1 </span> </template> </VrxNode>
+            <template #content> <span class="dark:text-content-dark text-content-light"> Child 1 </span> </template>
+            </VrxNode>
+          <VrxNode>
+            <template #content> <span class="dark:text-content-dark text-content-light"> Child 2 </span> </template>
+            <VrxNode>
+              <template #content>
+                <div class="flex flex-row gap-1 items-center" @click.stop>
+                 <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Child 2.1 </span>
+                </div>
+              </template>
+            <div class="flex flex-row items-center">
+              <div> <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Checkable </span> </div>
+            </div>
+            </VrxNode>
+          </VrxNode>
+        </VrxNode>
+    </div>
+```

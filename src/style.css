@@ -13,6 +13,7 @@
 @import "./components/VrxDateRangePicker/VrxDateRangePicker.css";
 @import "./components/VrxNotification/VrxNotification.css";
 @import "./components/VrxProgress/VrxProgress.css";
+@import "./components/VrxNode/VrxNode.css";
 
 @layer base {
     :root {
