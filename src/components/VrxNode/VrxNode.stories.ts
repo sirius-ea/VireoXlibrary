@@ -35,7 +35,7 @@ const Template : TreeStories = {
                      <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Child 2.1 </span>
                     </div>
                   </template>
-                <div class="flex flex-row items-center">
+                <div v-if="false" class="flex flex-row items-center">
                   <div> <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Checkable </span> </div>
                 </div>
                 </VrxNode>

@@ -1,6 +1,8 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, ref, useSlots} from "vue";
 import {VrxIcon} from "@/components";
+
+const slots = useSlots()
 
 defineProps({
   label: String,
@@ -15,30 +17,18 @@ const toggle = () => {
 </script>
 
 <template>
-  <div class="w-full node cursor-pointer ">
-    <div class="node-header" @click="toggle">
+  <div class="w-full cursor-pointer vrxnode-main">
+    <div class="vrxnode-header" @click="toggle">
       <div class="flex flex-row w-full">
         <VrxIcon :icon="$slots.default ? (isOpen ? 'chevron-down' : 'chevron-right') : 'empty'" class="vrxnode-chevron-color"/>
         <slot name="content">
         </slot>
       </div>
     </div>
-    <div v-if="isOpen" class="node-children">
+    <div v-if="isOpen" class="vrxnode-children">
       <slot></slot>
     </div>
   </div>
 </template>
-<style scoped>
-.node {
-  margin-left: 10px;
-}
-.node-header {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.node-children {
-  margin-left: 20px;
-}
 
-</style>
+<style scoped></style>
