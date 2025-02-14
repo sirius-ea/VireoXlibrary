@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 // @ts-ignore
 import VrxNode from "@/components/VrxNode/VrxNode.vue";
-import {VrxButton} from "@/components";
 
 const meta : Meta<typeof VrxNode> = {
     title: 'VrxNode',
@@ -22,24 +21,30 @@ const Template : TreeStories = {
         template: `
             <div class="h-full w-full">
             <VrxNode>
-              <template #content> <span class="dark:text-content-dark text-content-light"> Parent 1 </span> </template>
-              <VrxNode>
-                <VrxNode> <template #content> <span class="dark:text-content-dark text-content-light"> Child 1.1 </span> </template> </VrxNode>
-                <template #content> <span class="dark:text-content-dark text-content-light"> Child 1 </span> </template>
-                </VrxNode>
-              <VrxNode>
-                <template #content> <span class="dark:text-content-dark text-content-light"> Child 2 </span> </template>
-                <VrxNode>
-                  <template #content>
-                    <div class="flex flex-row gap-1 items-center" @click.stop>
-                     <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Child 2.1 </span>
-                    </div>
+              <span class="dark:text-content-dark text-content-light hover:bg-gray-700 hover:dark:bg-gray-400 w-full"> Parent 1 </span>
+              <template #children>
+                  <VrxNode>
+                    <span class="dark:text-content-dark text-content-light hover:bg-gray-700 hover:dark:bg-gray-400 w-full"> Child 1 </span>
+                    <template #children>
+                      <VrxNode> <span class="dark:text-content-dark text-content-light hover:bg-gray-700 hover:dark:bg-gray-400 w-full"> Child 1.1 </span> </VrxNode>
+                    </template>
+                    </VrxNode>
+                  <VrxNode>
+                    <span class="dark:text-content-dark text-content-light hover:bg-gray-700 hover:dark:bg-gray-400 w-full"> Child 2 </span>
+                  <template #children>
+                    <VrxNode>
+                        <div class="flex flex-row gap-1 items-center hover:bg-gray-700 hover:dark:bg-gray-400 w-full" @click.stop>
+                         <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Child 2.1 </span>
+                        </div>
+                        <template #children>
+                            <div v-if="false" class="flex flex-row items-center dark:text-content-dark text-content-light hover:bg-gray-700 hover:dark:bg-gray-400 w-full">
+                              <div> <input type="checkbox"> <span> Checkable </span> </div>
+                            </div>
+                        </template>
+                    </VrxNode>
                   </template>
-                <div v-if="false" class="flex flex-row items-center">
-                  <div> <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Checkable </span> </div>
-                </div>
-                </VrxNode>
-              </VrxNode>
+                  </VrxNode>
+              </template>
             </VrxNode>
             </div>
         `
