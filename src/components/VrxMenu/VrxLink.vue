@@ -9,6 +9,11 @@ import {hasInjectionContext, inject, onMounted, provide, Ref, ref, watch} from "
   const dropdownRef = ref<HTMLUListElement>();
   const menuContainer = inject<Ref<HTMLUListElement>>('menuContainer');
 
+defineSlots<{
+  default?: () => any;  // Default unnamed slot
+  child?: () => any; // Named slot 'children'
+}>();
+
   watch(() => showDropdown.value, (value) => {
 
     if(!containerRef.value || !dropdownRef.value || !menuContainer) return;
@@ -69,7 +74,9 @@ import {hasInjectionContext, inject, onMounted, provide, Ref, ref, watch} from "
         v-if="$slots.child"
         v-show="showDropdown"
     >
-      <slot name="child" v-if="showDropdown" ></slot>
+      <template v-if="showDropdown">
+        <slot name="child"></slot>
+      </template>
     </ul>
   </div>
 

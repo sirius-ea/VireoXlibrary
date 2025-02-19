@@ -1,14 +1,21 @@
-<script setup>
-import {onMounted, ref, useSlots} from "vue";
+<script lang="ts" setup>
+import {computed, Comment, Text ,Fragment, onMounted, ref, useSlots} from "vue";
 import {VrxIcon} from "@/components";
-import {VNode} from "vue";
+import type {Slot, VNode} from "vue";
 
-const slots = useSlots()
+defineSlots<{
+  default?: () => any;  // Default unnamed slot
+  children?: () => any; // Named slot 'leftComponent'
+}>();
 
-defineProps({
-  label: String,
-  required: false,
+const props: any = withDefaults(defineProps<{
+  leaf: boolean
+}>(), {
+  leaf: false,
 });
+
+
+const slots: any = useSlots()
 
 const isOpen = ref(false);
 
@@ -16,34 +23,18 @@ const toggle = () => {
   isOpen.value = !isOpen.value
 }
 
-const isVnodeEmpty = (vnodes: Array<VNode>) => {
-  return vnodes.every((node: VNode) => {
-    if (node.type === Comment) {
-      return true;
-    }
+const hasChildren: any = computed(() => {
+  if (!slots.children) return false; // No slot provided at all
 
-    if (
-        node.type === Text &&
-        typeof node.children === 'string' &&
-        !node.children.trim()
-    ) {
-      return true;
-    }
+  const vnodes: any = slots.children(); // Get the VNodes from the slot
 
-    if (node.type === Fragment && isVnodeEmpty(node.children as Array<VNode>)) {
-      return true;
-    }
+  return vnodes.some((vnode: any) => {
 
-    return false;
+    if (vnode.type === Comment || vnode.type === Fragment) return false; // Ignore comments & empty fragments
+    if (typeof vnode.children === 'string' && vnode.children.trim() === '') return false; // Ignore empty text nodes
+    return true; // Consider as valid content
   });
-};
-
-const hasSlotContent = (slot: Slot<any> | undefined) => {
-  if (!slot) {
-    return false;
-  }
-  return !isVnodeEmpty(slot());
-};
+});
 
 </script>
 
@@ -51,12 +42,12 @@ const hasSlotContent = (slot: Slot<any> | undefined) => {
   <div class="w-full cursor-pointer vrxnode-main">
     <div class="vrxnode-header" @click="toggle">
       <div class="flex flex-row w-full">
-        <VrxIcon :icon="$slots.children ? (isOpen ? 'chevron-down' : 'chevron-right') : 'empty'" class="vrxnode-chevron-color"/>
+        <VrxIcon :icon="!leaf ? (isOpen ? 'chevron-down' : 'chevron-right') : 'empty'" class="vrxnode-chevron-color"/>
         <slot>
         </slot>
       </div>
     </div>
-    <div v-if="isOpen" class="vrxnode-children">
+    <div v-if="!leaf && isOpen" class="vrxnode-children">
       <slot name="children"></slot>
     </div>
   </div>
