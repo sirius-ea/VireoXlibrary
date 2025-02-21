@@ -1,23 +1,37 @@
 <script lang="ts" setup>
-import {computed, Comment, Text ,Fragment, onMounted, ref, useSlots} from "vue";
+import {computed, Comment, Text, Fragment, onMounted, ref, useSlots, watch, ComputedRef} from "vue";
 import {VrxIcon} from "@/components";
 import type {Slot, VNode} from "vue";
 
 defineSlots<{
   default?: () => any;  // Default unnamed slot
-  children?: () => any; // Named slot 'leftComponent'
+  children?: () => any;
 }>();
 
 const props: any = withDefaults(defineProps<{
-  leaf: boolean
+  leaf?: boolean
+  isOpen?: boolean,
 }>(), {
   leaf: false,
 });
 
+const isOpen = computed({
+  get: () =>  props.isOpen ?? open.value,
+  set: (value) => {
+    if(props.isOpen !== undefined){
+      emit("onOpen", value);
+    } else {
+      open.value = value;
+    }
+  },
+})
+
+const emit = defineEmits(['onOpen']);
+
 
 const slots: any = useSlots()
 
-const isOpen = ref(false);
+const open = ref(false);
 
 const toggle = () => {
   isOpen.value = !isOpen.value
@@ -40,7 +54,7 @@ const hasChildren: any = computed(() => {
 
 <template>
   <div class="w-full cursor-pointer vrxnode-main">
-    <div class="vrxnode-header" @click="toggle">
+    <div class="vrxnode-header" @click.exact="toggle">
       <div class="flex flex-row w-full">
         <VrxIcon :icon="!leaf ? (isOpen ? 'chevron-down' : 'chevron-right') : 'empty'" class="vrxnode-chevron-color"/>
         <slot>

@@ -32,7 +32,7 @@ const Template : TreeStories = {
                   <VrxNode>
                     <span class="dark:text-content-dark text-content-light hover:bg-gray-700 hover:dark:bg-gray-400 w-full"> Child 2 </span>
                   <template #children>
-                    <VrxNode>
+                    <VrxNode :isOpen="true" @onOpen="(value) => console.log(value)">
                         <div class="flex flex-row gap-1 items-center hover:bg-gray-700 hover:dark:bg-gray-400 w-full" @click.stop>
                          <input type="checkbox"> <span class="dark:text-content-dark text-content-light"> Child 2.1 </span>
                         </div>
