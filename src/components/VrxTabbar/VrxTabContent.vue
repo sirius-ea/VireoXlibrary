@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import {inject, onMounted, Ref} from "vue";
 
+defineSlots<{
+  default?: () => any;  // Default unnamed slot
+}>();
+
 const value = inject<Ref<string> | null>('selectedValue')
 const controlObject = inject<{tabs:string[], content:string[]}>('controlObject')
 if(!value || !controlObject) throw new Error('VrxTabContent must be used inside VrxTabbar element')
