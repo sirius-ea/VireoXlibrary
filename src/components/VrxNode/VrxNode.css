@@ -1,0 +1,16 @@
+@layer components {
+    .vrxnode-chevron-color{
+        @apply dark:text-content-dark text-content-light;
+    }
+
+    .vrxnode-main {
+        @apply pl-[10px];
+    }
+    .vrxnode-header {
+        @apply flex items-center gap-[5px]
+    }
+    .vrxnode-children {
+        @apply pl-[20px]
+    }
+
+}

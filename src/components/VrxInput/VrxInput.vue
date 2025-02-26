@@ -18,6 +18,11 @@
           class="vrx-input vrxinput-input-style"
           :class="style.input"
       />
+
+      <div v-if="$slots.right" class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <slot name="right"></slot>
+      </div>
+
       <div
           v-if="type === 'password' && modelValue && modelValue.length > 0"
           class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
@@ -57,6 +62,11 @@ const props = withDefaults(defineProps<{
 
 
 const showPassword = ref(false);
+
+defineSlots<{
+  default?: () => any;  // Default unnamed slot
+  right?: () => any;
+}>();
 
 const emit = defineEmits(['update:modelValue'])
 const updateValue = (event : any) => emit('update:modelValue', event.target.value)

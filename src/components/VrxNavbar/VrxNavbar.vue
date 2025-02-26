@@ -10,7 +10,6 @@
 
       <ul v-show="!mobile" class="navigation font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-transparent md:bg-transparent">
         <NavButton
-            ref="buttonRef"
             v-for="button in props.buttons"
             :config="button"
             :is-selected="JSON.stringify(button) === JSON.stringify(selectedButton) && showBottomNav"
@@ -60,13 +59,17 @@
     buttons: NavbarButton[];
   }>()
 
+  defineSlots<{
+    default?: () => any;  // Default unnamed slot
+    leftComponent?: () => any; // Named slot 'leftComponent'
+  }>();
+
 
   const scrolledNav = ref(false);
   const mobileNav = ref(false);
   const mobile = ref(false);
   const windowWidth = ref(window.innerWidth);
   const showBottomNav = ref(false);
-  const buttonRef = ref(false);
   const selectedButton = ref(props.buttons[0]);
   const navbar = ref(null);
 
