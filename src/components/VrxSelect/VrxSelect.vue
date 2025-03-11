@@ -69,6 +69,7 @@
             @focusout="searchClick(false)"
         />
       </div>
+    <div class="overflow-y-auto w-full">
       <div v-for="(element, index) in listDataCopy" :key="index" class="dropdown-item w-full vrxselect-dropdown-item" :class="style.dropdownItem">
         <div
             :data-testid="'vrx-select-dropdown-' + index"
@@ -83,6 +84,7 @@
           <VrxIcon v-if="selectedList.includes(element)" icon="check" size="4" :color="style.icon"/>
         </div>
       </div>
+    </div>
     </div>
   </div>
 
@@ -209,7 +211,6 @@ const close = () => {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    overflow-y: auto;
   }
 
   .button-left-side {
