@@ -2,7 +2,7 @@
   "name": "@sirius-rd/vireoxlibrary",
   "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
   "private": false,
-  "version": "0.8.3-beta",
+  "version": "0.8.5-beta",
   "type": "module",
   "files": [
     "dist"

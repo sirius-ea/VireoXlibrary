@@ -12,6 +12,7 @@ const props: any = withDefaults(defineProps<{
   leaf?: boolean
   isOpen?: boolean,
 }>(), {
+  isOpen: undefined,
   leaf: false,
 });
 
