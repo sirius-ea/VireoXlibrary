@@ -64,7 +64,6 @@
     "react-dom": "^18.2.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "storybook": "^7.0.7",
-    "storybook-tailwind-foundations": "^1.1.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
     "vite-plugin-dts": "^3.7.2",
@@ -80,5 +79,6 @@
   },
   "resolutions": {
     "jackspeak": "2.1.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
