@@ -47,22 +47,22 @@ describe('VrxMenu', () => {
     });
 
     it('renders the links with the child one not showed', () => {
-        expect(wrapper.find('[testid=link-template]').exists()).toBe(true);
-        expect(wrapper.find('[testid=link-child-template]').exists()).toBe(false);
-        expect(wrapper.find('[testid=link-template-2]').exists()).toBe(true);
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-template]').isVisible()).toBe(true);
+        expect(wrapper.find('[testid=link-child-template]').isVisible()).toBe(false);
+        expect(wrapper.find('[testid=link-template-2]').isVisible()).toBe(true);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
     });
 
     it('show the child one', async () => {
-        expect(wrapper.find('[testid=link-child-template]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template]').isVisible()).toBe(false);
         expect(wrapper.find('[testid=link-template]').element.classList.toString()).not.contains('bg-content-dark dark:bg-content-light')
         await wrapper.find('[testid=link-template]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template]').exists()).toBe(true);
+        expect(wrapper.find('[testid=link-child-template]').isVisible()).toBe(true);
         expect(wrapper.find('[testid=link-template]').element.classList.toString()).contains('bg-content-dark dark:bg-content-light')
     });
 
     it("show the second child", async () => {
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
         expect(wrapper.find('[testid=link-template-2]').element.classList.toString()).not.contains('bg-content-dark dark:bg-content-light')
         await wrapper.find('[testid=link-template-2]').trigger('click');
         expect(wrapper.find('[testid=link-child-template-2]').element!.parentElement!.style.display).toBe("");
@@ -72,18 +72,18 @@ describe('VrxMenu', () => {
     })
 
     it("should hide when clicked again", async () => {
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
         await wrapper.find('[testid=link-template-2]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(true);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(true);
         await wrapper.find('[testid=link-template-2]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
     })
 
     it("should hide when clicked outside", async () => {
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
         await wrapper.find('[testid=link-template-2]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(true);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(true);
         await wrapper.find('[testid=testing-click-outside]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
     })
 });
