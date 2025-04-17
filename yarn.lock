@@ -7207,11 +7207,6 @@ store2@^2.14.2:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.14.2.tgz#56138d200f9fe5f582ad63bc2704dbc0e4a45068"
   integrity sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==
 
-storybook-tailwind-foundations@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/storybook-tailwind-foundations/-/storybook-tailwind-foundations-1.1.2.tgz#40058e6a47deae382df3948743f77904a5be809b"
-  integrity sha512-Bp8SVFL06PmZCsgTuCZoOt4k1Ja4rXD+RxaY9IzOKgl13zJnVHPdkPQsarqpb1Bl2YetfYZCVneFSv3u8jPrxw==
-
 storybook@^7.0.7:
   version "7.6.10"
   resolved "https://registry.yarnpkg.com/storybook/-/storybook-7.6.10.tgz#2185d26cd7b43390e3e2c7581586e2f60cdbd9bd"
