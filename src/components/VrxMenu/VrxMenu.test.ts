@@ -80,10 +80,10 @@ describe('VrxMenu', () => {
     })
 
     it("should hide when clicked outside", async () => {
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
         await wrapper.find('[testid=link-template-2]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(true);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(true);
         await wrapper.find('[testid=testing-click-outside]').trigger('click');
-        expect(wrapper.find('[testid=link-child-template-2]').exists()).toBe(false);
+        expect(wrapper.find('[testid=link-child-template-2]').isVisible()).toBe(false);
     })
 });
