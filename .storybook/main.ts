@@ -1,10 +1,5 @@
 import type { StorybookConfig } from "@storybook/vue3-vite";
 
-const path = require('path');
-const tailwindConfigPath = path.join(__dirname, '../tailwind.config.js'); // or your own config file
-require('storybook-tailwind-foundations/initialize.js')
-    .default(tailwindConfigPath);
-
 const config: StorybookConfig = {
   stories: [
       "../src/**/*.mdx",

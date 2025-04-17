@@ -19,6 +19,7 @@ type LinkStories = StoryObj<typeof VrxLink>;
 export const MenuExample: MenuStories = {
     render: (args) => ({
         components: { VrxMenu, VrxLink, VrxIcon, VrxButton },
+
         setup() {
             return {
                 args
@@ -153,7 +154,7 @@ export const VrxLink_Example: LinkStories = {
                 </VrxLink>
               </template>
             </VrxLink>
-          </Vrx>
+          </VrxMenu>
         `
     })
 
