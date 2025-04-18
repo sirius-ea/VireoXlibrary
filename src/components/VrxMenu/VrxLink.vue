@@ -8,7 +8,9 @@
   const containerRef = ref<HTMLLIElement>();
   const dropdownRef = ref<HTMLUListElement>();
   const menuContainer = inject<Ref<HTMLUListElement>>('menuContainer');
-
+  const parentCloseCallback = inject<() => void>('closeAllMenus', () => {
+  })
+  
   defineSlots<{
     default?: () => any;  // Default unnamed slot
     child?: () => any; // Named slot 'children'
