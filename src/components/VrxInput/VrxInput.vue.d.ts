@@ -1,30 +1,38 @@
-declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    label?: string | undefined;
-    placeholder?: string | undefined;
+import { IconLibraryType } from '../VrxIcon/IconLibrary.ts';
+declare function __VLS_template(): Readonly<{
+    default?: () => any;
+    right?: () => any;
+}> & {
+    default?: () => any;
+    right?: () => any;
+};
+declare const __VLS_component: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    label?: string;
+    placeholder?: string;
     type: string;
-    disabled?: boolean | undefined;
+    disabled?: boolean;
     modelValue: string;
-    helperText?: string | undefined;
-    invalid?: boolean | undefined;
-    icon?: "function" | "filter" | "link" | "table" | "account-filled" | "account" | "attachment" | "battery-empty" | "battery-filled" | "battery-full" | "battery-half" | "battery-outline" | "bell" | "bell-off" | "bell-on-outline" | "bell-on-filled" | "book" | "calculator" | "calendar" | "calendar-filled" | "calendar-days" | "chart-area" | "chart-area-filled" | "chart-bar" | "chart-bar-filled" | "chart-box" | "chart-box-filled" | "chart-pie" | "chart-pie-filled" | "chart-curve" | "chart-bubble" | "chart-donut" | "check" | "chevron-down" | "chevron-left" | "chevron-right" | "chevron-up" | "clock" | "clock-alert" | "clock-alert-filled" | "clock-filled" | "cloud-download" | "cloud-upload" | "cog" | "copy" | "cog-filled" | "database" | "document" | "dots-circle" | "dots-circle-filled" | "dots-horizontal" | "dots-vertical" | "empty" | "eye" | "eye-hide" | "excel" | "export" | "file-check" | "file-check-filled" | "file-document" | "file-document-filled" | "fingerprint" | "folder" | "folder-add" | "folder-filled" | "hamburger-menu" | "home" | "info-circle" | "language" | "lightning-bolt" | "lightning-bolt-filled" | "list" | "logout" | "mail" | "map-pin" | "message-alert" | "message-alert-filled" | "note" | "note-filled" | "palette" | "password" | "pencil" | "plus" | "png" | "pin" | "qr-code" | "qr-code-scan" | "reload" | "rocket" | "save" | "search" | "settings" | "sun" | "sync" | "solar-panel" | "solar-panel-alt" | "sort-asc" | "sort-desc" | "thermometer" | "timer" | "turbine" | "turbine-alert" | "turbine-ok" | "trash" | "tree" | "truck" | "user" | "users" | "user-circle" | "user-plus" | "user-minus" | "unpin" | "variable" | "view-list" | "view-list-filled" | "warning-circle" | "warning-triangle" | "week" | "wind" | "wrench" | "wrench-filled" | "x" | undefined;
-    height?: number | undefined;
-    readonly?: boolean | undefined;
+    helperText?: string;
+    invalid?: boolean;
+    icon?: IconLibraryType;
+    height?: number;
+    readonly?: boolean;
 }>, {
     type: string;
     placeholder: string;
 }>, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
     "update:modelValue": (...args: any[]) => void;
 }, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    label?: string | undefined;
-    placeholder?: string | undefined;
+    label?: string;
+    placeholder?: string;
     type: string;
-    disabled?: boolean | undefined;
+    disabled?: boolean;
     modelValue: string;
-    helperText?: string | undefined;
-    invalid?: boolean | undefined;
-    icon?: "function" | "filter" | "link" | "table" | "account-filled" | "account" | "attachment" | "battery-empty" | "battery-filled" | "battery-full" | "battery-half" | "battery-outline" | "bell" | "bell-off" | "bell-on-outline" | "bell-on-filled" | "book" | "calculator" | "calendar" | "calendar-filled" | "calendar-days" | "chart-area" | "chart-area-filled" | "chart-bar" | "chart-bar-filled" | "chart-box" | "chart-box-filled" | "chart-pie" | "chart-pie-filled" | "chart-curve" | "chart-bubble" | "chart-donut" | "check" | "chevron-down" | "chevron-left" | "chevron-right" | "chevron-up" | "clock" | "clock-alert" | "clock-alert-filled" | "clock-filled" | "cloud-download" | "cloud-upload" | "cog" | "copy" | "cog-filled" | "database" | "document" | "dots-circle" | "dots-circle-filled" | "dots-horizontal" | "dots-vertical" | "empty" | "eye" | "eye-hide" | "excel" | "export" | "file-check" | "file-check-filled" | "file-document" | "file-document-filled" | "fingerprint" | "folder" | "folder-add" | "folder-filled" | "hamburger-menu" | "home" | "info-circle" | "language" | "lightning-bolt" | "lightning-bolt-filled" | "list" | "logout" | "mail" | "map-pin" | "message-alert" | "message-alert-filled" | "note" | "note-filled" | "palette" | "password" | "pencil" | "plus" | "png" | "pin" | "qr-code" | "qr-code-scan" | "reload" | "rocket" | "save" | "search" | "settings" | "sun" | "sync" | "solar-panel" | "solar-panel-alt" | "sort-asc" | "sort-desc" | "thermometer" | "timer" | "turbine" | "turbine-alert" | "turbine-ok" | "trash" | "tree" | "truck" | "user" | "users" | "user-circle" | "user-plus" | "user-minus" | "unpin" | "variable" | "view-list" | "view-list-filled" | "warning-circle" | "warning-triangle" | "week" | "wind" | "wrench" | "wrench-filled" | "x" | undefined;
-    height?: number | undefined;
-    readonly?: boolean | undefined;
+    helperText?: string;
+    invalid?: boolean;
+    icon?: IconLibraryType;
+    height?: number;
+    readonly?: boolean;
 }>, {
     type: string;
     placeholder: string;
@@ -34,6 +42,7 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     type: string;
     placeholder: string;
 }, {}>;
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, ReturnType<typeof __VLS_template>>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
 type __VLS_TypePropsToRuntimeProps<T> = {
@@ -52,3 +61,8 @@ type __VLS_WithDefaults<P, D> = {
 type __VLS_Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

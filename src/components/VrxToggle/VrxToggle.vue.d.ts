@@ -47,7 +47,7 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
     disabled: boolean;
-    size: 'sm' | 'md' | 'lg';
+    size: "sm" | "md" | "lg";
     label: string;
     variant: ComponentVariant;
 }, {}>;

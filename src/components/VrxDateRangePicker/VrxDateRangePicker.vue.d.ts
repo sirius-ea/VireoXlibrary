@@ -38,6 +38,12 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     helperTextStop: {
         type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
     };
+    rangeScroller: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+    };
+    clearable: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+    };
 }, {
     getDates: () => any[];
     setDates: (dates: [Date | undefined, Date | undefined]) => void;
@@ -80,6 +86,12 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     };
     helperTextStop: {
         type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+    };
+    rangeScroller: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+    };
+    clearable: {
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
     };
 }>>, {}, {}>;
 export default _default;

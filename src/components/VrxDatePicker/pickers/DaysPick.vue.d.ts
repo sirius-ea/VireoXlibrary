@@ -1,9 +1,9 @@
 declare const _default: import('../../../../vue/dist/vue.esm-bundler.js').DefineComponent<__VLS_TypePropsToRuntimeProps<{
     month: number;
     year: number;
-    selectedDate?: Date | undefined;
-    validRange?: [Date | undefined, Date | undefined] | undefined;
-    timeEnabled?: boolean | undefined;
+    selectedDate?: Date;
+    validRange?: [Date | undefined, Date | undefined];
+    timeEnabled?: boolean;
 }>, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
     changeMinute: (...args: any[]) => void;
     changeHour: (...args: any[]) => void;
@@ -13,9 +13,9 @@ declare const _default: import('../../../../vue/dist/vue.esm-bundler.js').Define
 }, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
     month: number;
     year: number;
-    selectedDate?: Date | undefined;
-    validRange?: [Date | undefined, Date | undefined] | undefined;
-    timeEnabled?: boolean | undefined;
+    selectedDate?: Date;
+    validRange?: [Date | undefined, Date | undefined];
+    timeEnabled?: boolean;
 }>>> & {
     onChangeMinute?: ((...args: any[]) => any) | undefined;
     onChangeHour?: ((...args: any[]) => any) | undefined;
