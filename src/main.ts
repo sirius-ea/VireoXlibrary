@@ -24,6 +24,7 @@ export default {
         app.component('VrxTabContent', components.VrxTabContent)
         app.component('VrxNotification', components.VrxNotification)
         app.component('VrxNotificationContainer', components.VrxNotificationContainer)
+        app.component('VrxNode', components.VrxNode)
     }
 };
 export * from "@/components";

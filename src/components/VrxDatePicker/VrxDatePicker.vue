@@ -15,7 +15,12 @@
           @click="openPicker"
           :readonly="true"
           :invalid="invalid"
-      />
+      >
+        <template #right v-if="clearable && selectedDate !== null">
+          <VrxIcon class="cursor-pointer text-gray-400" icon="x" size="4" @click.stop="selectedDate = null"></VrxIcon>
+        </template>
+      </VrxInput>
+
     </div>
     <div v-if="helperText">
       <p class="mt-2 text-sm vrxdatepicker-helpertext-style" :class="invalid ? 'vrxdatepicker-helpertext-invalid-style' : ''">
@@ -36,7 +41,7 @@
             v-if="selectedStage === 'd' && !props.monthsOnly"
             :month="selectedMonth"
             :year="selectedYear"
-            :selected-date="selectedDate"
+            :selected-date="selectedDate === null ? undefined : selectedDate"
             :valid-range="validRange"
             :time-enabled="props.type === 'datetime'"
             @change-stage="(stage) => selectedStage = stage"
@@ -77,13 +82,14 @@ import {formattedDate, monthsLib} from "@/components/VrxDatePicker/DatePickerLib
 import VrxInput from "@/components/VrxInput/VrxInput.vue";
 import {vAppendToBody} from "@/directives"
 
-const selectedDate = defineModel<Date>({
+const selectedDate = defineModel<Date | null>({
   default: new Date()
 });
 
 const props = defineProps<{
   type: 'date' | 'time' | 'datetime',
   validRange?: [Date | undefined, Date | undefined],
+  clearable?: boolean,
   dateFormat?: string,
   monthsOnly?: boolean,
   placeholder?: string,
@@ -135,12 +141,17 @@ const closePicker = (event: any) => {
 const dayPicked = (day: any) => {
 
   selectedDate.value = new Date(day.year, day.month, day.number, selectedHorus.value, selectedMinutes.value);
-  if (selectedDate.value.getMonth() !== selectedMonth.value) {
-    selectedMonth.value = selectedDate.value.getMonth();
-    selectedYear.value = selectedDate.value.getFullYear();
-  }
-  emit('dayClicked', selectedDate.value);
-  showDropdown.value = false; // Close popup on day selection
+
+  nextTick(() => {
+    if(selectedDate.value) {
+      if (selectedDate.value.getMonth() !== selectedMonth.value) {
+        selectedMonth.value = selectedDate.value.getMonth();
+        selectedYear.value = selectedDate.value.getFullYear();
+      }
+      emit('dayClicked', selectedDate.value);
+      showDropdown.value = false; // Close popup on day selection
+    }
+  });
 }
 
 /**
@@ -218,7 +229,7 @@ const onHoursChange = (hours: number) => {
  * Set the date
  * @param date
  */
-const setDate = (date: Date) => {
+const setDate = (date: Date | null) => {
   selectedDate.value = date;
 }
 

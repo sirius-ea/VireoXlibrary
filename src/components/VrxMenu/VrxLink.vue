@@ -11,6 +11,11 @@ const menuContainer = inject<Ref<HTMLUListElement>>('menuContainer');
 const parentCloseCallback = inject<() => void>('closeAllMenus', () => {
 })
 
+defineSlots<{
+  default?: () => any;  // Default unnamed slot
+  child?: () => any; // Named slot 'children'
+}>();
+
 watch(() => showDropdown.value, (value) => {
   if (!containerRef.value || !dropdownRef.value || !menuContainer) return;
   if (value) {

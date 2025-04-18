@@ -205,6 +205,36 @@ const meta : Meta<typeof VrxDateRangePicker> = {
                     summary: 'false',
                 }
             }
+        } ,
+        clearable:{
+            description: 'Clear the input value',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
+        } ,
+        rangeScroller:{
+            description: 'Enable back and forward date range scroll',
+            control: {
+                type: 'boolean',
+            },
+            table: {
+                category: 'props',
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                }
+            }
         }
     }
 
@@ -252,6 +282,7 @@ const Template: DateRangePickerStories = {
         type: 'date',
         placeholderFrom: 'Start date',
         placeholderTo: 'Stop date',
+        rangeScroller: true,
         dateFormat: undefined,
         monthsOnly: false,
         invalid: false,

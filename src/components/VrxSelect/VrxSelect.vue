@@ -58,7 +58,7 @@
   </div>
 
   <div class="fixed top-0 left-0 w-full h-full z-20" v-if="showDropdown" @click="onFocusOut">
-  <div data-testid="vrx-select-dropdown" v-if="showDropdown"  class="menu text-sm" :class="style.dropdown" role="listbox" :id="'dropdown-'+id" v-append-to-body="$refs.toggle">
+  <div data-testid="vrx-select-dropdown" v-if="showDropdown"  class="menu text-sm" :class="style.dropdown" role="listbox" :id="'dropdown-'+id" v-out-of-view="[close]" v-append-to-body="$refs.toggle">
       <div v-if="searchable" class="w-full">
         <input
             type="text"
@@ -69,6 +69,7 @@
             @focusout="searchClick(false)"
         />
       </div>
+    <div class="overflow-y-auto w-full">
       <div v-for="(element, index) in listDataCopy" :key="index" class="dropdown-item w-full vrxselect-dropdown-item" :class="style.dropdownItem">
         <div
             :data-testid="'vrx-select-dropdown-' + index"
@@ -84,6 +85,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 
 </template>
@@ -95,7 +97,7 @@ import {selectStyles, ComponentVariant} from "@/components/styles";
 import {IconLibraryType} from "@/components/VrxIcon/IconLibrary";
 import type {SelectItemInterface} from "@/components";
 import {v4 as uuidv4} from 'uuid';
-import {vAppendToBody, vClickOutside} from "@/directives";
+import {vAppendToBody, vClickOutside, vOutOfView} from "@/directives";
 
 const id = uuidv4();
   const props = withDefaults(defineProps<{
@@ -137,6 +139,10 @@ const id = uuidv4();
   const style = computed(() => {
     return selectStyles(props.disabled, props.invalid, props.variant);
   })
+
+const close = () => {
+  showDropdown.value = false;
+}
 
   const searchFilter = (event: any) => {
     if(event){
@@ -205,7 +211,6 @@ const id = uuidv4();
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    overflow-y: auto;
   }
 
   .button-left-side {
