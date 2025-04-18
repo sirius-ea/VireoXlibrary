@@ -2,7 +2,7 @@
   "name": "@sirius-rd/vireoxlibrary",
   "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
   "private": false,
-  "version": "0.8.5-beta",
+  "version": "0.8.3",
   "type": "module",
   "files": [
     "dist"
@@ -64,7 +64,6 @@
     "react-dom": "^18.2.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "storybook": "^7.0.7",
-    "storybook-tailwind-foundations": "^1.1.2",
     "typescript": "^5.7.3",
     "vite": "^4.3.2",
     "vite-plugin-dts": "^3.7.2",
@@ -80,6 +79,5 @@
   },
   "resolutions": {
     "jackspeak": "2.1.1"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }
