@@ -7,7 +7,7 @@ if(!value || !controlObject) throw new Error('VrxTabLink must be used inside Vrx
 
 const {tab_name, beforeTabChange} = defineProps<{
   tab_name: string,
-  beforeTabChange?: (newTabName: string) => Promise<boolean> | boolean;
+  beforeTabChange?: (newTabName: string) => Promise<boolean>;
 }>();
 
 const selected = computed(() => value.value === tab_name)
