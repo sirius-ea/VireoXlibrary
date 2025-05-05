@@ -5,8 +5,9 @@ const value = inject<Ref<string> | null>('selectedValue')
 const controlObject = inject<{tabs:string[], content:string[]} | null>('controlObject')
 if(!value || !controlObject) throw new Error('VrxTabLink must be used inside VrxTabbar element')
 
-const {tab_name} = defineProps<{
-  tab_name: string
+const {tab_name, beforeTabChange} = defineProps<{
+  tab_name: string,
+  beforeTabChange?: (newTabName: string) => Promise<boolean> | boolean;
 }>();
 
 const selected = computed(() => value.value === tab_name)
@@ -18,8 +19,12 @@ onMounted(() => {
     console.warn(`Tab ${tab_name} has no corresponding tab content`)
 })
 
-function onLinkClick() {
-  if(selected.value) return
+async function onLinkClick() {
+  if (selected.value) return;
+  if (beforeTabChange) {
+    const canChange = await beforeTabChange(tab_name);
+    if (!canChange) return;
+  }
   value!.value = tab_name
 }
 </script>
