@@ -24,7 +24,69 @@ import {VrxTabbar, VrxTabList, VrxTabLink, VrxTabContent} from 'vireoxlibrary';
 
 The VrxTabbar component has the following subcomponents:
 - VrxTabList: Container for the tab links. It has a slot for putting the tab links and whatever you want to display
-- VrxTabLink: The tab link. It has a slot for putting the tab name or whatever you want to display. It has a `to` prop that should be set to the name of the tab content that should be displayed when the tab link is clicked
+- VrxTabLink: The tab link. It has a slot for putting the tab name or whatever you want to display. It has a `tab_name` prop that should be set to the name of the tab content that should be displayed when the tab link is clicked.
+  VrxTabLink component also accepts an optional property, `beforeTabChange`, which allows user to perform **custom logic before the tab changes**.
+  If provided, the tab change will occur **only if** the function returns `true` (or resolves to `true` if asynchronous).  
+  If it returns or resolves to `false`, the tab change is cancelled.
+  
+  This is useful for scenarios such as:
+  - Showing a confirmation dialog before leaving the current tab
+  - Validating unsaved changes
+  - Performing asynchronous checks (e.g., server validation)
+  - Preventing navigation based on custom rules
+  
+  #### Example: showing a confirmation dialog before changing tabs
+  
+  ```vue
+  <script setup lang="ts">
+  import { ref } from 'vue';
+  
+  const selectedTab = ref('cause');
+  const alertRef = ref();
+  const pendingResolve = ref<(result: boolean) => void>();
+  
+  // This function will be called before tab change
+  async function confirmTabChange(newSelected: any): Promise<boolean> {
+    selectedTab.value = newSelected;
+  
+    // Open confirmation dialog
+    return new Promise((resolve) => {
+      pendingResolve.value = resolve;
+      alertRef.value.open();
+    });
+  }
+  
+  function onAlertOk() {
+    alertRef.value.close();
+    pendingResolve.value?.(true);
+    pendingResolve.value = undefined;
+  }
+  
+  function onAlertCancel() {
+    alertRef.value.close();
+    pendingResolve.value?.(false);
+    pendingResolve.value = undefined;
+  }
+  </script>
+  
+  <template>
+    <VrxTabbar default-value="cause" class="flex flex-col h-full overflow-hidden p-4">
+      <VrxTabList>
+        <VrxTabLink tab_name="cause" :beforeTabChange="confirmTabChange">Causes</VrxTabLink>
+        <VrxTabLink tab_name="components" :beforeTabChange="confirmTabChange">Components</VrxTabLink>
+        <VrxTabLink tab_name="resetType" :beforeTabChange="confirmTabChange">Reset Types</VrxTabLink>
+      </VrxTabList>
+  
+      <VrxTabContent tab_name="cause"> <Causes /> </VrxTabContent>
+      <VrxTabContent tab_name="components"> <Components /> </VrxTabContent>
+      <VrxTabContent tab_name="resetType"> <ResetTypes /> </VrxTabContent>
+  
+      <!-- Your confirmation dialog component -->
+      <MessageAlert ref="alertRef" @ok="onAlertOk" @cancel="onAlertCancel" />
+    </VrxTabbar>
+  </template>
+  
+   
 - VrxTabContent: The tab content. It has a slot for putting the tab content. They are automatically displayed when the corresponding tab link is clicked. It has a `name` prop that should be set to the name of the tab link that should display the content
 
 The VrxTabbar has a mechanism to manage the active tab. You can set the default active tab by setting the `default-value` prop to the name of the tab you want to be active by default.
