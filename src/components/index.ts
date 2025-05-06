@@ -15,4 +15,5 @@ export * from './VrxNavbar';
 export * from './VrxMenu';
 export * from './VrxTabbar';
 export * from './VrxNotification';
+export * from './VrxLayout';
 export * from './VrxNode';
