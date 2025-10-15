@@ -5,7 +5,9 @@ Utilizza Tailwind CSS.
 
 ## Requisiti
 
-- Tailwind CSS
+- Tailwind CSS 3.x
+
+La libreria è progettata per funzionare con Tailwind CSS v3.x. Assicurati di avere Tailwind CSS installato nel tuo progetto.
 
 Per installare Tailwind CSS fare riferimento alla seguente guida:
 https://tailwindcss.com/docs/guides/vite
@@ -55,6 +57,22 @@ import '@sirius-rd/vireoxlibrary/dist/vireoxlibrary.css'
 
 Il progetto deve avere Tailwind CSS già configurato con il proprio layer `base`, oppure utilizzare un'altra libreria che lo fornisce (come Nuxt UI).
 
+### Compatibilità con Nuxt UI
+
+VireoXlibrary è ora completamente compatibile con Nuxt UI e altre librerie basate su Tailwind CSS. La libreria non include più il layer `base` di Tailwind, evitando così conflitti di stili. È possibile utilizzare entrambe le librerie nello stesso progetto senza problemi.
+
+### Personalizzazione dei Colori
+
+La libreria utilizza variabili CSS per i colori dei temi, che possono essere personalizzate sovrascrivendo le variabili CSS nel tuo progetto:
+
+```css
+:root {
+  --color-primary-500: #your-color;
+  --color-secondary-500: #your-color;
+  /* ... altre variabili */
+}
+```
+
 # Sito Documentazione
 
 https://sirius-ea.github.io/VireoXlibrary/
@@ -69,7 +87,9 @@ It uses Tailwind CSS.
 
 ## Requirements
 
-- Tailwind CSS
+- Tailwind CSS 3.x
+
+The library is designed to work with Tailwind CSS v3.x. Make sure you have Tailwind CSS installed in your project.
 
 To install Tailwind CSS refer to the following guide:
 https://tailwindcss.com/docs/guides/vite
@@ -118,6 +138,22 @@ import '@sirius-rd/vireoxlibrary/dist/vireoxlibrary.css'
 - Tailwind utility classes used by components
 
 Your project must have Tailwind CSS already configured with its own `base` layer, or use another library that provides it (such as Nuxt UI).
+
+### Compatibility with Nuxt UI
+
+VireoXlibrary is now fully compatible with Nuxt UI and other Tailwind CSS-based libraries. The library no longer includes Tailwind's `base` layer, avoiding style conflicts. You can use both libraries in the same project without issues.
+
+### Color Customization
+
+The library uses CSS variables for theme colors, which can be customized by overriding the CSS variables in your project:
+
+```css
+:root {
+  --color-primary-500: #your-color;
+  --color-secondary-500: #your-color;
+  /* ... other variables */
+}
+```
 
 # Documentation
 
