@@ -1,7 +1,29 @@
 /* VireoXlibrary - Component Styles Only */
 /* This file is used for library distribution and excludes Tailwind base layer to avoid conflicts with other libraries */
 
-/* Import component CSS files first (CSS @import must come before other rules) */
+/* VireoXlibrary - Component Styles Only */
+/* Tailwind CSS v4 */
+
+/* Import Tailwind CSS (preflight disabled via config) */
+@import "tailwindcss";
+@config "../tailwind.library.config.js";
+
+/* Define custom theme colors */
+@theme {
+  --color-primary-*: initial;
+  --color-secondary-*: initial;
+  --color-neutral-*: initial;
+  --color-error-*: initial;
+  --color-base-light: initial;
+  --color-base-dark: initial;
+  --color-content-light: initial;
+  --color-content-dark: initial;
+  --color-icon: initial;
+  --color-icon-disabled: initial;
+  --color-icon-invalid: initial;
+}
+
+/* Import component CSS files */
 @import "./components/VrxButton/VrxButton.css";
 @import "./components/VrxInput/VrxInput.css";
 @import "./components/VrxSelect/VrxSelect.css";
@@ -14,10 +36,6 @@
 @import "./components/VrxNotification/VrxNotification.css";
 @import "./components/VrxProgress/VrxProgress.css";
 @import "./components/VrxNode/VrxNode.css";
-
-/* Import Tailwind layers after component styles */
-@tailwind components;
-@tailwind utilities;
 
 /* CSS Variables for theming - defined without @layer to avoid requiring @tailwind base */
 :root {

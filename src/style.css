@@ -1,6 +1,5 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* Tailwind CSS v4 - Import all layers for development */
+@import "tailwindcss";
 
 @import "./components/VrxButton/VrxButton.css";
 @import "./components/VrxInput/VrxInput.css";
