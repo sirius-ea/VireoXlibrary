@@ -73,8 +73,8 @@ export default {
   plugins: [
   ],
   content: [
-    "./src/**/*.{js,jsx,vue,ts,tsx}",
-    "./src/components/**/*.{js,jsx,vue,ts,tsx}",
+    "./src/**/*.{js,jsx,vue,ts,tsx,css}",
+    "./src/components/**/*.{js,jsx,vue,ts,tsx,css}",
     "./src/**/*.stories.{js,ts}",
     "./index.html"
   ]

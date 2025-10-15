@@ -1,10 +1,7 @@
 /* VireoXlibrary - Component Styles Only */
 /* This file is used for library distribution and excludes Tailwind base layer to avoid conflicts with other libraries */
 
-/* Import only components and utilities layers, not base */
-@tailwind components;
-@tailwind utilities;
-
+/* Import component CSS files first (CSS @import must come before other rules) */
 @import "./components/VrxButton/VrxButton.css";
 @import "./components/VrxInput/VrxInput.css";
 @import "./components/VrxSelect/VrxSelect.css";
@@ -17,6 +14,10 @@
 @import "./components/VrxNotification/VrxNotification.css";
 @import "./components/VrxProgress/VrxProgress.css";
 @import "./components/VrxNode/VrxNode.css";
+
+/* Import Tailwind layers after component styles */
+@tailwind components;
+@tailwind utilities;
 
 /* CSS Variables for theming - defined without @layer to avoid requiring @tailwind base */
 :root {
