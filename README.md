@@ -5,12 +5,12 @@ Utilizza Tailwind CSS.
 
 ## Requisiti
 
-- Tailwind CSS 3.x
+- Tailwind CSS v4.x
 
-La libreria è progettata per funzionare con Tailwind CSS v3.x. Assicurati di avere Tailwind CSS installato nel tuo progetto.
+La libreria è progettata per funzionare con Tailwind CSS v4. Assicurati di avere Tailwind CSS v4 installato nel tuo progetto.
 
-Per installare Tailwind CSS fare riferimento alla seguente guida:
-https://tailwindcss.com/docs/guides/vite
+Per installare Tailwind CSS v4 fare riferimento alla seguente guida:
+https://tailwindcss.com/docs/installation
 
 ## Installazione
 
@@ -50,12 +50,26 @@ Importare il CSS della libreria nel file principale dell'applicazione:
 import '@sirius-rd/vireoxlibrary/dist/vireoxlibrary.css'
 ```
 
-**Nota importante:** La libreria NON include il layer `base` di Tailwind CSS per evitare conflitti con altre librerie come Nuxt UI. Il CSS della libreria contiene solo:
+### Configurazione PostCSS
+
+Assicurati di configurare PostCSS per usare Tailwind CSS v4:
+
+```js
+// postcss.config.js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}
+```
+
+**Nota importante:** La libreria NON include il layer `preflight` di Tailwind CSS per evitare conflitti con altre librerie come Nuxt UI. Il CSS della libreria contiene solo:
 - Stili specifici dei componenti
 - Variabili CSS per la personalizzazione
 - Utility classes di Tailwind utilizzate dai componenti
 
-Il progetto deve avere Tailwind CSS già configurato con il proprio layer `base`, oppure utilizzare un'altra libreria che lo fornisce (come Nuxt UI).
+Il progetto deve avere Tailwind CSS v4 già configurato con il proprio layer `preflight`, oppure utilizzare un'altra libreria che lo fornisce (come Nuxt UI).
 
 ### Compatibilità con Nuxt UI
 
@@ -87,12 +101,12 @@ It uses Tailwind CSS.
 
 ## Requirements
 
-- Tailwind CSS 3.x
+- Tailwind CSS v4.x
 
-The library is designed to work with Tailwind CSS v3.x. Make sure you have Tailwind CSS installed in your project.
+The library is designed to work with Tailwind CSS v4. Make sure you have Tailwind CSS v4 installed in your project.
 
-To install Tailwind CSS refer to the following guide:
-https://tailwindcss.com/docs/guides/vite
+To install Tailwind CSS v4 refer to the following guide:
+https://tailwindcss.com/docs/installation
 
 ## Installation
 
@@ -132,12 +146,26 @@ Import the library CSS in your application's main file:
 import '@sirius-rd/vireoxlibrary/dist/vireoxlibrary.css'
 ```
 
-**Important Note:** The library does NOT include Tailwind CSS's `base` layer to avoid conflicts with other libraries like Nuxt UI. The library CSS contains only:
+### PostCSS Configuration
+
+Make sure to configure PostCSS to use Tailwind CSS v4:
+
+```js
+// postcss.config.js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}
+```
+
+**Important Note:** The library does NOT include Tailwind CSS's `preflight` layer to avoid conflicts with other libraries like Nuxt UI. The library CSS contains only:
 - Component-specific styles
 - CSS variables for customization
 - Tailwind utility classes used by components
 
-Your project must have Tailwind CSS already configured with its own `base` layer, or use another library that provides it (such as Nuxt UI).
+Your project must have Tailwind CSS v4 already configured with its own `preflight` layer, or use another library that provides it (such as Nuxt UI).
 
 ### Compatibility with Nuxt UI
 

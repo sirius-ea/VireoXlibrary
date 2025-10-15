@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 import typescript2 from 'rollup-plugin-typescript2';
 import dts from "vite-plugin-dts";
+import removePreflightPlugin from './vite-plugin-remove-preflight.js';
 
 let __dirname = path.resolve();
 
@@ -32,7 +33,8 @@ export default defineConfig({
         },
       },
       exclude: ["vite.config.ts"]
-    })
+    }),
+    removePreflightPlugin()
   ],
   build: {
     cssCodeSplit: true,
