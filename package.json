@@ -26,12 +26,10 @@
     "tsc": "vue-tsc",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "storybook": "concurrently 'yarn:watch:*'",
-    "watch:storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006",
     "storybook-docs": "storybook dev --docs",
     "storybook-build-docs": "storybook build --docs",
     "build-storybook": "storybook build",
-    "watch:tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/output.css",
     "postinstall-dev": "rm -rf ./node_modules/@types/react"
   },
   "dependencies": {

@@ -14,18 +14,19 @@ export default function removePreflightPlugin() {
         if (fileName.endsWith('.css') && file.type === 'asset') {
           let css = file.source.toString();
           
-          // Remove Tailwind preflight rules
-          // These are the main preflight selectors that cause conflicts
-          const preflightPatterns = [
-            /html,:host\{[^}]*\}/g,
-            /\*,::before,::after\{[^}]*\}/g,
-            /::backdrop\{[^}]*\}/g,
-            /html,:host\{[^}]*\}@supports\([^)]*\)\{html,:host\{[^}]*\}\}/g,
-          ];
+          // Remove Tailwind preflight rules more carefully
+          // Handle @supports rules that contain preflight selectors
+          css = css.replace(/@supports[^{]*\{[^}]*\*,:before,:after[^}]*\}+/g, '');
           
-          preflightPatterns.forEach(pattern => {
-            css = css.replace(pattern, '');
-          });
+          // Remove standalone preflight rules
+          css = css.replace(/html,:host\{[^}]*\}/g, '');
+          css = css.replace(/\*,::before,::after\{[^}]*\}/g, '');
+          css = css.replace(/::backdrop\{[^}]*\}/g, '');
+          
+          // Clean up any leftover malformed rules (empty selectors, trailing commas, etc.)
+          css = css.replace(/\{\s*\}/g, ''); // Remove empty rules
+          css = css.replace(/[,;]\s*\}/g, '}'); // Remove trailing commas/semicolons before closing brace
+          css = css.replace(/\s+\}/g, '}'); // Clean up whitespace before closing brace
           
           // Update the bundle
           file.source = css;
