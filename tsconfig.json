@@ -25,6 +25,7 @@
     "declaration": true,
     "outDir": "dist",
     "declarationDir": "dist",
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

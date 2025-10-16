@@ -1,45 +1,112 @@
-@layer components {
-    .vrxtoggle-style{
-        @apply bg-neutral-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-neutral-50 after:content-[''] after:absolute after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:transition-all;
-        @apply dark:border-neutral-600 dark:bg-neutral-600;
-    }
-    .vrxtoggle-default-style{
-        @apply peer-checked:bg-primary-600;
-    }
-    .vrxtoggle-red-style{
-        @apply peer-checked:bg-red-600;
-    }
-    .vrxtoggle-green-style{
-        @apply peer-checked:bg-green-600;
-    }
-    .vrxtoggle-purple-style{
-        @apply peer-checked:bg-purple-600;
-    }
-    .vrxtoggle-yellow-style{
-        @apply peer-checked:bg-yellow-400;
-    }
+/* --- Toggle base --- */
+.vrxtoggle-style {
+  position: relative;
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: var(--color-neutral-200);
+  border: 1px solid var(--color-neutral-300);
+}
 
-    .vrxtoggle-sm-style{
-        @apply w-9 h-5 after:top-[2px] after:left-[2px] after:h-4 after:w-4;
-    }
-    .vrxtoggle-md-style{
-        @apply w-11 h-6 after:top-[2px] after:left-[2px] after:h-5 after:w-5;
-    }
-    .vrxtoggle-lg-style{
-        @apply w-14 h-7 after:top-0.5 after:left-[4px] after:h-6 after:w-6;
-    }
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .vrxtoggle-style {
+    background-color: var(--color-neutral-600);
+    border-color: var(--color-neutral-600);
+  }
+}
 
-    .vrxtoggle-label-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxtoggle-label-disabled-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
+/* Pseudo-elemento "after" (pallina del toggle) */
+.vrxtoggle-style::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-neutral-50);
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+}
 
-    .vrxtoggle-disabled-toggle{
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
+/* Checked */
+.peer:checked + .vrxtoggle-style::after {
+  transform: translateX(100%);
+  border-color: var(--color-neutral-50);
+}
+
+/* --- Varianti colore (checked) --- */
+.vrxtoggle-default-style.peer:checked + .vrxtoggle-style {
+  background-color: var(--color-primary-600);
+}
+
+.vrxtoggle-red-style.peer:checked + .vrxtoggle-style {
+  background-color: var(--color-red-600);
+}
+
+.vrxtoggle-green-style.peer:checked + .vrxtoggle-style {
+  background-color: var(--color-green-600);
+}
+
+.vrxtoggle-purple-style.peer:checked + .vrxtoggle-style {
+  background-color: var(--color-purple-600);
+}
+
+.vrxtoggle-yellow-style.peer:checked + .vrxtoggle-style {
+  background-color: var(--color-yellow-400);
+}
+
+/* --- Dimensioni --- */
+.vrxtoggle-sm-style {
+  width: 2.25rem;   /* w-9 */
+  height: 1.25rem;  /* h-5 */
+}
+.vrxtoggle-sm-style::after {
+  top: 2px;
+  left: 2px;
+  width: 1rem;   /* h-4 */
+  height: 1rem;  /* w-4 */
+}
+
+.vrxtoggle-md-style {
+  width: 2.75rem;   /* w-11 */
+  height: 1.5rem;   /* h-6 */
+}
+.vrxtoggle-md-style::after {
+  top: 2px;
+  left: 2px;
+  width: 1.25rem;  /* h-5 */
+  height: 1.25rem; /* w-5 */
+}
+
+.vrxtoggle-lg-style {
+  width: 3.5rem;   /* w-14 */
+  height: 1.75rem; /* h-7 */
+}
+.vrxtoggle-lg-style::after {
+  top: 0.125rem;   /* 0.5 */
+  left: 4px;
+  width: 1.5rem;   /* h-6 */
+  height: 1.5rem;  /* w-6 */
+}
+
+/* --- Label --- */
+.vrxtoggle-label-style {
+  color: var(--color-content-light);
+}
+@media (prefers-color-scheme: dark) {
+  .vrxtoggle-label-style {
+    color: var(--color-content-dark);
+  }
+}
+
+.vrxtoggle-label-disabled-style {
+  color: var(--color-content-light);
+}
+@media (prefers-color-scheme: dark) {
+  .vrxtoggle-label-disabled-style {
+    color: var(--color-content-dark);
+  }
+}
+
+/* --- Stato disabilitato --- */
+.vrxtoggle-disabled-toggle {
+  cursor: not-allowed;
+  opacity: 0.5;
 }

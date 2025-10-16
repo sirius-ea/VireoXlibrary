@@ -1,7 +1,6 @@
 {
   "name": "@sirius-rd/vireoxlibrary",
   "homepage": "https://sirius-ea.github.io/VireoXlibrary/",
-  "private": false,
   "version": "0.8.3",
   "type": "module",
   "files": [
@@ -36,7 +35,8 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.17",
-    "tailwindcss": "^3.4.1",
+    "@tailwindcss/vite": "^4.1.13",
+    "tailwindcss": "^4.1.13",
     "uuid": "^9.0.1",
     "vue": "^3.4.15",
     "vuedraggable": "^4.1.0"
@@ -54,12 +54,10 @@
     "@types/uuid": "^9.0.7",
     "@vitejs/plugin-vue": "^5.0.0",
     "@vue/test-utils": "^2.3.2",
-    "autoprefixer": "^10.4.14",
     "concurrently": "^8.0.1",
     "gh-pages": "^5.0.0",
     "happy-dom": "^9.10.9",
     "path": "^0.12.7",
-    "postcss": "^8.4.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup-plugin-typescript2": "^0.34.1",
@@ -79,5 +77,6 @@
   },
   "resolutions": {
     "jackspeak": "2.1.1"
-  }
+  },
+  "packageManager": "yarn@4.9.4"
 }

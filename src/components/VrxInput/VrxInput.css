@@ -1,45 +1,97 @@
-@layer components {
-    .vrxinput-input-style, .vrxinput-input-disabled-style, .vrxinput-input-invalid-style{
-        @apply outline-none border text-sm rounded-lg p-2.5 block w-full;
-    }
-    .vrxinput-input-style{
-        @apply border-primary-300 text-content-light focus:ring-secondary-500 focus:border-secondary-500;
-        @apply dark:text-content-dark dark:bg-base-dark dark:border-primary-600 dark:placeholder-content-dark dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
-    }
-    .vrxinput-input-disabled-style{
-        @apply border-primary-50;
-        @apply bg-base-light text-content-light;
-        @apply dark:bg-base-dark dark:text-content-dark;
-    }
-    .vrxinput-input-invalid-style{
-        @apply border-error-500;
-        @apply bg-error-50 text-error-900 placeholder-error-700 focus:ring-error-500 focus:border-error-500;
-        @apply dark:bg-error-950 dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
-    }
+@layer {
+  .vrxinput-input-style {
+    outline: none;
+    border-width: 1px;
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0.625rem; /* p-2.5 */
+    display: block;
+    width: 100%;
+    font-size: 0.875rem; /* text-sm */
+    border-color: var(--color-primary-300);
+    color: var(--color-content-light);
+  }
+  .vrxinput-input-style:focus {
+    ring-color: var(--color-secondary-500);
+    border-color: var(--color-secondary-500);
+  }
+  [data-mode="dark"] .vrxinput-input-style {
+    color: var(--color-content-dark);
+    background-color: var(--color-base-dark);
+    border-color: var(--color-primary-600);
+  }
+  [data-mode="dark"] .vrxinput-input-style::placeholder {
+    color: var(--color-content-dark);
+  }
 
-    .vrxinput-label-style {
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxinput-label-disabled-style {
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxinput-label-invalid-style {
-        @apply text-error-700;
-        @apply dark:text-error-500;
-    }
+  .vrxinput-input-disabled-style {
+    outline: none;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    border-color: var(--color-primary-50);
+    background-color: var(--color-base-light);
+    color: var(--color-content-light);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  [data-mode="dark"] .vrxinput-input-disabled-style {
+    background-color: var(--color-base-dark);
+    color: var(--color-content-dark);
+  }
 
-    .vrxinput-helperText-style {
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxinput-helperText-disabled-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxinput-helperText-invalid-style{
-        @apply text-error-600;
-        @apply dark:text-error-500;
-    }
+  .vrxinput-input-invalid-style {
+    outline: none;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    border-color: var(--color-error-500);
+    background-color: var(--color-error-50);
+    color: var(--color-error-900);
+  }
+  .vrxinput-input-invalid-style::placeholder {
+    color: var(--color-error-700);
+  }
+  .vrxinput-input-invalid-style:focus {
+    border-color: var(--color-error-500);
+    ring-color: var(--color-error-500);
+  }
+  [data-mode="dark"] .vrxinput-input-invalid-style {
+    border-color: var(--color-error-500);
+    background-color: var(--color-error-950);
+    color: var(--color-error-400);
+  }
+  [data-mode="dark"] .vrxinput-input-invalid-style::placeholder {
+    color: var(--color-error-500);
+  }
+  [data-mode="dark"] .vrxinput-input-invalid-style:focus {
+    border-color: var(--color-error-600);
+  }
+
+  .vrxinput-label-style,
+  .vrxinput-label-disabled-style,
+  .vrxinput-helperText-style,
+  .vrxinput-helperText-disabled-style {
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrxinput-label-style,
+  [data-mode="dark"] .vrxinput-label-disabled-style,
+  [data-mode="dark"] .vrxinput-helperText-style,
+  [data-mode="dark"] .vrxinput-helperText-disabled-style {
+    color: var(--color-content-dark);
+  }
+
+  .vrxinput-label-invalid-style,
+  .vrxinput-helperText-invalid-style {
+    color: var(--color-error-700);
+  }
+  [data-mode="dark"] .vrxinput-label-invalid-style,
+  [data-mode="dark"] .vrxinput-helperText-invalid-style {
+    color: var(--color-error-500);
+  }
 }

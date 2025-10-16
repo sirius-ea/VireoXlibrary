@@ -1,16 +1,22 @@
 @layer components {
-    .vrxnode-chevron-color{
-        @apply dark:text-content-dark text-content-light;
-    }
+  .vrxnode-chevron-color {
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrxnode-chevron-color {
+    color: var(--color-content-dark);
+  }
 
-    .vrxnode-main {
-        @apply pl-[10px];
-    }
-    .vrxnode-header {
-        @apply flex items-center gap-[5px]
-    }
-    .vrxnode-children {
-        @apply pl-[20px]
-    }
+  .vrxnode-main {
+    padding-left: 10px;
+  }
 
+  .vrxnode-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .vrxnode-children {
+    padding-left: 20px;
+  }
 }

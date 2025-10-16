@@ -1,85 +1,83 @@
 @layer components {
-    .vrxselect-input-style, .vrxselect-input-disabled-style, .vrxselect-input-invalid-style{
-        @apply outline-none border text-sm rounded-lg p-2.5 block w-full;
-    }
-    .vrxselect-input-style{
-        @apply border-primary-300 text-content-light focus:ring-secondary-500 focus:border-secondary-500;
-        @apply dark:text-content-dark dark:bg-base-dark dark:border-primary-600 dark:placeholder-content-dark dark:focus:ring-secondary-500 dark:focus:border-secondary-500;
-    }
-    .vrxselect-input-disabled-style{
-        @apply border-primary-50;
-        @apply bg-base-light text-content-light;
-        @apply dark:bg-base-dark dark:text-content-dark;
-    }
-    .vrxselect-input-invalid-style{
-        @apply border-error-500;
-        @apply bg-error-50 text-error-900 placeholder-error-700 focus:ring-error-500 focus:border-error-500;
-        @apply dark:bg-base-dark dark:text-error-400 dark:placeholder-error-500 dark:border-error-500 dark:focus:border-error-600;
-    }
+  .vrxselect-input-style {
+    outline: none;
+    border-width: 1px;
+    font-size: 0.875rem; /* text-sm */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0.625rem; /* p-2.5 */
+    display: block;
+    width: 100%;
+    border-color: var(--color-primary-300);
+    color: var(--color-content-light);
+  }
+  .vrxselect-input-style:focus {
+    outline: none;
+    border-color: var(--color-secondary-500);
+    box-shadow: 0 0 0 3px var(--color-secondary-500);
+  }
+  [data-mode="dark"] .vrxselect-input-style {
+    color: var(--color-content-dark);
+    background-color: var(--color-base-dark);
+    border-color: var(--color-primary-600);
+  }
+  [data-mode="dark"] .vrxselect-input-style::placeholder {
+    color: var(--color-content-dark);
+  }
+  [data-mode="dark"] .vrxselect-input-style:focus {
+    border-color: var(--color-secondary-500);
+    box-shadow: 0 0 0 3px var(--color-secondary-500);
+  }
 
-    .vrxselect-label-style {
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxselect-label-disabled-style {
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxselect-label-invalid-style {
-        @apply text-error-700;
-        @apply dark:text-error-500;
-    }
+  .vrxselect-input-disabled-style {
+    outline: none;
+    border-width: 1px;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    display: block;
+    width: 100%;
+    border-color: var(--color-primary-50);
+    background-color: var(--color-base-light);
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrxselect-input-disabled-style {
+    background-color: var(--color-base-dark);
+    color: var(--color-content-dark);
+  }
 
-    .vrxselect-helperText-style {
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxselect-helperText-disabled-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxselect-helperText-invalid-style{
-        @apply text-error-600;
-        @apply dark:text-error-500;
-    }
+  .vrxselect-input-invalid-style {
+    outline: none;
+    border-width: 1px;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    display: block;
+    width: 100%;
+    border-color: var(--color-error-500);
+    background-color: var(--color-error-50);
+    color: var(--color-error-900);
+  }
+  [data-mode="dark"] .vrxselect-input-invalid-style {
+    background-color: var(--color-base-dark);
+    color: var(--color-error-400);
+    border-color: var(--color-error-500);
+  }
 
-    .vrxselect-dropdownItem-style{
-        @apply hover:bg-base-light;
-        @apply dark:hover:bg-base-dark;
-    }
+  .vrxselect-label-style,
+  .vrxselect-helperText-style {
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrxselect-label-style,
+  [data-mode="dark"] .vrxselect-helperText-style {
+    color: var(--color-content-dark);
+  }
 
-    .vrxselect-placeholder-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxselect-placeholder-invalid-style{
-        @apply text-error-600;
-        @apply dark:text-error-600;
-    }
-    .vrxselect-placeholder-disabled-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-
-    .vrxselect-dropdown-style, .vrxselect-dropdown-invalid-style{
-        @apply border;
-    }
-    .vrxselect-dropdown-style{
-        @apply bg-base-light border-primary-300 text-content-light;
-        @apply dark:bg-base-dark dark:border-primary-600 dark:text-content-dark;
-    }
-    .vrxselect-dropdown-invalid-style{
-        @apply bg-error-50 border-error-500 text-error-900;
-        @apply dark:bg-base-dark dark:border-error-500 dark:text-error-500;
-    }
-
-    .vrxselect-dropdown-item{
-        @apply hover:bg-neutral-200;
-        @apply dark:hover:bg-neutral-500;
-    }
-
-    .vrxselect-included-style{
-        @apply bg-secondary-100;
-        @apply dark:bg-secondary-500;
-    }
+  .vrxselect-label-invalid-style,
+  .vrxselect-helperText-invalid-style {
+    color: var(--color-error-700);
+  }
+  [data-mode="dark"] .vrxselect-label-invalid-style,
+  [data-mode="dark"] .vrxselect-helperText-invalid-style {
+    color: var(--color-error-500);
+  }
 }

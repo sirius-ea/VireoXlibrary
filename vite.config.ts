@@ -2,7 +2,6 @@ import {defineConfig, UserConfigExport} from 'vite'
 import type { UserConfig as VitestUserConfigInterface } from "vitest/config"
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
-import typescript2 from 'rollup-plugin-typescript2';
 import dts from "vite-plugin-dts";
 
 let __dirname = path.resolve();
@@ -20,19 +19,6 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
     }),
-    typescript2({
-      check: false,
-      include: ["src/components/**/*.vue"],
-      tsconfigOverride: {
-        compilerOptions: {
-          outDir: "dist",
-          sourceMap: true,
-          declaration: true,
-          declarationMap: true,
-        },
-      },
-      exclude: ["vite.config.ts"]
-    })
   ],
   build: {
     cssCodeSplit: true,
@@ -50,16 +36,7 @@ export default defineConfig({
         main: path.resolve(__dirname, "src/main.ts")
       },
       external: ['vue', "vuedraggable"],
-      output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'main.css') return 'vireoxlibrary.css';
-          return assetInfo.name;
-        },
-        exports: "named",
-        globals: {
-          vue: 'Vue',
-        },
-      },
+      sourcemap: true,
     },
   },
   resolve: {

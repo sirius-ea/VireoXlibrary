@@ -1,76 +1,106 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
-@import "./components/VrxButton/VrxButton.css";
-@import "./components/VrxInput/VrxInput.css";
-@import "./components/VrxSelect/VrxSelect.css";
-@import "./components/VrxToggle/VrxToggle.css";
-@import "./components/VrxNavbar/VrxNavbar.css";
-@import "./components/VrxTree/VrxTree.css";
-@import "./components/VrxGrid/VrxGrid.css";
-@import "./components/VrxDatePicker/VrxDatePicker.css";
-@import "./components/VrxDateRangePicker/VrxDateRangePicker.css";
-@import "./components/VrxNotification/VrxNotification.css";
-@import "./components/VrxProgress/VrxProgress.css";
-@import "./components/VrxNode/VrxNode.css";
+@import './components/VrxSelect/VrxSelect.css';
+@import './components/VrxToggle/VrxToggle.css';
+@import './components/VrxNavbar/VrxNavbar.css';
+@import './components/VrxTree/VrxTree.css';
+@import './components/VrxGrid/VrxGrid.css';
+@import './components/VrxDatePicker/VrxDatePicker.css';
+@import './components/VrxDateRangePicker/VrxDateRangePicker.css';
+@import './components/VrxNotification/VrxNotification.css';
+@import './components/VrxProgress/VrxProgress.css';
+@import './components/VrxNode/VrxNode.css';
 
-@layer base {
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+
+@layer {
     :root {
-        --color-primary-50: theme('colors.gray.50');
-        --color-primary-100: theme('colors.gray.100');
-        --color-primary-200: theme('colors.gray.200');
-        --color-primary-300: theme('colors.gray.300');
-        --color-primary-400: theme('colors.gray.400');
-        --color-primary-500: theme('colors.gray.500');
-        --color-primary-600: theme('colors.gray.600');
-        --color-primary-700: theme('colors.gray.700');
-        --color-primary-800: theme('colors.gray.800');
-        --color-primary-900: theme('colors.gray.900');
-        --color-primary-950: theme('colors.gray.950');
-        --color-secondary-50: theme('colors.blue.50');
-        --color-secondary-100: theme('colors.blue.100');
-        --color-secondary-200: theme('colors.blue.200');
-        --color-secondary-300: theme('colors.blue.300');
-        --color-secondary-400: theme('colors.blue.400');
-        --color-secondary-500: theme('colors.blue.500');
-        --color-secondary-600: theme('colors.blue.600');
-        --color-secondary-700: theme('colors.blue.700');
-        --color-secondary-800: theme('colors.blue.800');
-        --color-secondary-900: theme('colors.blue.900');
-        --color-secondary-950: theme('colors.blue.950');
-        --color-neutral-50: theme('colors.gray.50');
-        --color-neutral-100: theme('colors.gray.100');
-        --color-neutral-200: theme('colors.gray.200');
-        --color-neutral-300: theme('colors.gray.300');
-        --color-neutral-400: theme('colors.gray.400');
-        --color-neutral-500: theme('colors.gray.500');
-        --color-neutral-600: theme('colors.gray.600');
-        --color-neutral-700: theme('colors.gray.700');
-        --color-neutral-800: theme('colors.gray.800');
-        --color-neutral-900: theme('colors.gray.900');
-        --color-neutral-950: theme('colors.gray.950');
-        --color-error-50: theme('colors.red.50');
-        --color-error-100: theme('colors.red.100');
-        --color-error-200: theme('colors.red.200');
-        --color-error-300: theme('colors.red.300');
-        --color-error-400: theme('colors.red.400');
-        --color-error-500: theme('colors.red.500');
-        --color-error-600: theme('colors.red.600');
-        --color-error-700: theme('colors.red.700');
-        --color-error-800: theme('colors.red.800');
-        --color-error-900: theme('colors.red.900');
-        --color-error-950: theme('colors.red.950');
-        --color-base-light: theme('colors.gray.100');
-        --color-base-dark: theme('colors.gray.700');
-        --color-content-light: theme('colors.slate.950');
-        --color-content-dark: theme('colors.slate.50');
+        --color-primary-50: var(--color-gray-50);
+        --color-primary-100: var(--color-gray-100);
+        --color-primary-200: var(--color-gray-200);
+        --color-primary-300: var(--color-gray-300);
+        --color-primary-400: var(--color-gray-400);
+        --color-primary-500: var(--color-gray-500);
+        --color-primary-600: var(--color-gray-600);
+        --color-primary-700: var(--color-gray-700);
+        --color-primary-800: var(--color-gray-800);
+        --color-primary-900: var(--color-gray-900);
+        --color-primary-950: var(--color-gray-950);
+        --color-secondary-50: var(--color-blue-50);
+        
+        --color-secondary-100: var(--color-blue-100);
+        --color-secondary-200: var(--color-blue-200);
+        --color-secondary-300: var(--color-blue-300);
+        --color-secondary-400: var(--color-blue-400);
+        --color-secondary-500: var(--color-blue-500);
+        --color-secondary-600: var(--color-blue-600);
+        --color-secondary-700: var(--color-blue-700);
+        --color-secondary-800: var(--color-blue-800);
+        --color-secondary-900: var(--color-blue-900);
+        --color-secondary-950: var(--color-blue-950);
+        
+        --color-neutral-50: var(--color-gray-50);
+        --color-neutral-100: var(--color-gray-100);
+        --color-neutral-200: var(--color-gray-200);
+        --color-neutral-300: var(--color-gray-300);
+        --color-neutral-400: var(--color-gray-400);
+        --color-neutral-500: var(--color-gray-500);
+        --color-neutral-600: var(--color-gray-600);
+        --color-neutral-700: var(--color-gray-700);
+        --color-neutral-800: var(--color-gray-800);
+        --color-neutral-900: var(--color-gray-900);
+        --color-neutral-950: var(--color-gray-950);
+        
+        --color-error-50: var(--color-red-50);
+        --color-error-100: var(--color-red-100);
+        --color-error-200: var(--color-red-200);
+        --color-error-300: var(--color-red-300);
+        --color-error-400: var(--color-red-400);
+        --color-error-500: var(--color-red-500);
+        --color-error-600: var(--color-red-600);
+        --color-error-700: var(--color-red-700);
+        --color-error-800: var(--color-red-800);
+        --color-error-900: var(--color-red-900);
+        --color-error-950: var(--color-red-950);
+        
+        --color-base-light: var(--color-gray-100);
+        --color-base-dark: var(--color-gray-700);
+        --color-content-light: var(--color-slate-950);
+        --color-content-dark: var(--color-slate-50);
         --color-icon: var(--color-neutral-400);
         --color-icon-disabled: var(--color-neutral-300);
         --color-icon-invalid: var(--color-error-600);
     }
 }
+html, body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
 
+.title {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.text {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.label {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+}
 
 .icon-active{
     transform: rotate(180deg);

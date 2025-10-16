@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section v-if="value === tab_name" class="z-0 mt-2">
+  <section v-if="value === tab_name" class="z-0 mt-2 h-full">
     <slot></slot>
   </section>
 </template>

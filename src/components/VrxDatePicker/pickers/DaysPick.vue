@@ -135,7 +135,7 @@ const getStyle = (day: CalendarDay) => {
   } else if (day.isToday) {
     style += ' vrxdatepicker-daypicker-istoday-style';
   } else if (!day.isCurrentMonth) {
-    style += ' vrxdatepicker-daypicker-iscurrentmonth-style !font-normal';
+    style += ' vrxdatepicker-daypicker-iscurrentmonth-style font-normal!';
     if (day.disabled) style += ' line-through';
   } else if (day.disabled) {
     style += ' vrxdatepicker-daypicker-isdisabled-style line-through';

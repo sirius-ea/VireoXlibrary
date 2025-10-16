@@ -1,5 +1,10 @@
 @layer components {
-    .vrxprogress-color {
-        @apply border-t-neutral-500 dark:border-t-neutral-400;
-    }
+  .vrxprogress-color {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #6b7280; /* neutral-500 */
+  }
+  [data-mode="dark"] .vrxprogress-color {
+    border-top-color: #9ca3af; /* neutral-400 */
+  }
 }

@@ -1,43 +1,93 @@
 @layer components {
+  .vrx-notification {
+    border: 1px solid;
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1rem; /* p-4 */
+    position: relative;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrx-notification {
+    color: var(--color-content-dark);
+  }
 
-    .vrx-notification {
-        @apply border border-solid rounded-lg p-4 relative mb-2 cursor-pointer;
-        @apply text-gray-50 dark:text-gray-900;
-    }
+  .vrx-notification-success {
+    border-color: #047857; /* border-emerald-700 */
+    background-color: #047857; /* bg-emerald-700 */
+    opacity: 0.9;
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrx-notification-success {
+    border-color: #065f46; /* dark:border-emerald-800 */
+    background-color: #065f46; /* dark:bg-emerald-600 */
+    opacity: 0.9;
+    color: var(--color-content-light);
+  }
 
-    .vrx-notification-success {
-        @apply border-emerald-700 dark:border-emerald-800;
-        @apply bg-emerald-700 bg-opacity-90 dark:bg-emerald-600 dark:bg-opacity-90;
-        @apply text-gray-50 dark:text-gray-50;
-    }
+  .vrx-notification-warning {
+    border-color: #b45309; /* border-orange-700 */
+    background-color: #ea580c; /* bg-orange-600 */
+    opacity: 0.9;
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrx-notification-warning {
+    border-color: #c2410c; /* dark:border-orange-800 */
+    background-color: #f97316; /* dark:bg-orange-500 */
+    opacity: 0.9;
+    color: var(--color-content-light);
+  }
 
-    .vrx-notification-warning {
-        @apply border-orange-700 dark:border-orange-800;
-        @apply bg-orange-600 bg-opacity-90 dark:bg-orange-500 dark:bg-opacity-90;
-        @apply text-gray-50 dark:text-gray-50;
-    }
+  .vrx-notification-error {
+    border-color: #7f1d1d; /* border-red-900 */
+    background-color: #dc2626; /* bg-red-600 */
+    opacity: 0.9;
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrx-notification-error {
+    border-color: #991b1b; /* dark:border-red-800 */
+    background-color: #dc2626; /* dark:bg-red-600 */
+    opacity: 0.9;
+    color: var(--color-content-light);
+  }
 
-    .vrx-notification-error {
-        @apply border-red-900 dark:border-red-800;
-        @apply bg-red-600 bg-opacity-90 dark:bg-red-600 dark:bg-opacity-90;
-        @apply text-gray-50 dark:text-gray-50;
-    }
+  .vrx-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 2px;
+    height: 0.25rem; /* h-1 */
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.1s linear;
+    background-color: var(--color-content-light);
+    opacity: 0.9;
+  }
+  [data-mode="dark"] .vrx-progress-bar {
+    background-color: var(--color-content-dark);
+    opacity: 0.9;
+  }
 
-    .vrx-progress-bar {
-        left: 2px;
-        @apply absolute bottom-0 h-1 rounded-b-lg overflow-hidden;
-        @apply transition-all duration-100 ease-linear;
-        @apply bg-gray-50 bg-opacity-90 dark:bg-gray-50 dark:bg-opacity-90;
-    }
+  .vrx-notification-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 300px;
+    z-index: 50;
+  }
 
-    .vrx-notification-container {
-        @apply fixed top-4 right-4 w-[300px] z-50;
-    }
-
-    .vrx-unread-notifications {
-        @apply border border-solid border-gray-800 dark:border-gray-600 rounded-lg p-4 relative my-2 mx-0 text-center;
-        @apply bg-gray-50 dark:bg-gray-800;
-        @apply text-gray-800 dark:text-gray-50;
-    }
-
+  .vrx-unread-notifications {
+    border: 1px solid #1f2937; /* border-gray-800 */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.5rem 0 0.5rem 0;
+    text-align: center;
+    background-color: var(--color-base-light);
+    color: #1f2937; /* text-gray-800 */
+  }
+  [data-mode="dark"] .vrx-unread-notifications {
+    border-color: #4b5563; /* dark:border-gray-600 */
+    background-color: var(--color-base-dark);
+    color: var(--color-content-dark);
+  }
 }

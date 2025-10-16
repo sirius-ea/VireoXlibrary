@@ -1,46 +1,86 @@
-@layer components {
-    .vrxdatepicker-helpertext-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
+/* VRX Datepicker */
 
-    .vrxdatepicker-helpertext-invalid-style{
-        @apply text-error-500;
-        @apply dark:text-error-700;
-    }
+.vrxdatepicker-helpertext-style {
+  color: var(--color-content-light);
+}
 
-    .vrxdatepicker-dropdown-bg-style{
-        @apply bg-base-light;
-        @apply dark:bg-base-dark;
-    }
+.vrxdatepicker-helpertext-invalid-style {
+  color: var(--color-error-500);
+}
 
-    .vrxdatepicker-daypicker-text-style, .vrxdatepicker-monthpicker-text-style, .vrxdatepicker-yearpicker-text-style, .vrxdatepicker-timepicker-text-style{
-        @apply hover:bg-primary-300 text-content-light;
-        @apply dark:hover:bg-primary-500 dark:hover:text-content-dark dark:text-content-dark;
-    }
+.vrxdatepicker-dropdown-bg-style {
+  background-color: var(--color-base-light);
+}
 
-    .vrxdatepicker-yearpicker-header-text-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
+.vrxdatepicker-daypicker-text-style,
+.vrxdatepicker-monthpicker-text-style,
+.vrxdatepicker-yearpicker-text-style,
+.vrxdatepicker-timepicker-text-style {
+  color: var(--color-content-light);
+}
+.vrxdatepicker-daypicker-text-style:hover,
+.vrxdatepicker-monthpicker-text-style:hover,
+.vrxdatepicker-yearpicker-text-style:hover,
+.vrxdatepicker-timepicker-text-style:hover {
+  background-color: var(--color-primary-300);
+}
 
-    .vrxdatepicker-timepicker-bg-style{
-        @apply border-primary-200;
-        @apply dark:border-primary-600;
-    }
+.vrxdatepicker-yearpicker-header-text-style {
+  color: var(--color-content-light);
+}
 
-    .vrxdatepicker-daypicker-isselected-style{
-        @apply bg-secondary-300;
-        @apply dark:bg-secondary-700
-    }
+.vrxdatepicker-timepicker-bg-style {
+  border-color: var(--color-primary-200);
+}
 
-    .vrxdatepicker-daypicker-istoday-style{
-        @apply text-secondary-700;
-        @apply dark:text-secondary-300;
-    }
+.vrxdatepicker-daypicker-isselected-style {
+  background-color: var(--color-secondary-300);
+}
 
-    .vrxdatepicker-daypicker-iscurrentmonth-style{
-        @apply text-primary-300;
-        @apply dark:text-primary-500;
-    }
+.vrxdatepicker-daypicker-istoday-style {
+  color: var(--color-secondary-700);
+}
+
+.vrxdatepicker-daypicker-iscurrentmonth-style {
+  color: var(--color-primary-300);
+}
+
+/* 🌙 Dark mode */
+@media (prefers-color-scheme: dark) {
+  .vrxdatepicker-helpertext-style {
+    color: var(--color-content-dark);
+  }
+  .vrxdatepicker-helpertext-invalid-style {
+    color: var(--color-error-700);
+  }
+  .vrxdatepicker-dropdown-bg-style {
+    background-color: var(--color-base-dark);
+  }
+  .vrxdatepicker-daypicker-text-style,
+  .vrxdatepicker-monthpicker-text-style,
+  .vrxdatepicker-yearpicker-text-style,
+  .vrxdatepicker-timepicker-text-style {
+    color: var(--color-content-dark);
+  }
+  .vrxdatepicker-daypicker-text-style:hover,
+  .vrxdatepicker-monthpicker-text-style:hover,
+  .vrxdatepicker-yearpicker-text-style:hover,
+  .vrxdatepicker-timepicker-text-style:hover {
+    background-color: var(--color-primary-500);
+  }
+  .vrxdatepicker-yearpicker-header-text-style {
+    color: var(--color-content-dark);
+  }
+  .vrxdatepicker-timepicker-bg-style {
+    border-color: var(--color-primary-600);
+  }
+  .vrxdatepicker-daypicker-isselected-style {
+    background-color: var(--color-secondary-700);
+  }
+  .vrxdatepicker-daypicker-istoday-style {
+    color: var(--color-secondary-300);
+  }
+  .vrxdatepicker-daypicker-iscurrentmonth-style {
+    color: var(--color-primary-500);
+  }
 }

@@ -1,17 +1,79 @@
-@layer components {
-    .vrxdaterangepicker-dropdown-btn-style, .vrxdaterangepicker-dropdown-text-style{
-        @apply hover:bg-primary-200 hover:text-content-light text-content-light;
-        @apply dark:hover:bg-primary-500 dark:hover:text-content-dark dark:text-content-dark;
-    }
+/* VRX DateRangePicker */
 
-    .vrxdaterangepicker-dropdown-header-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
+.vrxdaterangepicker-dropdown-btn-style {
+  color: var(--color-content-light);
+  background-color: transparent;
+}
+.vrxdaterangepicker-dropdown-btn-style:hover {
+  background-color: var(--color-primary-200);
+  color: var(--color-content-light);
+}
 
-    .vrxdaterangepicker-dropdown-bg-style{
-        @apply bg-base-light;
-        @apply dark:bg-base-dark;
-    }
+.vrxdaterangepicker-dropdown-text-style {
+  color: var(--color-content-light);
+  background-color: transparent;
+}
+.vrxdaterangepicker-dropdown-text-style:hover {
+  background-color: var(--color-primary-200);
+  color: var(--color-content-light);
+}
 
+.vrxdaterangepicker-dropdown-header-style {
+  color: var(--color-content-light);
+}
+
+.vrxdaterangepicker-dropdown-bg-style {
+  background-color: var(--color-base-light);
+}
+
+/* 🌙 Dark mode con prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  .vrxdaterangepicker-dropdown-btn-style {
+    color: var(--color-content-dark);
+  }
+  .vrxdaterangepicker-dropdown-btn-style:hover {
+    background-color: var(--color-primary-500);
+    color: var(--color-content-dark);
+  }
+
+  .vrxdaterangepicker-dropdown-text-style {
+    color: var(--color-content-dark);
+  }
+  .vrxdaterangepicker-dropdown-text-style:hover {
+    background-color: var(--color-primary-500);
+    color: var(--color-content-dark);
+  }
+
+  .vrxdaterangepicker-dropdown-header-style {
+    color: var(--color-content-dark);
+  }
+
+  .vrxdaterangepicker-dropdown-bg-style {
+    background-color: var(--color-base-dark);
+  }
+}
+
+/* 🌙 Variante con [data-mode="dark"] se la usi */
+[data-mode="dark"] .vrxdaterangepicker-dropdown-btn-style {
+  color: var(--color-content-dark);
+}
+[data-mode="dark"] .vrxdaterangepicker-dropdown-btn-style:hover {
+  background-color: var(--color-primary-500);
+  color: var(--color-content-dark);
+}
+
+[data-mode="dark"] .vrxdaterangepicker-dropdown-text-style {
+  color: var(--color-content-dark);
+}
+[data-mode="dark"] .vrxdaterangepicker-dropdown-text-style:hover {
+  background-color: var(--color-primary-500);
+  color: var(--color-content-dark);
+}
+
+[data-mode="dark"] .vrxdaterangepicker-dropdown-header-style {
+  color: var(--color-content-dark);
+}
+
+[data-mode="dark"] .vrxdaterangepicker-dropdown-bg-style {
+  background-color: var(--color-base-dark);
 }

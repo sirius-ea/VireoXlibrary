@@ -1,7 +1,6 @@
 // stories for VrxButton
 import type { Meta, StoryObj } from '@storybook/vue3'
 import VrxColorPalette from './VrxColorPalette.vue'
-import {theme} from "../styles"
 
 
 const meta : Meta<typeof VrxColorPalette> = {
@@ -30,7 +29,7 @@ const Template: ColorStory = {
     }),
     args: {
         //@ts-ignore
-        colors: theme.colors.primary,
+        //colors: theme.colors.primary,
     },
 }
 
@@ -39,7 +38,7 @@ export const Primary: ColorStory = {
     args: {
         ...Template.args,
         //@ts-ignore
-        colors: theme.colors.primary,
+        //colors: theme.colors.primary,
     }
 };
 
@@ -48,7 +47,7 @@ export const Secondary: ColorStory = {
     args: {
         ...Template.args,
         //@ts-ignore
-        colors: theme.colors.secondary,
+        //colors: theme.colors.secondary,
     }
 };
 
@@ -57,7 +56,7 @@ export const Neutral: ColorStory = {
     args: {
         ...Template.args,
         //@ts-ignore
-        colors: theme.colors.neutral,
+        //colors: theme.colors.neutral,
     }
 };
 
@@ -66,7 +65,7 @@ export const Error: ColorStory = {
     args: {
         ...Template.args,
         //@ts-ignore
-        colors: theme.colors.error,
+        //colors: theme.colors.error,
     }
 };
 
@@ -75,13 +74,7 @@ export const Root: ColorStory = {
     args: {
         ...Template.args,
         colors: { //@ts-ignore
-            'content-dark': theme.colors['content-dark'], //@ts-ignore
-            'content-light': theme.colors['content-light'], //@ts-ignore
-            'base-dark': theme.colors['base-dark'], //@ts-ignore
-            'base-light': theme.colors['base-light'],//@ts-ignore
-            'icon': theme.colors['icon'],//@ts-ignore
-            'icon-disabled': theme.colors['icon-disabled'],//@ts-ignore
-            'icon-invalid': theme.colors['icon-invalid']
+            
         },
     }
 };

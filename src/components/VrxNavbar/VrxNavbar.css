@@ -1,47 +1,99 @@
 @layer components {
-    .vrxnavbar-navbarbutton-selected-style{
-        @apply md:bg-transparent md:text-secondary-700;
-        @apply dark:text-content-dark md:dark:text-secondary-500;
-        @apply text-content-dark bg-secondary-700;
+  .vrxnavbar-navbarbutton-selected-style {
+    background-color: var(--color-secondary-700);
+    color: var(--color-content-light);
+  }
+  @media (min-width: 768px) {
+    .vrxnavbar-navbarbutton-selected-style {
+      background-color: transparent;
+      color: var(--color-secondary-700);
     }
-    .vrxnavbar-navbarbutton-unselected-style{
-        @apply md:hover:bg-transparent;
-        @apply text-primary-900 hover:bg-primary-100 md:hover:text-secondary-700;
-        @apply dark:text-content-dark md:dark:hover:text-secondary-500 dark:hover:bg-primary-700 dark:hover:text-content-dark md:dark:hover:bg-transparent;
+    [data-mode="dark"] & {
+      color: var(--color-secondary-500);
     }
+  }
+  [data-mode="dark"] .vrxnavbar-navbarbutton-selected-style {
+    color: var(--color-content-dark);
+  }
 
-    .vrxnavbar-bg-style{
-        @apply bg-primary-50 border-red-600;
-        @apply dark:bg-primary-900;
+  .vrxnavbar-navbarbutton-unselected-style {
+    background-color: transparent;
+    color: var(--color-primary-900);
+  }
+  .vrxnavbar-navbarbutton-unselected-style:hover {
+    background-color: var(--color-primary-100);
+    color: var(--color-secondary-700);
+  }
+  [data-mode="dark"] .vrxnavbar-navbarbutton-unselected-style {
+    color: var(--color-content-dark);
+  }
+  [data-mode="dark"] .vrxnavbar-navbarbutton-unselected-style:hover {
+    background-color: var(--color-primary-700);
+    color: var(--color-content-dark);
+  }
+  @media (min-width: 768px) {
+    [data-mode="dark"] .vrxnavbar-navbarbutton-unselected-style:hover {
+      background-color: transparent;
+      color: var(--color-secondary-500);
     }
+  }
 
-    .vrxnavbar-bottomnav-style{
-        @apply bg-primary-50;
-        @apply dark:bg-primary-900 dark:border-primary-700;
-    }
+  .vrxnavbar-bg-style {
+    background-color: var(--color-primary-50);
+    border-color: #dc2626; /* border-red-600 */
+  }
+  [data-mode="dark"] .vrxnavbar-bg-style {
+    background-color: var(--color-primary-900);
+  }
 
-    .vrxnavbar-navbutton-text-style{
-        @apply text-content-light md:hover:text-content-light;
-        @apply dark:text-content-dark md:dark:hover:text-content-dark;
-    }
+  .vrxnavbar-bottomnav-style {
+    background-color: var(--color-primary-50);
+  }
+  [data-mode="dark"] .vrxnavbar-bottomnav-style {
+    background-color: var(--color-primary-900);
+    border-color: var(--color-primary-700);
+  }
 
-    .vrxnavbar-card-style{
-        @apply hover:bg-primary-100 text-content-light;
-        @apply dark:hover:bg-primary-800 dark:text-content-dark;
-    }
-    .vrxnavbar-card-icon-bg-style{
-        @apply bg-primary-200;
-        @apply dark:bg-primary-700;
-    }
-    .vrxnavbar-card-text-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
-    .vrxnavbar-card-description-style{
-        @apply text-content-light;
-        @apply dark:text-content-dark;
-    }
+  .vrxnavbar-navbutton-text-style {
+    color: var(--color-content-light);
+  }
+  .vrxnavbar-navbutton-text-style:hover {
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrxnavbar-navbutton-text-style {
+    color: var(--color-content-dark);
+  }
+  [data-mode="dark"] .vrxnavbar-navbutton-text-style:hover {
+    color: var(--color-content-dark);
+  }
 
+  .vrxnavbar-card-style {
+    background-color: transparent;
+    color: var(--color-content-light);
+  }
+  .vrxnavbar-card-style:hover {
+    background-color: var(--color-primary-100);
+  }
+  [data-mode="dark"] .vrxnavbar-card-style {
+    color: var(--color-content-dark);
+  }
+  [data-mode="dark"] .vrxnavbar-card-style:hover {
+    background-color: var(--color-primary-800);
+  }
 
+  .vrxnavbar-card-icon-bg-style {
+    background-color: var(--color-primary-200);
+  }
+  [data-mode="dark"] .vrxnavbar-card-icon-bg-style {
+    background-color: var(--color-primary-700);
+  }
 
+  .vrxnavbar-card-text-style,
+  .vrxnavbar-card-description-style {
+    color: var(--color-content-light);
+  }
+  [data-mode="dark"] .vrxnavbar-card-text-style,
+  [data-mode="dark"] .vrxnavbar-card-description-style {
+    color: var(--color-content-dark);
+  }
 }

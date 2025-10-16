@@ -49,5 +49,5 @@ const {color, disabled, fullRounded, fullWidth, size} =
 </script>
 
 <style scoped>
-
+@import './VrxButton.css';
 </style>

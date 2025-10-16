@@ -18,10 +18,6 @@
 </template>
 
 <script setup lang="ts">
-
-
-  import {theme} from "@/components/styles.ts";
-  import {textStyle} from "@/components/VrxGrid/gridStyles.ts";
   import {GridHeader, GridRow} from "@/components/VrxGrid/GridConfiguration.ts";
   import {computed, inject, onBeforeMount, ref} from "vue";
   import {Row} from "@/components/VrxGrid/Models/Row.ts";
@@ -40,8 +36,8 @@
   const gridRowTheme = ref();
 
   onBeforeMount(() => { // Initialize theme
-    if(theme && theme.colors)
-      gridRowTheme.value = theme.colors;
+    /*if(theme && theme.colors)
+      gridRowTheme.value = theme.colors;*/
   });
 
   const rowClicked = () => {

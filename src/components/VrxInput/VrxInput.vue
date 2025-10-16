@@ -77,9 +77,100 @@ const style = computed(() => {
 
 </script>
 
-<style scoped>
-  .vrx-input {
-    height: v-bind(props.height + 'px');
-  }
+<style>
+.vrxinput-input-style {
+  outline: none;
+  border-width: 1px;
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 0.625rem; /* p-2.5 */
+  display: block;
+  width: 100%;
+  font-size: 0.875rem; /* text-sm */
+  border-color: var(--color-primary-300);
+  color: var(--color-content-light);
+}
+.vrxinput-input-style:focus {
+  ring-color: var(--color-secondary-500);
+  border-color: var(--color-secondary-500);
+}
+[data-mode="dark"] .vrxinput-input-style {
+  color: var(--color-content-dark);
+  background-color: var(--color-base-dark);
+  border-color: var(--color-primary-600);
+}
+[data-mode="dark"] .vrxinput-input-style::placeholder {
+  color: var(--color-content-dark);
+}
 
+.vrxinput-input-disabled-style {
+  outline: none;
+  border-width: 1px;
+  border-radius: 0.5rem;
+  padding: 0.625rem;
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  border-color: var(--color-primary-50);
+  background-color: var(--color-base-light);
+  color: var(--color-content-light);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+[data-mode="dark"] .vrxinput-input-disabled-style {
+  background-color: var(--color-base-dark);
+  color: var(--color-content-dark);
+}
+
+.vrxinput-input-invalid-style {
+  outline: none;
+  border-width: 1px;
+  border-radius: 0.5rem;
+  padding: 0.625rem;
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  border-color: var(--color-error-500);
+  background-color: var(--color-error-50);
+  color: var(--color-error-900);
+}
+.vrxinput-input-invalid-style::placeholder {
+  color: var(--color-error-700);
+}
+.vrxinput-input-invalid-style:focus {
+  border-color: var(--color-error-500);
+  ring-color: var(--color-error-500);
+}
+[data-mode="dark"] .vrxinput-input-invalid-style {
+  border-color: var(--color-error-500);
+  background-color: var(--color-error-950);
+  color: var(--color-error-400);
+}
+[data-mode="dark"] .vrxinput-input-invalid-style::placeholder {
+  color: var(--color-error-500);
+}
+[data-mode="dark"] .vrxinput-input-invalid-style:focus {
+  border-color: var(--color-error-600);
+}
+
+.vrxinput-label-style,
+.vrxinput-label-disabled-style,
+.vrxinput-helperText-style,
+.vrxinput-helperText-disabled-style {
+  color: var(--color-content-light);
+}
+[data-mode="dark"] .vrxinput-label-style,
+[data-mode="dark"] .vrxinput-label-disabled-style,
+[data-mode="dark"] .vrxinput-helperText-style,
+[data-mode="dark"] .vrxinput-helperText-disabled-style {
+  color: var(--color-content-dark);
+}
+
+.vrxinput-label-invalid-style,
+.vrxinput-helperText-invalid-style {
+  color: var(--color-error-700);
+}
+[data-mode="dark"] .vrxinput-label-invalid-style,
+[data-mode="dark"] .vrxinput-helperText-invalid-style {
+  color: var(--color-error-500);
+}
 </style>
