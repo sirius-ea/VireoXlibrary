@@ -7,19 +7,19 @@
 
     .vrx-notification-success {
         @apply border-emerald-700 dark:border-emerald-800;
-        @apply bg-emerald-700 bg-opacity-90 dark:bg-emerald-600 dark:bg-opacity-90;
+        @apply bg-emerald-700/90 dark:bg-emerald-600/90;
         @apply text-gray-50 dark:text-gray-50;
     }
 
     .vrx-notification-warning {
         @apply border-orange-700 dark:border-orange-800;
-        @apply bg-orange-600 bg-opacity-90 dark:bg-orange-500 dark:bg-opacity-90;
+        @apply bg-orange-600/90 dark:bg-orange-500/90;
         @apply text-gray-50 dark:text-gray-50;
     }
 
     .vrx-notification-error {
         @apply border-red-900 dark:border-red-800;
-        @apply bg-red-600 bg-opacity-90 dark:bg-red-600 dark:bg-opacity-90;
+        @apply bg-red-600/90 dark:bg-red-600/90;
         @apply text-gray-50 dark:text-gray-50;
     }
 
@@ -27,7 +27,7 @@
         left: 2px;
         @apply absolute bottom-0 h-1 rounded-b-lg overflow-hidden;
         @apply transition-all duration-100 ease-linear;
-        @apply bg-gray-50 bg-opacity-90 dark:bg-gray-50 dark:bg-opacity-90;
+        @apply bg-gray-50/90 dark:bg-gray-50/90;
     }
 
     .vrx-notification-container {

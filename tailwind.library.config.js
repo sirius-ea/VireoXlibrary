@@ -1,5 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  // Disable preflight to avoid conflicts with other libraries like Nuxt UI
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
@@ -65,15 +69,8 @@ export default {
       },
     }
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-  ],
   content: [
     "./src/**/*.{js,jsx,vue,ts,tsx,css}",
     "./src/components/**/*.{js,jsx,vue,ts,tsx,css}",
-    "./src/**/*.stories.{js,ts}",
-    "./index.html"
   ]
 }

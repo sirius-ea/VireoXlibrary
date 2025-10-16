@@ -1,7 +1,7 @@
 import type { App } from 'vue';
 import * as components from "@/components";
 
-import "./style.css";
+import "./library.css";
 
 export default {
     install: (app: App, _ = {}) => {

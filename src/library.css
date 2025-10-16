@@ -1,0 +1,176 @@
+/* VireoXlibrary - Component Styles Only */
+/* Tailwind CSS v4 - Preflight removed via Vite plugin */
+
+/* Import full Tailwind CSS (preflight will be removed by Vite plugin) */
+@import "tailwindcss";
+
+/* Import component CSS files after Tailwind */
+@import "./components/VrxButton/VrxButton.css";
+@import "./components/VrxInput/VrxInput.css";
+@import "./components/VrxSelect/VrxSelect.css";
+@import "./components/VrxToggle/VrxToggle.css";
+@import "./components/VrxNavbar/VrxNavbar.css";
+@import "./components/VrxTree/VrxTree.css";
+@import "./components/VrxGrid/VrxGrid.css";
+@import "./components/VrxDatePicker/VrxDatePicker.css";
+@import "./components/VrxDateRangePicker/VrxDateRangePicker.css";
+@import "./components/VrxNotification/VrxNotification.css";
+@import "./components/VrxProgress/VrxProgress.css";
+@import "./components/VrxNode/VrxNode.css";
+
+/* Define custom theme colors using @theme */
+@theme {
+  --color-primary-*: initial;
+  --color-secondary-*: initial;
+  --color-neutral-*: initial;
+  --color-error-*: initial;
+  --color-base-light: initial;
+  --color-base-dark: initial;
+  --color-content-light: initial;
+  --color-content-dark: initial;
+  --color-icon: initial;
+  --color-icon-disabled: initial;
+  --color-icon-invalid: initial;
+  
+  /* Define theme color mappings */
+  --color-primary-50: #f9fafb;
+  --color-primary-100: #f3f4f6;
+  --color-primary-200: #e5e7eb;
+  --color-primary-300: #d1d5db;
+  --color-primary-400: #9ca3af;
+  --color-primary-500: #6b7280;
+  --color-primary-600: #4b5563;
+  --color-primary-700: #374151;
+  --color-primary-800: #1f2937;
+  --color-primary-900: #111827;
+  --color-primary-950: #030712;
+  
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
+  --color-secondary-950: #172554;
+  
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712;
+  
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  --color-error-950: #450a0a;
+  
+  --color-base-light: #f3f4f6;
+  --color-base-dark: #374151;
+  --color-content-light: #020617;
+  --color-content-dark: #f8fafc;
+  --color-icon: var(--color-neutral-400);
+  --color-icon-disabled: var(--color-neutral-300);
+  --color-icon-invalid: var(--color-error-600);
+}
+
+/* Import component CSS files */
+@import "./components/VrxButton/VrxButton.css";
+@import "./components/VrxInput/VrxInput.css";
+@import "./components/VrxSelect/VrxSelect.css";
+@import "./components/VrxToggle/VrxToggle.css";
+@import "./components/VrxNavbar/VrxNavbar.css";
+@import "./components/VrxTree/VrxTree.css";
+@import "./components/VrxGrid/VrxGrid.css";
+@import "./components/VrxDatePicker/VrxDatePicker.css";
+@import "./components/VrxDateRangePicker/VrxDateRangePicker.css";
+@import "./components/VrxNotification/VrxNotification.css";
+@import "./components/VrxProgress/VrxProgress.css";
+@import "./components/VrxNode/VrxNode.css";
+
+/* CSS Variables for theming - defined without @layer to avoid requiring @tailwind base */
+:root {
+    --color-primary-50: #f9fafb;
+    --color-primary-100: #f3f4f6;
+    --color-primary-200: #e5e7eb;
+    --color-primary-300: #d1d5db;
+    --color-primary-400: #9ca3af;
+    --color-primary-500: #6b7280;
+    --color-primary-600: #4b5563;
+    --color-primary-700: #374151;
+    --color-primary-800: #1f2937;
+    --color-primary-900: #111827;
+    --color-primary-950: #030712;
+    --color-secondary-50: #eff6ff;
+    --color-secondary-100: #dbeafe;
+    --color-secondary-200: #bfdbfe;
+    --color-secondary-300: #93c5fd;
+    --color-secondary-400: #60a5fa;
+    --color-secondary-500: #3b82f6;
+    --color-secondary-600: #2563eb;
+    --color-secondary-700: #1d4ed8;
+    --color-secondary-800: #1e40af;
+    --color-secondary-900: #1e3a8a;
+    --color-secondary-950: #172554;
+    --color-neutral-50: #f9fafb;
+    --color-neutral-100: #f3f4f6;
+    --color-neutral-200: #e5e7eb;
+    --color-neutral-300: #d1d5db;
+    --color-neutral-400: #9ca3af;
+    --color-neutral-500: #6b7280;
+    --color-neutral-600: #4b5563;
+    --color-neutral-700: #374151;
+    --color-neutral-800: #1f2937;
+    --color-neutral-900: #111827;
+    --color-neutral-950: #030712;
+    --color-error-50: #fef2f2;
+    --color-error-100: #fee2e2;
+    --color-error-200: #fecaca;
+    --color-error-300: #fca5a5;
+    --color-error-400: #f87171;
+    --color-error-500: #ef4444;
+    --color-error-600: #dc2626;
+    --color-error-700: #b91c1c;
+    --color-error-800: #991b1b;
+    --color-error-900: #7f1d1d;
+    --color-error-950: #450a0a;
+    --color-base-light: #f3f4f6;
+    --color-base-dark: #374151;
+    --color-content-light: #020617;
+    --color-content-dark: #f8fafc;
+    --color-icon: var(--color-neutral-400);
+    --color-icon-disabled: var(--color-neutral-300);
+    --color-icon-invalid: var(--color-error-600);
+}
+
+/* Utility classes used by components */
+.icon-active{
+    transform: rotate(180deg);
+    transition: .2s ease all;
+}
+
+.icon-off{
+    transform: rotate(0deg);
+    transition: .2s ease all;
+}
+
+.icon-rotate{
+    transform: rotate(90deg);
+    transition: .2s ease all;
+}
